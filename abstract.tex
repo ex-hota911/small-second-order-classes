@@ -9,29 +9,7 @@ In this field,
 we analyze the complexity of algorithms in numerical analysis 
 and discuss lower bounds on the speed of reliable numerical algorithms.
 
-The first topic of this thesis is the lower bounds of the complexity of the solution~$h$
-for the ordinary differential equation of the form 
-$h(0)=0$, $h'(t) = g(t, h(t))$.
-It is well-known that this equation has a unique solution if $g$ is Lipschitz continuous.
-Kawamura showed in 2010 that the solution~$h$ can be $\classPSPACE$-hard
-even if $g$ is Lipschitz continuous and polynomial-time computable. 
 
-
-We place further requirements on the smoothness of $g$ 
-and obtain the following results: 
-the solution~$h$ can still be $\classPSPACE$-hard
-if $g$ is assumed to be of class $\classC ^1$; 
-for each $k \geq 2$, 
-the solution~$h$ can be $\classCH$-hard
-if $g$ is of class $\classC ^k$,
-where $\classCH$ (Counting Hierarchy) is a complexity class contained in $\classPSPACE$
-and containing $\classNP$, $\classPP$, and $\classPH$.
-This result implies that the smoothness alone does not help to 
-compute the solution $h$ significantly.
-
-
-The second topic is the complexity of problems in numerical analysis 
-that are known to be polynomial-time computable.
 Kawamura and Cook proposed an extended framework for TTE.
 They define type-two complexity classes analogous to $\classP$, $\classNP$,
 and $\classPSPACE$ by bounding time or space by the second-order polynomial
