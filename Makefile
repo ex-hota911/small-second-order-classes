@@ -4,7 +4,7 @@
 # Name:  Thor Watanabe
 # Mail:  hakodate12@hotmail.com
 # 主となる原稿
-FILE=thesis
+FILE=fulltext
 EFILE=$(FILE).euc
 # 分割され、インクルードされているファイル
 SRC=$(wildcard *.tex)
