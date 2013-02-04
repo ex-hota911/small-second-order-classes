@@ -1,0 +1,116 @@
+\begin{eabstract}
+Computable Analysis is a branch of computability theory that
+studies real numbers or real functions computable on digital machines.
+We use the framework of Type-two Theory of Effectivity proposed by Weihrauch,
+which is based on the models by Turing, Grzegorczyk and Lacombe.
+Not only computability, but also time and space complexity of real functions, 
+has been studied since Ko's work in the 1980s. 
+In this field,
+we analyze the complexity of algorithms in numerical analysis 
+and discuss lower bounds on the speed of reliable numerical algorithms.
+
+The first topic of this thesis is the lower bounds of the complexity of the solution~$h$
+for the ordinary differential equation of the form 
+$h(0)=0$, $h'(t) = g(t, h(t))$.
+It is well-known that this equation has a unique solution if $g$ is Lipschitz continuous.
+Kawamura showed in 2010 that the solution~$h$ can be $\classPSPACE$-hard
+even if $g$ is Lipschitz continuous and polynomial-time computable. 
+
+
+We place further requirements on the smoothness of $g$ 
+and obtain the following results: 
+the solution~$h$ can still be $\classPSPACE$-hard
+if $g$ is assumed to be of class $\classC ^1$; 
+for each $k \geq 2$, 
+the solution~$h$ can be $\classCH$-hard
+if $g$ is of class $\classC ^k$,
+where $\classCH$ (Counting Hierarchy) is a complexity class contained in $\classPSPACE$
+and containing $\classNP$, $\classPP$, and $\classPH$.
+This result implies that the smoothness alone does not help to 
+compute the solution $h$ significantly.
+
+
+The second topic is the complexity of problems in numerical analysis 
+that are known to be polynomial-time computable.
+Kawamura and Cook proposed an extended framework for TTE.
+They define type-two complexity classes analogous to $\classP$, $\classNP$,
+and $\classPSPACE$ by bounding time or space by the second-order polynomial
+in the size of the input.
+In this thesis, we focus on small classes
+and define type-two analogues of the log-space class $\classL$ and
+the circuit class $\classNC$.
+We also define the type-two $\classP$-completeness under suitable log-space reductions.
+
+We apply this framework to some specific problems.
+First, we study the complexity of the problem to find the roots of
+the polynomial from its coefficients.
+Using Mosier's analysis, we can bound the required input precision 
+by a polynomial in the precision of the solution.
+We combine this analysis and the discrete result 
+that the problem to approximate the roots of the polynomial with integer 
+coefficients is $\classNC$ computable,
+and we show that the polynomial roots are type-two $\classNC$ computable.
+Second, we give two examples of $\classP$-complete operators,
+the inverse operation and the fix-point operation on contracting mappings.
+It is known that these operators are $\classP$-complete in a non-uniform sense:
+the fix-points of $\classNC$-computable contracting mappings,
+as well as the inverse function $f^{-1}$ of a one-to-one $\classL$-computable function $f$,
+can be $\classP$-complete.
+We express these theorems in the uniform way and
+show that these operators themselves are type-two $\classP$-complete.
+\end{eabstract}
+
+
+\begin{jabstract}
+計算可能解析とは計算可能性理論に基づき計算機上で計算可能な実数や実関数の
+性質について研究する分野である.
+ここでは Turing や Grzegorczyk, Lacombe によるものをベースとして,
+Weihrauch によって提唱された Type-two Theory of Effectivity (TTE) の枠組みを用いる.
+1980年代の葛の結果以降, 計算可能性だけでなく計算量についても研究されてきた.
+この分野では数値解析におけるアルゴリズムの計算量を解析し,
+精度の保証されたアルゴリズムの効率化の下界について議論する.
+
+
+本研究の1つ目のテーマとして, 
+初期値問題$h(0)=0, h'(t) = g(t, h(t))$の計算量の下限について解析する.
+$g$ が Lipschitz 連続であることは解の一意性の有名な十分条件である.
+河村によって, $g$ が Lipschitz 連続かつ多項式時間計算可能と制限しても,
+解$h$は$\classPSPACE$完全になりうることが示されている.
+
+
+本研究では河村の結果を拡張し,
+$g$をさらに滑らかな関数へ制限した場合の解$h$の計算量の下限を解析した.
+そして$g$が$1$回連続微分可能であると仮定しても,
+解$h$がやはり$\classPSPACE$完全となりうること,
+および任意の定数$k$について, $g$を$k$回連続微分可能であると仮定しても,
+解$h$が$\classCH$について困難でありうることを示した.
+$\classCH$または計算階層とは, $\classPSPACE$に含まれ, 
+$\classNP$や$\classPP$, $\classPH$などを含む計算量クラスである.
+この結果は, $g$の滑らかさが解$h$の計算の大きな助けにはならないことを示唆している.
+
+
+本研究の2つ目のテーマは, 
+多項式時間計算可能な数値解析問題の計算量の解析である.
+河村およびCookによって提案された TTE を拡張する枠組みでは,
+文字列関数を入力として文字列関数を返す二階の計算量クラスを考える.
+彼らは二階多項式を用いて文字列関数上の計算における時間や領域を制限することで,
+$\classP$, $\classNP$, $\classPSPACE$ と対応するニ階計算量クラスを定義した.
+本研究ではより小さなクラスに着目し, 回路計算量クラス$\classNC$ および
+対数領域計算量クラス $\classL$ に対応する二階の計算量クラスを定義する.
+また対数領域還元のもとで二階の多項式時間クラスに対する完全性を定義する.
+
+この枠組みをいくつかの具体的な問題に適用する.
+最初に実数係数多項式の根を求める計算量を解析する.
+根の計算に必要な係数の精度は解に求められる精度で抑えられることが,
+Mosier による解析を用いて示される.
+さらに整数係数の多項式の根の近似が$\classNC$計算可能であるという
+離散的な結果と組み合わせることによって,
+実数係数の多項式の根の計算が$\classNC$で計算可能であることを示す.
+次に逆関数を求める操作と縮小関数の不動点を求める操作が多項式時間完全であることを示す.
+それらの操作が非構成的な意味で多項式時間完全であることは以前より知られている.
+つまり対数領域計算可能な$f$の逆関数$f^{-1}$や
+$\classNC$計算可能な縮小写像の不動点は多項式時間完全となりうる.
+我々はそれらの定理を構成的な形に定式化し,
+それらの操作自体が多項式時間完全であることを示す.
+\end{jabstract}
+

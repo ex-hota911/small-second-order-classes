@@ -1,0 +1,302 @@
+%#!platex fulltext.tex
+
+\section{Computable analysis}
+
+We investigate the computational complexity of several problems in 
+numerical analysis.
+The problems we study in this thesis are of the following kind:
+How does smoothness change the complexity to solve differentiable equations?
+How much resource is needed to compute the roots of a polynomial?
+Which operators on real function are feasibly computable but inherently sequential?
+In this thesis, we use the model of the real computation from the field of 
+Computational Analysis.
+
+\emph{Computable Analysis} 
+\cite{ko1991complexity,weihrauch00:_comput_analy}
+studies real functions that are computable approximately 
+by digital (finite-precision floating-point) machines.
+Here, polynomial-time computability and other notions of complexity 
+is from this field and measure how hard it is to approximate real functions
+with specified precision  (Sect.~\ref{section:TTE}). 
+
+In the theory of \emph{real computation}, 
+there is no ``Church-Turing thesis''.
+Church-Turing thesis states that a function on finite strings or natural 
+numbers is ``effectively'' or algorithmically computable 
+if and only if some Turing machine can compute it.
+Many other computation models such as $\lambda$-calculus or recursion
+were proposed and shown to be equivalent to Turing machine.
+In contrast, there are models about computation on real numbers, 
+and some of them are known not to be equivalent to others.
+Another model is the Blum-Shub-Smale (BSS) machine \cite{blum1988theory}.
+The main difference between BSS machines and machines in Computable Analysis is
+that a BSS machine has registers containing real numbers with infinite precision
+while digital machine can work on finite-precision number.
+Because of this difference,
+machines in Computable Analysis cannot compute noncontinuous functions
+but the algorithm described in Computable Analysis 
+can be used as numerical computation in real computers
+ while we do not know
+how to realize BSS machines.
+
+
+\section{Complexity of smooth initial value problems}
+The first specific problem in analysis is the differential equations
+of smooth functions.
+Let $g \colon [0,1] \times \R \to \R$ be continuous 
+and consider the differential equation,
+\begin{align}
+ \label{eq:ode}
+ h(0) & = 0, &
+ h'(t) & = g(t,h(t)) \quad t \in [0,1].
+\end{align}
+The problem to compute $h$ from given $g$
+is famous as the initial value problem.
+Our question is ``How complex can the solution~$h$ be, 
+assuming that $g$ is \emph{smooth} and polynomial-time computable?''
+
+
+In numerical analysis, 
+knowledge about smoothness of the input function 
+(such as being differentiable enough times) 
+is often beneficial 
+in applying certain algorithms or simplifying their analysis.
+However, to our knowledge, 
+this casual understanding that smoothness is good 
+has not been rigorously substantiated 
+in terms of computational complexity theory. 
+This motivates us to ask whether, 
+for our differential equation \eqref{eq:ode}, 
+smoothness really reduces the complexity of the solution. 
+In particular, if $g$ is (globally) Lipschitz continuous, 
+then the (unique) solution $h$ is known to be 
+polynomial-space computable but still can be 
+$\classPSPACE$-hard \cite{kawamura2010lipschitz}. 
+
+In this thesis, we study the complexity of $h$ 
+when we put stronger assumptions about the smoothness of $g$. 
+We show that if $g$ is once differentiable,
+$h$ can be $\classPSPACE$-hard, and for each integer $k$, 
+$h$ can be $\classCH$-hard if $g$ is $k$-times differentiable,
+where $\classCH \subseteq \classPSPACE$ is the Counting Hierarchy 
+(see Sect.~\ref{subsection: counting hierarchy}) \cite{kawamura2012computational}. 
+
+
+
+
+\paragraph{Related works}
+
+\begin{table}
+\renewcommand\arraystretch{1.5}
+\begin{center}
+ \caption{Complexity of the solution $h$ of \eqref{eq:ode}
+ assuming $g$ is polynomial-time computable}
+ \label{table:related}
+\small\vspace{3pt}
+ \begin{tabular}{lll}
+  Assumptions & Upper bounds & Lower bounds \\
+  \noalign{\smallskip}
+  \hline
+  \noalign{\smallskip}
+  --- &
+      --- &
+	  can be all non-computable \cite{pour1979computable} 
+  \\
+  $h$ is the unique solution & 
+      computable \cite{coddington1955theory} & 
+	  \parbox[t]{13em}{can take arbitrarily long time\\
+                           \cite{ko1983computational,miller1970recursive}} 
+  \\
+  the Lipschitz condition  &
+      polynomial-space \cite{ko1983computational} &
+	  can be $\classPSPACE$-hard \cite{kawamura2010lipschitz}
+  \\
+  $g$ is of class $\classC ^{(\infty, 1)}$ & 
+      polynomial-space &
+	  \parbox[t]{12em}{can be $\classPSPACE$-hard\\
+                           (Theorem~\ref{DifferentiableIsPspace})} 
+  \\
+  \parbox[t]{10.55em}{$g$ is of class $\classC ^{(\infty, k)}$\\
+  {}(for each constant $k$)} &
+      polynomial-space &
+	  can be $\classCH$-hard (Theorem~\ref{KTimesIsCH}) 
+  \\
+  $g$ is analytic &
+      \parbox[t]{8em}{polynomial-time \\
+      \cite{muller1987uniform,ko1988computing,kawamura2010complexity} } &
+           ---
+ \end{tabular}
+\end{center}
+\end{table}
+
+If we put no assumption on $g$ other than being polynomial-time computable, 
+the solution~$h$ (which is not unique in general) can be non-computable. 
+Table~\ref{table:related} summarizes known results about 
+the complexity of $h$ under various assumptions 
+(that get stronger as we go down the table). 
+
+One extreme is the case where $g$ is analytic: 
+$h$ is then polynomial-time computable 
+(the last row of the table) 
+by an argument based on Taylor series\footnote{
+As shown by M\"uller \cite{muller1987uniform} and 
+Ko and Friedman \cite{ko1988computing}, 
+polynomial-time computability of an analytic function 
+on a compact interval is 
+equivalent to that of its Taylor sequence at a point 
+(although the latter is a local property, 
+polynomial-time computability on the whole interval is implied 
+by analytic continuation; 
+see \cite[Corollary~4.5]{muller1987uniform}
+or \cite[Theorem~11]{kawamura2010complexity}). 
+This implies the polynomial-time computability of $h$, 
+since we can efficiently compute the 
+Taylor sequence of $h$ from that of $g$. 
+} (this does not necessarily mean that 
+computing the values of $h$ from those of $g$ is easy; 
+see the last paragraph of Sect.~\ref{section: constructive}). 
+Thus our interest is in 
+the cases between Lipschitz and analytic 
+(the fourth and fifth rows). 
+We say that $g$ is of class $\classC ^{(i, j)}$
+if the partial derivative $\D ^{(n, m)} g$ 
+(often also denoted $\partial ^{n + m} g (t, y) / \partial t ^n \partial y ^m$)
+exists and is continuous for all $n \le i$ and $m \le j$;%
+\footnote{%
+Another common terminology is to say that $g$ is of class $\classC ^k$
+if it is of class $\classC ^{(i,j)}$ 
+for all $i$, $j$ with $i + j \leq k$.}
+it is said to be of class $\classC ^{(\infty, j)}$ if
+it is of class $\classC ^{(i, j)}$ for all $i \in \N$. 
+
+Whether smoothness of the input function 
+reduces the complexity of the output
+has been studied for operators other than solving differential equations, 
+and the following negative results are known. 
+The integral of a polynomial-time computable real function 
+can be $\classNumberP$-hard, and this does not change 
+by restricting the input to 
+$\classC ^\infty$ (infinitely differentiable) functions
+\cite[Theorem~5.33]{ko1991complexity}. 
+Similarly, the function obtained by maximization 
+from a polynomial-time computable real function 
+can be $\classNP$-hard, and this is still so
+even if the input function is restricted to $\classC ^\infty$ 
+\cite[Theorem~3.7]{ko1991complexity}.
+(Restricting to analytic inputs 
+renders the output polynomial-time computable, 
+again by the argument based on Taylor series.)
+In contrast, for the differential equation
+we only have Theorem~\ref{KTimesIsCH} for each $k$, 
+and do not have any hardness result 
+when $g$ is assumed to be infinitely differentiable. 
+
+
+\section{Type-two complexity theory for small classes}
+As the statements in the previous section,
+the complexity of an operation $F$ on real functions
+is stated indirectly in the non-uniform form like
+\begin{quote}
+ if $f$ is in the complexity class $\classonefont X$,
+ then $F(f)$ is in the complexity class $\classonefont Y$, and \\
+ there is $f$ in $\classonefont X$ such that $F(f)$ is hard for
+ the complexity class $\classonefont Z$.
+\end{quote}
+That is, there is some restriction to apply the framework TTE
+to complexity theory.
+There is a widely-recognized definition of polynomial-time computable 
+real functions whose domain is compact.
+However, there is not such a model for
+operators $F$ on real functions in purpose to state
+directly that $F$ is polynomial-time computable or hard for $\classPSPACE$.
+
+Kawamura proposed an extension of this framework \cite{kawamura2012complexity}.
+The key idea is representing uncountable 
+objects by \emph{length-monotone} string functions, which make it possible to define the
+\emph{size} of function and to bound resources by size of input.
+In that framework we can state directly about the complexity of
+ an operator $F$ in the effective or uniform form like
+\begin{quote}
+ $F$ is in the complexity class $\mathcal Y$, and \\
+ $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
+\end{quote}
+where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to $\classonefont{X, Y, Z}$.
+There is no obvious way to define consistent type-two classes 
+analogous to usual (type-one) complexity classes.
+
+First, we introduce new small type-two classes.
+Type-two analogues of the classes $\classP$, $\classNP$, and $\classPSPACE$
+are defined by bounding resource of oracle machines by using 
+second-order polynomials on the size of the input string functions,
+\cite{kawamura2012complexity}.
+Using second-order logarithmic function,
+we define type-two classes analogous to the logarithmic-space 
+complexity class $\classL$ and the circuit complexity class $\classNC$, 
+which are both contained in $\classP$.
+While there are various models of relativized logarithmic space,
+we choose the \emph{constant stack machine} \cite{aehlig2007relativizing} 
+since it is consistent with relativized circuit complexity classes 
+and it makes some elemental operation log-space computable.
+We also define $\classP$-completeness under log-space reductions.
+
+Informally speaking, operators in type-two $\classL$ have
+memory friendly algorithm and operators in type-two $\classNC$
+are parallelizable.
+If an operation is $\classP$-complete,
+it is feasibly computable but inherently sequential. 
+
+Then, we apply this framework to several problems in analysis.
+Our first application is the problem of finding roots of a polynomial 
+from its coefficients.
+In numerical analysis, it is known to be generally ill-conditioned, 
+that is, the roots are sensitive to 
+small errors in the coefficients \cite{wilkinson1963rounding}.
+However, with the complex analysis by Mosier \cite{mosier1986root},
+we can bound the precision needed to compute
+roots by a polynomial in the required precision of the solution.
+We combine this analysis with the discrete result 
+that the problem to approximate the roots of the polynomial with integer 
+coefficients is $\classNC$ computable \cite{neff1994specified}
+to show that roots of a polynomial with real coefficients
+is $\classNC$ computable.
+Second application is about $\classP$-complete operators.
+There exist a few result about $\classP$-completeness of problems of numerical analysis:
+The inverse function $f^{-1}$ can be $\classP$-complete under the log-space
+reduction even if $f$ is log-space computable \cite{ko1983computational};
+The fix-points of contracting mappings can be $\classP$-complete under the
+$\classNC$ reduction even if contracting mappings are all $\classNC$ computable \cite{hoover1991real}.
+We express these theorems in constructive way and
+show type-two $\classP$-completeness of these operators.
+
+
+
+
+\section{Organization of this thesis}
+Chap.~\ref{chapter:computable-analysis} introduces Type-two Theory of Effectivity, the framework of Computable Analysis.
+We review basic concepts of TTE in Sect.~\ref{section:TTE} and
+Kawamura's extended framework for TTE in Sect.~\ref{section:TTF}.
+In Sect.~\ref{section:small-classes}, we introduce our new type-two classes
+$\classLtwo$ and $\classNCtwo$.
+We also define $\classPtwo$-completeness under reductions using these small classes.
+In Chap.~\ref{chapter:applications}, we investigate the complexity of some analytic problems.
+In Sect.~\ref{section:function}, we prove that finding roots of a polynomial 
+from coefficients is $\classNC$ computable.
+In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
+the inverse operation and the fix-point operation.
+In Sect.~\ref{section:differentiable}, we study the complexity of
+smooth differential equations.
+Most part in that section only depends on Sect.~\ref{section:TTE}
+since we mainly discuss in non-uniform way.
+We summarize this thesis and discuss about future works in Chap.~\ref{chapter:conclusion}.
+
+
+\paragraph{Notation}
+Let $\N$, $\Z$, $\Q$, $\R$ denote the set of natural numbers,
+integers,
+rational numbers and 
+real numbers, respectively.
+
+We assume that any polynomial is increasing,
+since it does not change the meaning of 
+polynomial-time computable or polynomial-space computable.
+

@@ -1,0 +1,12 @@
+doc
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.bak
+*.pdf
+*.toc
+*.euc.tex
+*.lot
+*.lof

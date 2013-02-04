@@ -1,0 +1,95 @@
+\documentclass[master,final]{iscs-thesis}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage{mypackage}
+\usepackage{amsthm}
+\usepackage{hyperref}
+%\usepackage[bookmarks=true]{hyperref}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{claim*}{Claim}
+\theoremstyle{remark}
+
+% 論 の種類とフォントサイズをオプションに
+%\usepackage{graphicx}% 必要に応じて
+%\usepackage{mysettings}% 自 用設定
+%-------------------
+\etitle{Computational Complexity of \\ Smooth Differential Equations and \\
+ Small Complexity Classes for Operators}
+\jtitle{滑らかな微分方程式の計算量と小さな高階計算量クラス}
+\eauthor{Hiroyuki Ota}
+\jauthor{太田 浩行}
+\esupervisor{Hiroshi Imai}
+\jsupervisor{今井 浩}
+\supervisortitle{Professor}
+\date{\today}
+%-------------------
+\begin{document}
+\input{abstract}
+\maketitle
+\input{acknowledge}
+\frontmatter
+%\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+%\listoffigures
+%\listoftables
+%-------------------
+\mainmatter
+\chapter{Introduction}
+\input{introduction}
+
+\chapter{Framework of Computable Analysis}
+\label{chapter:computable-analysis}
+In this chapter,
+to define new type-two classes corresponding to small complexity classes,
+we review the framework TTE in the first two sections.
+We define basic concepts of TTE in Sect.~\ref{section:TTE},
+such as polynomial-time computable functions and hardness of real function
+for the (usual type-one) complexity class $C$ \cite{ko1991complexity}.
+In Sect.~\ref{section:TTF}, we extend TTE using second-order polynomials
+in the size of input function \cite{kawamura2012complexity}.
+Our new type-two classes $\classLtwo$ and $\classNCtwo$ are defined in Sect.~\ref{section:small-classes}.
+We also define $\classPtwo$-completeness under suitable reductions using these small classes.
+
+\input{tte}
+\input{ttf}
+\input{class}
+
+\chapter{Complexity of operators on real functions}
+\label{chapter:applications}
+In this chapter, we investigate the complexity of several problems in numerical
+analysis and demonstrate that our new classes introduced in the previous
+chapter are useful.
+In Sect.~\ref{section:function}, 
+we show that some basic real functions are $\classL$-computable and
+roots of a polynomial with real coefficients is $\classNC$-computable.
+In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
+the inverse operation and the fix-point operation.
+In Sect.~\ref{section:differentiable}, we study the complexity of
+smooth differential equations.
+In this section, we mainly discuss in non-uniform way and focus on the 
+complexity of the solution,
+hence most part only depends on Sect.~\ref{section:TTE}.
+
+\input{function}
+\input{p-complete}
+\input{smooth-ivp}
+
+\chapter{Conclusion and future work}
+\label{chapter:conclusion}
+
+\input{conclusion}
+%-------------------
+\bibliographystyle{plain}
+\bibliography{bibliography}
+%-------------------
+\end{document}

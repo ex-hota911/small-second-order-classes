@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cp thesis.pdf master.pdf
+
+if [ `git rev-parse --abbrev-ref HEAD` = "master" ]
+then
+    ssh hota@manju.is.s.u-tokyo.ac.jp -p 1022 'rm master/*'
+    scp -P 1022 *.tex hota@manju.is.s.u-tokyo.ac.jp:master/
+fi

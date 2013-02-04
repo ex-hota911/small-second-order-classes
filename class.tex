@@ -1,0 +1,474 @@
+%#!platex fulltext.tex
+
+\section{New type-two classes for small complexity}
+\label{section:small-classes}
+
+In this section, we introduce new type-two complexity classes
+corresponding to log-space $\classL$ and circuit complexity $\classNC$
+based on the framework we reviewed in the previous section.
+We also define $\classP$-completeness under log-space reductions.
+
+\subsection{Logarithmic space}
+There are several versions of relativized log-space computation
+\cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure, ota2013logspace}.
+Here, we define type-two log-space computation 
+by extending \emph{stack model with constant height} by Aehlig, Cook and Nguyen 
+\cite{aehlig2007relativizing},
+since it is consistent with relativized circuit complexity classes 
+and it makes some elemental operation log-space computable.
+See the comment of Theorem~\ref{theorem:inclusion}.
+In their paper language oracles,
+ length monotone function as oracle.
+Hence, we add read-only tape that oracle writes answers to stack machines.
+The answer tape is magically erased when a machine \emph{pushes},
+that is it starts writing a new query tape.
+
+\begin{definition}
+ A (constant-stack) machine $M$ runs in (second-order) \emph{logarithmic space}
+ if there is a second-order polynomial $P$ such that for all $\phi \in \LM$
+ and $u \in \Sigma^*$, $M^\phi(u)$ visits at most $\log(P(|\phi|)(|u|))$ cells
+ in work tape.
+\end{definition}
+
+\begin{definition}
+ We write $\classFLtwo$ as a set of multi-functions from $\LM$ to $\LM$
+ computed by a constant-stack machine that runs in second-order logarithmic space.
+ We write $\classLtwo$ as a set of multi-functions from $\LM$ to $\Pred$
+ computed by a constant-stack machine that runs in second-order logarithmic space.
+\end{definition}
+
+\begin{lemma}
+\label{lemma:Ltwo-maps-L-to-L}
+\mbox{}
+\begin{enumerate}
+ \item Functions in $\classFLtwo$ map length-monotone functions in $\classFL$
+       to length-monotone functions in $\classFL$.
+ \item Functions in $\classLtwo$ map length-monotone functions in $\classFL$
+       to languages $\classL$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We only show (1) and (2) is provable in analogous argument.
+For all $\phi \in \classFL$, $\log(P(|\phi|)(|u|)) = O(\log(|u|))$
+since there is a polynomial $p$ such that $|\phi|(n) \le p(n)$.
+$\classFL$ is closed under relativization, that is $\classFL^\classFL = \classFL$.
+So functions computed by constant-stack machines with $\classFL$ oracle are in $\classFL$.
+\end{proof}
+
+
+\subsection{Circuit complexity classes}
+\subsubsection{Oracle circuits}
+
+
+Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
+An \emph{$n$-input $m$-output circuit relative to size-$L$ oracle} is a circuit with
+$n$ inputs and $m$ outputs consisting of 
+$\NOT$ $(\neg)$, $\OR$ $(\vee)$, $\AND$ $(\wedge)$, oracle $(\phi)$ gates,
+where each $\NOT$ gate has only one input and each $\phi$ gate with $k$ inputs
+has $L(k)$ outputs.
+The size of $C$, denoted by $|C|$, is the number of gates.
+The depth of $C$, denoted by $\depth(C)$, is the length of the longest path
+from inputs to outputs.
+Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
+$C$ be a $|x|$-input $|\phi|$-oracle $m$-output circuit,
+we write the output of $C$ as $C^\phi(x)$.
+More formally, we define as below.
+
+\begin{definition}[Oracle circuits]
+Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
+A \emph{$n$-input $m$-output circuit relative to size-$L$ oracle} is 
+a labeled directed acyclic graph with $n$ sources and $m$ sinks.
+All vertexes except sources are labeled with $\{\NOT, \OR, \AND\}$
+or $\{\phi_i\}_{i \in \N}$.
+In-degree of $\NOT$ vertexes is $1$ and
+$\phi_i$ vertex with $k$ in-degree satisfies $L(k) > i$.
+
+
+The size of $C$, denoted by $|C|$, is the number of vertexes.
+The depth of $C$, denoted by $\depth(C)$, is the length of the longest path in $C$.
+Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
+$C$ be $|x|$-input $m$-output circuit relative to size-$|\phi|$ oracle.
+The output of $C$ is denoted by $C^\phi(x) \in \{0, 1\}^m$,
+where each logic gate performs the logical operation on its inputs
+and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
+\end{definition}
+
+
+
+\subsubsection{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
+
+A circuit family $(C_{L,n})_{L,n}$ is a set of circuit
+such that $C_{L, n}$ is an $n$-input circuit relative to size-$L$ oracle
+for all $n \in \N$ and non-decreasing function $L \colon \N \to \N$.
+
+\begin{definition}
+ We say \emph{a circuit family $(C_{L,n})_{L,n}$ computes multi-function 
+ $A \colon \LM \to \LM$} if for all $\phi \in \dom A$, 
+ there is $\psi \in A[\phi]$ satisfying $\psi(x) = C_{|\phi|, |x|}^\phi(x)$
+ for all $x \in \Sigma^*$.
+\end{definition}
+
+A circuit family $(C_{L,n})_{L,n}$ is \emph{(second-order) polynomial size}
+if there is a second-order polynomial $P$ satisfying
+$|C_{L,n}| \le P(L)(n)$ for all $n \in \N$ and non-decreasing functions
+$L \colon \N \to \N$.
+
+\begin{definition}
+ Let $k$ be an integer.
+ We write $\classFACtwo^k$ (resp. $\classACtwo^k$) for the class of 
+ multi-function from $\LM$ to $\LM$ (resp. to $\Pred$) computed by
+ a polynomial-size circuit family $(C_{L,n})_{L,n}$ such that
+ there is a second-order polynomial $P$ satisfying
+ $\depth(C_{L,n}) \le \log^k(P(L)(n))$ for all $n \in \N$ and non-decreasing
+ $L \colon \N \to \N$.
+ We write $\classFNCtwo$ and $\classNCtwo$ for the hierarchies
+ $\cup_{i \in \N} \classFACtwo^i$ and $\cup_{i \in \N} \classACtwo^i$.
+\end{definition}
+
+
+\begin{lemma}
+\label{lemma:NCtwo-maps-NC-to-NC}
+\mbox{}
+\begin{enumerate}
+ \item Functions in $\classFACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classFAC^{i+j}$.
+ \item Functions in $\classACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classAC^{i+j}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We only show (1).
+Since for all $\phi in \classFAC^j \cap \LM$, there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$, 
+$(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$.
+Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
+The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$ is polynomial size and its depth is $O(\log^{i+j}(n))$.
+\end{proof}
+
+\begin{corollary}
+\mbox{}
+\begin{enumerate}
+ \item Functions in $\classFNCtwo$ map length-monotone functions in $\classFNC$ into $\classFNC$.
+ \item Functions in $\classNCtwo$ map length-monotone functions in $\classFNC$ into $\classNC$.
+\end{enumerate} 
+\end{corollary}
+
+
+
+\subsubsection{Uniformity}
+
+
+For each non-decreasing function $L \colon \N \to \N$, 
+we write $0^L$ for the length-monotone function mapping 
+$u \in \Sigma^*$ to $0^{L(|u|)}$.
+
+\begin{definition}[$\Luniform$ circuit families]
+A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ computing the description of $C_{L,n}$ on input $0^n$ with oracle $0^L$ for all $n \in \N$ and non-decreasing $L \colon \N \to \N$.
+\end{definition}
+
+\begin{theorem}
+[$\classFPtwo = \Luniform\ \classFPtwo\!\text{/poly}$]
+\label{theorem:P-equals-L-uniform-P-poly}
+A multi-function $A$ from $\LM$ to $\LM$ is computed by a polynomial-size
+$\Luniform$ circuit family if and only if $A \in \classFPtwo$.
+\end{theorem}
+
+\begin{proof}
+ It is obvious that machines can compute the output of
+ polynomial-size $\Luniform$ circuits in polynomial time.
+ The if part is provable in the similar argument to the proof of
+ $\classP \subseteq \classL\uniform\ \classP\!\text{/poly}$.
+ For each multi-function $A \in \classFPtwo$, there is an oracle machine $M$
+ computing $A$ whose head movements do not depend on the input $x$ or oracle
+ $\phi$ but only depend on the input length $|x|$ and oracle size $|\phi|$.
+ This property enable a polynomial-size $\Luniform$ circuit family to simulate $M$.
+\end{proof}
+
+Type-two classes keep the inclusion relation of type-one classes
+since we choose stack machine as the log-space oracle machine.
+
+\begin{theorem}
+\label{theorem:inclusion}
+\begin{equation}
+ \Luniform\ \classACtwo^0
+ \subseteq \classLtwo 
+ \subseteq \Luniform\ \classNCtwo
+ \subseteq \classPtwo
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ The first inclusion can be proved in a similar way
+ to show $\classL\uniform\ \classAC^0 \subseteq \classL$.
+ The second inclusion follows from that fact 
+ $\classLtwo \subseteq \Luniform\ \classACtwo^1$ 
+ that can be proved in a similar argument to 
+ the proof of $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
+ \cite{aehlig2007relativizing}.
+ The third inclusion immediately follows from
+$
+ \Luniform\ \classNCtwo \subseteq \Luniform\ \classPtwo\text{\!/poly} = \classPtwo.
+$
+\end{proof}
+
+
+The following lemma suggests that type-two $\classLtwo$ uniformity respects
+$\classL$ uniformity.
+\begin{lemma}
+ Let $(C_{L,n})_{L,n}$ be a (second-order) polynomial-size $\Luniform$ oracle circuit family
+ and $(D_n)_n$ be a (first-order) polynomial-size $\classL$-uniform circuit family.
+ A circuit family given by replacing oracle gates in $(C_{L,n})_{L,n}$ with
+ $(D_n)_n$ is $\classL$ uniform.
+\end{lemma}
+
+\begin{proof}
+ Let $A \colon \LM \to \LM$ be a function computing the description of $(C_{L,n})_{L,n}$,
+ $B \colon \Sigma^* \to \Sigma^*$ be a function computing the description of $(D_n)_n$, and
+ $L \colon \N \to \N$ be the size of oracle $(D_n)_n$, i.e.
+ the function mapping $n$ to the output length of $D_n$.
+ The function $A(0^L)$ is in $\classFL$ since $0^L \in \classFL$ and $A \in \classFLtwo$.
+ Since given $A(0^L)$ and $B$ as oracles,
+ computing the description of the circuit family given by replacing oracle
+ gates in $(C_{L,n})_{L,n}$ with $(D_n)_n$ is log-space computable
+ and $\classFL$ is closed under relativization,
+ it is log-space computable.
+\end{proof}
+
+\begin{corollary}
+\mbox{}
+\begin{enumerate}
+ \item Functions in $\Luniform\ \classFACtwo^i$ 
+       map length-monotone functions in $\classL$-uniform $\classFAC^j$ 
+       to $\classL\text{-uniform }\classFAC^{i+j}$.
+ \item Functions in $\Luniform\ \classACtwo^i$ 
+       map length-monotone functions in $\classL$-uniform $\classFAC^j$ 
+       to $\classL\text{-uniform }\classAC^{i+j}$.
+ \item Functions in $\Luniform\ \classFNC$
+       map length-monotone functions in $\classL$-uniform $\classFNC$ 
+       to $\classL\text{-uniform }\classFNC$.
+ \item Functions in $\Luniform\ \classNC$
+       map length-monotone functions in $\classL$-uniform $\classFNC$ 
+       to $\classL\text{-uniform }\classNC$.
+\end{enumerate}
+\end{corollary}
+
+
+
+
+\subsection{Reductions and completeness}
+\subsubsection{Reductions}
+We define the paring function, denoted by $\langle \phi, \psi \rangle$,
+of length-monotone functions as follows:%
+\footnote{
+The pairing function is defined as
+$\langle \phi, \psi \rangle(0u) = \phi(u) 0^{|\psi(u)|}$
+and 
+$\langle \phi, \psi \rangle(1u) = \psi(u) 1^{|\phi(u)|}$ 
+in \cite{kawamura2010complexity}.
+In this definition, however, we cannot distinguish $\phi(u)$ and the padding
+if $\phi$ is a length-monotone function from $\Sigma^*$ to $\{0\}^*$,
+so we put $1$ to separate the padding.
+}
+$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
+$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
+We pad $0$s to make the pairing function length-monotone.
+We write $\langle \phi, \psi, \theta \rangle$ 
+for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
+
+
+\begin{definition}
+Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
+\begin{itemize}
+ \item $A$ is \emph{many-one log-space reducible} to $B$, 
+       denoted $A \redLmF B$,
+       if there are functions $r, s, t \in \classFLtwo$ such that 
+       for all $\phi \in \dom A$,
+       $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
+       the function maps $x \in \Sigma^*$ to $r(\phi)(x, \theta(t(\phi)(x)))$
+       is in $A[\phi]$.
+ \item $A$ is \emph{Weihrauch log-space reducible} to $B$,
+       denoted $A \redLmF B$,
+       if there are functions $r, s \in \classFLtwo$ such that 
+       for all $\phi \in \dom A$,
+       $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
+       $r(\langle \phi, \theta \rangle)$ is in $A[\phi]$.
+\end{itemize}
+Let $A$ and $B$ be multi-functions from $\LM$ to $\Pred$.
+\begin{itemize}
+ \item $A$ is \emph{many-one log-space reducible} to $B$, denoted 
+       $A \redLm B$, if there are functions $s, t \in \classFLtwo$ such that 
+       for all $\phi \in \dom A$, $s(\phi) \in \dom B$ and each 
+       $\theta \in B[s(\phi)]$ satisfies that $\theta \circ t(\phi)$ is in $A[\phi]$.
+\end{itemize} 
+\end{definition}
+
+These reductions are log-space analogous to the polynomial-time reductions 
+$\redmF^2$, $\redW^2$, $\redm^2$ \cite{kawamura2012complexity}.
+We define the $\classNC$ reductions $\redmF^\classNCtwo$, $\redW^\classNCtwo$,
+and $\redm^\classNCtwo$ by replacing $\classFLtwo$ with $\classNCtwo$.
+Many-one reduction $\redmF$ is a special case of Weihrauch reduction $\redW$,
+so if $A \redmF B$ then $A \redW B$.
+
+There is another version of a many-one reduction defined by
+Beame et al. \cite{beame1995relative}.
+We define log-space analogous to it as follows:
+We write $A \redLB B$ if there are function $r, s, t \in \classFLtwo$
+if there are functions $r, s, t \in \classFLtwo$ such that 
+for all $\phi \in \dom A$,
+$s(\phi)(x, \cdot) \in \dom B$ and each $\theta \in B[s(\phi)(x, \cdot)]$ 
+satisfies that the function maps $x \in \Sigma^*$ 
+to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
+This reduction is much stronger than others since
+it can use the input string $x$ while making the input of $B$.
+The reduction $\redLmF$ is a special case of $\redLB$ where
+$s$ does not depend on the string input $x$.
+See the comments after the next lemma and before Lemma~\ref{lemma:P-hard-g_u} for
+the disadvantage and the advantage of this reduction.
+
+Let $\classtwofont{C}$ be a set of multi-functions from $\LM$ to $\LM$.
+A multi-function $B$ from $\LM$ to $\LM$ is \emph{$\classtwofont{C}$-$\leq$-hard} if $A \leq B$ for all $A \in \classtwofont{C}$,
+and $B$ is \emph{$\classtwofont{C}$-$\leq$-complete} 
+if $B$ is $\classtwofont{C}$-$\leq$-hard and in $\classtwofont{C}$.
+
+Let $F$ be a subset of $\LM$.
+We write $\cup F$ for a multi-function mapping $x \in \Sigma^*$ to 
+$\{f(x) \mid f \in F\}$.
+
+\begin{lemma}
+\label{lemma:P-complete}
+Let $B$ be a $\classFPtwo$-$\redLmF$-complete multi-function.
+There is $\psi \in \dom B \cap \classFL$ satisfying that
+ $\cup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
+\end{lemma}
+
+We will use this lemma to reduce constructive results
+($\classFPtwo$-$\redLmF$-hardness of an operation) to a non-constructive 
+results (the existent of $\classFP$-hard solution).
+This lemma would not have been true, if in the definition 
+of reductions like $\redLB$ \cite[Lemma~3.6]{kawamura2012complexity}.
+That is a disadvantage of the reduction of Beame et al.
+
+\begin{proof}
+Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to \emph{Circuit Value Problem} ($\probCVP$), which is $\classFP$-$\redmF$-complete function.
+Since $\probCVP \in \classFP$, $A \in \classFPtwo$.
+Let $r, s, t \in \classFLtwo$ be functions which reduces $A$ to $B$
+as the definition of $\redLmF$.
+Choose any $\phi \in \classFL$, and it follows from Lemma~\ref{lemma:Ltwo-maps-L-to-L}
+that $r(\phi), s(\phi), t(\phi) \in \classFL$.
+Let $\psi = s(\phi)$, then $r(\phi)$ and $s(\phi)$ give the reduction that
+$A(\phi) \redmF^\classL \cup (B[\psi])$.
+Since $\probCVP$, equal to $A(\phi)$, is $\classFP$-$\redmF^\classL$-complete,
+so is $\cup (B[\psi])$.
+\end{proof}
+
+
+\subsubsection{P-complete problems}
+
+We define a partial function $\probDTIMEtwo$ from $\LM$ to $\Pred$ as follows:
+The domain $\dom \probDTIMEtwo$ is a set of $\langle M, \overline \mu, \phi \rangle$
+such that $M$ is a (program of) machine, $\mu \colon \N \to \N$ is non-decreasing, $\phi \in \LM$, and $M^\phi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$.
+$\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ is $1$ if
+$M^\phi(x)$ accepts, otherwise it is 0.
+
+\begin{lemma}
+ $\probDTIMEtwo$ is $\classPtwo$-$\redLm$-complete.
+\end{lemma}
+
+\begin{proof}
+ For each $A \in \classPtwo$, there is a polynomial-time machine $M$ and a second-order polynomial $P$ such that $M$ computing $L$ and $P$ bounds the steps of $M$.
+ Let $s, t \in \classFLtwo$ be as
+ \begin{align}
+  s(\phi) &= \langle M, 0^{P(\mu)}, \phi \rangle
+  &
+  t(\phi)(u) &= u.
+ \end{align}
+ Since  $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$,
+ $\probDTIMEtwo$ is $\classPtwo$-$\redLm$-complete.
+\end{proof}
+
+
+We define a partial function  $\probCVPtwo$ from $\LM$ to $\Pred$ as follows:
+The domain $\dom \probCVPtwo$ is a set of $\langle (C_n)_n, \phi \rangle$
+such that $C_n$ is a (description of) circuit consisting of $\AND, \OR, \NOT$
+and oracle gates with $n$ inputs and $\phi \in \Pred$.
+$\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
+
+\begin{lemma}
+ $\probCVPtwo$ is $\classPtwo$-$\redLm$-complete.
+\end{lemma}
+
+\begin{proof}
+ It is provable from a similar argument of Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
+\end{proof}
+
+
+
+\subsection{Representations}
+\newcommand{\transL}{\preceq_\classLtwo}
+
+
+\begin{definition}
+Let $\gamma$ and $\delta$ be two representations of a set $X$.
+We write $\gamma \transL \delta$ if
+$\delta^{-1} \circ \gamma$ is in $\classFLtwo$.
+\end{definition}
+The relation $\gamma \transL \delta$ implies that
+there is a function $F \in \classFLtwo$ \emph{translating} a $\gamma$ name
+into a $\delta$ name, that is, $\gamma(\phi) = \delta(F(\phi))$ 
+for all $\phi \in \LM \cap \gamma^{-1}(X)$.
+
+\begin{lemma}
+ Let $\classtwofont{C}$ be either $\classFLtwo$, $\Luniform\ \classNCtwo$ or
+ $\classFPtwo$.
+ Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
+ $\delta$ and $\delta'$ be two representations of a set $Y$.
+ If $\gamma' \transL \gamma$ and $\delta \transL \delta'$,
+ a $(\gamma, \delta)$-$\classtwofont C$-computable multi-function is
+ $(\gamma', \delta')$-$\classtwofont C$-computable.
+\end{lemma}
+
+\begin{lemma}
+ Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
+ $\delta$ and $\delta'$ be two representations of a set $Y$.
+ If $\gamma' \transL \gamma$ and $\delta \transL \delta'$,
+ then a $(\gamma, \delta)$-$\classFPtwo$-$\redLW$-hard multi-function is
+ $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
+\end{lemma}
+
+We say that $x \in X$ is \emph{$\gamma$-$\mathrm C$-computable} if
+$x$ has a $\gamma$ name in $C$,
+where $\classonefont C$ is a usual (type-one) complexity class.
+We say that $x \in X$ is $\gamma$-$\classonefont C$-$\le$-complete if
+$\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete.
+
+\begin{lemma}
+ Let $\classtwofont C$ be either $\classFLtwo$, $(\Luniform)\ \classNCtwo$, 
+ or $\classFPtwo$, and $\classonefont C$ be the type-one complexity class
+ corresponding to $\classtwofont C$.
+ Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
+ A $(\gamma, \delta)$-$\mathbf C$-computable partial function $F$ from $X$
+ to $Y$ maps $\gamma$-$\classonefont C$-computable elements of $X$
+ in $\dom F$ to $\delta$-$\classonefont C$-computable elements of $Y$.
+\end{lemma}
+
+\begin{lemma}
+ \label{lemma:p-comp-maps-l-to-p-comp}
+ Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
+ A $(\gamma, \delta)$-$\classFPtwo$-$\redLmF$-complete partial function 
+ from $X$ to $Y$ maps some $\gamma$-$\classFL$-computable element of $X$
+ to a $\delta$-$\classFP$-$\redmF^\classL$-complete of $Y$.
+\end{lemma}
+
+
+
+\begin{theorem}
+ Let $\delta$ be a representation of $\classC[0, 1]$.
+ $\OpApply$ is $([\delta, \rhoRunit], \rhoR)$-$\classFLtwo$-computable if
+ and only if $\delta \transL \deltabox$.
+\end{theorem}
+
+\begin{proof}
+ It is proved in a similar argument to the case of $\classFP$ \cite{kawamura11:_funct_space_repres_and_polyn_time_comput}
+\end{proof}
+
+
+

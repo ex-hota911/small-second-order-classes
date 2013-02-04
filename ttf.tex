@@ -1,0 +1,60 @@
+\section{Second-order polynomial}
+\label{section:TTF}
+
+This section reviews the extended framework of Computable Analysis~%
+\cite{kawamura2012complexity}.
+A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
+if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
+The set of length monotone functions is denoted $\LM$.
+The set of predicates $\Sigma^* \to \{0, 1\}$, denoted $\Pred$, is subset of $\LM$, 
+since $|\phi(u)| = |\phi(v)| = 1$ for all $u, v \in \Sigma^*$.
+
+\begin{definition}
+ A machine $M$ computes a multi-function $A \colon \LM \to \LM$ if for any
+ $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$.
+\end{definition}
+
+The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
+is a (non-decreasing) function from $\N$ to $\N$ satisfying 
+$|\phi|(|u|) = |\phi(u)|$.
+This is well-defined since a length monotone function maps 
+all $n$-length strings to $m$-length strings.
+
+\emph{Second-order polynomial} in type-1 variable $L \colon \N \to \N$
+and type-0 variable $n \in \N$ 
+defined inductively as follows:
+a positive integer is a second-order polynomial;
+the variable $n$ is a second-order polynomial;
+$P+Q$, $P \cdot Q$ and $L(P)$ are
+second-order polynomials if $P$ and $Q$ are second-order polynomials.
+Note that if $P$ is a second-order polynomial and $L$ is a (usual) first-order
+polynomial, then $P(L)$ is a first-order polynomial.
+
+\begin{definition}
+\begin{enumerate}
+ \item We write $\classFPtwo$ (resp. $\classFPSPACEtwo$) for the class of
+       multi-functions from $\LM$ to $\LM$ computed by a machine that runs
+       in second-order polynomial time (resp. space).
+ \item We write $\classPtwo$ (resp. $\classPSPACEtwo$) for the class of
+       multi-functions from $\LM$ to $\Pred$ computed by a machine that runs
+       in second-order polynomial time (resp. space).
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+ \begin{enumerate}
+  \item Functions in $\classFPtwo$ (resp. $\classFPSPACEtwo$) map 
+	length-monotone functions in $\classFP$ to $\classFP$ 
+	(resp. $\classFPSPACE$).
+  \item Functions in $\classPtwo$ (resp. $\classPSPACEtwo$) map 
+	length-monotone functions in $\classFP$ to $\classP$
+	(resp. $\classPSPACE$).
+ \end{enumerate}
+\end{lemma}
+
+
+
+
+
+
+

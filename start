@@ -1,0 +1,5 @@
+cd /home/hiroyuki/Dropbox/workspace/thesis
+export PROMPT="%{[36;1m%}%/%%%{[m%} "
+emacs thesis.tex &
+evince thesis.pdf &
+

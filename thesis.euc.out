@@ -1,0 +1,29 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{Computable analysis}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{Complexity of smooth initial value problems}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{Type-two complexity theory for small classes}{chapter.1}
+\BOOKMARK [1][-]{section.1.4}{Organization of this thesis}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{Framework of Computable Analysis}{}
+\BOOKMARK [1][-]{section.2.1}{Type-two Theory of Effectivity}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Second-order polynomial}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{New type-two classes for small complexity}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Logarithmic space}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Circuit complexity classes}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.3}{Reductions and completeness}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.4}{Representations}{section.2.3}
+\BOOKMARK [0][-]{chapter.3}{Complexity of operators on real functions}{}
+\BOOKMARK [1][-]{section.3.1}{Computation on real numbers}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{L computable real functions}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.2}{Finding polynomial roots is FNC-computable}{section.3.1}
+\BOOKMARK [1][-]{section.3.2}{P-complete operations}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{Inverse operation}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{Fix points of contraction mappings}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.3}{Proofs of hardness}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{Smooth differentiable equations}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.3.1}{Difference Equations}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.2}{The Counting Hierarchy and Difference Equations of Logarithmic Height}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.3}{Families of Real Functions Simulating Difference Equations}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.4}{Proof of the Main Theorems}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.5}{Other Versions of the Problem}{section.3.3}
+\BOOKMARK [0][-]{chapter.4}{Conclusion and future work}{}
+\BOOKMARK [0][-]{chapter*.15}{References}{}

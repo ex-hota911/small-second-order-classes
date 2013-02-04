@@ -1,0 +1,220 @@
+\section{Computation on real numbers}
+\label{section:function}
+
+\subsection{\texorpdfstring{$\classL$}{L} computable real functions}
+
+\begin{example}
+ The binary addition and the binary multiplication are
+ $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
+\end{example}
+
+\begin{lemma}
+ The exponential function on restricted to $[0,1]$
+ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
+\end{lemma}
+Since the Maclaurin series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
+$2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
+by polynomial many multiplications, additions, and division on rationals.
+Since iterated multiplications, iterated additions, division on integers
+are in $\classFL$ \cite{chiu2001division},
+$\exp$ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
+On the other hand, without restriction on the domain, $\exp$ is not 
+$(\rhoR, \rhoR)$-$\classFPtwo$ computable, 
+and is not $(\rhoR, \rhoR)$-$\classFLtwo$ computable.
+
+
+
+\begin{lemma}
+  The sine function $\sin \colon \R \to \R$ is
+ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
+\end{lemma}
+Like $\exp$, the Maclaurin series of $\sin$ converges fast enough,
+so it is obvious that $\sin$ is log-space computable if it is restricted to $[-4, 4]$.
+Computing $x \in [-4, 4]$ satisfying $x = t + 2n\pi$ for some $n \in \N$ is
+$(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$-computable because division is log-space computable and $\pi$ is $\rhoR$-$\classFL$-computable from the following series:
+\begin{equation}
+ \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
+  \left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6} \right).
+\end{equation}
+Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
+
+
+
+\subsection{Finding polynomial roots is \texorpdfstring{$\classFNCtwo$}{FNC}-computable}
+
+\subsubsection{Representation of multisets of complex numbers}
+
+For two multisets of $n$ complex numbers $S = \{z_1, \dots, z_n\}$,$S' = \{z'_1, \dots, z'_n\}$,
+we define the distance between $S$ and $S'$ as
+$d(S, S') = \min_{\sigma \in \mathrm{Sym}(n)} \max_{j \le n}|z_j - z'_{\sigma(j)}|$,
+where $\mathrm{Sym}(n)$ is the set of all permutations of $n$ elements.
+
+We represent multisets of complex numbers as converging sequences of 
+multisets of rational complex numbers.
+Define the representation $\rhoMSet$ as follows:
+Let $S$ be a multiset of $n$ complex numbers,
+$\phi \in \LM$ is a $\rhoMSet$ name of $S$ if
+$\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n ) \in (\D_m)^{2n}$
+for all $m \in \N$.
+Let $S_m = \{a_1+b_1 i, \dots, a_n+b_n i\}$, 
+$d(S, S_m) \le 2^{-m}$.
+
+We can also represent multisets $S$ as vectors $z \in \C^n$
+such that $S = \{z\}$.
+More formally we define representation $\rhoMSet'$ as
+$\rhoMSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
+It is easy to see that $\rhoMSet' \le_\classFLtwo \rhoMSet$,
+but the following lemma says they are not equivalent even under computability.
+\begin{lemma}
+ Identity function on multisets is not $(\rhoMSet, \rhoMSet')$-computable.
+\end{lemma}
+This means that $\rhoMSet'$ is more informative than $\rhoMSet$.
+
+
+
+\subsubsection{Finding polynomial roots is $\classFNCtwo$-computable}
+
+We write $P_n$ for the set of degree $n$ monic 
+polynomials (i.e. the leading coefficient is equal to $1$) with real coefficients.
+We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
+\begin{equation}
+ \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
+\end{equation}
+
+We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as 
+$\phi \in \LM$ is a $\rho_{P_n}$ name of $p \in P_n$ 
+if $\phi$ is a $\rho_{\R^n}$ name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
+such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
+Define the representation $\rho_{P_*}$ of monic polynomials as
+$p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
+
+
+\begin{theorem}
+ \label{theorem:finding-roots-is-in-NC}
+ $\OpPolyRoot$ is $(\rho_{P_*}, \rhoMSet)$-$\classFNC$-computable.
+\end{theorem}
+
+\begin{corollary}
+ $\OpPolyRoot$ is $(\rho_{P_n}, \rhoMSet)$-$\classFNC$-computable
+\end{corollary}
+
+
+\begin{proof}
+Neff showed that approximating the roots of polynomial with integer coefficients
+is in $\classFNC$.
+\begin{theorem}
+[NC polynomial root isolation \cite{neff1994specified}]\label{theorem:neff1994}
+Give and algorithm $A$ such that,
+for any choice of integers $n$, $m$, $k$, and a polynomial $p \in P_n$
+s.t. $|p| \le 2^m$,
+$A$ computes $k$-digit approximation to the roots of $p$ 
+in at most $C \log^e(n + m + k)$ parallel steps, 
+using at most $D(n + m + k)^f$ processors, where $C, D, e, f$ are positive
+constants which are independent of $n$, $m$, and $k$.
+\end{theorem}
+The \emph{size} of a polynomial, denoted $|p|$, is the maximum absolute value
+ of coefficients in $p$, and the \emph{distance} of
+two polynomial $p, q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
+The Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately
+Theorem~\ref{theorem:neff1994}
+if there is a polynomial $\mu$ such that for all $p, q \in P_n$ and
+$k, m \in \N$ satisfying $|p| \le 2^m$,
+\begin{equation}
+  d(p, q) \le 2^{-\mu(k, m, n)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k},
+\end{equation}
+by following algorithm:
+Given $k \in \N$ and a $\rho_{P_n}$ name of $p \in P_n$, 
+compute $m \in \N$ and polynomial $q \in {P_n}$ with rational coefficients
+satisfying $|p| \le 2^m$ and $d(p, q) \le 2^{-\mu(k, m, n)}$,
+then find all the roots of $2^{\mu(k, m, n)} \cdot q(x)$ by the algorithm $A$ 
+in Theorem~\ref{theorem:neff1994}.
+
+
+Here we use Mosier's analysis to show the existence of such a polynomial $\mu$
+\cite{mosier1986root}.
+
+Define the set $Z(p, \epsilon)$ of complex numbers as
+\begin{equation}
+ Z(p, \epsilon)
+ = 
+  \{z \mid \exists q \in P_n \text{ s.t. } q(z) = 0 \wedge d(p, q) \le \epsilon\},
+\end{equation}
+for any polynomial $p \in P_n$ and $0 < \epsilon < 1$.
+First we show that for any $u \in Z(p, \epsilon)$, there is $v \in \OpPolyRoot(p)$ such that $|u - v| \le 2^{m+2}\sqrt[n]{\epsilon}$.
+\begin{theorem} 
+[{\cite[Theorem 1]{mosier1986root}}]
+\label{theorem: root neighborhoods 1}
+ Given $p(x) \in P_n, then$
+ \begin{equation}
+  Z(p, \epsilon) = \left\{u \;\Big{|}\;  \left| p(u) / \Sigma_{j=0}^n |u|^j \right| \le \epsilon \right\}
+ \end{equation}
+\end{theorem}
+For any $u \in \C$, if $v$ is the root of $p$ such that 
+$|u - v| \le |u - v'|$ for all roots $v'$ of $p$,
+\begin{equation}
+ |v - u|^n
+ \le \prod_{v \in \OpPolyRoot(p)} |v_j - u|
+ = |p(u)|.
+\end{equation}
+It is follows from  Rouch\'a's theorem that
+any root $v$ of a monic polynomial $p \in P_n$ satisfies that
+$|v| \le 1 + \max\{a_{n-1}, \dots, a_0\} = 1 + |p|$.
+Since there is a polynomial $q$ such that $q(u)=0$ and $d(p, q) \le \epsilon$,
+$|u| \le 1+|q| \le 1 + |p| + d(p, q) \le 2^m + 2$ so
+\begin{equation}
+ |v - u|
+ \le
+ \sqrt[n]{|p(u)|}
+ \le
+ \sqrt[n]{\epsilon \sum_{j=0}^n |u|^j}
+ \le
+ \sqrt[n]{\epsilon \cdot (|u|+1)^n}
+ \le
+ 2^{m+2} \sqrt[n]{\epsilon}.
+\end{equation}
+
+
+Let $\epsilon' = 2^{m+2} \sqrt[n]{\epsilon}$,
+\begin{equation}
+ Z(p, \epsilon) \subseteq \bigcup_{v \in \OpPolyRoot(p)} D(v, \epsilon')
+\end{equation}
+where $D(v, \epsilon') = \{u \mid |u - v| \le \epsilon'\}$.
+Since the diameter of each connected component of the right side 
+is $2n\epsilon$ at most, $|u - u'| \le 2n\epsilon$ for all 
+$u, u' \in Z(p, \epsilon)$ if $u$ and $u'$ are in the same connected component
+of $Z(p, \epsilon)$.
+
+Let $\mu(n, k, m) = n(k+m+n+2)$.
+We show that 
+$
+d(p, q) \le 2^{-\mu(n, k, m)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k}
+$
+for all $q \in P_n$.
+Let $\epsilon \in (0,1)$, $q$ be a polynomial satisfying that
+ $d(p, q) \le \epsilon$.
+We assume that the (ordered) roots $v_1, \dots, v_n$ of $p$
+and the (ordered) roots $u_1, \dots, u_n$ of $q$ satisfy that
+$v_j$ and $u_j$ are in the same connected component of $Z(p, \epsilon)$.
+Following theorem says that there is some ordering of roots satisfies this assumption.
+\begin{theorem}
+[\cite{mosier1986root}]
+\label{theorem: root neighborhoods 2}
+ For any $0 < \epsilon < 1$, if $q(z) \in N(p, \epsilon)$,
+ then $q(z)$ and $p(z)$ have the same number of roots,
+ counting multiplicities, in each connected component of $Z(p, \epsilon)$.
+\end{theorem}
+Let $\epsilon = 2^{-\mu(n,m,k)}$ then for all $1 \le j \le n$
+\begin{equation}
+ |u_j - v_j| 
+ \le
+ 2n\epsilon'
+ \le
+ 2n \cdot 2^{m+2} \cdot 2^{-(k+m+n+2)} 
+ \le
+ 2^{-k},
+\end{equation}
+hence
+$
+ d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k}.
+$
+\end{proof}

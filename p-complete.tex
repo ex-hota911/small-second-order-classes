@@ -1,0 +1,423 @@
+\section{\texorpdfstring{$\classPtwo$}{P}-complete operations}
+\label{section:P-complete}
+
+\subsection{Inverse operation}
+
+We define the inverse operation $\OpINV_{[a,b]}$ as follows:
+$\dom \OpINV$ is a set of one-to-one functions $f \in \classC[0,1]$
+whose range is $[a,b]$.
+Hereafter, $a$ and $b$ is fixed and $\OpINV_{[a,b]}$ is abbreviated to $\OpINV$.
+
+
+Ko proved the following non-constructive theorems about the complexity of 
+inversion operation.
+\begin{theorem}
+[{\cite[Corollary 4.7]{ko1991complexity}}]
+\label{theorem:ko1991-4.7}
+Assume that $f$ is one-to-one on $[0,1]$ with the range $[a, b]$ and that 
+$f$ is polynomial time computable. 
+If $f^{-1}$ has a polynomial modulus function on $[a,b]$ then
+$f^{-1}$ is polynomial-time computable on $[a, b]$.
+\end{theorem}
+\begin{theorem}
+[{\cite[Theorem 4.18]{ko1991complexity}}]
+\label{theorem:ko1991-4.18}
+There is a log-space computable, one-to-one function $f \colon [0, 1] \to \R$
+such that $f^{-1}$ has a polynomial modulus 
+but $f^{-1}$ is not log-space computable
+unless $\classP = \classL$.
+\end{theorem}
+
+
+
+Let $\phi$ be a length-monotone function, $\mu \colon \N \to \N$ be non-decreasing, and $f \in \classC[0,1]$ be one-to-one,
+$\langle \phi, 0^\mu \rangle$ is a \emph{$\deltaboxINV$ name} of $f$
+if $\phi$ is a $\deltabox$ name of $f$ and $\mu$ is a modulus of continuity of $f^{-1}$.
+The following theorem is the constructive version of Ko's theorems.
+
+\begin{theorem}
+ \label{theorem:INV-is-P-complete}
+ $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classFPtwo$-$\redLmF$-complete.
+\end{theorem}
+
+
+Theorem~\ref{theorem:ko1991-4.7} follows from this theorem and the fact that
+functions in $\classFPtwo$ map length-monotone functions in $\classFP$ to $\classFP$.
+Theorem~\ref{theorem:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-comp-maps-l-to-p-comp}.
+
+
+We choose $\deltaboxINV$  over $\deltabox$ as the representation of $f$
+since there is no upper bound on the complexity of the inverse operation 
+without the information about the modulus of continuity of $f^{-1}$.
+
+\begin{theorem}[{\cite[Theorem 4.4]{ko1991complexity}}]
+For any recursive $x \in [0, 1]$, 
+there exists a strictly increasing function $f \in \classC[0, 1]$ 
+such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
+%there exists a strictly increasing continuous function $f$ in $\classP_{\classC[0,1]}$
+\end{theorem}
+
+
+\begin{proof}[Proof of Computability]
+We will prove hardness in Section~\ref{section:proofs-of-theorems}.
+It is easy to compute $f^{-1}(x)$ by using the binary search algorithm.
+
+Since a modulus of continuity is given by the $\deltaboxINV$ name,
+we only show that there is a polynomial time function $\phi$ such that 
+$|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$ for all $d \in \D$ and $n \in \N$.
+
+We assume that $f$ is increasing function.
+Let $p$ be a modulus of continuity of $f^{-1}$.
+Computes a sequence  $a_0, b_0, a_1,b_1, \dots, a_{3n}, b_{3n}$ of rational numbers as follows.
+Let $a_0 = 0$, $b_0 = 1$.
+For each integer $i \le 3n-1$,
+let $c_i = (a_i+b_i)/2$ and $d_i = \phi_f(c_i, 0^{p(i+2)})$.
+If $d \ge d_i$, then $a_{i+1} = (3a_i+b_i)/4$ and $b_{i+1} = b_i$
+otherwise $a_{i+1} = a_i$ and $b_{i+1} = (a_i+3b_i)/4$.
+
+We prove $f(a_i) \le f(b_i)$ using mathematical induction on $i$.
+In the case $i = 0$, $f(a_i) = f(0) \le d \le f(1) = f(b_i)$.
+In the case $i=j+1$, if $d \ge d_j$ then $d \le f(b_j) \le f(b_{j+1})$ and
+\begin{equation}
+ d \ge d_j \ge f(c_n) - 2^{-p(j+2)} > f(a_{j+1}),
+\end{equation}
+where the last inequality follows from the fact that $c_j - a_{j+1} = (3/4)^i/4 > 2^{-(j+2)}$ and $p$ is a modulus of continuity of $f^{-1}$.
+If $d \le d_j$ then $f(a_{j+1}) = f(a_j) \le d$ and 
+\begin{equation}
+ d \le d_j \le f(c_n) + 2^{-p(j+2)} < f(b_{j+1}).
+\end{equation}
+
+Let $\phi(0^n, d) = a_{3n}$.
+Since $|b_{3n} - a_{3n}| = (3/4)^{3n} \le 2^{-n}$ and
+$a_{3n} \le f^{-1}(d) \le b_{3n}$,
+$|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
+\end{proof}
+
+\subsection{Fix points of contraction mappings}
+
+Hoover proved the following theorem about the complexity to compute fix points
+of constructing mappings.
+
+\begin{theorem}
+[{\cite[Theorem 4.5]{hoover1991real}}]
+\label{theorem:hoover1991-4.5}
+ There is a $\classNC$ computable function $f \colon \R^+ \to \R^+$,
+ such that $f|_{[2n, 2n+1]}$ is contractor for all $n \in \N$ and
+ a function mapping a pair of strings $u \in \Sigma^*$ and $0^n$
+ to $2^{-n}$ approximation of the unique fix point of $f$
+ in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$ computable
+ iff $\classNC = \classP$.
+\end{theorem}
+
+The fix-point operation $\OpCMFix^2$ is defined as follows:
+The domain $\dom \OpCMFix^2$ is a set of real functions 
+$g \in \classC[[0,1]^2 \to [0,1]]$ such that there is a real number $q \in \R$
+satisfying that $0 \le q < 1$ and $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
+for all $x, y, z \in [0,1]$.
+For each $g \in \dom \OpCMFix^2$, $h = \OpCMFix^2(g)$ if and only if 
+$h(x) = g(x, h(x))$, that is, $h$ maps $x \in [0,1]$ to the fix point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
+
+The representation $\deltaboxCM$ is defined as follows:
+$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
+$\phi$ is a $\deltabox$ name of $g$ and rational number $q$ satisfies 
+$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
+
+\begin{theorem}
+ \label{theorem:Fix-is-P-complete}
+ $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete
+\end{theorem}
+
+
+Since the formulation of fix-point operation is different between 
+Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
+it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
+Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
+Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
+
+\begin{proof}
+[Proof for Theorem~\ref{theorem:hoover1991-4.5}]
+ Lemma~\ref{lemma:p-comp-maps-l-to-p-comp} implies that
+ there is $\deltaboxCM$-$\classFL$-computable function 
+ $g \colon [0,1]^2 \to [0,1]$ such that $\OpCMFix^2(g)$ is
+ $\deltabox$-$\classFP$-complete. Let $h = \OpCMFix^2(g)$.
+ We define a real function $f \colon \R^+ \to \R^+$ as follows:
+ For each $u \in \Sigma^*$ and $y \in [0, 1]$,
+ \begin{equation}
+  \label{eq:def-f}
+ f(\overline{1u0} + y) = \overline{1u0} + g(0.u, y)
+ \end{equation}
+ and in other interval, $f$ is connected linearly.
+
+ We show that $f$ meets the conditions in Theorem~\ref{theorem:hoover1991-4.5}.
+ This $f$ is $\deltabox$-$\classNC$-computable since 
+ $|f(x) - f(x')| \le 3|x-x'|$ and $g$ is $\deltabox$-$\classNC$-computable.
+ From \eqref{eq:def-f},  $f|_{[2n, 2n+1]}$ is contractor.
+ Since computing fix-points of $f$ is polynomial-time computable, 
+ it is $\classNC$ computable if $\classNC = \classP$.
+ We show that some $\deltabox$ name $\phi$ of $h$ is log-space computable 
+ from fix-points of $f$.
+ Once this is proved, it is clear that $f$ is $\classNC$ only if 
+ $\classNC = \classP$ from the fact that $h$ is $\classPtwo$ complete.
+ In the next proof, we will show that $h$ has a modulus of continuity that is
+ log-space computable. 
+ The fix-point of $f$ in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is
+ $\overline{1u0} + h(0.u)$.
+ For each $d \in \D$, let $u$ be shortest string such that $0.u = \llbracket d \rrbracket$,
+ and $\hat y_d$ be $2^{-n}$-approximation of the fix point of $f$ in
+ $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$.
+ Since  $\left|h(\llbracket d \rrbracket) - \left( \hat y_d - \overline{1u0} \right)\right| \le 2^{-n}$,
+ approximating $h$ at rational points is log-space computable from fix-points of $f$.
+\end{proof}
+
+
+
+
+\subsection{Proofs of hardness}
+
+
+\subsubsection{\texorpdfstring{$\classFPtwo$-$\redLB$}{FP}-hardness of the fix-point operation}
+
+Let $\OpCMFix$ be an operation mapping a contraction $g \in \classC[0,1]$ 
+to its unique fix point.
+The definition of $\OpCMFix$ seems more natural as a fix-point operator than
+$\OpCMFix^2$.
+However, we cannot show $\classPtwo$-completeness of $\OpCMFix$ 
+under the reduction $\redLmF$ since we cannot put enough information in
+ a $\rhoR$ name of the output real number.
+The reduction $\redLB$ is so strong that $\OpCMFix$ can 
+be $\classPtwo$-complete under this reduction.
+
+We define a \emph{$\deltaboxCM^1$ name} of a contraction $g \in \classC[0,1]$
+as a pair of $\langle \phi, q \rangle$ such that $\phi \in \LM$ is a 
+$\deltabox$ name of $g$ and $q \in \Q$ is a Lipschitz constant of $g$ less than $1$.
+\begin{lemma}
+\label{lemma:P-hard-g_u}
+$\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete, 
+ even if $\dom \OpCMFix$ is restricted to contraction mappings
+$g$ whose Lipschitz constant is less than $1/2$.
+\end{lemma}
+
+
+\begin{proof}
+ We show that for each $\psi \in \dom \probDTIMEtwo$,
+ there is a log-space computable family of contractions $(g_u)_u$ whose
+ Lipschitz constant is less than $1/2$,
+ and for each $u \in \Sigma^*$, $\probDTIMEtwo(\psi)(u)$ is log-space 
+ computable from the fix point of $g_u$.
+ Since this implies that $\probDTIMEtwo \redLB \OpCMFix$ and $\probDTIMEtwo$
+ is $\classFPtwo$-$\redLmF$-hard, $\OpCMFix$ is 
+ $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete.
+
+ Let $\psi \in \probDTIMEtwo$ and $\langle M, \phi, \bar \mu \rangle = \psi$.
+ Let $S_i$ be the snapshot of $M^\phi(u)$ at $i$th step, then the sequence
+ \begin{equation}
+  S_1, S_2, \dots, S_{\mu(|u|)}.
+ \end{equation}
+ is the computation path of $M^\phi(u)$.
+ We assume that the encoding of snapshots satisfies that 
+ for some second-polynomial $P$, for all machines $M$, time functions $\mu$ 
+ and inputs $u$, $|S_0| = \cdots = |S_{\mu(|u|)}| = L(\mu)(|u|)$
+ regardless of the oracle $\phi$.
+ Let $m = L(\mu)(|u|)$.
+
+
+ For each $u \in \Sigma^*$, we define $g_u \in \classC[0,1]$ as
+ a piecewise linear function with $2\mu(|u|)$ points
+ $y = l_0 (=0), l_1, \dots, l_{\mu(|u|)}, r_{\mu(|u|)}, \dots, r_0(=1)$,
+ where
+\begin{alignat}{2}
+ \label{equation: l_k}
+ l_k 
+ &
+ = \sum_{1 \le i \le k} (2^m+\overline{S_i}) \cdot 2^{-i(m+4)+2} 
+ &
+ = 0.01S_100\ 01S_200 \cdots 01S_k00,
+ \\
+ \label{equation: r_k}
+ r_k
+ &
+ = l^\psi_k + 2^{-i \cdot (m+4)}
+ &
+ = 0.01S_100\ 01S_200 \cdots 01S_k01.
+\end{alignat}
+ Let $S_{\mu(|u|)+1} = S_{\mu(|u|)}$ and
+ define $l_{\mu(|u|)+1}$ and $r_{\mu(|u|)+1}$ as
+ \eqref{equation: l_k} and \eqref{equation: r_k}.
+ For each $k = 0, \dots, \mu(|u|)$,
+ we define $g_u$ as
+ \begin{align}
+ g_u(l_k) &= l_{k+1},
+ &
+ g_u(r_k) &= r_{k+1}.
+ \end{align}
+
+ We show that $g_u \in \classC[0,1]$ is a contraction whose Lipschitz constant
+ is less than $1/2$.
+ Since $l_{k+1} - l_{k} = (2^m+\overline{S_{k+1}}) \cdot 2^{-(k+1)(m+4)+2} $
+ and $r_{k+1} - r_{k} = (2^{m+4} - 2^{m+2} - 2^2 \cdot \overline{S_{k+1}} - 1)
+ \cdot 2^{-(k+1)(m+4)} $,
+\begin{align}
+ \left|\frac{g_u(l_{k+1}) - g_u(l_k)}{l_{k+1} - l_k} \right| 
+ &
+ \le 2^{-m-3} \le \frac 1 2
+ \\
+ \left|\frac{g_u(r_{k+1}) - g_u(r_k)}{r_{k+1} - r_k} \right| 
+ &
+ \le 2^{-m-3} \le \frac 1 2
+ \\
+ \left|\frac{g_u(r_{\mu(|u|)}) - g_u(l_{\mu(|u|)})}{r_{\mu(|u|) - l_{\mu(|u|)}}} \right| 
+ &
+ = 2^{-m-4} \le \frac 1 2.
+\end{align}
+ So $|g_u(x) - g_u(y)| \le \frac 1 2 |x-y|$.
+
+ The fix point $y^*_u$ of $g_u$ is between $l_{\mu(|u|)}$ and $r_{\mu(|u|)}$ 
+ since $l_k < l_{k+1} = g_u(l_k)$ and $r_k > r_{k+1} = g_u(r_k)$.
+ Let $\hat y^*_u$ be a $2^{-(m+2)\mu(|u|)}$-approximation of $y^*_u$, then
+\begin{equation}
+ \lfloor \hat y^*_u \cdot 2^{(m+2)\mu(|u|)-2} + 2^{-2}\rfloor  \bmod 2^m
+  =
+  \overline{S_{\mu(|u|)}}.
+\end{equation}
+ Hence, the output of $M^\phi(u)$ is log-space computable from 
+ $u \in \Sigma^*$ and a $2^{-(m+2)\mu(|u|)}$-approximation $y^*_u$, and so is
+ $\probDTIMEtwo(\psi)(u)$.
+\end{proof}
+
+
+
+\subsubsection{Proofs of theorems}
+\label{section:proofs-of-theorems}
+
+We show the $\classFP$-$\redLmF$-hardness of an operation $P$
+by putting all $(g_u)_u$ into one real function $g \in \dom F$
+such that for each $u \in \Sigma^*$ there is $\rhoR$-$\classFL$-computable
+$t_u$ the fix point of $g_u$ is log-space computable from $h(t_u)$.
+
+\begin{proof}
+[Proof of Theorem~\ref{theorem:INV-is-P-complete}]
+Let $L \in \classPtwo$ and $\psi \in \dom L$.
+Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
+as Lemma~\ref{lemma:P-hard-g_u}.
+Let
+\begin{align}
+ \lambda_n &= 2^{-2n-1},
+ &
+ l_u & = 1 - 2^{-|u|} + \bar u \cdot \lambda_{|u|}.
+\end{align}
+
+A unique fix point of a contraction $f(x)$ is computable as
+$f^{-1}(x)$ where non-decreasing function $f$ is defined as $f(x) = x - g(x)$.
+We define $g$ by transforming $g_u$ in this way, putting them into the
+interval $[l_u + \frac{1}{4}\lambda_{|u|}, l_u + \frac{3}{4}\lambda_{|u|}]$
+and connecting so that $g$ is non-decreasing continuous function.
+Let $g$ be as
+\begin{equation}
+\label{equation: definition of g}
+ g \left( l_u + \lambda_{|u|} \cdot y \right) =
+ \begin{cases}
+  (1-4y)l_u + 4y \cdot g \left( l_u + \frac{\lambda_{|u|}}{4} \right) 
+  &
+  0 \le y < \frac 1 4
+  \\
+  \frac{\lambda_{|u|}}{4} \left( 2y - \frac 1 2 - g_u \left( 2y - \frac 1 2 \right) \right) + l_u + \frac{\lambda_{|u|}}{2}
+  &
+  \frac 1 4 \le y \le \frac 3 4
+  \\
+  (4-4y) g \left( l_u + \frac 3 4 \lambda_{|u|} \right) + (4y-3)(l_u + \lambda_{|u|})
+  &
+  \frac 3 4 < y \le 1.
+ \end{cases}
+\end{equation}
+for each $u \in \Sigma^*$ and $y \in [0,1]$, and $g(1) = 1$.
+
+We show that the slope of $g$ is bounded from both above and below
+by positive constants, which implies that $g$ is non-decreasing and 
+$g$ and $g^-1$ have polynomial moduli of continuity.
+Since $g(l_u)=l_u$ and 
+$g(l_u+\frac{1}{4}\lambda_{|u|}) = l_u + \lambda_{|u|}(-\frac{1}{4}g_u(0) + \frac{1}{2})$,
+\begin{equation}
+ 0 < \frac{1}{4}\lambda_{|u|}
+ \le g \left( l_u+ \frac{1}{2} \lambda_{|u|} \right) - g(l_u)
+ \le \frac{1}{2}\lambda_{|u|}.
+\end{equation}
+Hence the slope of $g$ in $[l_u, l_u + \frac{1}{4}\lambda_{|u|}]$ is 
+greater than 1 and less than or equal to 2.
+As $g(l_u+\frac{3}{4}\lambda_{|u|}) = l_u + \lambda_{|u|}(-\frac{1}{4}g_u(1) + \frac{3}{4})$ and
+$g(l_u+\lambda_{|u|}) = l_u+\lambda_{|u|}$,
+\begin{equation}
+ 0 < \frac{1}{4}\lambda_{|u|}
+ \le g(l_u+\lambda_{|u|}) - g \left(l_u+ \frac 3 4 \lambda_{|u|} \right)
+ \le \frac{1}{2}\lambda_{|u|}
+\end{equation}
+Hence the slope of $g$ in $[l_u + \frac{3}{4}\lambda_{|u|}, l_u + \lambda_{|u|}]$ is greater than 1 and less than or equal to 2.
+For all $u \in \Sigma^*$ and $1/4 \le y' < y \le 3/4$,
+\begin{equation}
+0 < \frac{1}{4}(y - y') \le g(l_u+y) - g(l_u+y') \le \frac{3}{4}(y - y').
+\end{equation}
+Hence the slope of $g$ in $[l_u + \frac{1}{4}\lambda_{|u|}, l_u + \frac{3}{4}\lambda_{|u|}]$ 
+is greater than or equal to $\frac{1}{4}$ and less than or equal to $\frac{3}{4}$.
+Putting it all together, the slope of $g$ is greater than or equal to $\frac{1}{4}$ and less than or equal to $2$.
+
+Let $t_u = l_u + \frac{1}{2}\lambda_{|u|}$ and $y_u$ satisfy that 
+$l_u + \lambda_{|u|} \cdot y_u = g^{-1}(t_u)$, then
+$2y_u - \frac{1}{2} - g_u (2y_u - \frac{1}{2}) = 0$.
+Hence $2y_u - \frac{1}{2}$ is the fix point of $g_u$ and 
+\begin{equation}
+ y^*_u = \frac{2\left( g^{-1}(t_u) - l_u \right)}{\lambda_{|u|}} - \frac{1}{2}.
+\end{equation}
+This completes the proof of $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classPtwo$-$\redLmF$-complete.
+\end{proof}
+
+
+
+\begin{proof}
+[Proof of Theorem~\ref{theorem:Fix-is-P-complete}]
+Let $L \in \classPtwo$ and $\psi \in \dom L$.
+Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
+as Lemma~\ref{lemma:P-hard-g_u}.
+Let $(g_u)_u$ be the family of real functions such that for each $u \in \Sigma^*$, 
+$s(\psi)(u, \cdot) \in \LM$ is $\deltaboxCM^1$ name of $g_u$.
+Let
+\begin{align}
+ \lambda_n &= 2^{-2n-1},
+ &
+ t_u & = 1 - 2^{-|u|} + \bar u \cdot \lambda_{|u|}.
+\end{align}
+We define $g \colon [0,1]^2 \to [0,1]$ as
+for each $y \in [0,1]$ and $u \in \Sigma^*$,
+\begin{equation}
+ g(t_u, y) = t_u + \lambda_{|u|} \cdot g_u(\hat y)
+\end{equation}
+where $\hat y = \max\{0, \min\{(y-t_u)/\lambda_{|u|}, 1\}\}$.
+Let $u'$ be the next string of $u$.
+For each $x \in (t_u, t_{u'})$,
+\begin{equation}
+ g(x, y) 
+  = \frac{(t_{u'} - x) \cdot g(t_u, y) + (x - t_u)g(t_{u'}, y)}{t_{u'} - t_u},
+\end{equation}
+and $g(1, y) = 1$.
+
+We show that $g$ is $\deltaboxCM$-$\classFLtwo$-computable.
+For each $d_1, d_2 \in \D_n$, some $2^{-m}$-approximation of $g(d_1, d_2)$ 
+is log-space computable since $g_u$ is log-space computable.
+We show that $g$ has a polynomial modulus of continuity.
+From the Lemma~\ref{lemma:P-hard-g_u}
+\begin{equation}
+ |g(t_u, y) - g(t_u, y')| \le \frac 1 2 |y - y'|,
+\end{equation}
+hence $|g(x, y) - g(x, y')| \le q|y - y'|$ for all $x, y, y' \in [0,1]$.
+For each $u, u' \in \Sigma^*$,
+\begin{equation}
+ |g(t_u, y) - g(t_{u'}, y)| \le |t_u - t_{u'}| + \lambda_{|u|} + \lambda_{|u'|} \le 3|t_u - t_{u'}|
+\end{equation}
+so $|g(x, y) - g(x', y)| \le 3|x-x'|$ for all $x, x', y \in [0,1]$.
+Hence $g$ has a polynomial modulus of continuity.
+
+
+Let $h = \OpCMFix^2(g)$ and $y = (h(t_u)-t_u)/\lambda_{|u|}$, then
+\begin{equation}
+ h(t_u) = g(t_u, h(t)) = t_u + \lambda_{|u|} \cdot g_u \left( \frac{y-t_u}{\lambda_{|u|}} \right)
+\end{equation}
+so $y = g_u(y)$ and $y$ is the fix point of $g_u$.
+\end{proof}
