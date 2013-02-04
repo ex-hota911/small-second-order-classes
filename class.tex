@@ -1,6 +1,6 @@
 %#!platex fulltext.tex
 
-\section{New type-two classes for small complexity}
+\subsection{New type-two classes for small complexity}
 \label{section:small-classes}
 
 In this section, we introduce new type-two complexity classes
@@ -8,7 +8,7 @@ corresponding to log-space $\classL$ and circuit complexity $\classNC$
 based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
 
-\subsection{Logarithmic space}
+\subsubsection{Logarithmic space}
 There are several versions of relativized log-space computation
 \cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure, ota2013logspace}.
 Here, we define type-two log-space computation 
@@ -57,8 +57,8 @@ So functions computed by constant-stack machines with $\classFL$ oracle are in $
 \end{proof}
 
 
-\subsection{Circuit complexity classes}
-\subsubsection{Oracle circuits}
+\subsubsection{Circuit complexity classes}
+\paragraph{Oracle circuits}
 
 
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
@@ -96,7 +96,7 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 
 
 
-\subsubsection{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
+\paragraph{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
 
 A circuit family $(C_{L,n})_{L,n}$ is a set of circuit
 such that $C_{L, n}$ is an $n$-input circuit relative to size-$L$ oracle
@@ -154,7 +154,7 @@ The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n
 
 
 
-\subsubsection{Uniformity}
+\paragraph{Uniformity}
 
 
 For each non-decreasing function $L \colon \N \to \N$, 
@@ -254,8 +254,8 @@ $\classL$ uniformity.
 
 
 
-\subsection{Reductions and completeness}
-\subsubsection{Reductions}
+\subsubsection{Reductions and completeness}
+\paragraph{Reductions}
 We define the paring function, denoted by $\langle \phi, \psi \rangle$,
 of length-monotone functions as follows:%
 \footnote{
@@ -361,7 +361,7 @@ so is $\cup (B[\psi])$.
 \end{proof}
 
 
-\subsubsection{P-complete problems}
+\paragraph{P-complete problems}
 
 We define a partial function $\probDTIMEtwo$ from $\LM$ to $\Pred$ as follows:
 The domain $\dom \probDTIMEtwo$ is a set of $\langle M, \overline \mu, \phi \rangle$
@@ -402,7 +402,7 @@ $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
 
 
 
-\subsection{Representations}
+\subsubsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
 
 
