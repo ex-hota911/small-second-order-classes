@@ -147,3 +147,14 @@ We assume that any polynomial is increasing,
 since it does not change the meaning of 
 polynomial-time computable or polynomial-space computable.
 
+A {\em multi-value function} (or {\em multi-function}) $F$ from $X$ to $Y$,
+denoted $F \colon X \rightrightarrows Y$,
+is a subset of $X \times Y$.
+For $x \in X$, we write $F[x]$ for the set of $y \in Y$ such that $(x,y) \in F$.
+The domain of $F$, denoted by $\dom F$, is the set of $x \in X$ such that 
+$F[x]$ is not empty.
+If $F[x]$ has only one element of $Y$, we write $F(x)$ for the unique element.
+We say $F$ is a {\em partial function} if $F[x]$ has a unique element for all
+$x \in \dom F$.
+We say $F$ is a {\em total function} or simply a {\em function} 
+if $F[x]$ has a unique element for all $x \in X$.
