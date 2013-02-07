@@ -6,12 +6,13 @@ This section reviews the extended framework of Computable Analysis~%
 A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
 if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
 The set of length monotone functions is denoted $\LM$.
-The set of predicates $\Sigma^* \to \{0, 1\}$, denoted $\Pred$, is subset of $\LM$, 
-since $|\phi(u)| = |\phi(v)| = 1$ for all $u, v \in \Sigma^*$.
+We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
+Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
+$\Pred$ is a subset of $\LM$.
 
 \begin{definition}
- A machine $M$ computes a multi-function $A \colon \LM \to \LM$ if for any
- $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$.
+ A machine $M$ computes a multi-function $A \colon \LM \rightrightarrows \LM$ if for any
+ $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
 The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
@@ -51,6 +52,7 @@ polynomial, then $P(L)$ is a first-order polynomial.
 	(resp. $\classPSPACE$).
  \end{enumerate}
 \end{lemma}
+
 
 
 
