@@ -225,7 +225,7 @@ $x \in \dom F$.
 We say $F$ is a {\em total function} or simply a {\em function} 
 if $F[x]$ has a unique element for all $x \in X$.
 
-\section{Framework of Computable Analysis}
+\section{Refining TTE for Small Classes}
 \label{section: computable analysis}
 In the first three subsections,
 we review the framework TTE
@@ -435,10 +435,12 @@ $\langle \overline{\mu}, \phi \rangle$ is a {\em $\deltabox$-name} of $f \in \cl
 if and only if $\mu$ is a modulus of continuity of $f$
 and $|\llbracket \phi(0^n, d) \rrbracket - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
+%% \phiの型が変
+
+%% \overline \muの定義
 
 
-
-\subsection{New type-two classes for small complexity}
+\subsection{Type-two classes for small complexity}
 \label{section:small-classes}
 
 In this section, we introduce new type-two complexity classes
@@ -844,6 +846,8 @@ $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
 \newcommand{\transL}{\preceq_\classLtwo}
 
 
+%% ^{-1}や\circの定義
+
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
@@ -919,7 +923,7 @@ analysis and demonstrate that our new classes introduced in the previous
 chapter are useful.
 In Sect.~\ref{section:function}, 
 we show that some basic real functions are $\classL$-computable and
-roots of a polynomial with real coefficients is $\classNC$-computable.
+roots of a polynomial with real coefficients are $\classNC$-computable.
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
 
