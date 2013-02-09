@@ -577,13 +577,14 @@ $L \colon \N \to \N$.
 \label{lemma:NCtwo-maps-NC-to-NC}
 \mbox{}
 \begin{enumerate}
- \item Functions in $\classFACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classFAC^{i+j}$.
+ \item \label{enumi: FACtwo maps FAC to FAC}
+Functions in $\classFACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classFAC^{i+j}$.
  \item Functions in $\classACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classAC^{i+j}$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We only show (1).
+We only show (\ref{enumi: FACtwo maps FAC to FAC}).
 Since for all $\phi \in \classFAC^j \cap \LM$, there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$, 
 $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$.
 Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
@@ -1010,27 +1011,27 @@ This means that $\rhoMSet'$ is more informative than $\rhoMSet$.
 \paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 
 We write $P_n$ for the set of degree $n$ monic 
-polynomials (i.e. the leading coefficient is equal to $1$) with real coefficients.
+polynomials (i.e.\ the leading coefficient is $1$) with real coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
 \begin{equation}
  \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
 \end{equation}
 
-We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as 
-$\phi \in \LM$ is a $\rho_{P_n}$ name of $p \in P_n$ 
-if $\phi$ is a $\rho_{\R^n}$ name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
+We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
+$\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
+if $\phi$ is a $\rho_{\R^n}$-name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
 such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
-Define the representation $\rho_{P_*}$ of monic polynomials as
+Define the representation $\rho_{P_*}$ of monic polynomials by
 $p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
 
 
 \begin{theorem}
  \label{theorem:finding-roots-is-in-NC}
- $\OpPolyRoot$ is $(\rho_{P_*}, \rhoMSet)$-$\classFNC$-computable.
+ $\OpPolyRoot$ is $(\rho_{P_*}, \rhoMSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
 \begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoMSet)$-$\classFNC$-computable
+ $\OpPolyRoot$ is $(\rho_{P_n}, \rhoMSet)$-$\classFNCtwo$-computable
 \end{corollary}
 
 
@@ -1039,9 +1040,9 @@ Neff showed that approximating the roots of polynomial with integer coefficients
 is in $\classFNC$.
 \begin{theorem}
 [NC polynomial root isolation \cite{neff1994specified}]\label{theorem:neff1994}
-Give and algorithm $A$ such that,
+There is an algorithm $A$ such that,
 for any choice of integers $n$, $m$, $k$, and a polynomial $p \in P_n$
-s.t. $|p| \le 2^m$,
+with $|p| \le 2^m$,
 $A$ computes $k$-digit approximation to the roots of $p$ 
 in at most $C \log^e(n + m + k)$ parallel steps, 
 using at most $D(n + m + k)^f$ processors, where $C, D, e, f$ are positive
@@ -1050,14 +1051,14 @@ constants which are independent of $n$, $m$, and $k$.
 The \emph{size} of a polynomial, denoted $|p|$, is the maximum absolute value
  of coefficients in $p$, and the \emph{distance} of
 two polynomial $p, q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
-The Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately
+Then Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 Theorem~\ref{theorem:neff1994}
 if there is a polynomial $\mu$ such that for all $p, q \in P_n$ and
 $k, m \in \N$ satisfying $|p| \le 2^m$,
 \begin{equation}
   d(p, q) \le 2^{-\mu(k, m, n)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k},
 \end{equation}
-by following algorithm:
+by the following algorithm:
 Given $k \in \N$ and a $\rho_{P_n}$ name of $p \in P_n$, 
 compute $m \in \N$ and polynomial $q \in {P_n}$ with rational coefficients
 satisfying $|p| \le 2^m$ and $d(p, q) \le 2^{-\mu(k, m, n)}$,
@@ -1068,23 +1069,20 @@ in Theorem~\ref{theorem:neff1994}.
 Here we use Mosier's analysis to show the existence of such a polynomial $\mu$
 \cite{mosier1986root}.
 
-Define the set $Z(p, \epsilon)$ of complex numbers as
-\begin{equation}
- Z(p, \epsilon)
- = 
-  \{z \mid \exists q \in P_n \text{ s.t. } q(z) = 0 \wedge d(p, q) \le \epsilon\},
-\end{equation}
-for any polynomial $p \in P_n$ and $0 < \epsilon < 1$.
+For any polynomial $p \in P_n$ and $0 < \epsilon < 1$, 
+define $Z(p, \epsilon)$ to be the set of $z \in \C$
+such that $q(z) = 0$ 
+for some polynomial $q \in P_n$ with $d(p, q) \le \epsilon$. 
 First we show that for any $u \in Z(p, \epsilon)$, there is $v \in \OpPolyRoot(p)$ such that $|u - v| \le 2^{m+2}\sqrt[n]{\epsilon}$.
 \begin{theorem} 
 [{\cite[Theorem 1]{mosier1986root}}]
 \label{theorem: root neighborhoods 1}
- Given $p(x) \in P_n, then$
+ For $p(x) \in P_n$, we have
  \begin{equation}
-  Z(p, \epsilon) = \left\{u \;\Big{|}\;  \left| p(u) / \Sigma_{j=0}^n |u|^j \right| \le \epsilon \right\}
+  Z(p, \epsilon) = \Bigl\{\, u \Bigm| \left| p(u) / \Sigma_{j=0}^n |u|^j \right| \le \epsilon \,\Bigr\}. 
  \end{equation}
 \end{theorem}
-For any $u \in \C$, if $v$ is the root of $p$ such that 
+For any $u \in \C$, if $v$ is a root of $p$ such that 
 $|u - v| \le |u - v'|$ for all roots $v'$ of $p$,
 \begin{equation}
  |v - u|^n
