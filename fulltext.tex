@@ -459,10 +459,12 @@ and it makes some elemental operation log-space computable.
 See the comment on Theorem~\ref{theorem:inclusion}. 
 %% そのcommentが未了
 In their paper, oracles are length monotone. 
-Hence, we add read-only tape that oracle writes answers to stack machines.
 %% ??
-The answer tape is magically erased when a machine \emph{pushes},
-that is it starts writing a new query tape.
+Hence, we add a read-only tape on which the oracle writes answers.
+%% ??
+The answer tape is erased when a machine \emph{pushes},
+then it starts writing a new query tape.
+%% ??
 
 \begin{definition}
  A (constant-stack) machine $M$ runs in (second-order) \emph{logarithmic space}
@@ -503,7 +505,7 @@ So functions computed by constant-stack machines with $\classFL$ oracle are in $
 
 
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
-An \emph{$n$-input $m$-output circuit relative to size-$L$ oracle} is a circuit with
+An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
 $n$ inputs and $m$ outputs consisting of 
 $\NOT$ $(\neg)$, $\OR$ $(\vee)$, $\AND$ $(\wedge)$, oracle $(\phi)$ gates,
 where each $\NOT$ gate has only one input and each $\phi$ gate with $k$ inputs
@@ -518,18 +520,18 @@ More formally, we define as below.
 
 \begin{definition}[Oracle circuits]
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
-A \emph{$n$-input $m$-output circuit relative to size-$L$ oracle} is 
+A \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is 
 a labeled directed acyclic graph with $n$ sources and $m$ sinks.
-All vertexes except sources are labeled with $\{\NOT, \OR, \AND\}$
-or $\{\phi_i\}_{i \in \N}$.
-In-degree of $\NOT$ vertexes is $1$ and
-$\phi_i$ vertex with $k$ in-degree satisfies $L(k) > i$.
-
+All vertices except the sources are labeled with $\NOT$, $\OR$, $\AND$ 
+or $\phi _i$, where $i \in \N$.
+The in-degree of a vertex labelled $\NOT$ is $1$, and
+a vertex that is labelled $\phi _i$ and has in-degree $k$ 
+satisfies $i < L(k)$.
 
 The size of $C$, denoted by $|C|$, is the number of vertexes.
 The depth of $C$, denoted by $\depth(C)$, is the length of the longest path in $C$.
 Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
-$C$ be $|x|$-input $m$-output circuit relative to size-$|\phi|$ oracle.
+$C$ be $|x|$-input $m$-output circuit with size-$|\phi|$ oracle gates.
 The output of $C$ is denoted by $C^\phi(x) \in \{0, 1\}^m$,
 where each logic gate performs the logical operation on its inputs
 and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
@@ -539,13 +541,14 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 
 \paragraph{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
 
-A circuit family $(C_{L,n})_{L,n}$ is a set of circuit
-such that $C_{L, n}$ is an $n$-input circuit relative to size-$L$ oracle
-for all $n \in \N$ and non-decreasing function $L \colon \N \to \N$.
+A circuit family $(C_{L,n})_{L,n}$ is a set of circuits, 
+indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
+such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
 
 \begin{definition}
- We say \emph{a circuit family $(C_{L,n})_{L,n}$ computes multi-function 
- $A \colon \LM \to \LM$} if for all $\phi \in \dom A$, 
+ We say that a a circuit family $(C_{L,n})_{L,n}$ 
+\emph{computes} a multi-function 
+ $A \colon \LM \to \LM$ if for all $\phi \in \dom A$, 
  there is $\psi \in A[\phi]$ satisfying $\psi(x) = C_{|\phi|, |x|}^\phi(x)$
  for all $x \in \Sigma^*$.
 \end{definition}
@@ -554,6 +557,8 @@ A circuit family $(C_{L,n})_{L,n}$ is \emph{(second-order) polynomial size}
 if there is a second-order polynomial $P$ satisfying
 $|C_{L,n}| \le P(L)(n)$ for all $n \in \N$ and non-decreasing functions
 $L \colon \N \to \N$.
+
+%% ↑何故sizeとdepthのうちsizeだけこの定義を立てるのか？
 
 \begin{definition}
  Let $k$ be an integer.
@@ -579,7 +584,7 @@ $L \colon \N \to \N$.
 
 \begin{proof}
 We only show (1).
-Since for all $\phi in \classFAC^j \cap \LM$, there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$, 
+Since for all $\phi \in \classFAC^j \cap \LM$, there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$, 
 $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$.
 Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
 The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$ is polynomial size and its depth is $O(\log^{i+j}(n))$.
@@ -974,16 +979,16 @@ Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 
 \paragraph{Representation of multisets of complex numbers}
 
-For two multisets of $n$ complex numbers $S = \{z_1, \dots, z_n\}$,$S' = \{z'_1, \dots, z'_n\}$,
-we define the distance between $S$ and $S'$ as
-$d(S, S') = \min_{\sigma \in \mathrm{Sym}(n)} \max_{j \le n}|z_j - z'_{\sigma(j)}|$,
-where $\mathrm{Sym}(n)$ is the set of all permutations of $n$ elements.
+For two multisets of $n$ complex numbers $S = \{z_1, \dots, z_n\}$ and $S' = \{z'_1, \dots, z'_n\}$,
+we define the distance between $S$ and $S'$ by $
+d(S, S') = \min_{\sigma} \max_{j = 1, \ldots, n}|z_j - z'_{\sigma(j)}|$,
+where $\sigma$ ranges over all permutations on $\{1, \ldots, n\}$. 
 
 We represent multisets of complex numbers as converging sequences of 
 multisets of rational complex numbers.
 Define the representation $\rhoMSet$ as follows:
-Let $S$ be a multiset of $n$ complex numbers,
-$\phi \in \LM$ is a $\rhoMSet$ name of $S$ if
+Let $S$ be a multiset of $n$ complex numbers. 
+We say that $\phi \in \LM$ is a $\rhoMSet$ name of $S$ if
 $\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n ) \in (\D_m)^{2n}$
 for all $m \in \N$.
 Let $S_m = \{a_1+b_1 i, \dots, a_n+b_n i\}$, 
