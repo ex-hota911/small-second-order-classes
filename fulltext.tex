@@ -435,11 +435,7 @@ and $|\llbracket \phi(0^n, d) \rrbracket - f(d)| \le 2^{-n}$ for all $n \in \N$ 
 
 %% \overline \muの定義
 
-\section{main}
-Our new type-two classes $\classLtwo$ and $\classNCtwo$ are defined in Sect.~\ref{section:small-classes}.
-We also define $\classPtwo$-completeness under suitable reductions using these small classes.
-
-\subsection{Type-two classes for small complexity}
+\section{Small type-two classes}
 \label{section:small-classes}
 
 In this section, we introduce new type-two complexity classes
@@ -447,7 +443,7 @@ corresponding to log-space $\classL$ and circuit complexity $\classNC$
 based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
 
-\subsubsection{Logarithmic space}
+\subsection{Logarithmic space}
 There are several definitions of relativized log-space computation
 \cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure, ota2013logspace}.
 Here, we define type-two log-space computation 
@@ -500,9 +496,8 @@ So functions computed by constant-stack machines with $\classFL$ oracle are in $
 \end{proof}
 
 
-\subsubsection{Circuit complexity classes}
-\paragraph{Oracle circuits}
-
+\subsection{Circuit complexity classes}
+\subsubsection{Oracle circuits}
 
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
@@ -538,8 +533,7 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 \end{definition}
 
 
-
-\paragraph{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
+\subsubsection{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
 
 A circuit family $(C_{L,n})_{L,n}$ is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
@@ -600,9 +594,7 @@ The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n
 \end{corollary}
 
 
-
-\paragraph{Uniformity}
-
+\subsubsection{Uniformity}
 
 For each non-decreasing function $L \colon \N \to \N$, 
 we write $0^L$ for the length-monotone function mapping 
@@ -701,8 +693,9 @@ $\classL$ uniformity.
 
 
 
-\subsubsection{Reductions and completeness}
-\paragraph{Reductions}
+\subsection{Reductions and completeness}
+
+\subsubsection{Reductions}
 We define the paring function, denoted by $\langle \phi, \psi \rangle$,
 of length-monotone functions as follows:%
 \footnote{
@@ -748,17 +741,17 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\Pred$.
 \end{itemize} 
 \end{definition}
 
-These reductions are log-space analogous to the polynomial-time reductions 
-$\redmF^2$, $\redW^2$, $\redm^2$ \cite{kawamura2012complexity}.
+These reductions are analogous to the polynomial-time reductions 
+$\redmF^2$, $\redW^2$, $\redm^2$ in Kawamura and Cook~\cite{kawamura2012complexity}.
 We define the $\classNC$ reductions $\redmF^\classNCtwo$, $\redW^\classNCtwo$,
 and $\redm^\classNCtwo$ by replacing $\classFLtwo$ with $\classNCtwo$.
 Many-one reduction $\redmF$ is a special case of Weihrauch reduction $\redW$,
-so if $A \redmF B$ then $A \redW B$.
+that is, if $A \redmF B$ then $A \redW B$.
 
 There is another version of a many-one reduction defined by
 Beame et al. \cite{beame1995relative}.
-We define log-space analogous to it as follows:
-We write $A \redLB B$ if there are function $r, s, t \in \classFLtwo$
+We define as follows a log-space reduction analogous to it:
+We write $A \redLB B$ 
 if there are functions $r, s, t \in \classFLtwo$ such that 
 for all $\phi \in \dom A$,
 $s(\phi)(x, \cdot) \in \dom B$ and each $\theta \in B[s(\phi)(x, \cdot)]$ 
@@ -808,7 +801,7 @@ so is $\cup (B[\psi])$.
 \end{proof}
 
 
-\paragraph{P-complete problems}
+\subsubsection{P-complete problems}
 
 We define a partial function $\probDTIMEtwo$ from $\LM$ to $\Pred$ as follows:
 The domain $\dom \probDTIMEtwo$ is a set of $\langle M, \overline \mu, \phi \rangle$
@@ -849,7 +842,7 @@ $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
 
 
 
-\subsubsection{Representations}
+\subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
 
 
