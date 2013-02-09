@@ -247,7 +247,7 @@ We start by fixing an encoding of real numbers
 by string functions.
 
 \begin{definition}
- A function $\phi \colon \{0\} ^* \to \{0, 1\}^*$ is a \emph{name} of a real number $x$ 
+ A function $\phi \colon \{0, 1\} ^* \to \{0, 1\} ^*$ is a \emph{name} of a real number $x$ 
  if for all $n \in \N$,
   $\phi(0^n)$ is the binary representation of $\lfloor x \cdot 2^n \rfloor$ or
   $\lceil x \cdot 2^n \rceil$,
@@ -272,13 +272,14 @@ Thus, we also regard $M^\phi$ as a function from strings to strings.
  \end{center}
  \caption{A machine $M$ computing a real function $f$}
  \label{fig:model-of-function}
+%% \phi _xを\phiにする
 \end{figure}
 
 \begin{definition}
 Let $A$ be a bounded closed interval of\/ $\R$.
 A machine $M$ \emph{computes} a real function $f \colon A \to \R$ 
-if for any $x \in A$ and any name $\phi_x$ of it,
-$M^{\phi_x}$ is a name of $f(x)$.
+if for any $x \in A$ and any name $\phi$ of it,
+$M ^\phi$ is a name of $f(x)$.
 \end{definition}
 
 Computation of a function $f \colon A \to \R$ on
@@ -371,14 +372,14 @@ $\Pred$ is a subset of $\LM$.
 \end{definition}
 
 The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
-is a (non-decreasing) function from $\N$ to $\N$ satisfying 
+is a (non-decreasing) function from $\N$ to $\N$ defined by 
 $|\phi|(|u|) = |\phi(u)|$.
 This is well-defined since a length monotone function maps 
-all $n$-length strings to $m$-length strings.
+strings of the same length to strings of the same length.
 
-\emph{Second-order polynomial} in type-1 variable $L \colon \N \to \N$
+\emph{Second-order polynomials} in type-1 variable $L \colon \N \to \N$
 and type-0 variable $n \in \N$ 
-defined inductively as follows:
+are defined inductively as follows:
 a positive integer is a second-order polynomial;
 the variable $n$ is a second-order polynomial;
 $P+Q$, $P \cdot Q$ and $L(P)$ are
