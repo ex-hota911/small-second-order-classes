@@ -18,6 +18,7 @@
 \newtheorem*{claim*}{Claim}
 \theoremstyle{remark}
 
+\newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
 \title{Small Complexity Classes for Operators}
 \author{Akitoshi Kawamura \and Hiroyuki Ota}
@@ -213,7 +214,7 @@ since it does not change the meaning of
 polynomial-time computable or polynomial-space computable.
 
 A {\em multi-value function} (or {\em multi-function}) $F$ from $X$ to $Y$,
-denoted $F \colon X \rightrightarrows Y$,
+denoted $F \pcolon X \rightrightarrows Y$,
 is a subset of $X \times Y$.
 For $x \in X$, we write $F[x]$ for the set of $y \in Y$ such that $(x,y) \in F$.
 The domain of $F$, denoted by $\dom F$, is the set of $x \in X$ such that 
@@ -237,7 +238,7 @@ in the size of input functions \cite{kawamura2012complexity}.
 Our new type-two classes $\classLtwo$ and $\classNCtwo$ are defined in Sect.~\ref{section:small-classes}.
 We also define $\classPtwo$-completeness under suitable reductions using these small classes.
 
-\subsection{Type-two Theory of Effectivity}
+\subsection{Polynomial-time computability of real functions}
 \label{section:TTE}
 
 This section reviews the complexity notions 
@@ -354,7 +355,7 @@ if all languages in $C$ reduce to $f$.
   \end{center}
  \end{figure}
 
-\subsection{Second-order polynomial}
+\subsection{Second-order polynomials}
 \label{section:TTF}
 
 This section reviews the extended framework of Computable Analysis~%
@@ -367,7 +368,7 @@ Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^
 $\Pred$ is a subset of $\LM$.
 
 \begin{definition}
- A machine $M$ computes a multi-function $A \colon \LM \rightrightarrows \LM$ if for any
+ A machine $M$ computes a multi-function $A \pcolon \LM \rightrightarrows \LM$ if for any
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
