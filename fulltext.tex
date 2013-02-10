@@ -462,6 +462,8 @@ We call the latter action as the {\em push} operation.
 After a push operation, the answer tape is magically erased.
 The machine can ask a query by {\em popping} the query stack.
 After a pop operation, the answer is written on the answer tape.
+We put the restriction that the stack height of a machine is less than 
+some constant for all inputs and oracles.
 
 \begin{definition}
  A (constant-stack) machine $M$ runs in (second-order) \emph{logarithmic space}
