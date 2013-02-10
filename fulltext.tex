@@ -558,15 +558,16 @@ $L \colon \N \to \N$.
 %% ↑何故sizeとdepthのうちsizeだけこの定義を立てるのか？
 
 \begin{definition}
- Let $k$ be an integer.
- We write $\classFACtwo^k$ (resp. $\classACtwo^k$) for the class of 
- multi-function from $\LM$ to $\LM$ (resp. to $\Pred$) computed by
+ For each $k \in \N$, 
+ we write $\classFACtwo^k$ (resp.\ $\classACtwo^k$) for the class of 
+ multi-functions from $\LM$ to $\LM$ (resp.\ from $\LM$ to $\Pred$) computed by
  a polynomial-size circuit family $(C_{L,n})_{L,n}$ such that
  there is a second-order polynomial $P$ satisfying
- $\depth(C_{L,n}) \le \log^k(P(L)(n))$ for all $n \in \N$ and non-decreasing
+ $\depth(C_{L,n}) \le \log^k(P(L)(n))$ 
+ for all $n \in \N$ and non-decreasing
  $L \colon \N \to \N$.
  We write $\classFNCtwo$ and $\classNCtwo$ for the hierarchies
- $\cup_{i \in \N} \classFACtwo^i$ and $\cup_{i \in \N} \classACtwo^i$.
+ $\bigcup_{k \in \N} \classFACtwo^k$ and $\bigcup_{k \in \N} \classACtwo^k$.
 \end{definition}
 
 
