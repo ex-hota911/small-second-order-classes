@@ -433,9 +433,6 @@ $\langle \overline{\mu}, \phi \rangle$ is a {\em $\deltabox$-name} of $f \in \cl
 if and only if $\mu$ is a modulus of continuity of $f$
 and $|\llbracket \phi(0^n, d) \rrbracket - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
-%% \phiの型が変
-
-%% \overline \muの定義
 
 \section{Small type-two classes}
 \label{section:small-classes}
@@ -449,20 +446,22 @@ We also define $\classP$-completeness under log-space reductions.
 There are several definitions of relativized log-space computation
 \cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure, ota2013logspace}.
 Here, we define type-two log-space computation 
-by extending the \emph{stack model with constant height} 
-by Aehlig, Cook and Nguyen 
-\cite{aehlig2007relativizing},
-since it is consistent with relativized circuit complexity classes 
-and it makes some elemental operation log-space computable.
-See the comment on Theorem~\ref{theorem:inclusion}. 
-%% そのcommentが未了
-In their paper, oracles are length monotone. 
-%% ??
-Hence, we add a read-only tape on which the oracle writes answers.
-%% ??
-The answer tape is erased when a machine \emph{pushes},
-then it starts writing a new query tape.
-%% ??
+by extending the {\em stack model with constant height} 
+by Aehlig, Cook and Nguyen \cite{aehlig2007relativizing} to the 
+function-oracle model.
+We choose this model since it is consistent with relativized circuit complexity classes 
+and it makes some elemental operations log-space computable.
+See the comment on Theorem \ref{theorem:inclusion} and \ref{theorem:apply-is-L-computable}.
+
+
+We consider a Turing machine $M$ relative to a function oracle $\phi$
+with a stack of query tapes and an answer tape.
+The machine $M$ can write a symbol on the top query tape, or the machine can
+put a new query tape on the top of the stack and start writing on it.
+We call the latter action as the {\em push} operation.
+After a push operation, the answer tape is magically erased.
+The machine can ask a query by {\em popping} the query stack.
+After a pop operation, the answer is written on the answer tape.
 
 \begin{definition}
  A (constant-stack) machine $M$ runs in (second-order) \emph{logarithmic space}
@@ -620,8 +619,12 @@ $\Luniform$ circuit family if and only if $A \in \classFPtwo$.
  This property enable a polynomial-size $\Luniform$ circuit family to simulate $M$.
 \end{proof}
 
-Type-two classes keep the inclusion relation of type-one classes
-since we choose stack machine as the log-space oracle machine.
+The relativization using the stack model by Aehlig, Cook and Nguyen preserves
+the inclusion of non-relativized classes
+$\classAC^0 \subseteq \classL \subseteq \classAC^1 \subseteq \classNC$.
+Since we define the type-two log-space class by extending the stack model,
+we can show in a similar arguments 
+that our type-two classes preserve the inclusion of type-one classes.
 
 \begin{theorem}
 \label{theorem:inclusion}
@@ -901,6 +904,7 @@ $\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete.
 
 
 \begin{theorem}
+ \label{theorem:apply-is-L-computable}
  Let $\delta$ be a representation of $\classC[0, 1]$.
  $\OpApply$ is $([\delta, \rhoRunit], \rhoR)$-$\classFLtwo$-computable if
  and only if $\delta \transL \deltabox$.
@@ -911,7 +915,11 @@ $\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete.
 \end{proof}
 
 
-
+If we defined $\classLtwo$ with the obvious relativized machine with one query tape,
+neither $\OpApply$ would be $\classLtwo$-computable 
+nor $\classLtwo \subseteq \classNCtwo$.
+The constant stack model is one of the weakest model to make both conditions
+true.
 
 
 \section{Complexity of operators on real functions}
