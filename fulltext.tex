@@ -967,7 +967,8 @@ and is not $(\rhoR, \rhoR)$-$\classFLtwo$ computable.
 \end{lemma}
 Like $\exp$, the Maclaurin series of $\sin$ converges fast enough,
 so it is obvious that $\sin$ is log-space computable if it is restricted to $[-4, 4]$.
-Computing $x \in [-4, 4]$ satisfying $x = t + 2n\pi$ for some $n \in \N$ is
+Computing some $x \in [-4, 4]$ satisfying $x = t + 2n\pi$ for 
+some $n \in \N$ is
 $(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$-computable because division is log-space computable and $\pi$ is $\rhoR$-$\classFL$-computable from the following series:
 \begin{equation}
  \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
@@ -996,16 +997,16 @@ for all $m \in \N$.
 Let $S_m = \{a_1+b_1 i, \dots, a_n+b_n i\}$, 
 $d(S, S_m) \le 2^{-m}$.
 
-We can also represent multisets $S$ as vectors $z \in \C^n$
-such that $S = \{z\}$.
-More formally we define representation $\rhoMSet'$ as
-$\rhoMSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
-It is easy to see that $\rhoMSet' \le_\classFLtwo \rhoMSet$,
-but the following lemma says they are not equivalent even under computability.
-\begin{lemma}
- Identity function on multisets is not $(\rhoMSet, \rhoMSet')$-computable.
-\end{lemma}
-This means that $\rhoMSet'$ is more informative than $\rhoMSet$.
+%We can also represent multisets $S$ as vectors $z \in \C^n$
+%such that $S = \{z\}$.
+%More formally we define representation $\rhoMSet'$ as
+%$\rhoMSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
+%It is easy to see that $\rhoMSet' \le_\classFLtwo \rhoMSet$,
+%but the following lemma says they are not equivalent even under computability.
+%\begin{lemma}
+% Identity function on multisets is not $(\rhoMSet, \rhoMSet')$-computable.
+%\end{lemma}
+%This means that $\rhoMSet'$ is more informative than $\rhoMSet$.
 
 
 
