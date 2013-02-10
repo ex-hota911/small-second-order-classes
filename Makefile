@@ -9,6 +9,8 @@ EFILE=$(FILE).euc
 # 分割され、インクルードされているファイル
 SRC=$(wildcard *.tex)
 ESRC=$(SRC:%.tex=%.euc.tex)
+ISRC=$(wildcard image/*.svg)
+IMG=$(ISRC:%.svg=%.eps)
 #文献データベース
 REF=bibliography.bib
 EREF=$(REF:%.bib=%.euc.bib)
@@ -38,13 +40,15 @@ $(FILE).pdf: $(EFILE).dvi
 $(EFILE).dvi: $(EFILE).aux $(EFILE).bbl
 	$(TEX) $(EFILE).tex
 	(while $(REFGREP) $(EFILE).log; do $(TEX) $(EFILE); done)
-$(EFILE).aux: $(EFILE).tex $(ESRC)
+$(EFILE).aux: $(EFILE).tex $(ESRC) $(IMG)
 	$(TEX) $(EFILE).tex
 $(EFILE).bbl: $(EREF) $(ESRC)
 	$(BIBTEX) $(EFILE)
 	$(TEX) $(EFILE)
 	$(TEX) $(EFILE)
 
+%.eps: %.svg
+	inkscape -z -f $< -E $@
 %.euc.tex: %.tex
 	$(RESOLVEINPUT) $< | $(NKF) > $@
 %.euc.bib: %.bib
