@@ -601,12 +601,17 @@ The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n
 \subsubsection{Uniformity}
 
 \begin{definition}[$\Luniform$ circuit families]
-A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ computing the description of $C_{L,n}$ on input $0^n$ with oracle $\overline{L}$ for all $n \in \N$ and non-decreasing $L \colon \N \to \N$.
+A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ 
+such that for all $n \in \N$ and non-decreasing $L \colon \N \to \N$, 
+the string $A (\overline L) (n)$ is a 
+description of $C_{L,n}$. 
+%% 「description」とは？？？
 \end{definition}
 
 \begin{theorem}
 [$\classFPtwo = \Luniform\ \classFPtwo\!\text{/poly}$]
 \label{theorem:P-equals-L-uniform-P-poly}
+%% 「/poly」未定義？
 A multi-function $A$ from $\LM$ to $\LM$ is computed by a polynomial-size
 $\Luniform$ circuit family if and only if $A \in \classFPtwo$.
 \end{theorem}
@@ -925,7 +930,7 @@ The constant stack model is one of the weakest model to make both conditions
 true.
 
 
-\section{Complexity of operators on real functions}
+\section{Applications}
 \label{chapter:applications}
 In this chapter, we investigate the complexity of several problems in numerical
 analysis and demonstrate that our new classes introduced in the previous
@@ -1081,17 +1086,17 @@ First we show that for any $u \in Z(p, \epsilon)$, there is $v \in \OpPolyRoot(p
 \label{theorem: root neighborhoods 1}
  For $p(x) \in P_n$, we have
  \begin{equation}
-  Z(p, \epsilon) = \Bigl\{\, u \Bigm| \left| p(u) / \Sigma_{j=0}^n |u|^j \right| \le \epsilon \,\Bigr\}. 
+  Z(p, \epsilon) = \Bigl\{\, u \in \C : \Bigl| p(u) \!\!\Bigm/\! \sum _{j=0} ^n |u|^j \Bigr| \le \epsilon \,\Bigr\}. 
  \end{equation}
 \end{theorem}
 For any $u \in \C$, if $v$ is a root of $p$ such that 
 $|u - v| \le |u - v'|$ for all roots $v'$ of $p$,
 \begin{equation}
  |v - u|^n
- \le \prod_{v \in \OpPolyRoot(p)} |v_j - u|
+ \le \prod_{v' \in \OpPolyRoot(p)} |v' - u|
  = |p(u)|.
 \end{equation}
-It is follows from  Rouch\'a's theorem that
+It follows from  Rouch\'a's theorem that
 any root $v$ of a monic polynomial $p \in P_n$ satisfies that
 $|v| \le 1 + \max\{a_{n-1}, \dots, a_0\} = 1 + |p|$.
 Since there is a polynomial $q$ such that $q(u)=0$ and $d(p, q) \le \epsilon$,
