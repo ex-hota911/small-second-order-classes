@@ -224,6 +224,11 @@ $x \in \dom F$.
 We call $F$ a {\em total function} or simply a {\em function} 
 if $F$ is a partial function and $\dom F = X$.
 
+The composition of multi-functions $F \pcolon X \rightrightarrows Y$ and 
+$G \pcolon Y \rightrightarrows Z$, denoted $F \circ G$, is a multi-function
+$(X, R, Z)$ such that $(x, z) \in R$ if and only if there is $y \in Y$ 
+satisfying that $y \in F[x]$ and $z \in G[y]$.
+
 \section{TTE with second-order polynomials}
 \label{section: computable analysis}
 
@@ -857,6 +862,10 @@ $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
 
 
 %% ^{-1}や\circの定義
+The inverse of a representation $\delta \pcolon \LM \to X$, 
+denoted $\delta^{-1}$, is a multi-function from $X$ to $\LM$ such that 
+$\delta^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
+
 
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
