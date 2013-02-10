@@ -603,15 +603,16 @@ The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n
 \begin{definition}[$\Luniform$ circuit families]
 A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ 
 such that for all $n \in \N$ and non-decreasing $L \colon \N \to \N$, 
-the string $A (\overline L) (n)$ is a 
-description of $C_{L,n}$. 
+the string $A (\overline L) (0^n)$ is (a description of) $C_{L,n}$. 
 %% 「description」とは？？？
 \end{definition}
 
+The equality $\classFP = \classL\uniform\ \classFP\!\text{/poly}$ holds
+between the type-two classes.
+
+
 \begin{theorem}
-[$\classFPtwo = \Luniform\ \classFPtwo\!\text{/poly}$]
 \label{theorem:P-equals-L-uniform-P-poly}
-%% 「/poly」未定義？
 A multi-function $A$ from $\LM$ to $\LM$ is computed by a polynomial-size
 $\Luniform$ circuit family if and only if $A \in \classFPtwo$.
 \end{theorem}
