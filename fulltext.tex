@@ -1182,12 +1182,11 @@ $
 \subsubsection{Inverse operation}
 
 We define the inverse operation $\OpINV_{[a,b]}$ as follows:
-$\dom \OpINV$ is a set of one-to-one functions $f \in \classC[0,1]$
+$\dom \OpINV$ is the set of one-to-one functions $f \in \classC[0,1]$
 whose range is $[a,b]$.
-Hereafter, $a$ and $b$ is fixed and $\OpINV_{[a,b]}$ is abbreviated to $\OpINV$.
+Hereafter, $a$ and $b$ are fixed and $\OpINV_{[a,b]}$ is abbreviated to $\OpINV$.
 
-
-Ko proved the following non-constructive theorems about the complexity of 
+Ko proved the following non-uniform theorems about the complexity of 
 inversion operation.
 \begin{theorem}
 [{\cite[Corollary 4.7]{ko1991complexity}}]
@@ -1195,6 +1194,7 @@ inversion operation.
 Assume that $f$ is one-to-one on $[0,1]$ with the range $[a, b]$ and that 
 $f$ is polynomial time computable. 
 If $f^{-1}$ has a polynomial modulus function on $[a,b]$ then
+%%!! "modulus function"未定義？
 $f^{-1}$ is polynomial-time computable on $[a, b]$.
 \end{theorem}
 \begin{theorem}
@@ -1206,12 +1206,15 @@ but $f^{-1}$ is not log-space computable
 unless $\classP = \classL$.
 \end{theorem}
 
-
-
-Let $\phi$ be a length-monotone function, $\mu \colon \N \to \N$ be non-decreasing, and $f \in \classC[0,1]$ be one-to-one,
-$\langle \phi, \overline{\mu} \rangle$ is a \emph{$\deltaboxINV$ name} of $f$
-if $\phi$ is a $\deltabox$ name of $f$ and $\mu$ is a modulus of continuity of $f^{-1}$.
-The following theorem is the constructive version of Ko's theorems.
+Let $\phi$ be a length-monotone function, 
+$\mu \colon \N \to \N$ be non-decreasing, 
+$f \in \classC[0,1]$ be one-to-one, and
+$\langle \phi, \overline{\mu} \rangle$ be a \emph{$\deltaboxINV$ name} of $f$
+if $\phi$ is a $\deltabox$ name of $f$ 
+and $\mu$ is a modulus of continuity of $f^{-1}$.
+The following theorem is the uniform version of Theorems 
+\ref{theorem:ko1991-4.7} and 
+\ref{theorem:ko1991-4.18}.
 
 \begin{theorem}
  \label{theorem:INV-is-P-complete}
