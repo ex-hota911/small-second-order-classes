@@ -1071,7 +1071,7 @@ constants which are independent of $n$, $m$, and $k$.
 \end{theorem}
 The \emph{size} of a polynomial, denoted $|p|$, is the maximum absolute value
  of coefficients in $p$, and the \emph{distance} of
-two polynomial $p, q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
+two polynomials $p$, $q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
 
 Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 Theorem~\ref{theorem:neff1994}
@@ -1112,8 +1112,12 @@ $|u - v| \le |u - v'|$ for all roots $v'$ of $p$,
 It follows from  Rouch\'a's theorem that
 any root $v$ of a monic polynomial $p \in P_n$ satisfies that
 $|v| \le 1 + \max\{a_{n-1}, \dots, a_0\} = 1 + |p|$.
+
+Let $u \in Z (p, \varepsilon)$. 
 Since there is a polynomial $q$ such that $q(u)=0$ and $d(p, q) \le \epsilon$,
-$|u| \le 1+|q| \le 1 + |p| + d(p, q) \le 2^m + 2$ so
+we have $|u| \le 1+|q| \le 1 + |p| + d(p, q) \le 2^m + 2$, 
+where $m$ is \ldots. %%%!!!
+So
 \begin{equation}
  |v - u|
  \le
