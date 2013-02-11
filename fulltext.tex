@@ -1048,6 +1048,9 @@ $p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
  $\OpPolyRoot$ is $(\rho_{P_*}, \rhoMSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
+This will be proved later in this section
+after stating Theorem~\ref{theorem:neff1994}. 
+
 \begin{corollary}
  $\OpPolyRoot$ is $(\rho_{P_n}, \rhoMSet)$-$\classFNCtwo$-computable
 \end{corollary}
@@ -1069,7 +1072,8 @@ constants which are independent of $n$, $m$, and $k$.
 The \emph{size} of a polynomial, denoted $|p|$, is the maximum absolute value
  of coefficients in $p$, and the \emph{distance} of
 two polynomial $p, q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
-Then Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
+
+Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 Theorem~\ref{theorem:neff1994}
 if there is a polynomial $\mu$ such that for all $p, q \in P_n$ and
 $k, m \in \N$ satisfying $|p| \le 2^m$,
@@ -1077,15 +1081,13 @@ $k, m \in \N$ satisfying $|p| \le 2^m$,
   d(p, q) \le 2^{-\mu(k, m, n)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k},
 \end{equation}
 by the following algorithm:
-Given $k \in \N$ and a $\rho_{P_n}$ name of $p \in P_n$, 
+Given $k \in \N$ and a $\rho_{P_n}$-name of $p \in P_n$, 
 compute $m \in \N$ and polynomial $q \in {P_n}$ with rational coefficients
 satisfying $|p| \le 2^m$ and $d(p, q) \le 2^{-\mu(k, m, n)}$,
 then find all the roots of $2^{\mu(k, m, n)} \cdot q(x)$ by the algorithm $A$ 
 in Theorem~\ref{theorem:neff1994}.
-
-
-Here we use Mosier's analysis to show the existence of such a polynomial $\mu$
-\cite{mosier1986root}.
+Here we use Mosier's analysis~\cite{mosier1986root} 
+to show the existence of such a polynomial $\mu$.
 
 For any polynomial $p \in P_n$ and $0 < \epsilon < 1$, 
 define $Z(p, \epsilon)$ to be the set of $z \in \C$
