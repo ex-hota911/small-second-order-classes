@@ -1245,21 +1245,21 @@ given $f$ and $x$,
 it is easy to compute $f^{-1}(x)$ by using the binary search algorithm.
 
 Suppose that a $\deltaboxINV$-name of a one-to-one function $f$ in $\classC [0, 1]$ is given. 
-Since a modulus of continuity of $f ^{-1}$ is given by this $\deltaboxINV$-name of $f$,
+Since a modulus~$p$ of continuity of $f ^{-1}$ is given by this $\deltaboxINV$-name of $f$,
 we only show how to compute a function $\phi$ such that 
 $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$ for all $d \in \D$ and $n \in \N$.
 
 Since $f$ is one to one, $f$ is either increasing or decreasing. 
 We assume that $f$ is increasing (the other case is similar).
-Let $p$ be a modulus of continuity of $f^{-1}$.
-Computes a sequence  $a_0, b_0, a_1,b_1, \dots, a_{3n}, b_{3n}$ of rational numbers as follows.
+Given $d \in \D$, 
+we compute a sequence  $a_0, b_0, a_1,b_1, \dots, a_{3n}, b_{3n}$ of rational numbers as follows.
 Let $a_0 = 0$, $b_0 = 1$.
 For each integer $i \le 3n-1$,
 let $c_i = (a_i+b_i)/2$ and $d_i = \phi_f(c_i, 0^{p(i+2)})$.
-If $d \ge d_i$, then $a_{i+1} = (3a_i+b_i)/4$ and $b_{i+1} = b_i$
-otherwise $a_{i+1} = a_i$ and $b_{i+1} = (a_i+3b_i)/4$.
+If $d \ge d_i$, then $a_{i+1} = (3a_i+b_i)/4$ and $b_{i+1} = b_i$. 
+Otherwise, let $a_{i+1} = a_i$ and $b_{i+1} = (a_i+3b_i)/4$.
 
-We prove $f(a_i) \le f(b_i)$ using mathematical induction on $i$.
+We prove $f(a_i) \leq d \leq f(b_i)$ by induction on $i$.
 In the case $i = 0$, $f(a_i) = f(0) \le d \le f(1) = f(b_i)$.
 In the case $i=j+1$, if $d \ge d_j$ then $d \le f(b_j) \le f(b_{j+1})$ and
 \begin{equation}
