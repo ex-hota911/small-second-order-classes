@@ -1206,37 +1206,35 @@ but $f^{-1}$ is not log-space computable
 unless $\classP = \classL$.
 \end{theorem}
 
-%% 結局$\deltaboxINV$は何という集合の表現なのか？
-Let $\phi$ be a length-monotone function, 
-$\mu \colon \N \to \N$ be non-decreasing, 
-and $f \in \classC[0,1]$ be one-to-one. 
-Let $\langle \phi, \overline{\mu} \rangle$ be a \emph{$\deltaboxINV$-name} of $f$
-if $\phi$ is a $\deltabox$ name of $f$ 
+We define a representation $\deltaboxINV$ of the space of 
+one-to-one functions in $\classC[0,1]$ as follows:
+$\deltaboxINV(\langle \phi, \overline{\mu} \rangle) = f$ 
+if and only if $\phi$ is a $\deltabox$ name of $f$ 
 and $\mu$ is a modulus of continuity of $f^{-1}$.
+Note that the inverse $f^{-1}$ uniquely exists and is uniformly continuous
+if $f$ is a one-to-one continuous function whose range is compact.
+We add a modulus of continuity of $f^{-1}$ to $\deltabox$
+since without this information, there is no upper bound on 
+the complexity of the inverse operation 
+\begin{theorem}
+[{\cite[Theorem 4.4]{ko1991complexity}}]
+For any recursive $x \in [0, 1]$, 
+there exists a strictly increasing function $f \in \classC[0, 1]$ 
+such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
+%there exists a strictly increasing continuous function $f$ in $\classP_{\classC[0,1]}$
+\end{theorem}
+
 The following theorem is the uniform version of Theorems 
 \ref{theorem:ko1991-4.7} and 
 \ref{theorem:ko1991-4.18}.
-
-\begin{theorem}
- \label{theorem:INV-is-P-complete}
- $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classFPtwo$-$\redLmF$-complete.
-\end{theorem}
-
-
 Theorem~\ref{theorem:ko1991-4.7} follows from this theorem and the fact that
 functions in $\classFPtwo$ map length-monotone functions in $\classFP$ to $\classFP$.
 Theorem~\ref{theorem:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-comp-maps-l-to-p-comp}.
 
 
-We choose $\deltaboxINV$  over $\deltabox$ as the representation of $f$
-since there is no upper bound on the complexity of the inverse operation 
-without the information about the modulus of continuity of $f^{-1}$.
-
-\begin{theorem}[{\cite[Theorem 4.4]{ko1991complexity}}]
-For any recursive $x \in [0, 1]$, 
-there exists a strictly increasing function $f \in \classC[0, 1]$ 
-such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
-%there exists a strictly increasing continuous function $f$ in $\classP_{\classC[0,1]}$
+\begin{theorem}
+ \label{theorem:INV-is-P-complete}
+ $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classFPtwo$-$\redLmF$-complete.
 \end{theorem}
 
 
