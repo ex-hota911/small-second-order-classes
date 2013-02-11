@@ -541,16 +541,16 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 \end{definition}
 
 
-\subsubsection{\texorpdfstring{$\classAC^i$ and $\classNC$}{ACi and NCi}}
-
+\subsubsection{$\classAC^i$ and $\classNC$}
 A circuit family $(C_{L,n})_{L,n}$ is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
 such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
 
+
 \begin{definition}
  We say that a a circuit family $(C_{L,n})_{L,n}$ 
 \emph{computes} a multi-function 
- $A \colon \LM \to \LM$ if for all $\phi \in \dom A$, 
+ $A \pcolon \LM \rightrightarrows \LM$ if for all $\phi \in \dom A$, 
  there is $\psi \in A[\phi]$ satisfying $\psi(x) = C_{|\phi|, |x|}^\phi(x)$
  for all $x \in \Sigma^*$.
 \end{definition}
@@ -574,8 +574,6 @@ $L \colon \N \to \N$.
  We write $\classFNCtwo$ and $\classNCtwo$ for the hierarchies
  $\bigcup_{k \in \N} \classFACtwo^k$ and $\bigcup_{k \in \N} \classACtwo^k$.
 \end{definition}
-
-
 
 \begin{definition}[$\Luniform$ circuit families]
 A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ 
@@ -926,7 +924,7 @@ the inverse operation and the fix-point operation.
 \subsection{Computation on real numbers}
 \label{section:function}
 
-\subsubsection{\texorpdfstring{$\classL$}{L} computable real functions}
+\subsubsection{$\classL$ computable real functions}
 
 \begin{example}
  The binary addition and the binary multiplication are
@@ -966,7 +964,7 @@ Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 
 
 
-\subsubsection{Finding polynomial roots is \texorpdfstring{$\classFNCtwo$}{FNC}-computable}
+\subsubsection{Finding polynomial roots is $\classFNCtwo$-computable}
 
 \paragraph{Representation of multisets of complex numbers}
 
@@ -1148,7 +1146,7 @@ $
 $
 \end{proof}
 
-\subsection{\texorpdfstring{$\classPtwo$}{P}-complete operations}
+\subsection{$\classPtwo$-complete operations}
 \label{section:P-complete}
 
 \subsubsection{Inverse operation}
@@ -1332,7 +1330,7 @@ Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
 \subsubsection{Proofs of hardness}
 
 
-\paragraph{\texorpdfstring{$\classFPtwo$-$\redLB$}{FP}-hardness of the fix-point operation}
+\paragraph{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
 
 Let $\OpCMFix$ be an operation mapping a contraction $g \in \classC[0,1]$ 
 to its unique fix point.
