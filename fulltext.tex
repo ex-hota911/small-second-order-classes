@@ -576,34 +576,6 @@ $L \colon \N \to \N$.
 \end{definition}
 
 
-\begin{lemma}
-\label{lemma:NCtwo-maps-NC-to-NC}
-\mbox{}
-\begin{enumerate}
- \item \label{enumi: FACtwo maps FAC to FAC}
-Functions in $\classFACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classFAC^{i+j}$.
- \item Functions in $\classACtwo^i$ map length-monotone functions in $\classFAC^j$ into $\classAC^{i+j}$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-We only show (\ref{enumi: FACtwo maps FAC to FAC}).
-Since for all $\phi \in \classFAC^j \cap \LM$, there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$, 
-$(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$.
-Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
-The circuit family given by replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$ is polynomial size and its depth is $O(\log^{i+j}(n))$.
-\end{proof}
-
-\begin{corollary}
-\mbox{}
-\begin{enumerate}
- \item Functions in $\classFNCtwo$ map length-monotone functions in $\classFNC$ into $\classFNC$.
- \item Functions in $\classNCtwo$ map length-monotone functions in $\classFNC$ into $\classNC$.
-\end{enumerate} 
-\end{corollary}
-
-
-\subsubsection{Uniformity}
 
 \begin{definition}[$\Luniform$ circuit families]
 A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ 

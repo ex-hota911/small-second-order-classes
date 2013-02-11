@@ -31,7 +31,6 @@ REFGREP=grep "^LaTeX Warning: Label(s) may have changed."
 
 # 標準のターゲット
 all: $(FILE).pdf 
-	cp $(FILE).pdf master.pdf
 	grep Warning $(EFILE).log --color
 
 $(FILE).pdf: $(EFILE).dvi
