@@ -478,29 +478,26 @@ some constant for all inputs and oracles.
 \end{definition}
 
 \begin{definition}
- We write $\classFLtwo$ for the set of multi-functions from $\LM$ to $\LM$
- computed by a constant-stack machine that runs in second-order logarithmic space.
- We write $\classLtwo$ for the set of multi-functions from $\LM$ to $\Pred$
+ We write $\classFLtwo$ (resp.\ $\classLtwo$) for the set of multi-functions 
+ from $\LM$ to $\LM$ (resp.\ from $\LM$ to $\Pred$)
  computed by a constant-stack machine that runs in second-order logarithmic space.
 \end{definition}
 
 \begin{lemma}
 \label{lemma:Ltwo-maps-L-to-L}
-\mbox{}
-\begin{enumerate}
- \item Functions in $\classFLtwo$ map length-monotone functions in $\classFL$
-       to length-monotone functions in $\classFL$.
- \item Functions in $\classLtwo$ map length-monotone functions in $\classFL$
-       to languages $\classL$.
-\end{enumerate}
+ Functions in $\classFLtwo$ map 
+ length-monotone functions in $\classFL$
+ to length-monotone functions in $\classFL$.
 \end{lemma}
 
+It follows immediately from this lemma that functions in $\classLtwo$ map
+length-monotone functions in $\classFL$ to languages in $\classL$.
+
 \begin{proof}
-We only show (1) and (2) is proved in analogous argument.
-For all $\phi \in \classFL$, $\log(P(|\phi|)(|u|)) = O(\log(|u|))$
-since there is a polynomial $p$ such that $|\phi|(n) \le p(n)$.
-$\classFL$ is closed under relativization, that is $\classFL^\classFL = \classFL$.
-So functions computed by constant-stack machines with $\classFL$ oracle are in $\classFL$.
+For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
+hence second-order logarithm collapses to first-order logarithm.
+Since $\classFL$ is closed under relativization, that is $\classFL^\classFL = \classFL$,
+functions computed by log-space constant-stack machines with $\classFL$ oracle are in $\classFL$.
 \end{proof}
 
 
