@@ -504,6 +504,8 @@ functions computed by log-space constant-stack machines with $\classFL$ oracle a
 \subsection{Circuit complexity classes}
 \subsubsection{Oracle circuits}
 
+In this section, to discuss type-two circuit complexity classes,
+we consider function-circuit families with oracle gates.
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
 $n$ inputs and $m$ outputs consisting of 
@@ -539,7 +541,12 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 
 
 \subsubsection{$\classAC^i$ and $\classNC$}
-A circuit family $(C_{L,n})_{L,n}$ is a set of circuits, 
+
+In this section, we define type-two classes analogous to 
+$\classAC^i$ and $\classNC$.
+To discuss about circuit families computing multi-function from string functions to string functions,
+we index circuits not only by the size of the input but also by the size of the oracle gate.
+A {\em circuit family $(C_{L,n})_{L,n}$} is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
 such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
 
@@ -579,21 +586,22 @@ the string $A (\overline L) (0^n)$ is (a description of) $C_{L,n}$.
 %% 「description」とは？？？
 \end{definition}
 
-The equality $\classFP = \classL\uniform\ \classFP\!\text{/poly}$ holds
+Hereafter, we assume log-space uniformity on all (type-one and type-two) 
+circuit complexity classes, so we write just ``uniform'' or omit ``$\Luniform$''.
+The equality $\classFP = \classFP\!\text{/poly}$ holds
 between the type-two classes.
-
 
 \begin{theorem}
 \label{theorem:P-equals-L-uniform-P-poly}
 A multi-function $A$ from $\LM$ to $\LM$ is computed by a polynomial-size
-$\Luniform$ circuit family if and only if $A \in \classFPtwo$.
+uniform circuit family if and only if $A \in \classFPtwo$.
 \end{theorem}
 
 \begin{proof}
  It is obvious that machines can compute the output of
- polynomial-size $\Luniform$ circuits in polynomial time.
+ polynomial-size uniform circuits in polynomial time.
  The if part is provable in the similar argument to the proof of
- $\classP \subseteq \classL\uniform\ \classP\!\text{/poly}$.
+ $\classP \subseteq \classP\!\text{/poly}$.
  For each multi-function $A \in \classFPtwo$, there is an oracle machine $M$
  computing $A$ whose head movements do not depend on the input $x$ or oracle
  $\phi$ but only depend on the input length $|x|$ and oracle size $|\phi|$.
@@ -610,25 +618,22 @@ that our type-two classes preserve the inclusion of type-one classes.
 \begin{theorem}
 \label{theorem:inclusion}
 \begin{equation}
- \Luniform\ \classACtwo^0
+ \classACtwo^0
  \subseteq \classLtwo 
- \subseteq \Luniform\ \classNCtwo
+ \subseteq \classACtwo^1
+ \subseteq \classNCtwo
  \subseteq \classPtwo
 \end{equation}
 \end{theorem}
 
 \begin{proof}
  The first inclusion can be proved in a similar way
- to show $\classL\uniform\ \classAC^0 \subseteq \classL$.
- The second inclusion follows from that fact 
- $\classLtwo \subseteq \Luniform\ \classACtwo^1$ 
- that can be proved in a similar argument to 
+ to show $\classAC^0 \subseteq \classL$.
+ The second inclusion can be proved in a similar argument to 
  the proof of $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
  \cite{aehlig2007relativizing}.
- The third inclusion immediately follows from
-$
- \Luniform\ \classNCtwo \subseteq \Luniform\ \classPtwo\text{\!/poly} = \classPtwo.
-$
+ The third inclusion immediately follows from the definition.
+ The forth inclusion follows from Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
 \end{proof}
 
 
