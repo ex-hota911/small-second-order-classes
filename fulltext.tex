@@ -662,20 +662,27 @@ $\classL$ uniformity.
 \begin{corollary}
 \mbox{}
 \begin{enumerate}
- \item Functions in $\Luniform\ \classFACtwo^i$ 
-       map length-monotone functions in $\classL$-uniform $\classFAC^j$ 
-       to $\classL\text{-uniform }\classFAC^{i+j}$.
- \item Functions in $\Luniform\ \classACtwo^i$ 
-       map length-monotone functions in $\classL$-uniform $\classFAC^j$ 
-       to $\classL\text{-uniform }\classAC^{i+j}$.
- \item Functions in $\Luniform\ \classFNCtwo$
-       map length-monotone functions in $\classL$-uniform $\classFNC$ 
-       to $\classL\text{-uniform }\classFNC$.
- \item Functions in $\Luniform\ \classNCtwo$
-       map length-monotone functions in $\classL$-uniform $\classFNC$ 
-       to $\classL\text{-uniform }\classNC$.
+ \item Functions in $\classFACtwo^i$ 
+       map length-monotone functions in $\classFAC^j$ 
+       to $\classFAC^{i+j}$.
+ \item Functions in $\classFNCtwo$
+       map length-monotone functions in $\classFNC$ 
+       to $\classFNC$.
 \end{enumerate}
 \end{corollary}
+
+\begin{proof}
+The second statement immediately follows from the first statement.
+Let $A$ be a function in $\classFACtwo^i$ and $(C_{L,n})_{L,n}$ be a circuit
+family computing $A$ with $\log^i$ depth.
+For all $\phi \in \classFAC^j \cap \LM$, 
+the circuit family $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$,
+since there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$.
+Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
+Replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$, 
+we get a circuit family with polynomial size and $\log^{i+j}(n)$ depth
+that computes $A(\phi)$.
+\end{proof}
 
 
 
