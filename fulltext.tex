@@ -20,7 +20,7 @@
 
 \newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
-\title{Subpolynomial-time Computable Analysis}
+\title{Small complexity classes for computable analysis}
 \author{Akitoshi Kawamura \and Hiroyuki Ota}
 \date{\today}
 
@@ -38,14 +38,20 @@ to this field with as much generality as possible,
 Kawamura and Cook recently proposed a modification to TTE using 
 machines that have random access to an oracle and 
 run in time depending on its ``size''. 
-Continuing their study of 
-classes analogous to $\classP$, $\classNP$, and $\classPSPACE$, 
-we 
-
-In this thesis, we focus on small classes
-and define type-two analogues of the log-space class $\classL$ and
+This led them to defining type-two classes analogues of 
+$\classP$, $\classNP$, and $\classPSPACE$ 
+and studying important operators in analysis
+that are computable and complete for these classes. 
+Refining their model, 
+we define type-two analogues of the log-space class $\classL$ and
 the circuit class $\classNC$.
 We also define the type-two $\classP$-completeness under suitable log-space reductions.
+The basic idea is to use
+second-order polynomials as resource bounds, 
+as Kawamura and Cook did, 
+but there are several new subtleties that must be taken care of 
+when studying small classes: 
+The logarithmic
 
 We apply this framework to some specific problems.
 First, we study the complexity of the problem to find the roots of
