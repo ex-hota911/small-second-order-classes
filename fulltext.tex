@@ -207,9 +207,7 @@ show type-two $\classP$-completeness of these operators.
 
 
 \paragraph{Notation}
-Let $\N$, $\Z$, $\Q$, $\R$ denote the set of natural numbers,
-integers,
-rational numbers and 
+Let $\N$, $\Z$, $\R$ denote the set of natural numbers, integers, and 
 real numbers, respectively.
 
 When we talk about polynomials as bounds on time or space, 
@@ -363,20 +361,17 @@ without using oracle machines.
  \label{lem:type1representation}
  A real function is polynomial-time computable if and only if
  there exist a polynomial-time computable function 
- $\phi \colon (\Q \cap [0, 1]) \times \{0\} ^* \to \Q$ and 
+ $\phi \colon (\D \cap [0, 1]) \times \{0\} ^* \to \D$ and 
  polynomial $p \colon \N \to \N$ such that
- for all $d \in \Q \cap [0,1]$ and $n \in \N$,
+ for all $d \in \D \cap [0,1]$ and $n \in \N$,
  \begin{equation}
-  |\phi(d, 0^n) - f(d)| \le 2^{-n},
+  |\llbracket \phi(d, 0^n) \rrbracket - f(d)| \le 2^{-n},
  \end{equation}
  and for all $x, y \in [0, 1]$, $n \in \N$,
  \begin{equation} 
-  |x-y| \le 2^{-p(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n},
+  |x-y| \le 2^{-p(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n}.
    \label{eq:modulus}
  \end{equation}
-where each rational number is written
-as a fraction whose numerator and denominator
-are integers in binary.
 \end{lemma}
 
 
@@ -1301,7 +1296,7 @@ be $\classPtwo$-complete under this reduction.
 
 We define a \emph{$\deltaboxCM^1$ name} of a contraction $g \in \classC[0,1]$
 as a pair of $\langle \phi, q \rangle$ such that $\phi \in \LM$ is a 
-$\deltabox$ name of $g$ and $q \in \Q$ is a Lipschitz constant of $g$ less than $1$.
+$\deltabox$ name of $g$ and $q \in \D$ is a Lipschitz constant of $g$ less than $1$.
 \begin{lemma}
 \label{lemma:P-hard-g_u}
 $\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete, 
