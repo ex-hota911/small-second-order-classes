@@ -215,12 +215,12 @@ if $F$ is a partial function and $\dom F = X$.
 \section{TTE with second-order polynomials}
 \label{section: computable analysis}
 
-We review the framework TTE. 
-We define basic concepts of TTE in Sect.~\ref{section:TTE},
-such as polynomial-time computable functions and hardness of real function
-for the (usual type-one) complexity class $\classP$ \cite{ko1991complexity}.
-In Sect.~\ref{section:TTF}, we extend TTE using second-order polynomials
-in the size of input functions \cite{kawamura2012complexity}.
+We review the Type-two Theory of Effectivity (TTE), 
+the framework for computable analysis, 
+as extended by 
+\cite{kawamura2012complexity}. 
+
+In Sect.~\ref{section:TTF}, 
 
 \subsection{Second-order polynomials}
 \label{section:TTF}
@@ -690,7 +690,7 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
        the function maps $x \in \Sigma^*$ to $r(\phi)(x, \theta(t(\phi)(x)))$
        is in $A[\phi]$.
  \item $A$ is \emph{Weihrauch log-space reducible} to $B$,
-       denoted $A \redLmF B$,
+       denoted $A \redLW B$,
        if there are functions $r, s \in \classFLtwo$ such that 
        for all $\phi \in \dom A$,
        $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
