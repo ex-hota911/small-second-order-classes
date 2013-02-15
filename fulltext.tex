@@ -232,6 +232,13 @@ In Sect.~\ref{section:TTF},
 \subsection{Second-order polynomials}
 \label{section:TTF}
 
+A function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
+if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
+The set of length monotone functions is denoted $\LM$.
+We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
+Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
+$\Pred$ is a subset of $\LM$.
+
 Let $M$ be a machine and $\phi$ be a (total) function from strings to strings. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
@@ -243,12 +250,6 @@ Thus, we also regard $M^\phi$ as a function from strings to strings.
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
-A function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
-if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
-The set of length monotone functions is denoted $\LM$.
-We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
-Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
-$\Pred$ is a subset of $\LM$.
 The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
 is a (non-decreasing) function from $\N$ to $\N$ defined by 
 $|\phi|(|u|) = |\phi(u)|$.
@@ -281,7 +282,7 @@ It follows immediately from this lemma that functions in $\classPtwo$ map
  length-monotone functions in $\classFP$ to $\classP$.
 
 
-\subsection{Representations for real numbers and real functions}
+\subsection{Representations}
 
 A {\em representation} $\delta$ is a partial function from $\LM$ to a set $X$
 such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
