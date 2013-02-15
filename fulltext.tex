@@ -77,20 +77,27 @@ can be strengthened to type-two $\classP$-completeness in our formulation.
 \cite{ko1991complexity,weihrauch00:_comput_analy}
 studies real numbers, real functions and other objects in analysis
 that are computable on digital machines. 
-Here, polynomial-time computability and other notions of complexity 
-is defined and measure how hard it is to approximate real functions
+Polynomial-time computability and other notions of complexity 
+are also defined and measure how hard it is to approximate real functions
 with specified precision  (Sect.~\ref{section:TTE}). 
 
-We investigate the computational complexity of several problems in 
-numerical analysis.
-The problems we study in this paper are of the following kind:
-How much resource is needed to compute the roots of a polynomial?
-Which operators on real function are feasibly computable but inherently sequential?
-In this paper, we use the model of the real computation from the field of 
-Computable Analysis.
+% We investigate the computational complexity of several problems in 
+% numerical analysis.
+% The problems we study in this paper are of the following kind:
+% How much resource is needed to compute the roots of a polynomial?
+% Which operators on real function are feasibly computable but inherently sequential?
+% In this paper, we use the model of the real computation from the field of 
+% Computable Analysis.
 
 \subsection{Type-two complexity theory}
-The complexity of an operation $F$ on real functions
+Kawamura proposed an extension of this framework \cite{kawamura2012complexity}.
+The key idea is representing uncountable 
+objects by \emph{length-monotone} string functions, which make it possible to define the
+\emph{size} of function and to bound resources by size of input.
+
+A restriction in applying the framework of TTE based on infinite strings
+to complexity theory was that 
+the complexity of an operation $F$ on real functions
 is stated indirectly in the non-uniform form like
 \begin{quote}
  if $f$ is in the complexity class $X$,
@@ -98,19 +105,12 @@ is stated indirectly in the non-uniform form like
  there is $f$ in $X$ such that $F(f)$ is hard for
  the complexity class $Z$.
 \end{quote}
-That is, there is some restriction to apply the framework TTE
-to complexity theory.
 There is a widely-recognized definition of polynomial-time computable 
 real functions whose domain is compact.
-However, there is not such a model for
-operators $F$ on real functions in purpose to state
+However, with the infinite string model we cannot state
 directly that $F$ is polynomial-time computable or hard for $\classPSPACE$.
 
-Kawamura proposed an extension of this framework \cite{kawamura2012complexity}.
-The key idea is representing uncountable 
-objects by \emph{length-monotone} string functions, which make it possible to define the
-\emph{size} of function and to bound resources by size of input.
-In that framework we can state directly about the complexity of
+In Kawamura and Cook's framework we can state directly about the complexity of
  an operator $F$ in the effective or uniform form like
 \begin{quote}
  $F$ is in the complexity class $\mathcal Y$, and \\
