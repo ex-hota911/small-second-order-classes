@@ -232,14 +232,14 @@ In Sect.~\ref{section:TTF},
 \subsection{Second-order polynomials}
 \label{section:TTF}
 
-A function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
-if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
+A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
+if $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
 The set of length monotone functions is denoted $\LM$.
 We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
 Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
 $\Pred$ is a subset of $\LM$.
 
-Let $M$ be a machine and $\phi$ be a (total) function from strings to strings. 
+Let $M$ be a machine and $\phi \in \LM$. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
 $\phi$ as oracle and string $u$ as input.
@@ -286,22 +286,20 @@ It follows immediately from this lemma that functions in $\classPtwo$ map
 
 A {\em representation} $\delta$ is a partial function from $\LM$ to a set $X$
 such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
-We say $\phi \in \LM$ is a {\em $\delta$-name} of $x \in X$
+We say $\phi$ is a {\em $\delta$-name} of $x$
 if $x = \delta(\phi)$.
 
-Let $\mathcal C$ be a class of multi-functions on $\LM$,
+Let $\mathcal C$ be a class of multi-functions from $\LM$ from $\LM$,
 and $\delta$ and $\gamma$ be representations of sets $X$ and $Y$, respectively.
-For a multi-function $A \pcolon X \rightrightarrows Y$,
-$A$ is {\em $(\delta, \gamma)$-$\mathcal C$-computable} if 
-$\delta^{-1} \circ A \circ \gamma$ is in $\mathcal C$,
-where  $\delta^{-1} \circ A \circ \gamma$ is a multi-function on $\LM$
-such that
+A multi-function $A \pcolon X \rightrightarrows Y$
+is $(\delta, \gamma)$-$\mathcal C$-\emph{computable} if 
+the following multi-function $\delta^{-1} \circ A \circ \gamma \pcolon \LM \rightrightarrows \LM$ is in $\mathcal C$: 
 \begin{equation}
  (\delta^{-1} \circ A \circ \gamma)[\phi] = 
   \begin{cases}
    \{\psi \in \dom \delta \mid \delta(\psi) \in A[\gamma(\phi)] \}
    & 
-   \text{if } \phi \in \dom \gamma 
+   \text{if } \phi \in \dom \gamma, 
    \\ 
    \emptyset 
    &
@@ -324,7 +322,7 @@ and write $\llbracket u \rrbracket$ for the number encoded by $u \in \D$.
 
 
 A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
-if and only if $\phi(0^i) \in \D$ and $\llbracket \phi(0^i) - x \rrbracket \le 2^{-i}$
+if and only if $\phi(0^i) \in \D$ and $\lvert \llbracket \phi(0^i) \rrbracket - x \rvert \le 2^{-i}$
 for all $i \in \N$.
 We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to real numbers in $[0,1]$.
 
