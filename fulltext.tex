@@ -221,22 +221,17 @@ as extended by
 \cite{kawamura2012complexity}. 
 
 In usual complexity theory, we encode countable sets in strings, such as
-natural numbers, formulas, graphs and so on, 
-and regard a machine $M$ to compute a function from $X$ to $Y$ if
-$f(\delta(u)) = \delta(M(u))$.
-Likewise, we encode 
+natural numbers, formulas, graphs and so on. 
+Likewise, 
+we use string functions encode objects, such as real numbers and real functions, 
+and use \emph{oracle Turing machines} (henceforth just \emph{machines}) 
+to work on them.
 
 In Sect.~\ref{section:TTF}, 
 
 \subsection{Second-order polynomials}
 \label{section:TTF}
 
-This section reviews the extended framework of Computable Analysis~%
-\cite{kawamura2012complexity}.
-
-We use string functions encode objects, such as real numbers and real functions, 
-and use \emph{oracle Turing machines} (henceforth just \emph{machines}) 
-to work on them.
 Let $M$ be a machine and $\phi$ be a (total) function from strings to strings. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
