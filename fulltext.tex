@@ -58,27 +58,16 @@ when studying small classes:
 we use the stack model of Aehlig, Cook and Nguyen for query tapes 
 in order to achieve 
 sufficient oracle accesses without interfering with space bounds; 
-representation needs to be chosen carefully, as 
+representations need to be chosen carefully, as 
 computational equivalence between representations is now finer; 
-uniformity of circuits 
+uniformity of circuits must be defined 
+with varying sizes of oracle gates taken into account. 
 
 We apply this framework to some specific problems.
-First, we study the complexity of the problem to find the roots of
-the polynomial from its coefficients.
-Using Mosier's analysis, we can bound the required input precision 
-by a polynomial in the precision of the solution.
-We combine this analysis and the discrete result 
-that the problem to approximate the roots of the polynomial with integer 
-coefficients is $\classNC$ computable,
-and we show that the polynomial roots are type-two $\classNC$ computable.
+First, we show that finding the roots of a given polynomial is 
+in type-two $\classNC$.
 Second, we give two examples of $\classP$-complete operators,
 the inverse operation and the fix-point operation on contracting mappings.
-It is known that these operators are $\classP$-complete in a non-uniform sense:
-the fix-points of $\classNC$-computable contracting mappings,
-as well as the inverse function $f^{-1}$ of a one-to-one $\classL$-computable function $f$,
-can be $\classP$-complete.
-We express these theorems in the uniform way and
-show that these operators themselves are type-two $\classP$-complete.
 \end{abstract}
 
 \section{Introduction}
@@ -87,7 +76,7 @@ show that these operators themselves are type-two $\classP$-complete.
 
 We investigate the computational complexity of several problems in 
 numerical analysis.
-The problems we study in this thesis are of the following kind:
+The problems we study in this paper are of the following kind:
 How much resource is needed to compute the roots of a polynomial?
 Which operators on real function are feasibly computable but inherently sequential?
 In this paper, we use the model of the real computation from the field of 
@@ -318,7 +307,7 @@ polynomial, then $P(L)$ is a first-order polynomial.
 \end{lemma}
 
 
-\subsection{Representations for real analysis}
+\subsection{Representations for real numbers and real functions}
 
 
 For the (basic) representations of real numbers and real functions,
