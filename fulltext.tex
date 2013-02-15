@@ -33,28 +33,27 @@
 Type-two Theory of Effectivity (TTE) gives a concrete and general framework for 
 Computable Analysis, 
 which studies 
-real numbers, real functions and other objects in mathematical analysis
+real numbers, real functions and other objects in analysis
 that are computable on digital machines. 
-To apply the theory of polynomial-time computability
-to this field with as much generality as possible, 
+To discuss polynomial-time computability 
+in this field with as much generality as possible, 
 Kawamura and Cook recently proposed a modification to TTE using 
 machines that have random access to an oracle and 
-run in time depending on its ``size''. 
+run in time depending on the ``size'' of the oracle. 
 They defined type-two analogues of 
 $\classP$, $\classNP$, and $\classPSPACE$ 
 and showed some typical operators in analysis
 to be computable and complete for these classes. 
-Refining their model, 
-we study computation below $\classP$: 
+We further refine their model and study computation below $\classP$: 
 type-two analogues of 
 the log-space class $\classL$, 
 the circuit class $\classNC$, 
 and $\classP$-completeness under log-space reductions.
-The basic idea in our formulation is 
+The basic idea is 
 to use second-order polynomials as resource bounds, 
 as Kawamura and Cook did, 
 but we need to make some nontrivial (yet natural, as we will discuss) choices
-when studying small classes: 
+when formulating small classes: 
 we use the stack model of Aehlig, Cook and Nguyen for query tapes 
 in order to achieve 
 sufficient oracle accesses without interfering with space bounds; 
@@ -62,12 +61,15 @@ representations need to be chosen carefully, as
 computational equivalence between representations is now finer; 
 uniformity of circuits must be defined 
 with varying sizes of oracle gates taken into account. 
+As prototypical applications, 
+we recast some facts about the complexity of numerical problems 
+into our framework: 
+we show that Neff's algorithm for finding the roots of a given polynomial 
 
-We apply this framework to some specific problems.
-First, we show that finding the roots of a given polynomial is 
-in type-two $\classNC$.
-Second, we give two examples of $\classP$-complete operators,
-the inverse operation and the fix-point operation on contracting mappings.
+in type-two $\classNC$; 
+Ko's and Hoover's hardness results about 
+inversion of real functions and the fix-point operation on contractive mappings
+can be strengthened to type-two $\classP$-completeness in our formulation. 
 \end{abstract}
 
 \section{Introduction}
@@ -318,8 +320,8 @@ For each $n \in \N$, let $\D_n$ denote the set of strings of the form
  sx/1\!\underbrace{00\dots0}_{n},
 \end{equation}
 where $s$ is the sign and $x \in \{0,1\}^*$.
-We write $D$ for the union $\bigcup _n \D _n$.
-We regard $D$ as the set of fractions of binary numbers
+We write $\D$ for the union $\bigcup _n \D _n$.
+We regard $\D$ as the set of fractions of binary numbers
 and write $\llbracket u \rrbracket$ for the number encoded by $u \in \D$.
 
 The length-monotone function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
@@ -1554,8 +1556,11 @@ Many operators are not studied enough after it is shown to be polynomial-time
 computable.
 One can investigate the precise complexity of these operators.
 
-
-
 \bibliographystyle{plain}
 \bibliography{bibliography}
+
+\clearpage
+\appendix
+\section{Postponed proofs}
+
 \end{document}
