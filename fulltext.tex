@@ -96,10 +96,10 @@ with specified precision  (Sect.~\ref{section:TTE}).
 The complexity of an operation $F$ on real functions
 is stated indirectly in the non-uniform form like
 \begin{quote}
- if $f$ is in the complexity class $\classonefont X$,
- then $F(f)$ is in the complexity class $\classonefont Y$, and \\
- there is $f$ in $\classonefont X$ such that $F(f)$ is hard for
- the complexity class $\classonefont Z$.
+ if $f$ is in the complexity class $X$,
+ then $F(f)$ is in the complexity class $Y$, and \\
+ there is $f$ in $X$ such that $F(f)$ is hard for
+ the complexity class $Z$.
 \end{quote}
 That is, there is some restriction to apply the framework TTE
 to complexity theory.
@@ -119,7 +119,7 @@ In that framework we can state directly about the complexity of
  $F$ is in the complexity class $\mathcal Y$, and \\
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
-where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to $\classonefont{X, Y, Z}$.
+where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$.
 There is no obvious way to define consistent type-two classes 
 analogous to usual (type-one) complexity classes.
 
@@ -294,11 +294,11 @@ A {\em representation} $\delta$ is a total partial function from $\LM$ to a set 
 We say $\phi \in \LM$ is a {\em $\delta$-name} of $x \in X$
 if $x = \delta(\phi)$.
 
-Let $\classtwofont C$ be a class of multi-functions on $\LM$,
+Let $\mathcal C$ be a class of multi-functions on $\LM$,
 and $\delta$ and $\gamma$ be representations of sets $X$ and $Y$, respectively.
 For a multi-function $A \pcolon X \rightrightarrows Y$,
-$A$ is {\em $(\delta, \gamma)$-$\classtwofont C$-computable} if 
-$\delta^{-1} \circ A \circ \gamma$ is in $\classtwofont C$,
+$A$ is {\em $(\delta, \gamma)$-$\mathcal C$-computable} if 
+$\delta^{-1} \circ A \circ \gamma$ is in $\mathcal C$,
 where  $\delta^{-1} \circ A \circ \gamma$ is a multi-function on $\LM$
 such that
 \begin{equation}
@@ -722,11 +722,11 @@ $s$ does not depend on the string input $x$.
 See the comments after the next lemma and before Lemma~\ref{lemma:P-hard-g_u} for
 the disadvantage and the advantage of this reduction.
 
-Let $\classtwofont{C}$ be a class of multi-functions from $\LM$ to $\LM$
+Let $\mathcal{C}$ be a class of multi-functions from $\LM$ to $\LM$
 and $\leq$ be a type-two reduction.
-A multi-function $B$ from $\LM$ to $\LM$ is \emph{$\classtwofont{C}$-$\leq$-hard} if $A \leq B$ for all $A \in \classtwofont{C}$,
-and $B$ is \emph{$\classtwofont{C}$-$\leq$-complete} 
-if $B$ is $\classtwofont{C}$-$\leq$-hard and in $\classtwofont{C}$.
+A multi-function $B$ from $\LM$ to $\LM$ is \emph{$\mathcal{C}$-$\leq$-hard} if $A \leq B$ for all $A \in \mathcal{C}$,
+and $B$ is \emph{$\mathcal{C}$-$\leq$-complete} 
+if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 
 
 Let $F$ be a subset of $\LM$.
@@ -814,13 +814,13 @@ for all $\phi \in \LM \cap \dom \gamma(X)$.
 \end{definition}
 
 \begin{lemma}
- Let $\classtwofont{C}$ be either $\classFLtwo$, $\Luniform\ \classNCtwo$ or
+ Let $\mathcal{C}$ be either $\classFLtwo$, $\Luniform\ \classNCtwo$ or
  $\classFPtwo$.
  Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
  $\delta$ and $\delta'$ be two representations of a set $Y$.
  If $\gamma' \transL \gamma$ and $\delta \transL \delta'$,
- a $(\gamma, \delta)$-$\classtwofont C$-computable multi-function is
- $(\gamma', \delta')$-$\classtwofont C$-computable.
+ a $(\gamma, \delta)$-$\mathcal C$-computable multi-function is
+ $(\gamma', \delta')$-$\mathcal C$-computable.
 \end{lemma}
 
 \begin{lemma}
@@ -831,23 +831,23 @@ for all $\phi \in \LM \cap \dom \gamma(X)$.
  $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
 \end{lemma}
 
-We say that $x \in X$ is \emph{$\gamma$-$\classonefont C$-computable} if
-$x$ has a $\gamma$ name in $\classonefont C$,
-where $\classonefont C$ is a usual (type-one) complexity class.
-We say that $x \in X$ is $\gamma$-$\classonefont C$-$\le$-complete if
-$\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete,
+We say that $x \in X$ is \emph{$\gamma$-$C$-computable} if
+$x$ has a $\gamma$ name in $C$,
+where $C$ is a usual (type-one) complexity class.
+We say that $x \in X$ is $\gamma$-$C$-$\le$-complete if
+$\cup(\gamma^{-1}[x])$ is $C$-$\le$-complete,
 where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 
 
 \begin{lemma}
- Let $\classtwofont C$ be either $\classFLtwo$, $\classNCtwo$, 
- or $\classFPtwo$, and $\classonefont C$ be the type-one complexity class
- corresponding to $\classtwofont C$.
+ Let $\mathcal C$ be either $\classFLtwo$, $\classNCtwo$, 
+ or $\classFPtwo$, and $C$ be the type-one complexity class
+ corresponding to $\mathcal C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
  A $(\gamma, \delta)$-$\mathbf C$-computable partial function $F$ from $X$
- to $Y$ maps $\gamma$-$\classonefont C$-computable elements of $X$
- in $\dom F$ to $\delta$-$\classonefont C$-computable elements of $Y$.
+ to $Y$ maps $\gamma$-$C$-computable elements of $X$
+ in $\dom F$ to $\delta$-$C$-computable elements of $Y$.
 \end{lemma}
 
 \begin{lemma}
