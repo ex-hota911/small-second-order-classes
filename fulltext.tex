@@ -805,16 +805,12 @@ For $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi_{|x|}(x)$.
 \newcommand{\transL}{\preceq_\classLtwo}
 
 
-The inverse of a representation $\delta \pcolon \LM \to X$, 
-denoted $\delta^{-1}$, is a multi-function from $X$ to $\LM$ such that 
-$\delta^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
-
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
 there is a function $F \in \classFLtwo$ \emph{translating} $\gamma$-names
 into $\delta$-names, that is, $\gamma(\phi) = \delta(F(\phi))$ 
-for all $\phi \in \LM \cap \gamma^{-1}(X)$.
+for all $\phi \in \LM \cap \dom \gamma(X)$.
 \end{definition}
 
 \begin{lemma}
@@ -835,14 +831,17 @@ for all $\phi \in \LM \cap \gamma^{-1}(X)$.
  $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
 \end{lemma}
 
-We say that $x \in X$ is \emph{$\gamma$-$\mathrm C$-computable} if
-$x$ has a $\gamma$ name in $C$,
+We say that $x \in X$ is \emph{$\gamma$-$\classonefont C$-computable} if
+$x$ has a $\gamma$ name in $\classonefont C$,
 where $\classonefont C$ is a usual (type-one) complexity class.
 We say that $x \in X$ is $\gamma$-$\classonefont C$-$\le$-complete if
-$\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete.
+$\cup(\gamma^{-1}[x])$ is $\classonefont C$-$\le$-complete,
+where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
+
+
 
 \begin{lemma}
- Let $\classtwofont C$ be either $\classFLtwo$, $(\Luniform)\ \classNCtwo$, 
+ Let $\classtwofont C$ be either $\classFLtwo$, $\classNCtwo$, 
  or $\classFPtwo$, and $\classonefont C$ be the type-one complexity class
  corresponding to $\classtwofont C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
