@@ -1,32 +1,34 @@
-\documentclass{article}
+\documentclass[envcountsame,orivec,oribibl]{llncs}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{xspace}
 \usepackage{mypackage}
-\usepackage{amsthm}
 \usepackage{hyperref}
+%\usepackage{amsthm}
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem*{claim*}{Claim}
-\theoremstyle{remark}
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \theoremstyle{definition}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{example}[theorem]{Example}
+% \theoremstyle{remark}
+
+\let\doendproof\endproof
+\renewcommand\endproof{~\hfill\qed\doendproof}
 
 \newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
 \title{Small complexity classes for computable analysis}
-\author{Akitoshi Kawamura \and Hiroyuki Ota}
-\date{\today}
-
+\author{Akitoshi Kawamura\qquad\qquad Hiroyuki Ota}
+\institute{University of Tokyo}
 
 \begin{document}
+
 \maketitle
+
 \begin{abstract}
 Type-two Theory of Effectivity (TTE) gives a concrete and general framework for 
 Computable Analysis, 
@@ -43,13 +45,15 @@ $\classP$, $\classNP$, and $\classPSPACE$
 and studying important operators in analysis
 that are computable and complete for these classes. 
 Refining their model, 
-we define type-two analogues of the log-space class $\classL$ and
-the circuit class $\classNC$.
-We also define the type-two $\classP$-completeness under suitable log-space reductions.
-The basic idea is to use
-second-order polynomials as resource bounds, 
+we study computation below $\classP$: 
+type-two analogues of 
+the log-space class $\classL$, 
+the circuit class $\classNC$, 
+and $\classP$-completeness under log-space reductions.
+The basic idea in our formulation is 
+to use second-order polynomials as resource bounds, 
 as Kawamura and Cook did, 
-but there are several new subtleties that must be taken care of 
+but there are several new subtleties 
 when studying small classes: 
 The logarithmic
 
