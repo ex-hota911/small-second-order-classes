@@ -880,11 +880,12 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 \end{proof}
 
 
-If we defined $\classLtwo$ with the obvious relativized machine with one query tape,
-neither $\OpApply$ would be $\classLtwo$-computable 
-nor $\classLtwo \subseteq \classNCtwo$.
-The constant stack model is one of the weakest model to make both conditions
-true.
+If we defined $\classFLtwo$ with the obvious relativized machine with one query tape,
+$\classFLtwo$ would be either too weak that $\OpApply$ is not $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
+too strong that $\classL \not \subseteq \classNC$,
+depending on whether or not it was allowed to watch the answer tape while writing queries.
+The our extension of the constant stack model is one of the weakest model
+to make both conditions true.
 
 
 \section{Applications}
