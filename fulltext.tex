@@ -227,27 +227,27 @@ In Sect.~\ref{section:TTF},
 
 This section reviews the extended framework of Computable Analysis~%
 \cite{kawamura2012complexity}.
-A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
-if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
-The set of length monotone functions is denoted $\LM$.
-We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
-Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
-$\Pred$ is a subset of $\LM$.
 
-We use \emph{oracle Turing machines} (henceforth just \emph{machines})
-to work on these functions.
-Let $M$ be a machine and $\phi$ be a function from strings to strings. 
+We use string functions encode objects, such as real numbers and real functions, 
+and use \emph{oracle Turing machines} (henceforth just \emph{machines}) 
+to work on them.
+Let $M$ be a machine and $\phi$ be a (total) function from strings to strings. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
 $\phi$ as oracle and string $u$ as input.
 Thus, we also regard $M^\phi$ as a function from strings to strings.
-
 
 \begin{definition}
  A machine $M$ computes a multi-function $A \pcolon \LM \rightrightarrows \LM$ if for any
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
+A function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
+if  $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
+The set of length monotone functions is denoted $\LM$.
+We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
+Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
+$\Pred$ is a subset of $\LM$.
 The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
 is a (non-decreasing) function from $\N$ to $\N$ defined by 
 $|\phi|(|u|) = |\phi(u)|$.
@@ -288,7 +288,8 @@ natural number, formulas, graphs and so on.
 We regard a machine $M$ to compute a function from $X$ to $Y$ if
 $f(\delta(u)) = \delta(M(u))$.
 
-A {\em representation} $\delta$ is a total partial function from $\LM$ to a set $X$.
+A {\em representation} $\delta$ is a partial function from $\LM$ to a set $X$
+such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
 We say $\phi \in \LM$ is a {\em $\delta$-name} of $x \in X$
 if $x = \delta(\phi)$.
 
