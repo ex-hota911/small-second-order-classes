@@ -814,7 +814,7 @@ for all $\phi \in \LM \cap \dom \gamma(X)$.
 \end{definition}
 
 \begin{lemma}
- Let $\mathcal{C}$ be either $\classFLtwo$, $\Luniform\ \classNCtwo$ or
+ Let $\mathcal{C}$ be either $\classFLtwo$, $\classNCtwo$ or
  $\classFPtwo$.
  Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
  $\delta$ and $\delta'$ be two representations of a set $Y$.
@@ -892,6 +892,32 @@ the inverse operation and the fix-point operation.
 
 \subsection{Computation on real numbers}
 \label{section:function}
+
+In this section, we show that several basic function on real numbers are
+ $(\rhoR, \rhoR)$-$\classFLtwo$-computable,
+and finding roots of a complex polynomial from its coefficients is 
+$(\rho_{P_*}, \rhoMSet)$-$\classFNCtwo$-computable,
+where $\rho_{P_*}$ and $\rhoMSet$ are representations of 
+polynomials and multisets of complex numbers, respectively.
+
+The {\em log-space real functions} $\mathrm{LOGSPACE}_{\classC[0,1]}$ in 
+$\classC[0,1]$ defined by Ko \cite{ko1991complexity} 
+are equal to $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable real functions
+and $\deltabox$-$\classFL$-computable real function.
+To define log-space real functions, 
+we chose constant-stack log-space machine,
+while Ko uses obvious log-space oracle Turing machine.
+This difference does not affect to the log-space computability of real functions
+since to compute approximation of $f(x)$,
+a machine can get enough information about $x \in [0,1]$ by one query.
+
+Ko defines $\classNC$ real function in $\classC[0,1]$
+as $\deltabox$-$\classFNC$-computable real function \cite{ko1991complexity},
+which are equal to $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computable real functions.
+The $\classNC$-real functions from $R$ to $R$ defined by Hoover \cite{hoover1991real}
+are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
+
+
 
 \subsubsection{$\classL$ computable real functions}
 
