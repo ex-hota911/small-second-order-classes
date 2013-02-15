@@ -763,7 +763,7 @@ so is $\cup (B[\psi])$.
 
 \subsubsection{P-complete problems}
 
-We define a partial function $\probDTIMEtwo$ from $\LM$ to $\Pred$ as follows:
+We define a partial function $\probDTIMEtwo \pcolon \LM \to \Pred$  as follows:
 The domain $\dom \probDTIMEtwo$ is a set of $\langle M, \overline \mu, \phi \rangle$
 such that $M$ is a (program of) machine, $\mu \colon \N \to \N$ is non-decreasing, $\phi \in \LM$, and $M^\phi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$.
 $\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ is $1$ if
@@ -786,11 +786,10 @@ $M^\phi(x)$ accepts, otherwise it is 0.
 \end{proof}
 
 
-We define a partial function  $\probCVPtwo$ from $\LM$ to $\Pred$ as follows:
+We define a partial function  $\probCVPtwo \pcolon \LM \to \Pred$ as follows:
 The domain $\dom \probCVPtwo$ is a set of $\langle (C_n)_n, \phi \rangle$
-such that $C_n$ is a (description of) circuit consisting of $\AND, \OR, \NOT$
-and oracle gates with $n$ inputs and $\phi \in \Pred$.
-$\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
+such that $C_n$ is a (description of) circuit with $n$ inputs consisting of $\AND, \OR, \NOT$ and oracle gates, and $\phi$ is in $\Pred$.
+For $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi_{|x|}(x)$.
 
 \begin{lemma}
  $\probCVPtwo$ is $\classPtwo$-$\redLm$-complete.
