@@ -220,6 +220,12 @@ the framework for computable analysis,
 as extended by 
 \cite{kawamura2012complexity}. 
 
+In usual complexity theory, we encode countable sets in strings, such as
+natural numbers, formulas, graphs and so on, 
+and regard a machine $M$ to compute a function from $X$ to $Y$ if
+$f(\delta(u)) = \delta(M(u))$.
+Likewise, we encode 
+
 In Sect.~\ref{section:TTF}, 
 
 \subsection{Second-order polynomials}
@@ -281,13 +287,6 @@ It follows immediately from this lemma that functions in $\classPtwo$ map
 
 
 \subsection{Representations for real numbers and real functions}
-
-
-In usual complexity theory, we encode countable sets in strings, such as
-natural numbers, formulas, graphs and so on, 
-and regard a machine $M$ to compute a function from $X$ to $Y$ if
-$f(\delta(u)) = \delta(M(u))$.
-Likewise, we encode 
 
 A {\em representation} $\delta$ is a partial function from $\LM$ to a set $X$
 such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
