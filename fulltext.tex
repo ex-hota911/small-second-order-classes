@@ -40,10 +40,10 @@ to this field with as much generality as possible,
 Kawamura and Cook recently proposed a modification to TTE using 
 machines that have random access to an oracle and 
 run in time depending on its ``size''. 
-This led them to defining type-two classes analogues of 
+They defined type-two classes analogues of 
 $\classP$, $\classNP$, and $\classPSPACE$ 
-and studying important operators in analysis
-that are computable and complete for these classes. 
+and showed some typical operators in analysis
+to be computable and complete for these classes. 
 Refining their model, 
 we study computation below $\classP$: 
 type-two analogues of 
@@ -53,9 +53,14 @@ and $\classP$-completeness under log-space reductions.
 The basic idea in our formulation is 
 to use second-order polynomials as resource bounds, 
 as Kawamura and Cook did, 
-but there are several new subtleties 
+but we need to make some nontrivial (yet natural, as we will discuss) choices
 when studying small classes: 
-The logarithmic
+we use the stack model of Aehlig, Cook and Nguyen for query tapes 
+in order to achieve 
+sufficient oracle accesses without interfering with space bounds; 
+representation needs to be chosen carefully, as 
+computational equivalence between representations is now finer; 
+uniformity of circuits 
 
 We apply this framework to some specific problems.
 First, we study the complexity of the problem to find the roots of
