@@ -523,6 +523,10 @@ such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
  for all $x \in \Sigma^*$.
 \end{definition}
 
+Now we want to define the type-two complexity class analogous to $\classNC$.
+To define it, we choose not $\classNC^i$ but $\classAC^i$ 
+only for the sake of simplicity.
+
 A circuit family $(C_{L,n})_{L,n}$ is \emph{(second-order) polynomial size}
 if there is a second-order polynomial $P$ satisfying
 $|C_{L,n}| \le P(L)(n)$ for all $n \in \N$ and non-decreasing functions
@@ -542,6 +546,10 @@ $L \colon \N \to \N$.
  We write $\classFNCtwo$ and $\classNCtwo$ for the hierarchies
  $\bigcup_{k \in \N} \classFACtwo^k$ and $\bigcup_{k \in \N} \classACtwo^k$.
 \end{definition}
+
+Next, we want to define log-space uniformity in oracle circuit families.
+Since an oracle circuit family is indexed by the size of the input and the oracle gate,
+a function computing (descriptions of) circuits needs both size.
 
 \begin{definition}[$\Luniform$ circuit families]
 A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$ uniform} if there is a function $A \in \classFLtwo$ 
