@@ -82,7 +82,7 @@ The problems we study in this paper are of the following kind:
 How much resource is needed to compute the roots of a polynomial?
 Which operators on real function are feasibly computable but inherently sequential?
 In this paper, we use the model of the real computation from the field of 
-Computational Analysis.
+Computable Analysis.
 
 \emph{Computable Analysis} 
 \cite{ko1991complexity,weihrauch00:_comput_analy}
@@ -91,26 +91,6 @@ by digital (finite-precision floating-point) machines.
 Here, polynomial-time computability and other notions of complexity 
 is from this field and measure how hard it is to approximate real functions
 with specified precision  (Sect.~\ref{section:TTE}). 
-
-In the theory of \emph{real computation}, 
-there is no ``Church-Turing thesis''.
-Church-Turing thesis states that a function on finite strings or natural 
-numbers is ``effectively'' or algorithmically computable 
-if and only if some Turing machine can compute it.
-Many other computation models such as $\lambda$-calculus or recursion
-were proposed and shown to be equivalent to Turing machine.
-In contrast, there are models about computation on real numbers, 
-and some of them are known not to be equivalent to others.
-Another model is the Blum-Shub-Smale (BSS) machine \cite{blum1988theory}.
-The main difference between BSS machines and machines in Computable Analysis is
-that a BSS machine has registers containing real numbers with infinite precision
-while digital machine can work on finite-precision number.
-Because of this difference,
-machines in Computable Analysis cannot compute noncontinuous functions
-but the algorithm described in Computable Analysis 
-can be used as numerical computation in real computers
- while we do not know
-how to realize BSS machines.
 
 \subsection{Type-two complexity theory for small classes}
 The complexity of an operation $F$ on real functions
@@ -229,10 +209,10 @@ $x \in \dom F$.
 We call $F$ a {\em total function} or simply a {\em function} 
 if $F$ is a partial function and $\dom F = X$.
 
-The composition of multi-functions $F \pcolon X \rightrightarrows Y$ and 
-$G \pcolon Y \rightrightarrows Z$, denoted $F \circ G$, is a multi-function
-$(X, R, Z)$ such that $(x, z) \in R$ if and only if there is $y \in Y$ 
-satisfying that $y \in F[x]$ and $z \in G[y]$.
+% The composition of multi-functions $F \pcolon X \rightrightarrows Y$ and 
+% $G \pcolon Y \rightrightarrows Z$, denoted $F \circ G$, is a multi-function
+% $(X, R, Z)$ such that $(x, z) \in R$ if and only if there is $y \in Y$ 
+% satisfying that $y \in F[x]$ and $z \in G[y]$.
 
 \section{TTE with second-order polynomials}
 \label{section: computable analysis}
@@ -790,21 +770,17 @@ $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi(x)$.
 \newcommand{\transL}{\preceq_\classLtwo}
 
 
-%% ^{-1}や\circの定義
 The inverse of a representation $\delta \pcolon \LM \to X$, 
 denoted $\delta^{-1}$, is a multi-function from $X$ to $\LM$ such that 
 $\delta^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
-
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
-$\delta^{-1} \circ \gamma$ is in $\classFLtwo$.
-\end{definition}
-The relation $\gamma \transL \delta$ implies that
-there is a function $F \in \classFLtwo$ \emph{translating} a $\gamma$ name
-into a $\delta$ name, that is, $\gamma(\phi) = \delta(F(\phi))$ 
+there is a function $F \in \classFLtwo$ \emph{translating} $\gamma$-names
+into $\delta$-names, that is, $\gamma(\phi) = \delta(F(\phi))$ 
 for all $\phi \in \LM \cap \gamma^{-1}(X)$.
+\end{definition}
 
 \begin{lemma}
  Let $\classtwofont{C}$ be either $\classFLtwo$, $\Luniform\ \classNCtwo$ or
