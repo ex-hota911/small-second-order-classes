@@ -81,19 +81,12 @@ Polynomial-time computability and other notions of complexity
 are also defined and measure how hard it is to approximate real functions
 with specified precision  (Sect.~\ref{section:TTE}). 
 
-% We investigate the computational complexity of several problems in 
-% numerical analysis.
-% The problems we study in this paper are of the following kind:
-% How much resource is needed to compute the roots of a polynomial?
-% Which operators on real function are feasibly computable but inherently sequential?
-% In this paper, we use the model of the real computation from the field of 
-% Computable Analysis.
-
 \subsection{Type-two complexity theory}
 
-Kawamura proposed an extension of this framework \cite{kawamura2012complexity}.
-The key idea is representing uncountable 
-objects by \emph{length-monotone} string functions, which make it possible to define the
+Kawamura and Cook \cite{kawamura2012complexity}
+proposed an extension of this framework 
+where objects are represented by \emph{length-monotone} string functions. 
+This makes it possible to define the
 \emph{size} of function and to bound resources by size of input.
 
 One consequence of this is
@@ -120,12 +113,10 @@ In Kawamura and Cook's framework we can state directly the complexity of
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
 where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$.
-There is no obvious way to define consistent type-two classes 
-analogous to usual (type-one) complexity classes.
 
 \subsection{our}
 
-First, we introduce new small type-two classes.
+We introduce new small type-two classes.
 Type-two analogues of the classes $\classP$, $\classNP$, and $\classPSPACE$
 are defined by bounding resource of oracle machines by using 
 second-order polynomials on the size of the input string functions,
@@ -147,6 +138,13 @@ If an operation is $\classP$-complete,
 it is feasibly computable but inherently sequential. 
 
 Then, we apply this framework to several problems in analysis.
+% We investigate the computational complexity of several problems in 
+% numerical analysis.
+% The problems we study in this paper are of the following kind:
+% How much resource is needed to compute the roots of a polynomial?
+% Which operators on real function are feasibly computable but inherently sequential?
+% In this paper, we use the model of the real computation from the field of 
+% Computable Analysis.
 Our first application is the problem of finding roots of a polynomial 
 from its coefficients.
 In numerical analysis, it is known to be generally ill-conditioned, 
