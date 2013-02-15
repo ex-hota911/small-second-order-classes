@@ -90,11 +90,14 @@ with specified precision  (Sect.~\ref{section:TTE}).
 % Computable Analysis.
 
 \subsection{Type-two complexity theory}
+
 Kawamura proposed an extension of this framework \cite{kawamura2012complexity}.
 The key idea is representing uncountable 
 objects by \emph{length-monotone} string functions, which make it possible to define the
 \emph{size} of function and to bound resources by size of input.
 
+One consequence of this is
+a greater variety of objects to which we can apply complexity theory. 
 A restriction in applying the framework of TTE based on infinite strings
 to complexity theory was that 
 the complexity of an operation $F$ on real functions
@@ -105,12 +108,12 @@ is stated indirectly in the non-uniform form like
  there is $f$ in $X$ such that $F(f)$ is hard for
  the complexity class $Z$.
 \end{quote}
-There is a widely-recognized definition of polynomial-time computable 
-real functions whose domain is compact.
-However, with the infinite string model we cannot state
+This was because 
+there was a widely-recognized definition of polynomial-time computable 
+real functions whose domain is compact, 
+but in the infinite string model we were not able to state
 directly that $F$ is polynomial-time computable or hard for $\classPSPACE$.
-
-In Kawamura and Cook's framework we can state directly about the complexity of
+In Kawamura and Cook's framework we can state directly the complexity of
  an operator $F$ in the effective or uniform form like
 \begin{quote}
  $F$ is in the complexity class $\mathcal Y$, and \\
