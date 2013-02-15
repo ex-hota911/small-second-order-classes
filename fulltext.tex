@@ -1166,7 +1166,7 @@ inversion operation.
 [{\cite[Corollary 4.7]{ko1991complexity}}]
 \label{theorem:ko1991-4.7}
 Assume that $f$ is one-to-one on $[0,1]$ with the range $[a, b]$ and that 
-$f$ is polynomial time computable. 
+$f$ is polynomial-time computable. 
 If $f^{-1}$ has a polynomial modulus function on $[a,b]$ then
 %%!! "modulus function"未定義？
 $f^{-1}$ is polynomial-time computable on $[a, b]$.
@@ -1179,6 +1179,12 @@ such that $f^{-1}$ has a polynomial modulus
 but $f^{-1}$ is not log-space computable
 unless $\classP = \classL$.
 \end{theorem}
+
+A real function $f \in \classC[0,1]$ is polynomial-time computable in Ko's sense,
+if and only if $f$ is $(\rhoRunit, \rhoR)$-$classFPtwo$-computable
+if and only if $f$ is $\deltabox$-$\classFPtwo$-computable.
+It is same for log-space real functions.
+
 
 We define a representation $\deltaboxINV$ of the space of 
 one-to-one functions in $\classC[0,1]$ as follows:
@@ -1253,19 +1259,19 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 \subsubsection{Fix points of contraction mappings}
 
-Hoover proved the following theorem about the complexity to compute fix points
-of constructing mappings.
+Hoover's theorem about the complexity to compute fix points
+of constructing mappings can be written by our frame work in following form:
 
 \begin{theorem}
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
- There is a $(, )$-$\classNC$-computable function $f \colon \R^+ \to \R^+$,
+ There is a $(\rhoR+, \rhoR+)$-$\classNC$-computable function $f \colon \R^+ \to \R^+$,
  such that $f|_{[2n, 2n+1]}$ is contractor for all $n \in \N$ and
 %%!! contractorの定義
  a function mapping a pair of strings $u \in \Sigma^*$ and $0^n$
  to $2^{-n}$ approximation of the unique fix point of $f$
  in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$ computable
- iff $\classNC = \classP$.
+ if and only if $\classNC = \classP$.
 \end{theorem}
 
 The fix-point operation $\OpCMFix^2$ is defined as follows:
