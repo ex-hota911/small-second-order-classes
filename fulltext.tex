@@ -896,8 +896,8 @@ the inverse operation and the fix-point operation.
 In this section, we show that several basic function on real numbers are
  $(\rhoR, \rhoR)$-$\classFLtwo$-computable,
 and finding roots of a complex polynomial from its coefficients is 
-$(\rho_{P_*}, \rhoMSet)$-$\classFNCtwo$-computable,
-where $\rho_{P_*}$ and $\rhoMSet$ are representations of 
+$(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable,
+where $\rho_{P_*}$ and $\rhoCSet$ are representations of 
 polynomials and multisets of complex numbers, respectively.
 
 The {\em log-space real functions} $\mathrm{LOGSPACE}_{\classC[0,1]}$ in 
@@ -970,9 +970,9 @@ where $\sigma$ ranges over all permutations on $\{1, \ldots, n\}$.
 
 We represent multisets of complex numbers as converging sequences of 
 multisets of rational complex numbers.
-Define the representation $\rhoMSet$ as follows:
+Define the representation $\rhoCSet$ as follows:
 Let $S$ be a multiset of $n$ complex numbers. 
-We say that $\phi \in \LM$ is a $\rhoMSet$ name of $S$ if
+We say that $\phi \in \LM$ is a $\rhoCSet$ name of $S$ if
 $\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n ) \in (\D_m)^{2n}$
 for all $m \in \N$.
 Let $S_m = \{a_1+b_1 i, \dots, a_n+b_n i\}$, 
@@ -980,14 +980,14 @@ $d(S, S_m) \le 2^{-m}$.
 
 %We can also represent multisets $S$ as vectors $z \in \C^n$
 %such that $S = \{z\}$.
-%More formally we define representation $\rhoMSet'$ as
-%$\rhoMSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
-%It is easy to see that $\rhoMSet' \le_\classFLtwo \rhoMSet$,
+%More formally we define representation $\rhoCSet'$ as
+%$\rhoCSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
+%It is easy to see that $\rhoCSet' \le_\classFLtwo \rhoCSet$,
 %but the following lemma says they are not equivalent even under computability.
 %\begin{lemma}
-% Identity function on multisets is not $(\rhoMSet, \rhoMSet')$-computable.
+% Identity function on multisets is not $(\rhoCSet, \rhoCSet')$-computable.
 %\end{lemma}
-%This means that $\rhoMSet'$ is more informative than $\rhoMSet$.
+%This means that $\rhoCSet'$ is more informative than $\rhoCSet$.
 
 
 
@@ -1010,14 +1010,14 @@ $p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
 
 \begin{theorem}
  \label{theorem:finding-roots-is-in-NC}
- $\OpPolyRoot$ is $(\rho_{P_*}, \rhoMSet)$-$\classFNCtwo$-computable.
+ $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
 This will be proved later in this section
 after stating Theorem~\ref{theorem:neff1994}. 
 
 \begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoMSet)$-$\classFNCtwo$-computable
+ $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable
 \end{corollary}
 
 
