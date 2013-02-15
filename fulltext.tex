@@ -20,7 +20,7 @@
 
 \newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
-\title{Small Complexity Classes for Operators}
+\title{Subpolynomial-time Computable Analysis}
 \author{Akitoshi Kawamura \and Hiroyuki Ota}
 \date{\today}
 
@@ -28,21 +28,20 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Computable Analysis is a branch of computability theory that
-studies real numbers or real functions computable on digital machines.
-We use the framework of Type-two Theory of Effectivity proposed by Weihrauch,
-which is based on the models by Turing, Grzegorczyk and Lacombe.
-Not only computability, but also time and space complexity of real functions, 
-has been studied since Ko's work in the 1980s. 
-In this field,
-we analyze the complexity of algorithms in numerical analysis 
-and discuss lower bounds on the speed of reliable numerical algorithms.
+Type-two Theory of Effectivity (TTE) gives a concrete and general framework for 
+Computable Analysis, 
+which studies 
+real numbers, real functions and other objects in mathematical analysis
+that are computable on digital machines. 
+To apply the theory of polynomial-time computability
+to this field with as much generality as possible, 
+Kawamura and Cook recently proposed a modification to TTE using 
+machines that have random access to an oracle and 
+run in time depending on its ``size''. 
+Continuing their study of 
+classes analogous to $\classP$, $\classNP$, and $\classPSPACE$, 
+we 
 
-
-Kawamura and Cook proposed an extended framework for TTE.
-They define type-two complexity classes analogous to $\classP$, $\classNP$,
-and $\classPSPACE$ by bounding time or space by the second-order polynomial
-in the size of the input.
 In this thesis, we focus on small classes
 and define type-two analogues of the log-space class $\classL$ and
 the circuit class $\classNC$.
