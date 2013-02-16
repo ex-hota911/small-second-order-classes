@@ -364,16 +364,16 @@ an approximating function and a modulus of continuity of $f$.
 For a non-decreasing function $\mu \colon \N \to \N$, 
 we write $\overline \mu \colon \Sigma^* \to \Sigma^*$ for the length-monotone
 function mapping $u$ to $0^{\mu(|u|)}$ for each string $u$.
-Let $\phi$ be in $\LM$ and $\mu \colon \N \to \N$ be non-decreasing,
-$\langle \overline{\mu}, \phi \rangle$ is a {\em $\deltabox$-name} of $f \in \classC[0,1]$
-if and only if $\mu$ is a modulus of continuity of $f$
+For $\phi \in \LM$ and $\mu \colon \N \to \N$ non-decreasing,
+we say that $\langle \overline{\mu}, \phi \rangle$ is a $\deltabox$-name of $f \in \classC[0,1]$
+if $\mu$ is a modulus of continuity of $f$
 and $|\phi(0^n, d) - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$-computability is equivalent to 
-$\deltabox$-$\classFP$-computabbility,
-where we say $x \in X$ is \emph{$\gamma$-$\mathrm C$-computable} if
-$x$ has a $\gamma$-name in $C$.
+$\deltabox$-$\classFP$-computability,
+where \emph{$\gamma$-$C$-computability} by definition means 
+having a $\gamma$-name in $C$.
 
 
 \section{Small type-two classes}
@@ -573,18 +573,16 @@ The relativization using the stack model by Aehlig, Cook and Nguyen preserves
 the inclusion of non-relativized classes
 $\classAC^0 \subseteq \classL \subseteq \classAC^1 \subseteq \classNC$.
 Since we define the type-two log-space class by extending the stack model,
-we can show in a similar arguments 
+we can show by a similar argument 
 that our type-two classes preserve the inclusion of type-one classes.
 
 \begin{theorem}
 \label{theorem:inclusion}
-\begin{equation}
- \classACtwo^0
+$ \classACtwo^0
  \subseteq \classLtwo 
  \subseteq \classACtwo^1
  \subseteq \classNCtwo
- \subseteq \classPtwo
-\end{equation}
+ \subseteq \classPtwo$. 
 \end{theorem}
 
 \begin{proof}
