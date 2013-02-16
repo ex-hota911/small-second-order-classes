@@ -789,15 +789,14 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 \section{Applications}
 \label{section:applications}
-In this section, we investigate the complexity of several problems in numerical
-analysis using our new classes introduced in the previous section.
+
 In Sect.~\ref{section:function}, 
-we show that some basic real functions are $\classL$-computable and
-roots of a polynomial with complex coefficients are $\classNC$-computable.
+we show that some examples of real functions and operators 
+that are $\classL$- and $\classNC$-computable.
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
 
-\subsection{Operations in $\classFLtwo$ and $\classFNCtwo$}
+\subsection{Within $\classFLtwo$ and $\classFNCtwo$}
 \label{section:function}
 
 In this section, we show that several functions to be 
@@ -824,8 +823,6 @@ through $\deltabox$-$\classFNC$-computability in our terminology
 which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computability.
 The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
 are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
-
-\subsubsection{Real functions in $\classL$}
 
 \begin{theorem}
  \label{theorem:apply-is-L-computable}
@@ -880,15 +877,9 @@ $(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$-computable because division is log-spac
 \end{equation}
 Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 
-
-
-\subsubsection{Finding polynomial roots in $\classFNCtwo$}
-
-We show that
-finding roots of a complex polynomial from its coefficients is 
-$(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable,
-where $\rho_{P_*}$ and $\rhoCSet$ are representations of 
-polynomials and multisets of complex numbers, respectively.
+In the rest of Sect.~\ref{section:function}, 
+we reformulate in our terminology Neff's result that 
+finding roots of a complex polynomial is $\classNC$ computable. 
 
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 We write $P_n$ for the set of degree $n$ monic 
