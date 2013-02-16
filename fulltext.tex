@@ -456,7 +456,7 @@ length-monotone functions in $\classFL$ to languages in $\classL$.
 \begin{proof}
 For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
 hence second-order logarithm collapses to first-order logarithm.
-Since $\classFL$ is closed under relativization, that is $\classFL^\classFL = \classFL$,
+Since $\classFL$ is low for itself ($\classFL^\classFL = \classFL$), 
 functions computed by log-space constant-stack machines with $\classFL$ oracle are in $\classFL$.
 \end{proof}
 
@@ -770,7 +770,7 @@ Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
 there is a function $F \in \classFLtwo$ \emph{translating} $\gamma$-names
 into $\delta$-names, that is, $\gamma(\phi) = \delta(F(\phi))$ 
-for all $\phi \in \LM \cap \dom \gamma(X)$.
+for all $\phi \in \LM \cap \dom \gamma$.
 \end{definition}
 
 \begin{lemma}
@@ -1149,7 +1149,7 @@ that are $1/2$-Lipschitz.
  Since given $A(\overline{L})$ and $B$ as oracles,
  computing the description of the circuit family given by replacing oracle
  gates in $(C_{L,n})_{L,n}$ with $(D_n)_n$ is log-space computable
- and $\classFL$ is closed under relativization,
+ and $\classFL$ is low for itself ($\classFL^\classFL = \classFL$),
  it is log-space computable.
 \end{proof}
 
