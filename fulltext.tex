@@ -566,12 +566,12 @@ uniform circuit family if and only if $A \in \classFPtwo$.
 \begin{proof}
  It is obvious that machines can compute the output of
  polynomial-size uniform circuits in polynomial time.
- The if part is provable in the similar argument to the proof of
+ The if part is proved in the similar argument to the proof of
  $\classP \subseteq \classP\!\text{/poly}$.
  For each multi-function $A \in \classFPtwo$, there is an oracle machine $M$
  computing $A$ whose head movements do not depend on the input $x$ or oracle
  $\phi$ but only depend on the input length $|x|$ and oracle size $|\phi|$.
- This property enable a polynomial-size $\Luniform$ circuit family to simulate $M$.
+ This property enable a polynomial-size uniform circuit family to simulate $M$.
 \end{proof}
 
 The relativization using the stack model by Aehlig, Cook and Nguyen preserves
@@ -603,8 +603,9 @@ that our type-two classes preserve the inclusion of type-one classes.
 \end{proof}
 
 
-The following lemma suggests that type-two $\classLtwo$ uniformity respects
+The following lemma states that type-two $\classLtwo$ uniformity respects
 $\classL$ uniformity.
+
 \begin{lemma}
  Let $(C_{L,n})_{L,n}$ be a (second-order) polynomial-size $\Luniform$ oracle circuit family
  and $(D_n)_n$ be a (first-order) polynomial-size $\classL$-uniform circuit family.
@@ -798,7 +799,7 @@ For $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi_{|x|}(x)$.
 \end{lemma}
 
 \begin{proof}
- It is provable from a similar argument of Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
+Similar to Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
 \end{proof}
 
 
