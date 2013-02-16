@@ -120,21 +120,18 @@ can now be transformed into a stronger, uniform statement of the form
 where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$ (see \cite{kawamura2012complexity} for more details).
 
 We continue their research and proceed down into $\classP$. 
-We study analogues of the logarithmic-space 
-complexity class $\classL$ and the circuit complexity class $\classNC$. 
+We study analogues of 
+$\classL$ (logarithmic space), 
+$\classNC$ (poly-logarithmic depth circuits; efficiently parallelizable), 
+and 
+$\classP$-completeness (inherently sequential). 
+
 While there are various models of relativized logarithmic space,
 we choose the \emph{constant stack machine} \cite{aehlig2007relativizing} 
 since it is consistent with relativized circuit complexity classes 
 and it makes some elemental operation log-space computable.
-We also define $\classP$-completeness under log-space reductions.
 
-Informally speaking, operators in type-two $\classL$ have
-memory friendly algorithm and operators in type-two $\classNC$
-are parallelizable.
-If an operation is $\classP$-complete,
-it is feasibly computable but inherently sequential. 
-
-Then, we apply this framework to several problems in analysis.
+We apply this framework to several problems in analysis.
 % We investigate the computational complexity of several problems in 
 % numerical analysis.
 % The problems we study in this paper are of the following kind:
@@ -1175,18 +1172,6 @@ that are $1/2$-Lipschitz.
 \section{Conclusion and future work}
 \label{chapter:conclusion}
 
-We define type-two classes $\classLtwo$, $\classNCtwo$, $\classFLtwo$,
-and $\classFNCtwo$.
-We also define $\classPtwo$-completeness 
-under suitable reductions using these small classes.
-
-
-We demonstrate that these new classes are useful to study the complexity 
-of problems in analysis.
-We show that roots of polynomials are $\classNCtwo$ computable,
-by putting together results from discrete complexity theory and
- complex analysis.
-We show that the inverse operation and the fix-point operation on contraction mapping are $\classP$-complete, which implies that these operators are inherently sequential.
 Many operators are not studied enough after it is shown to be polynomial-time
 computable.
 One can investigate the precise complexity of these operators.
