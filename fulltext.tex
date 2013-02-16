@@ -71,21 +71,28 @@ into our framework.
 
 \section{Introduction}
 
-\subsection{Computable analysis}
-
-\emph{Computable Analysis} 
+Computable Analysis 
 \cite{ko1991complexity,weihrauch00:_comput_analy}
-studies real numbers, real functions and other objects in analysis
-that are computable on digital machines. 
-Polynomial-time computability and other notions of complexity 
-are also defined and measure how hard it is to approximate real functions
-with specified precision  (Sect.~\ref{section:TTE}). 
+studies problems 
+involving real numbers, real functions and other objects in analysis
+from the viewpoint of computability on digital machines. 
+Elements of uncountable sets (such as real numbers) are
+represented through approximations (such as sequences of rational numbers)
+and processed by Turing machines. 
+Such approximation can be 
+presented to the machine 
+as infinite strings on the tape 
+or as oracles that answer queries, 
+and they are equivalent as long as we only discuss computability, 
+but 
+Kawamura and Cook \cite{kawamura2012complexity} recently pointed out 
+that when we want to pay attention to 
+bounds on time and space, 
+it is more appropriate to use oracle machines 
+with random access and 
 
-\subsection{Type-two complexity theory}
 
-Kawamura and Cook \cite{kawamura2012complexity}
-proposed an extension of this framework 
-where objects are represented by \emph{length-monotone} string functions. 
+\emph{length-monotone} string functions. 
 This makes it possible to define the
 \emph{size} of function and to bound resources by size of input.
 
