@@ -1235,28 +1235,25 @@ of a contraction can be written in our terminology as follows:
 \end{theorem}
 
 We now formulate another version of this theorem which 
+will imply Theorem~\ref{theorem:hoover1991-4.5}
+(see appendix). 
 
 Let $C$ be the set of contractions on $[0, 1]$. 
+We define its representation $\deltaboxCM^1$ by saying that 
+a \emph{$\deltaboxCM^1$-name} of $g \in C$
+is a pair $\langle \phi, q \rangle$ of 
+a $\deltabox$-name $\phi \in \LM$ of $g$ 
+and a dyadic number $q \in \D$ such that $g$ is $q$-Lipschitz. 
+
 Let $\OpCMFix \colon C \to \R$ be the operation 
 mapping each contraction on $[0, 1]$ to its fixed point.
 
-We define the representation $\deltaboxCM^1$ of $C$ as follows: 
-a \emph{$\deltaboxCM^1$-name} of $g \in C$
-is a pair $\langle \phi, q \rangle$ such that 
-$\phi \in \LM$ is a $\deltabox$-name of $g$ 
-and $q$ is a dyadic number such that $g$ is $q$-Lipschitz. 
 \begin{lemma}
 \label{lemma:P-hard-g_u}
 $\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete, 
 even if $\dom \OpCMFix$ is restricted to contractions 
 that are $1/2$-Lipschitz.
 \end{lemma}
-
-Since the formulation of fix-point operation is different between 
-Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
-it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
-Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
-Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
 
 \section{Conclusion and future work}
 \label{chapter:conclusion}
@@ -1607,5 +1604,11 @@ $|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
 \end{theorem}
 
 This will be proved in the appendix using Lemma~\ref{lemma:P-hard-g_u}. 
+
+Since the formulation of fix-point operation is different between 
+Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
+it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
+Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
+Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
 
 \end{document}
