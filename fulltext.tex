@@ -1075,28 +1075,27 @@ By rounding them, we get $2^{-k}$-approximations of all roots of $p$.
 Fix $a$, $b \in \R$ with $a < b$. 
 Let $M$ be the set of one-to-one functions $f \in \classC[0,1]$
 whose range is $[a,b]$.
-We define the inversion operation $\OpINV_{[a,b]} \colon M \to \classC [a, b]$ 
-by saying that $\OpINV (f)$ is the inverse function of $f$. 
+We define the inversion operation $\OpINV \colon M \to \classC [a, b]$ 
+by saying that $\OpINV (f) = f ^{-1}$ is the inverse function of $f$. 
 
 Ko proved the following non-uniform theorems about the complexity of inversion.
-A real function $f \in \classC[0,1]$ is polynomial-time computable in Ko's sense,
-if and only if $f$ is $(\rhoRunit, \rhoR)$-$\classFPtwo$-computable. 
-Similarly for log-space real functions.
+Recall that Ko's polynomial-time and log-space computability of a real function
+is equivalent to $(\rhoRunit, \rhoR)$-$\classFPtwo$- and $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability in our terminology. 
 
 \begin{theorem}
-[{\cite[Corollary 4.7]{ko1991complexity}}]
-\label{theorem:ko1991-4.7}
+[{\cite[Corollary 4.7 and Theorem 4.18]{ko1991complexity}}]
+\label{theorem: ko inversion}
+\begin{enumerate}
+\item \label{enumi:ko1991-4.7}
 Assume that $f \in M$ is polynomial-time computable. 
-If $f^{-1}$ has a polynomial modulus of continuity on $[a,b]$ then
-$f^{-1}$ is polynomial-time computable on $[a, b]$.
-\end{theorem}
-\begin{theorem}
-[{\cite[Theorem 4.18]{ko1991complexity}}]
-\label{theorem:ko1991-4.18}
+If $f^{-1}$ has a polynomial modulus of continuity, 
+then $f^{-1}$ is polynomial-time computable.
+\item \label{enumi:ko1991-4.18}
 There is a log-space computable $f \in M$
 such that $f^{-1}$ has a polynomial modulus of continuity
 but $f^{-1}$ is not log-space computable
 unless $\classP = \classL$.
+\end{enumerate}
 \end{theorem}
 
 We define a representation $\deltaboxINV$ of $M$ as follows:
@@ -1111,12 +1110,10 @@ for any recursive $x \in [0, 1]$,
 there exists a strictly increasing function $f \in \classC[0, 1]$ 
 such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
 
-The following theorem is the uniform version of Theorems 
-\ref{theorem:ko1991-4.7} and 
-\ref{theorem:ko1991-4.18}.
-Theorem~\ref{theorem:ko1991-4.7} follows from this theorem and the fact that
+The following theorem is the uniform version of Theorem~\ref{theorem: ko inversion}. 
+Part~\ref{enumi:ko1991-4.7} of Theorem~\ref{theorem: ko inversion} follows from this and the fact that
 functions in $\classFPtwo$ map length-monotone functions in $\classFP$ to $\classFP$.
-Theorem~\ref{theorem:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-comp-maps-l-to-p-comp}.
+Part~\ref{enumi:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-comp-maps-l-to-p-comp}.
 
 \begin{theorem}
  \label{theorem:INV-is-P-complete}
@@ -1127,7 +1124,7 @@ This will be proved in the appendix,
 using 
 Lemma~\ref{lemma:P-hard-g_u} below. 
 
-\subsubsection{Fixed points of contraction mappings}
+\subsubsection{Fixed points of contractions}
 
 A function $g \colon K \to \R$ on a set $K \subseteq \R$
 is called $q$-\emph{Lipschitz}, for $q > 0$, 
