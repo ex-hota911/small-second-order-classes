@@ -50,7 +50,8 @@ to use second-order polynomials as resource bounds,
 as Kawamura and Cook did, 
 but we need to make some nontrivial (yet natural, as we will discuss) choices
 when formulating small classes: 
-we use the stack model of Aehlig, Cook and Nguyen for query tapes 
+we use a modification of the constant stack model 
+of Aehlig, Cook and Nguyen for query tapes 
 in order to achieve 
 sufficient oracle accesses without interfering with space bounds; 
 representations need to be chosen carefully, as 
@@ -404,26 +405,29 @@ We consider an oracle Turing machine $M$
 with a stack of query tapes and an answer tape.
 The machine $M$ can write a symbol on the top query tape, or 
 \emph{push} a new query tape on the top of the stack (and start writing on it).
-It can also \emph{pop} the stack. 
-We put the restriction that the height of the stack of a machine is less than 
-some constant for all inputs and oracles.
-
-Since we consider the function-oracle model, the main difference from
-the original model is in how to handle the answer.
 When the machine issues a query, the stack is \emph{popped} automatically; 
 that is, 
 if the string on the query tape at the top of the stack at the time of the query was $u$, 
 the oracle $\phi$ writes the string $\phi (u)$ on the answer tape, 
 and at the same time this top query tape is removed from the stack. 
+We put the restriction that the height of the stack of a machine is less than 
+some constant for all inputs and oracles.
 We also assume that 
 the answer tape is erased after each push operation.
+
+The use of a stack of query tapes and its restriction to constant height 
+is common to Aehlig, Cook and Nguyen \cite{aehlig2007relativizing}. 
+As we are dealing with function oracles, 
+our model has some new features, namely 
+the introduction of answer tape and 
+the restriction that it is erased automatically on every puch operation. 
 
 We put the restriction that the answer is erased after every push operation 
 in order to restrict the nested depth of queries to be constant.
 Without this restriction, a log-space constant-stack machine relative to 
 a function oracle $\phi$ could compute polynomial-times composition
 of $\phi$ if $|\phi|(n) = n$.
-On the other hand, there is an function $\phi \in \LM$ such that $|\phi|(n) = n$
+On the other hand, there is a function $\phi \in \LM$ such that $|\phi|(n) = n$
 and polynomial-times composition of $\phi$ is not in $\classNC$ relative to $\phi$ \cite{aehlig2007relativizing}.
 Hence, the inclusion between $\classL$ and $\classNC$ would not be relativized.
 
@@ -461,9 +465,8 @@ functions computed by log-space constant-stack machines with $\classFL$ oracle a
 
 
 \subsection{Circuit complexity classes}
-\subsubsection{Oracle circuits}
 
-In this section, to discuss type-two circuit complexity classes,
+To discuss type-two circuit complexity classes,
 we consider function-circuit families with oracle gates.
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
@@ -499,11 +502,9 @@ and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
 \end{definition}
 
 
-\subsubsection{$\classAC^i$ and $\classNC$}
-
-In this section, we define type-two classes analogous to 
+Now we define type-two classes analogous to 
 $\classAC^i$ and $\classNC$.
-To discuss about circuit families computing multi-function from string functions to string functions,
+To discuss circuit families computing multi-functions from $\LM$ to $\LM$,
 we index circuits not only by the size of the input but also by the size of the oracle gate.
 A {\em circuit family $(C_{L,n})_{L,n}$} is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
