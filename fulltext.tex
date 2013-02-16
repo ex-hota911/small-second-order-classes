@@ -161,7 +161,7 @@ is $\classNC$ computable.
 Second application is about $\classP$-complete operators.
 There exist a few result about $\classP$-completeness of problems of numerical analysis:
 The inverse function $f^{-1}$ can be $\classP$-complete under the log-space
-reduction even if $f$ is log-space computable \cite{ko1983computational};
+reduction even if $f$ is log-space computable \cite{ko1991complexity};
 The fix-points of contracting mappings can be $\classP$-complete under the
 $\classNC$ reduction even if contracting mappings are all $\classNC$ computable \cite{hoover1991real}.
 We express these theorems in constructive way and
@@ -317,15 +317,13 @@ For each $n \in \N$, let $\D_n$ denote the set of strings of the form
 \end{equation}
 where $s$ is the sign and $x \in \{0,1\}^*$.
 We write $\D$ for the union $\bigcup _n \D _n$.
-We regard $\D$ as the set of fractions of binary numbers
-and write $\llbracket u \rrbracket$ for the number encoded by $u \in \D$.
-
+We regard $u \in \D$ as a fraction of binary numbers, 
+and write $u$ also for the number encoded by it.
 
 A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
-if and only if $\phi(0^i) \in \D$ and $\lvert \llbracket \phi(0^i) \rrbracket - x \rvert \le 2^{-i}$
+if and only if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
 for all $i \in \N$.
 We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to real numbers in $[0,1]$.
-
 
 The class of polynomial-time computable functions from $[0,1]$ to $\R$ 
 defined by Ko is equal to
@@ -354,7 +352,7 @@ without using oracle machines.
  polynomial $p \colon \N \to \N$ such that
  for all $d \in \D \cap [0,1]$ and $n \in \N$,
  \begin{equation}
-  |\llbracket \phi(d, 0^n) \rrbracket - f(d)| \le 2^{-n},
+  |\phi(d, 0^n) - f(d)| \le 2^{-n},
  \end{equation}
  and for all $x, y \in [0, 1]$, $n \in \N$,
  \begin{equation} 
@@ -374,7 +372,7 @@ function mapping $u$ to $0^{\mu(|u|)}$ for each string $u$.
 Let $\phi$ be in $\LM$ and $\mu \colon \N \to \N$ be non-decreasing,
 $\langle \overline{\mu}, \phi \rangle$ is a {\em $\deltabox$-name} of $f \in \classC[0,1]$
 if and only if $\mu$ is a modulus of continuity of $f$
-and $|\llbracket \phi(0^n, d) \rrbracket - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
+and $|\phi(0^n, d) - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$-computable is also equal to 
@@ -662,7 +660,7 @@ The pairing function is defined as
 $\langle \phi, \psi \rangle(0u) = \phi(u) 0^{|\psi(u)|}$
 and 
 $\langle \phi, \psi \rangle(1u) = \psi(u) 1^{|\phi(u)|}$ 
-in \cite{kawamura2010complexity}.
+in \cite{kawamura2012complexity}.
 In this definition, however, we cannot distinguish $\phi(u)$ and the padding
 if $\phi$ is a length-monotone function from $\Sigma^*$ to $\{0\}^*$,
 so we put $1$ to separate the padding.
@@ -1320,10 +1318,10 @@ Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
  log-space computable. 
  The fix-point of $f$ in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is
  $\overline{1u0} + h(0.u)$.
- For each $d \in \D$, let $u$ be shortest string such that $0.u = \llbracket d \rrbracket$,
+ For each $d \in \D$, let $u$ be shortest string such that $0.u = d$,
  and $\hat y_d$ be $2^{-n}$-approximation of the fix point of $f$ in
  $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$.
- Since  $\left|h(\llbracket d \rrbracket) - \left( \hat y_d - \overline{1u0} \right)\right| \le 2^{-n}$,
+ Since  $\left|h(d) - \left( \hat y_d - \overline{1u0} \right)\right| \le 2^{-n}$,
  approximating $h$ at rational points is log-space computable from fix-points of $f$.
 \end{proof}
 
