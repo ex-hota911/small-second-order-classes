@@ -978,7 +978,13 @@ By rounding them, we get $2^{-k}$-approximations of all roots of $p$.
 \subsection{$\classPtwo$-complete operations}
 \label{section:P-complete}
 
-\subsubsection{Inverse operation}
+Here we state and prove uniform versions of 
+Hoover's and Ko's $\classP$-hardness results 
+about operators on real functions. 
+As mentioned in the introduction, 
+this is only possible with our type-two formulation of complexity classes. 
+
+\subsubsection{Inverting a function}
 
 Fix $a$, $b \in \R$ with $a < b$. 
 Let $M$ be the set of one-to-one functions $f \in \classC[0,1]$
@@ -986,9 +992,9 @@ whose range is $[a,b]$.
 We define the function $\OpINV \colon M \to \classC [a, b]$ 
 by saying that $\OpINV (f) = f ^{-1}$ is the inverse function of $f$. 
 
-Ko proved the following non-uniform theorems about the complexity of inversion.
+Ko proved the following non-uniform theorem about the complexity of inversion.
 Recall that Ko's polynomial-time and log-space computability of a real function
-is equivalent to $(\rhoRunit, \rhoR)$-$\classFPtwo$- and $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability in our terminology. 
+is equivalent to our $(\rhoRunit, \rhoR)$-$\classFPtwo$- and $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability. 
 
 \begin{theorem}
 [{\cite[Corollary 4.7 and Theorem 4.18]{ko1991complexity}}]
@@ -1044,7 +1050,6 @@ a function $g \colon K \to \R$ which is $q$-Lipschitz for some $q < 1$
 and whose values are in $K$. 
 The Banach fixpoint theorem states that 
 a contraction has a fixed point and it is unique. 
-
 Hoover's theorem about the complexity of computing the fixed point
 of a contraction can be written in our terminology as follows:
 
@@ -1063,7 +1068,8 @@ of a contraction can be written in our terminology as follows:
 
 We now formulate another version of this theorem which 
 will imply Theorem~\ref{theorem:hoover1991-4.5}
-(see appendix). 
+(see appendix fo the proof that Theorem~\ref{theorem:P-hard-g_u} 
+implies Theorem~\ref{theorem:hoover1991-4.5}). 
 
 Let $C$ be the set of contractions on $[0, 1]$. 
 We define its representation $\deltaboxCM^1$ by saying that 
@@ -1071,7 +1077,6 @@ a \emph{$\deltaboxCM^1$-name} of $g \in C$
 is a pair $\langle \phi, q \rangle$ of 
 a $\deltabox$-name $\phi \in \LM$ of $g$ 
 and a dyadic number $q \in \D$ such that $g$ is $q$-Lipschitz. 
-
 Let $\OpCMFix \colon C \to \R$ be the operation 
 mapping each contraction on $[0, 1]$ to its fixed point.
 
