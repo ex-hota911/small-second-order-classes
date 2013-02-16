@@ -676,37 +676,22 @@ and $B$ is \emph{$\mathcal{C}$-$\leq$-complete}
 if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 
 
-Let $F$ be a subset of $\LM$.
-We write $\cup F$ for a multi-function mapping $x \in \Sigma^*$ to 
-$\{f(x) \mid f \in F\}$.
+For $F \subseteq \LM$, 
+define the multi-function $\bigcup F \pcolon \Sigma ^* \rightrightarrows \Sigma ^*$ by
+$(\bigcup F) [x] = \{\, f(x) \mid f \in F \,\}$.
 
 \begin{lemma}
 \label{lemma:P-complete}
 Let $B$ be a $\classFPtwo$-$\redLmF$-complete multi-function.
 There is $\psi \in \dom B \cap \classFL$ satisfying that
- $\cup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
+ $\bigcup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
 \end{lemma}
 
-We will use this lemma to reduce constructive results
-($\classFPtwo$-$\redLmF$-hardness of an operation) to a non-constructive 
-results (the existent of $\classFP$-hard solution).
-This lemma would not have been true, if in the definition 
-of reductions like $\redLB$ \cite[Lemma~3.6]{kawamura2012complexity}.
-That is a disadvantage of the reduction of Beame et al.
-
-\begin{proof}
-Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to \emph{Circuit Value Problem} ($\probCVP$), which is $\classFP$-$\redmF$-complete function.
-Since $\probCVP \in \classFP$, $A \in \classFPtwo$.
-Let $r, s, t \in \classFLtwo$ be functions which reduces $A$ to $B$
-as the definition of $\redLmF$.
-Choose any $\phi \in \classFL$, and it follows from Lemma~\ref{lemma:Ltwo-maps-L-to-L}
-that $r(\phi), s(\phi), t(\phi) \in \classFL$.
-Let $\psi = s(\phi)$, then $r(\phi)$ and $s(\phi)$ give the reduction that
-$A(\phi) \redmF^\classL \cup (B[\psi])$.
-Since $\probCVP$, equal to $A(\phi)$, is $\classFP$-$\redmF^\classL$-complete,
-so is $\cup (B[\psi])$.
-\end{proof}
-
+We will use this lemma to reduce 
+non-constructive results (the existence of $\classFP$-hard solution) to
+constructive results ($\classFPtwo$-$\redLmF$-hardness of an operation).
+Note that this lemma does not hold for
+the reductions $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}.
 
 The following partial function $\probDTIMEtwo \pcolon \LM \to \LM$ 
 is a standard complete problem: 
@@ -720,20 +705,9 @@ we define $\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ to be
 the output of the computation $M^\phi(x)$.
 
 \begin{lemma}
+\label{lemma: probDTIMEtwo}
  $\probDTIMEtwo$ is $\classFPtwo$-$\redLmF$-complete.
 \end{lemma}
-
-\begin{proof}
- For each $A \in \classFPtwo$, 
- there is a polynomial-time machine $M$ 
- and a second-order polynomial $P$ 
- such that $M$ computes $L$ and $P$ is its time bound. 
- Then $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$, 
- where 
- $s, t \in \classFLtwo$ are given by 
- $s(\phi) = \langle M, \overline{P(\mu)}, \phi \rangle$ and 
- $t(\phi)(u) = u$.
-\end{proof}
 
 % We define a partial function  $\probCVPtwo \pcolon \LM \to \LM$ as follows:
 % $\dom \probCVPtwo$ is the set of $\langle (C_n)_n, \phi \rangle$
@@ -750,6 +724,9 @@ the output of the computation $M^\phi(x)$.
 % \begin{proof}
 % Similar to Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
 % \end{proof}
+
+See appendix for 
+proofs of Lemma~\ref{lemma:P-complete} and Lemma~\ref{lemma: probDTIMEtwo}. 
 
 \subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
@@ -808,7 +785,44 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
  to a $\delta$-$\classFP$-$\redmF^\classL$-complete of $Y$.
 \end{lemma}
 
+\section{Applications}
+\label{section:applications}
+In this section, we investigate the complexity of several problems in numerical
+analysis using our new classes introduced in the previous section.
+In Sect.~\ref{section:function}, 
+we show that some basic real functions are $\classL$-computable and
+roots of a polynomial with complex coefficients are $\classNC$-computable.
+In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
+the inverse operation and the fix-point operation.
 
+\subsection{Operations in $\classFLtwo$ and $\classFNCtwo$}
+\label{section:function}
+
+In this section, we show that several functions to be 
+computable within $\classFLtwo$ and $\classFNCtwo$
+under suitable representations. 
+We start with real functions, 
+using the representation $\rhoR$
+(see Sect.~\ref{subsection: representations}). 
+
+Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
+\emph{log-space real functions} in $\classC[0,1]$ 
+\cite{ko1991complexity} 
+coincides with our $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability, 
+despite our choice of constant-stack log-space machine 
+while Ko uses the obvious log-space oracle Turing machine 
+with no stacks at all.
+This is because, 
+when computing approximation of $f(x)$ under $\rhoR$-names, 
+a machine can get enough information about $x \in [0,1]$ by one query.
+
+Ko defines $\classNC$ real function in $\classC[0,1]$
+as $\deltabox$-$\classFNC$-computable real function \cite{ko1991complexity},
+which are equal to $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computable real functions.
+The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
+are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
+
+\subsubsection{Real functions in $\classL$}
 
 \begin{theorem}
  \label{theorem:apply-is-L-computable}
@@ -829,68 +843,24 @@ depending on whether or not it was allowed to look at the answer tape while writ
 Our extension of the constant stack model is one of the weakest model
 to make both conditions true.
 
-
-\section{Applications}
-\label{section:applications}
-In this section, we investigate the complexity of several problems in numerical
-analysis using our new classes introduced in the previous section.
-In Sect.~\ref{section:function}, 
-we show that some basic real functions are $\classL$-computable and
-roots of a polynomial with complex coefficients are $\classNC$-computable.
-In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
-the inverse operation and the fix-point operation.
-
-\subsection{Operations in $\classFLtwo$ and $\classFNCtwo$}
-\label{section:function}
-
-In this section, we show that several basic function on real numbers are
- $(\rhoR, \rhoR)$-$\classFLtwo$-computable,
-and finding roots of a complex polynomial from its coefficients is 
-$(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable,
-where $\rho_{P_*}$ and $\rhoCSet$ are representations of 
-polynomials and multisets of complex numbers, respectively.
-
-The {\em log-space real functions} $\mathrm{LOGSPACE}_{\classC[0,1]}$ in 
-$\classC[0,1]$ defined by Ko \cite{ko1991complexity} 
-are equal to $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable real functions
-and $\deltabox$-$\classFL$-computable real function.
-To define log-space real functions, 
-we chose constant-stack log-space machine,
-while Ko uses obvious log-space oracle Turing machine.
-This difference does not affect to the log-space computability of real functions
-since to compute approximation of $f(x)$,
-a machine can get enough information about $x \in [0,1]$ by one query.
-
-Ko defines $\classNC$ real function in $\classC[0,1]$
-as $\deltabox$-$\classFNC$-computable real function \cite{ko1991complexity},
-which are equal to $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computable real functions.
-The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
-are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
-
-
-
-\subsubsection{$\classL$-computable real functions}
-
-\begin{example}
- The binary addition and the binary multiplication are
- $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
-\end{example}
+% \begin{example}
+%  The binary addition and the binary multiplication are
+%  $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
+% \end{example}
 
 \begin{lemma}
  The exponential function on restricted to $[0,1]$
  is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
 \end{lemma}
-Since the Maclaurin series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
-$2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
-by polynomial many multiplications, additions, and division on rationals.
+Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
+a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
+by polynomially many multiplications, additions, and division on rationals.
 Since iterated multiplications, iterated additions, division on integers
 are in $\classFL$ \cite{chiu2001division},
 $\exp$ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
 On the other hand, without restriction on the domain, $\exp$ is not 
-$(\rhoR, \rhoR)$-$\classFPtwo$ computable, 
-and is not $(\rhoR, \rhoR)$-$\classFLtwo$ computable.
-
-
+even $(\rhoR, \rhoR)$-$\classFPtwo$ computable, 
+because it grows too fast. 
 
 \begin{lemma}
   The sine function $\sin \colon \R \to \R$ is
@@ -909,7 +879,13 @@ Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 
 
 
-\subsubsection{Finding polynomial roots is $\classFNCtwo$-computable}
+\subsubsection{Finding polynomial roots in $\classFNCtwo$}
+
+We show that
+finding roots of a complex polynomial from its coefficients is 
+$(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable,
+where $\rho_{P_*}$ and $\rhoCSet$ are representations of 
+polynomials and multisets of complex numbers, respectively.
 
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 We write $P_n$ for the set of degree $n$ monic 
@@ -947,7 +923,7 @@ about the modulus of continuity of finding roots \cite{neff1996efficient}.
  and let $|f| \le 2^m$.
  If $|f - g| \le 2^{\lceil n(k + m + \log n + 3)\rceil}$, then
  \begin{equation}
-  d(\OpPolyRoot(f), \OpPolyRoot(g)) \le 2^{-k},
+  d(\OpPolyRoot(f), \OpPolyRoot(g)) \le 2^{-k} 
  \end{equation}
  for all $k \in \N$.
 \end{theorem}
@@ -1156,9 +1132,36 @@ we get a circuit family with polynomial size and $\log^{i+j}(n)$ depth
 that computes $A(\phi)$.
 \end{proof}
 
+\subsection{$\classFPtwo$-complete problems}
+
+\begin{proof}[Lemma~\ref{lemma:P-complete}]
+Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to \emph{Circuit Value Problem} ($\probCVP$), which is $\classFP$-complete function (in the usual sense).
+Since $\probCVP \in \classFP$, $A \in \classFPtwo$.
+Let $r, s, t \in \classFLtwo$ be functions which reduces $A$ to $B$
+as the definition of $\redLmF$.
+Choose any $\phi \in \classFL$, and it follows from Lemma~\ref{lemma:Ltwo-maps-L-to-L}
+that $r(\phi), s(\phi), t(\phi) \in \classFL$.
+Let $\psi = s(\phi)$, then $r(\phi)$ and $s(\phi)$ give the reduction that
+$A(\phi) \redmF^\classL \cup (B[\psi])$.
+Since $\probCVP$, equal to $A(\phi)$, is $\classFP$-$\redmF^\classL$-complete,
+so is $\cup (B[\psi])$.
+\end{proof}
+
+\begin{proof}[Lemma~\ref{lemma: probDTIMEtwo}]
+ For each $A \in \classFPtwo$, 
+ there is a polynomial-time machine $M$ 
+ and a second-order polynomial $P$ 
+ such that $M$ computes $L$ and $P$ is its time bound. 
+ Then $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$, 
+ where 
+ $s, t \in \classFLtwo$ are given by 
+ $s(\phi) = \langle M, \overline{P(\mu)}, \phi \rangle$ and 
+ $t(\phi)(u) = u$.
+\end{proof}
+
 \subsection{Function inversion and Banach fixed points}
 
-\begin{proof}[Proof of Computability in Theorem~\ref{theorem:INV-is-P-complete}]
+\begin{proof}[Computability part of Theorem~\ref{theorem:INV-is-P-complete}]
 We will prove hardness in Section~\ref{section:proofs-of-theorems}.
 In the following, we will show that, 
 given $f$ and $x$, 
