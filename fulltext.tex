@@ -228,10 +228,6 @@ apply it to real functions (and other objects) through representations.
 A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
 if $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
 The set of length monotone functions is denoted $\LM$.
-We write $\Pred$ for the set of functions $\phi \colon \Sigma^* \to \{0, 1\}$.
-Since $|\phi(u)| = |\phi(v)| = 1$ for all $\phi \in \Pred$ and $u, v \in \Sigma^*$,
-$\Pred$ is a subset of $\LM$.
-
 Let $M$ be a machine and $\phi \in \LM$. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
@@ -260,8 +256,8 @@ Note that if $P$ is a second-order polynomial and $L$ is a (usual) first-order
 polynomial, then $P(L)$ is a first-order polynomial.
 
 \begin{definition}
- We write $\classFPtwo$ (resp. $\classPtwo$) for the class of
- multi-functions from $\LM$ to $\LM$ (resp. from $\LM$ to $\Pred$) 
+ We write $\classFPtwo$ for the class of
+ multi-functions from $\LM$ to $\LM$ 
  computed by a machine that runs
  in second-order polynomial time.
 \end{definition}
@@ -438,8 +434,15 @@ Hence, the inclusion between $\classL$ and $\classNC$ would not be relativized.
 \end{definition}
 
 \begin{definition}
- We write $\classFLtwo$ (resp.\ $\classLtwo$) for the set of multi-functions 
- from $\LM$ to $\LM$ (resp.\ from $\LM$ to $\Pred$)
+ We write $\classFLtwo$ for the set of multi-functions%
+\footnote{%
+We could also define a class $\classLtwo$, 
+analogous to $\classPtwo$ in \cite{kawamura2012complexity}, 
+of multi-functions whose values are functions in $\LM$ 
+that are $\{0, 1\}$-valued, 
+but we will not use such classes in this paper. 
+}
+ from $\LM$ to $\LM$ 
  computed by a constant-stack machine that runs in second-order logarithmic space.
 \end{definition}
 
@@ -449,9 +452,6 @@ Hence, the inclusion between $\classL$ and $\classNC$ would not be relativized.
  length-monotone functions in $\classFL$
  to length-monotone functions in $\classFL$.
 \end{lemma}
-
-It follows immediately from this lemma that functions in $\classLtwo$ map
-length-monotone functions in $\classFL$ to languages in $\classL$.
 
 \begin{proof}
 For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
@@ -518,19 +518,16 @@ if there is a second-order polynomial $P$ satisfying
 $|C_{L,n}| \le P(L)(n)$ for all $n \in \N$ and non-decreasing functions
 $L \colon \N \to \N$.
 
-%% ↑何故sizeとdepthのうちsizeだけこの定義を立てるのか？
-
 \begin{definition}
  For each $k \in \N$, 
- we write $\classFACtwo^k$ (resp.\ $\classACtwo^k$) for the class of 
- multi-functions from $\LM$ to $\LM$ (resp.\ from $\LM$ to $\Pred$) computed by
+ we write $\classFACtwo^k$ for the class of 
+ multi-functions from $\LM$ to $\LM$ computed by
  a polynomial-size circuit family $(C_{L,n})_{L,n}$ such that
  there is a second-order polynomial $P$ satisfying
  $\depth(C_{L,n}) \le \log^k(P(L)(n))$ 
  for all $n \in \N$ and non-decreasing
  $L \colon \N \to \N$.
- We write $\classFNCtwo$ and $\classNCtwo$ for the hierarchies
- $\bigcup_{k \in \N} \classFACtwo^k$ and $\bigcup_{k \in \N} \classACtwo^k$.
+ We write $\classFNCtwo = \bigcup_{k \in \N} \classFACtwo^k$.
 \end{definition}
 
 Next, we want to define log-space uniformity in oracle circuit families.
@@ -573,11 +570,11 @@ by a similar argument.
 
 \begin{theorem}
 \label{theorem:inclusion}
-$ \classACtwo^0
- \subseteq \classLtwo 
- \subseteq \classACtwo^1
- \subseteq \classNCtwo
- \subseteq \classPtwo$. 
+$ \classFACtwo^0
+ \subseteq \classFLtwo 
+ \subseteq \classFACtwo^1
+ \subseteq \classFNCtwo
+ \subseteq \classFPtwo$. 
 \end{theorem}
 
 \begin{proof}
@@ -634,7 +631,6 @@ We pad $0$s to make the pairing function length-monotone.
 We write $\langle \phi, \psi, \theta \rangle$ 
 for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
 
-
 \begin{definition}
 Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
 \begin{itemize}
@@ -652,13 +648,6 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
        $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
        $r(\langle \phi, \theta \rangle)$ is in $A[\phi]$.
 \end{itemize}
-Let $A$ and $B$ be multi-functions from $\LM$ to $\Pred$.
-\begin{itemize}
- \item $A$ is \emph{many-one log-space reducible} to $B$, denoted 
-       $A \redLm B$, if there are functions $s, t \in \classFLtwo$ such that 
-       for all $\phi \in \dom A$, $s(\phi) \in \dom B$ and each 
-       $\theta \in B[s(\phi)]$ satisfies that $\theta \circ t(\phi)$ is in $A[\phi]$.
-\end{itemize} 
 \end{definition}
 
 These reductions are analogous to the polynomial-time reductions 
@@ -721,45 +710,48 @@ so is $\cup (B[\psi])$.
 \end{proof}
 
 
-\subsubsection{P-complete problems}
-
-We define a partial function $\probDTIMEtwo \pcolon \LM \to \Pred$  as follows:
-The domain $\dom \probDTIMEtwo$ is a set of $\langle M, \overline \mu, \phi \rangle$
-such that $M$ is a (program of) machine, $\mu \colon \N \to \N$ is non-decreasing, $\phi \in \LM$, and $M^\phi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$.
-$\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ is $1$ if
-$M^\phi(x)$ accepts, otherwise it is 0.
+The following partial function $\probDTIMEtwo \pcolon \LM \to \LM$ 
+is a standard complete problem: 
+$\dom \probDTIMEtwo$ consists of $\langle M, \overline \mu, \phi \rangle$
+such that $M$ is (the program of) a machine, 
+$\mu \colon \N \to \N$ is non-decreasing, 
+$\phi \in \LM$, 
+and $M^\phi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$; 
+for such $\langle M, \overline \mu, \phi \rangle$, 
+we define $\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ to be 
+the output of the computation $M^\phi(x)$.
 
 \begin{lemma}
- $\probDTIMEtwo$ is $\classPtwo$-$\redLm$-complete.
+ $\probDTIMEtwo$ is $\classFPtwo$-$\redLmF$-complete.
 \end{lemma}
 
 \begin{proof}
- For each $A \in \classPtwo$, there is a polynomial-time machine $M$ and a second-order polynomial $P$ such that $M$ computing $L$ and $P$ bounds the steps of $M$.
- Let $s, t \in \classFLtwo$ be as
- \begin{align}
-  s(\phi) &= \langle M, \overline{P(\mu)}, \phi \rangle
-  &
-  t(\phi)(u) &= u.
- \end{align}
- Since  $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$,
- $\probDTIMEtwo$ is $\classPtwo$-$\redLm$-complete.
+ For each $A \in \classFPtwo$, 
+ there is a polynomial-time machine $M$ 
+ and a second-order polynomial $P$ 
+ such that $M$ computes $L$ and $P$ is its time bound. 
+ Then $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$, 
+ where 
+ $s, t \in \classFLtwo$ are given by 
+ $s(\phi) = \langle M, \overline{P(\mu)}, \phi \rangle$ and 
+ $t(\phi)(u) = u$.
 \end{proof}
 
+% We define a partial function  $\probCVPtwo \pcolon \LM \to \LM$ as follows:
+% $\dom \probCVPtwo$ is the set of $\langle (C_n)_n, \phi \rangle$
+% such that $C_n$ is (the description of) a circuit with $n$ inputs 
+% (and multiple outputs)
+% consisting of $\AND$, $\OR$, $\NOT$ and oracle gates, 
+% for which $\phi \in \LM$ has the right size.
+% For $\probCVPtwo(\langle (C_n)_n, \phi \rangle)(x) = C^\phi_{|x|}(x)$.
 
-We define a partial function  $\probCVPtwo \pcolon \LM \to \Pred$ as follows:
-The domain $\dom \probCVPtwo$ is a set of $\langle (C_n)_n, \phi \rangle$
-such that $C_n$ is a (description of) circuit with $n$ inputs consisting of $\AND, \OR, \NOT$ and oracle gates, and $\phi$ is in $\Pred$.
-For $\probDTIMEtwo(\langle (C_n)_n,  \phi \rangle)(x) = C^\phi_{|x|}(x)$.
+% \begin{lemma}
+%  $\probCVPtwo$ is $\classFPtwo$-$\redLmF$-complete.
+% \end{lemma}
 
-\begin{lemma}
- $\probCVPtwo$ is $\classPtwo$-$\redLm$-complete.
-\end{lemma}
-
-\begin{proof}
-Similar to Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
-\end{proof}
-
-
+% \begin{proof}
+% Similar to Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
+% \end{proof}
 
 \subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
@@ -774,7 +766,7 @@ for all $\phi \in \LM \cap \dom \gamma$.
 \end{definition}
 
 \begin{lemma}
- Let $\mathcal{C}$ be either $\classFLtwo$, $\classNCtwo$ or
+ Let $\mathcal{C}$ be either $\classFLtwo$, $\classFNCtwo$ or
  $\classFPtwo$.
  Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
  $\delta$ and $\delta'$ be two representations of a set $Y$.
@@ -801,7 +793,7 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 
 \begin{lemma}
- Let $\mathcal C$ be either $\classFLtwo$, $\classNCtwo$, 
+ Let $\mathcal C$ be either $\classFLtwo$, $\classFNCtwo$, 
  or $\classFPtwo$, and $C$ be the type-one complexity class
  corresponding to $\mathcal C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
@@ -834,7 +826,7 @@ However,
 had we defined $\classFLtwo$ with the obvious relativized machine with one query tape,
 $\classFLtwo$ would be either too weak 
 for $\OpApply$ to be $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
-too strong that $\classLtwo \nsubseteq \classNCtwo$,
+too strong that $\classFLtwo \nsubseteq \classFNCtwo$,
 depending on whether or not it was allowed to look at the answer tape while writing queries.
 Our extension of the constant stack model is one of the weakest model
 to make both conditions true.
@@ -850,7 +842,7 @@ roots of a polynomial with complex coefficients are $\classNC$-computable.
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
 
-\subsection{Operations in $\classLtwo$ and $\classNCtwo$}
+\subsection{Operations in $\classFLtwo$ and $\classFNCtwo$}
 \label{section:function}
 
 In this section, we show that several basic function on real numbers are
