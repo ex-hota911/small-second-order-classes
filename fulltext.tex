@@ -258,6 +258,22 @@ polynomial, then $P(L)$ is a first-order polynomial.
  length-monotone functions in $\classFP$ to $\classFP$.
 \end{lemma}
 
+We define the paring function, denoted by $\langle \phi, \psi \rangle$,
+of length-monotone functions as follows: 
+% \footnote{%
+% The pairing function was
+% defined erroneously in \cite{kawamura2012complexity} 
+% without the delimiter $1$. 
+% }
+$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
+$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
+We pad $0$s to make the pairing function length-monotone.
+We write $\langle \phi, \psi, \theta \rangle$ 
+for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
+We also write $\langle \phi, u \rangle$, etc., for 
+$\phi \in \LM$ and a string $u \in \Sigma ^*$, 
+where we encode $u$ as a constant function in $\LM$ with value $u$. 
+
 \subsection{Representations}
 \label{subsection: representations}
 
@@ -296,7 +312,7 @@ For each $n \in \N$, let $\D_n$ denote the set of strings of the form
 where $s$ is the sign and $x \in \{0,1\}^*$.
 We write $\D$ for the union $\bigcup _n \D _n$.
 We regard $u \in \D$ as a fraction of binary numbers, 
-and write $u$ also for the number encoded by it.
+and write $u$ also for the number it encodes. 
 
 A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
 if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
@@ -342,8 +358,8 @@ without using oracle machines.
 
 We say $\mu \colon \N \to \N$ is a {\em modulus of continuity} of $f \in \classC[0,1]$
 if $|x - y| \le 2^{-\mu(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n}$ for all $x, y \in [0,1]$ and $n \in \N$.
-We represent a real function in $\classC[0,1]$ by a pair of
-an approximating function and a modulus of continuity of $f$.
+The following representation $\deltabox$ that we will use for real functions in $\classC[0,1]$ 
+is inspired by this. 
 
 For a non-decreasing function $\mu \colon \N \to \N$, 
 we write $\overline \mu \colon \Sigma^* \to \Sigma^*$ for the length-monotone
@@ -602,19 +618,6 @@ Lemma~\ref{lemma: respects uniformity} and
 Corollary~\ref{corollary: type-one and type-two circuit classes}.
 
 \subsection{Reductions and completeness}
-
-We define the paring function, denoted by $\langle \phi, \psi \rangle$,
-of length-monotone functions as follows:%
-\footnote{%
-The pairing function was
-defined erroneously in \cite{kawamura2012complexity} 
-without the delimiter $1$. 
-}
-$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
-$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
-We pad $0$s to make the pairing function length-monotone.
-We write $\langle \phi, \psi, \theta \rangle$ 
-for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
 
 \begin{definition}
 Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
