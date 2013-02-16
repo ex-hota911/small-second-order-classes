@@ -750,21 +750,16 @@ for all $\phi \in \LM \cap \dom \gamma$.
  $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
 \end{lemma}
 
-We say that $x \in X$ is \emph{$\gamma$-$C$-computable} if
-$x$ has a $\gamma$ name in $C$,
-where $C$ is a usual (type-one) complexity class.
 We say that $x \in X$ is $\gamma$-$C$-$\le$-complete if
 $\cup(\gamma^{-1}[x])$ is $C$-$\le$-complete,
 where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
-
-
 
 \begin{lemma}
  Let $\mathcal C$ be either $\classFLtwo$, $\classFNCtwo$, 
  or $\classFPtwo$, and $C$ be the type-one complexity class
  corresponding to $\mathcal C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
- A $(\gamma, \delta)$-$\mathbf C$-computable partial function $F$ from $X$
+ A $(\gamma, \delta)$-$\mathcal C$-computable partial function $F$ from $X$
  to $Y$ maps $\gamma$-$C$-computable elements of $X$
  in $\dom F$ to $\delta$-$C$-computable elements of $Y$.
 \end{lemma}
@@ -957,10 +952,9 @@ and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
  $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
-\begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
-\end{corollary}
-
+% \begin{corollary}
+%  $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
+% \end{corollary}
 
 Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 by the following algorithm:
