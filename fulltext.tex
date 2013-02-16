@@ -1183,19 +1183,13 @@ with range $[a, b]$ as follows:
 $\deltaboxINV(\langle \phi, \overline{\mu} \rangle) = f$ 
 if and only if $\phi$ is a $\deltabox$-name of $f$ 
 and $\mu$ is a modulus of continuity of $f^{-1}$.
-Note that the inverse $f^{-1}$ uniquely exists and is uniformly continuous. 
 We add a modulus of continuity of $f^{-1}$ to $\deltabox$
 since without this information, there is no upper bound on 
 the complexity of the inverse operation, 
-as the following theorem shows. 
-
-\begin{theorem}
-[{\cite[Theorem 4.4]{ko1991complexity}}]
-For any recursive $x \in [0, 1]$, 
+as the following fact \cite[Theorem 4.4]{ko1991complexity} shows: 
+for any recursive $x \in [0, 1]$, 
 there exists a strictly increasing function $f \in \classC[0, 1]$ 
 such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
-%there exists a strictly increasing continuous function $f$ in $\classP_{\classC[0,1]}$
-\end{theorem}
 
 The following theorem is the uniform version of Theorems 
 \ref{theorem:ko1991-4.7} and 
@@ -1252,15 +1246,15 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 \subsubsection{Fix points of contraction mappings}
 
-Hoover's theorem about the complexity to compute fix points
-of constructing mappings can be written by our frame work in following form:
+Hoover's theorem about the complexity of computing fix points
+of a contractive real function
+can be written in our terminology as follows:
 
 \begin{theorem}
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
  There is a $(\rhoR+, \rhoR+)$-$\classNC$-computable function $f \colon \R^+ \to \R^+$,
- such that $f|_{[2n, 2n+1]}$ is contractor for all $n \in \N$ and
-%%!! contractorの定義
+ such that $f|_{[2n, 2n+1]}$ is contractive for all $n \in \N$ and
  a function mapping a pair of strings $u \in \Sigma^*$ and $0^n$
  to $2^{-n}$ approximation of the unique fix point of $f$
  in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$ computable
