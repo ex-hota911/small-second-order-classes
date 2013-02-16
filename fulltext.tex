@@ -156,7 +156,7 @@ Second application is about $\classP$-complete operators.
 We take up
 Hoover's theorem about fixed points of contractions \cite{hoover1991real}
 and Ko's theorem about inverting a function \cite{ko1991complexity}, 
-which both state hardness for $\classP$-hardness, 
+which both state hardness for $\classP$ in a sense, 
 and reformulate them into our framework
 as stronger uniform statements (as mentioned above).
 
@@ -582,7 +582,7 @@ $ \classACtwo^0
 
 \begin{proof}
  The first inclusion can be proved in a similar way
- to show $\classAC^0 \subseteq \classL$.
+ to $\classAC^0 \subseteq \classL$.
  The second inclusion can be proved in a similar argument to 
  the proof of $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
  \cite{aehlig2007relativizing}.
@@ -595,27 +595,15 @@ The following lemma states that type-two $\classLtwo$ uniformity respects
 $\classL$ uniformity.
 
 \begin{lemma}
+\label{lemma: respects uniformity}
  Let $(C_{L,n})_{L,n}$ be a (second-order) polynomial-size $\Luniform$ oracle circuit family
  and $(D_n)_n$ be a (first-order) polynomial-size $\classL$-uniform circuit family.
  A circuit family given by replacing oracle gates in $(C_{L,n})_{L,n}$ with
  $(D_n)_n$ is $\classL$-uniform.
 \end{lemma}
 
-\begin{proof}
- Let $A \colon \LM \to \LM$ be a function computing the description of $(C_{L,n})_{L,n}$,
- $B \colon \Sigma^* \to \Sigma^*$ be a function computing the description of $(D_n)_n$, and
- $L \colon \N \to \N$ be the size of oracle $(D_n)_n$, i.e.
- the function mapping $n$ to the output length of $D_n$.
- The function $A(\overline{L})$ is in $\classFL$ since $\overline{L} \in \classFL$ and $A \in \classFLtwo$.
- Since given $A(\overline{L})$ and $B$ as oracles,
- computing the description of the circuit family given by replacing oracle
- gates in $(C_{L,n})_{L,n}$ with $(D_n)_n$ is log-space computable
- and $\classFL$ is closed under relativization,
- it is log-space computable.
-\end{proof}
-
 \begin{corollary}
-\mbox{}
+\label{corollary: type-one and type-two circuit classes}
 \begin{enumerate}
  \item Functions in $\classFACtwo^i$ 
        map length-monotone functions in $\classFAC^j$ 
@@ -626,21 +614,9 @@ $\classL$ uniformity.
 \end{enumerate}
 \end{corollary}
 
-\begin{proof}
-The second statement immediately follows from the first statement.
-Let $A$ be a function in $\classFACtwo^i$ and $(C_{L,n})_{L,n}$ be a circuit
-family computing $A$ with $\log^i$ depth.
-For all $\phi \in \classFAC^j \cap \LM$, 
-the circuit family $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$,
-since there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$.
-Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
-Replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$, 
-we get a circuit family with polynomial size and $\log^{i+j}(n)$ depth
-that computes $A(\phi)$.
-\end{proof}
-
-
-
+See appendix for proofs of 
+Lemma~\ref{lemma: respects uniformity} and 
+Corollary~\ref{corollary: type-one and type-two circuit classes}.
 
 \subsection{Reductions and completeness}
 
@@ -1162,6 +1138,36 @@ that are $1/2$-Lipschitz.
 \appendix
 \section{Postponed proofs}
 
+\subsection{Properties of circuits with oracles}
+
+\begin{proof}[Lemma~\ref{lemma: respects uniformity}]
+ Let $A \colon \LM \to \LM$ be a function computing the description of $(C_{L,n})_{L,n}$,
+ $B \colon \Sigma^* \to \Sigma^*$ be a function computing the description of $(D_n)_n$, and
+ $L \colon \N \to \N$ be the size of oracle $(D_n)_n$, i.e.
+ the function mapping $n$ to the output length of $D_n$.
+ The function $A(\overline{L})$ is in $\classFL$ since $\overline{L} \in \classFL$ and $A \in \classFLtwo$.
+ Since given $A(\overline{L})$ and $B$ as oracles,
+ computing the description of the circuit family given by replacing oracle
+ gates in $(C_{L,n})_{L,n}$ with $(D_n)_n$ is log-space computable
+ and $\classFL$ is closed under relativization,
+ it is log-space computable.
+\end{proof}
+
+\begin{proof}[Corollary~\ref{corollary: type-one and type-two circuit classes}]
+The second statement immediately follows from the first statement.
+Let $A$ be a function in $\classFACtwo^i$ and $(C_{L,n})_{L,n}$ be a circuit
+family computing $A$ with $\log^i$ depth.
+For all $\phi \in \classFAC^j \cap \LM$, 
+the circuit family $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$,
+since there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$.
+Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
+Replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$, 
+we get a circuit family with polynomial size and $\log^{i+j}(n)$ depth
+that computes $A(\phi)$.
+\end{proof}
+
+\subsection{Function inversion and Banach fixed points}
+
 \begin{proof}[Proof of Computability in Theorem~\ref{theorem:INV-is-P-complete}]
 We will prove hardness in Section~\ref{section:proofs-of-theorems}.
 In the following, we will show that, 
@@ -1236,9 +1242,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
  approximating $h$ at rational points is log-space computable from fix-points of $f$.
 \end{proof}
 
-\subsection{Proofs of hardness}
-
-\paragraph{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
+\subsubsection{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
 
 \begin{proof}[Theorem~\ref{theorem:P-hard-g_u}]
  We show that for each $\psi \in \dom \probDTIMEtwo$,
@@ -1327,7 +1331,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 \end{proof}
 
 
-\paragraph{Proofs of Theorems \ref{theorem:INV-is-P-complete} and \ref{theorem:Fix-is-P-complete}}
+\subsubsection{Proofs of Theorems \ref{theorem:INV-is-P-complete} and \ref{theorem:Fix-is-P-complete}}
 \label{section:proofs-of-theorems}
 
 We show the $\classFP$-$\redLmF$-hardness of an operation $P$
