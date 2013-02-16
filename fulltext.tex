@@ -731,6 +731,8 @@ proofs of Lemma~\ref{lemma:P-complete} and Lemma~\ref{lemma: probDTIMEtwo}.
 \subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
 
+The following lemmas are analogous to 
+those at the level of polynomial-time \cite{kawamura2012complexity}. 
 
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
@@ -804,6 +806,7 @@ under suitable representations.
 We start with real functions, 
 using the representation $\rhoR$
 (see Sect.~\ref{subsection: representations}). 
+This is 
 
 Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
 \emph{log-space real functions} in $\classC[0,1]$ 
@@ -814,11 +817,11 @@ while Ko uses the obvious log-space oracle Turing machine
 with no stacks at all.
 This is because, 
 when computing approximation of $f(x)$ under $\rhoR$-names, 
-a machine can get enough information about $x \in [0,1]$ by one query.
-
-Ko defines $\classNC$ real function in $\classC[0,1]$
-as $\deltabox$-$\classFNC$-computable real function \cite{ko1991complexity},
-which are equal to $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computable real functions.
+a machine can get enough information about $x \in [0,1]$ in one query.
+Ko also defines the class of $\classNC$ real functions in $\classC[0,1]$
+through $\deltabox$-$\classFNC$-computability in our terminology 
+\cite{ko1991complexity},
+which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computability.
 The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
 are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
 
