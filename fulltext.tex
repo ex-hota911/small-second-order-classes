@@ -1205,30 +1205,37 @@ Theorem~\ref{theorem:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma
 
 This will be proved in the appendix. 
 
-\subsubsection{Fix points of contraction mappings}
+\subsubsection{Fixed points of contraction mappings}
 
-Hoover's theorem about the complexity of computing fix points
+Hoover's theorem about the complexity of computing the fixed point
 of a contractive real function
 can be written in our terminology as follows:
 
 \begin{theorem}
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
- There is a $(\rhoR+, \rhoR+)$-$\classNC$-computable function $f \colon \R^+ \to \R^+$,
- such that $f|_{[2n, 2n+1]}$ is contractive for all $n \in \N$ and
+ There is a $(\rhoR, \rhoR)$-$\classNC$-computable function $f \colon \R \to \R$
+ such that $f|_{[2n, 2n+1]}$ is contractive for each $n \in \N$ and
  a function mapping a pair of strings $u \in \Sigma^*$ and $0^n$
- to $2^{-n}$ approximation of the unique fix point of $f$
- in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$ computable
- if and only if $\classNC = \classP$.
+ to a $2^{-n}$-approximation of the unique fixed point of $f$
+ in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$-computable
+ if and only if $\classNC = \classP$, 
+ where $\overline{1u0}$
 \end{theorem}
+
+By the Banach fixed point theorem, 
+there is such a unique fixed point. 
 
 The fix-point operation $\OpCMFix^2$ is defined as follows:
 The domain $\dom \OpCMFix^2$ is a set of real functions 
-$g \in \classC[[0,1]^2 \to [0,1]]$ such that there is a real number $q \in \R$
-satisfying that $0 \le q < 1$ and $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
+$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
+such that there is a real number $q < 1$
+satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
 for all $x, y, z \in [0,1]$.
-For each $g \in \dom \OpCMFix^2$, $h = \OpCMFix^2(g)$ if and only if 
-$h(x) = g(x, h(x))$, that is, $h$ maps $x \in [0,1]$ to the fix point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
+For each $g \in \dom \OpCMFix^2$, 
+the value $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ is defined to be 
+the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
+$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
 
 The representation $\deltaboxCM$ is defined as follows:
 $\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
