@@ -965,7 +965,6 @@ Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 \subsubsection{Finding polynomial roots is $\classFNCtwo$-computable}
 
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
-
 We write $P_n$ for the set of degree $n$ monic 
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
@@ -973,58 +972,8 @@ We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that
  \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
 \end{equation}
 
-For two multisets of $n$ complex numbers $S = \{z_1, \dots, z_n\}$ and $S' = \{z'_1, \dots, z'_n\}$,
-we define the distance between $S$ and $S'$ by $
-d(S, S') = \min_{\sigma} \max_{j = 1, \ldots, n}|z_j - z'_{\sigma(j)}|$,
-where $\sigma$ ranges over all permutations on $\{1, \ldots, n\}$. 
-
-We represent multisets of complex numbers as converging sequences of 
-multisets of rational complex numbers.
-Define the representation $\rhoCSet$ as follows:
-Let $S$ be a multiset of $n$ complex numbers. 
-We say that $\phi \in \LM$ is a $\rhoCSet$ name of $S$ if
-$\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n ) \in (\D_m)^{2n}$
-for all $m \in \N$.
-Let $S_m = \{a_1+b_1 i, \dots, a_n+b_n i\}$, 
-$d(S, S_m) \le 2^{-m}$.
-
-%We can also represent multisets $S$ as vectors $z \in \C^n$
-%such that $S = \{z\}$.
-%More formally we define representation $\rhoCSet'$ as
-%$\rhoCSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
-%It is easy to see that $\rhoCSet' \le_\classFLtwo \rhoCSet$,
-%but the following lemma says they are not equivalent even under computability.
-%\begin{lemma}
-% Identity function on multisets is not $(\rhoCSet, \rhoCSet')$-computable.
-%\end{lemma}
-%This means that $\rhoCSet'$ is more informative than $\rhoCSet$.
-
-
-
-%\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
-
-We represent a complex number by a pair of $\rhoR$-names,
-that is, $\rho_\C(\phi) = z \iff \rho_\R^2(\phi) = (a, b) \wedge z = a+bi$.
-We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
-$\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
-if $\phi$ is a $\rho_{\C^n}$-name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
-such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
-Define the representation $\rho_{P_*}$ of monic polynomials by
-$p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
-
-\begin{theorem}
- \label{theorem:finding-roots-is-in-NC}
- $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
-\end{theorem}
-
-\begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
-\end{corollary}
-
-
-\begin{proof}
-Neff showed that approximating the roots of polynomial with integer coefficients
-is in $\classFNC$.
+Neff first showed that approximating the roots of polynomial
+with integer coefficients is in $\classFNC$.
 \begin{theorem}
 [NC polynomial root isolation \cite{neff1994specified}]\label{theorem:neff1994}
 There is an algorithm $A$ such that,
@@ -1036,111 +985,87 @@ using at most $D(n + m + k)^f$ processors, where $C, D, e, f$ are positive
 constants which are independent of $n$, $m$, and $k$.
 \end{theorem}
 The \emph{size} of a polynomial, denoted $|p|$, is the maximum absolute value
- of coefficients in $p$, and the \emph{distance} of
-two polynomials $p$, $q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
+ of coefficients in $p$.
+%and the \emph{distance} of
+%two polynomials $p$, $q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
+
+Later Pan showed that approximating the roots of polynomial
+with complex rational coefficients is in $\classFNC$ \cite{pan1995optimal}.
+Neff and Reif showed a similar results and they also discuss
+about the modulus of continuity of finding roots \cite{neff1996efficient}.
+
+\begin{theorem}
+[{\cite[Theorem 2.1]{neff1996efficient}}]
+ Let $f$ and $g$ be monic polynomials of the same degree $n$,
+ and let $|f| \le 2^m$.
+ If $|f - g| \le 2^{\lceil n(k + m + \log n + 3)\rceil}$, then
+ \begin{equation}
+  d(\OpPolyRoot(f), \OpPolyRoot(g)) \le 2^{-k},
+ \end{equation}
+ for all $k \in \N$.
+\end{theorem}
+
+They regard these two results ensure that $\classFNC$-computability
+of finding roots of a polynomial with complex coefficients.
+In our framework, we can combine these two results by stating 
+$\classFNCtwo$-computability under suitable representations.
+
+To discuss about the complexity to find roots of a polynomial,
+we need representations for polynomials and multisets of complex numbers.
+We represent a complex number by a pair of $\rhoR$-names,
+that is, $\rho_\C(\phi) = z \iff \rho_\R^2(\phi) = (a, b) \wedge z = a+bi$.
+We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
+$\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
+if $\phi$ is a $\rho_{\C^n}$-name of $(a_{n-1}, \dots, a_0)$ 
+such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
+Define the representation $\rho_{P_*}$ of monic polynomials by
+$p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
+
+We represent multisets of complex numbers as converging sequences of 
+multisets of rational complex numbers.
+The distance between two multisets $S = {z_1, \dots, z_n}$
+and $S' = \{z'_1, \dots, z'_n\}$ is defined as
+\begin{equation}
+d(S, S') = \min_{\sigma} \max_{j = 1, \ldots, n}|z_j - z'_{\sigma(j)}|,
+\end{equation}
+where $\sigma$ ranges over all permutations on $\{1, \ldots, n\}$. 
+Define the representation $\rhoCSet$ as follows:
+Let $S$ be a multiset of $n$ complex numbers. 
+We say that $\phi \in \LM$ is a $\rhoCSet$ name of $S$ if
+for all $m \in \N$, there are $a_1, b_1, a_2, b_2, \dots, a_n, b_n \in \D_m$
+such that $\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n )$
+and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
+
+%We can also represent multisets $S$ as vectors $z \in \C^n$
+%such that $S = \{z\}$.
+%More formally we define representation $\rhoCSet'$ as
+%$\rhoCSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
+%It is easy to see that $\rhoCSet' \le_\classFLtwo \rhoCSet$,
+%but the following lemma says they are not equivalent even under computability.
+%\begin{lemma}
+% Identity function on multisets is not $(\rhoCSet, \rhoCSet')$-computable.
+%\end{lemma}
+%This means that $\rhoCSet'$ is more informative than $\rhoCSet$.
+%\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
+
+\begin{theorem}
+ \label{theorem:finding-roots-is-in-NC}
+ $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
+\end{theorem}
+
+\begin{corollary}
+ $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
+\end{corollary}
+
 
 Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
-Theorem~\ref{theorem:neff1994}
-if there is a polynomial $\mu$ such that for all $p, q \in P_n$ and
-$k, m \in \N$ satisfying $|p| \le 2^m$,
-\begin{equation}
-  d(p, q) \le 2^{-\mu(k, m, n)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k},
-\end{equation}
 by the following algorithm:
 Given $k \in \N$ and a $\rho_{P_n}$-name of $p \in P_n$, 
-compute $m \in \N$ and polynomial $q \in {P_n}$ with rational coefficients
-satisfying $|p| \le 2^m$ and $d(p, q) \le 2^{-\mu(k, m, n)}$,
-then find all the roots of $2^{\mu(k, m, n)} \cdot q(x)$ by the algorithm $A$ 
-in Theorem~\ref{theorem:neff1994}.
-Here we use Mosier's analysis~\cite{mosier1986root} 
-to show the existence of such a polynomial $\mu$.
-
-For any polynomial $p \in P_n$ and $0 < \epsilon < 1$, 
-define $Z(p, \epsilon)$ to be the set of $z \in \C$
-such that $q(z) = 0$ 
-for some polynomial $q \in P_n$ with $d(p, q) \le \epsilon$. 
-First we show that for any $u \in Z(p, \epsilon)$, there is $v \in \OpPolyRoot(p)$ such that $|u - v| \le 2^{m+2}\sqrt[n]{\epsilon}$.
-\begin{theorem} 
-[{\cite[Theorem 1]{mosier1986root}}]
-\label{theorem: root neighborhoods 1}
- For $p(x) \in P_n$, we have
- \begin{equation}
-  Z(p, \epsilon) = \Bigl\{\, u \in \C : \Bigl| p(u) \!\!\Bigm/\! \sum _{j=0} ^n |u|^j \Bigr| \le \epsilon \,\Bigr\}. 
- \end{equation}
-\end{theorem}
-For any $u \in \C$, if $v$ is a root of $p$ such that 
-$|u - v| \le |u - v'|$ for all roots $v'$ of $p$,
-\begin{equation}
- |v - u|^n
- \le \prod_{v' \in \OpPolyRoot(p)} |v' - u|
- = |p(u)|.
-\end{equation}
-It follows from  Rouch\'a's theorem that
-any root $v$ of a monic polynomial $p \in P_n$ satisfies that
-$|v| \le 1 + \max\{a_{n-1}, \dots, a_0\} = 1 + |p|$.
-
-Let $u \in Z (p, \varepsilon)$. 
-Since there is a polynomial $q$ such that $q(u)=0$ and $d(p, q) \le \epsilon$,
-we have $|u| \le 1+|q| \le 1 + |p| + d(p, q) \le 2^m + 2$, 
-where $m$ is \ldots. %%%!!!
-So
-\begin{equation}
- |v - u|
- \le
- \sqrt[n]{|p(u)|}
- \le
- \sqrt[n]{\epsilon \sum_{j=0}^n |u|^j}
- \le
- \sqrt[n]{\epsilon \cdot (|u|+1)^n}
- \le
- 2^{m+2} \sqrt[n]{\epsilon}.
-\end{equation}
-
-
-Let $\epsilon' = 2^{m+2} \sqrt[n]{\epsilon}$,
-\begin{equation}
- Z(p, \epsilon) \subseteq \bigcup_{v \in \OpPolyRoot(p)} D(v, \epsilon')
-\end{equation}
-where $D(v, \epsilon') = \{u \mid |u - v| \le \epsilon'\}$.
-Since the diameter of each connected component of the right side 
-is $2n\epsilon$ at most, $|u - u'| \le 2n\epsilon$ for all 
-$u, u' \in Z(p, \epsilon)$ if $u$ and $u'$ are in the same connected component
-of $Z(p, \epsilon)$.
-
-Let $\mu(n, k, m) = n(k+m+n+2)$.
-We show that 
-$
-d(p, q) \le 2^{-\mu(n, k, m)} \Rightarrow d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k}
-$
-for all $q \in P_n$.
-Let $\epsilon \in (0,1)$, $q$ be a polynomial satisfying that
- $d(p, q) \le \epsilon$.
-We assume that the (ordered) roots $v_1, \dots, v_n$ of $p$
-and the (ordered) roots $u_1, \dots, u_n$ of $q$ satisfy that
-$v_j$ and $u_j$ are in the same connected component of $Z(p, \epsilon)$.
-Following theorem says that there is some ordering of roots satisfies this assumption.
-\begin{theorem}
-[\cite{mosier1986root}]
-\label{theorem: root neighborhoods 2}
- For any $0 < \epsilon < 1$, if $q(z) \in N(p, \epsilon)$,
- then $q(z)$ and $p(z)$ have the same number of roots,
- counting multiplicities, in each connected component of $Z(p, \epsilon)$.
-\end{theorem}
-Let $\epsilon = 2^{-\mu(n,m,k)}$ then for all $1 \le j \le n$
-\begin{equation}
- |u_j - v_j| 
- \le
- 2n\epsilon'
- \le
- 2n \cdot 2^{m+2} \cdot 2^{-(k+m+n+2)} 
- \le
- 2^{-k},
-\end{equation}
-hence
-$
- d(\OpPolyRoot(p), \OpPolyRoot(q)) \le 2^{-k}.
-$
-\end{proof}
+compute a polynomial $q \in {P_n}$ with complex rational coefficients
+satisfying $|p - q| \le 2^{\lceil n((k+2) + m + \log n + 3)\rceil}$
+then find all the roots of $q$ using the algorithm by Neff and Reif, or Pan
+with precision $2^{-(k+2)}$.
+By rounding them, we get $2^{-k}$-approximations of all roots of $p$.
 
 \subsection{$\classPtwo$-complete operations}
 \label{section:P-complete}
