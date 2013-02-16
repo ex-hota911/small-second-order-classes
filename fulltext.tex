@@ -62,11 +62,6 @@ As prototypical applications,
 we recast several facts (some in a stronger form than was known) 
 about the complexity of numerical problems 
 into our framework. 
-% Neff's algorithm for finding the roots of a given polynomial 
-% in type-two $\classNC$; 
-% Ko's and Hoover's hardness results about 
-% inversion of real functions and the fix-point operation on contractive mappings
-% can be strengthened to type-two $\classP$-completeness in our formulation. 
 \end{abstract}
 
 \section{Introduction}
@@ -99,10 +94,11 @@ applied them to real functions and operators.
 One benefit of this was
 a greater variety of objects to which we can apply complexity theory. 
 For example, with the second-order formulation
-we can define a canonical representation of the space $\classC [0, 1]$, 
+we can define a canonical representation of the space $\classC [0, 1]$
+of continuous real functions, 
 so that we can discuss the complexity of an
-operator $F \colon \classC [0, 1] \to \classC [0, 1]$ on real functions. 
-This extended the previously accepted notion of 
+operator $F \colon \classC [0, 1] \to \classC [0, 1]$. 
+This extends the previously accepted notion of 
 complexity of $f \in \classC [0, 1]$
 (which had been possible to formulate also in the infinite string model)
 in a natural way, so that many known non-uniform results of the form
@@ -117,19 +113,26 @@ can now be transformed into a stronger, uniform statement of the form
  $F$ is in the complexity class $\mathcal Y$, and \\
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
-where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$ (see \cite{kawamura2012complexity} for more details).
+where $\mathcal{X, Y, Z}$ are type-two classes analogous to ${X, Y, Z}$ 
+(see \cite{kawamura2012complexity} for more details).
 
 We continue their research and proceed down into $\classP$. 
-We study analogues of 
+We formulate and study analogues of 
 $\classL$ (logarithmic space), 
 $\classNC$ (poly-logarithmic depth circuits; efficiently parallelizable), 
 and 
 $\classP$-completeness (inherently sequential). 
 
-While there are various models of relativized logarithmic space,
+While the most basic idea
+is the use of second-order polynomials as resource bounds, 
+which is common to \cite{kawamura2012complexity}, 
+there are several formulational choices that we need to make carefully, 
+due to the subtleties pertaining to small complexity classes. 
+In particular, 
 we choose the \emph{constant stack machine} \cite{aehlig2007relativizing} 
 since it is consistent with relativized circuit complexity classes 
 and it makes some elemental operation log-space computable.
+Also, in the formulation of uniform circuit family, 
 
 We apply this framework to several problems in analysis.
 % We investigate the computational complexity of several problems in 
@@ -141,17 +144,11 @@ We apply this framework to several problems in analysis.
 % Computable Analysis.
 Our first application is the problem of finding roots of a polynomial 
 from its coefficients.
-In numerical analysis, it is known to be generally ill-conditioned, 
-that is, the roots are sensitive to 
-small errors in the coefficients \cite{wilkinson1963rounding}.
-However, with the complex analysis by Mosier \cite{mosier1986root},
-we can bound the precision needed to compute
-roots by a polynomial in the required precision of the solution.
-We combine this analysis with the discrete result 
-that the problem to approximate the roots of the polynomial with integer 
-coefficients is $\classNC$ computable \cite{neff1994specified}
-to show that roots of a polynomial with real coefficients
-is $\classNC$ computable.
+% Neff's algorithm for finding the roots of a given polynomial 
+% in type-two $\classNC$; 
+% Ko's and Hoover's hardness results about 
+% inversion of real functions and the fix-point operation on contractive mappings
+% can be strengthened to type-two $\classP$-completeness in our formulation. 
 Second application is about $\classP$-complete operators.
 There exist a few result about $\classP$-completeness of problems of numerical analysis:
 The inverse function $f^{-1}$ can be $\classP$-complete under the log-space
