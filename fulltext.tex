@@ -617,7 +617,6 @@ Corollary~\ref{corollary: type-one and type-two circuit classes}.
 
 \subsection{Reductions and completeness}
 
-\subsubsection{Reductions}
 We define the paring function, denoted by $\langle \phi, \psi \rangle$,
 of length-monotone functions as follows:%
 \footnote{%
@@ -650,10 +649,9 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
 \end{itemize}
 \end{definition}
 
-These reductions are analogous to the polynomial-time reductions 
-$\redmF^2$, $\redW^2$, $\redm^2$ in Kawamura and Cook~\cite{kawamura2012complexity}.
-Many-one reduction $\redmF$ is a special case of Weihrauch reduction $\redW$,
-that is, if $A \redmF B$ then $A \redW B$.
+These are analogous to the polynomial-time reductions 
+$\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}.
+Note that $A \redLmF B$ implies $A \redLW B$.
 
 There is another version of a many-one reduction defined by
 Beame et al. \cite{beame1995relative}.
