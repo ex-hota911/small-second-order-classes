@@ -117,24 +117,28 @@ where $\mathcal{X, Y, Z}$ are type-two classes analogous to ${X, Y, Z}$
 (see \cite{kawamura2012complexity} for more details).
 
 We continue their research and proceed down into $\classP$. 
-We formulate and study analogues of 
+In Section~\ref{section:small-classes}, 
+we formulate and study analogues of 
 $\classL$ (logarithmic space), 
 $\classNC$ (poly-logarithmic depth circuits; efficiently parallelizable), 
 and 
 $\classP$-completeness (inherently sequential). 
 
-While the most basic idea
-is the use of second-order polynomials as resource bounds, 
-which is common to \cite{kawamura2012complexity}, 
-there are several formulational choices that we need to make carefully, 
+While the most basic idea, 
+i.e.\ that of using of second-order polynomials as resource bounds, 
+is common to \cite{kawamura2012complexity}, 
+there are several choices that we need to make carefully
+in implementing this idea, 
 due to the subtleties pertaining to small complexity classes. 
 In particular, 
-we choose the \emph{constant stack machine} \cite{aehlig2007relativizing} 
+we use a modified version of 
+the \emph{constant stack machine} \cite{aehlig2007relativizing}, 
 since it is consistent with relativized circuit complexity classes 
 and it makes some elemental operation log-space computable.
 Also, in the formulation of uniform circuit family, 
 
-We apply this framework to several problems in analysis.
+In Section~\ref{section:applications}, 
+we apply this framework to several problems in analysis.
 % We investigate the computational complexity of several problems in 
 % numerical analysis.
 % The problems we study in this paper are of the following kind:
@@ -150,15 +154,12 @@ from its coefficients.
 % inversion of real functions and the fix-point operation on contractive mappings
 % can be strengthened to type-two $\classP$-completeness in our formulation. 
 Second application is about $\classP$-complete operators.
-There exist a few result about $\classP$-completeness of problems of numerical analysis:
-The inverse function $f^{-1}$ can be $\classP$-complete under the log-space
-reduction even if $f$ is log-space computable \cite{ko1991complexity};
-The fix-points of contracting mappings can be $\classP$-complete under the
-$\classNC$ reduction even if contracting mappings are all $\classNC$ computable \cite{hoover1991real}.
-We express these theorems in constructive way and
-show type-two $\classP$-completeness of these operators.
-
-
+We take up
+Hoover's theorem about fixed points of contractions \cite{hoover1991real}
+and Ko's theorem about function inversion \cite{ko1991complexity}, 
+which both state hardness for $\classP$-hardness, 
+and reformulate them into our framework
+as stronger uniform statements.
 
 
 %Chap.~\ref{chapter:computable-analysis} introduces Type-two Theory of Effectivity, the framework of Computable Analysis.
@@ -861,21 +862,21 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
  and only if $\delta \transL \deltabox$.
 \end{theorem}
 
-\begin{proof}
- It is proved in a similar argument to the case of $\classFP$ \cite{kawamura11:_funct_space_repres_and_polyn_time_comput}
-\end{proof}
-
-
-If we defined $\classFLtwo$ with the obvious relativized machine with one query tape,
-$\classFLtwo$ would be either too weak that $\OpApply$ is not $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
-too strong that $\classL \not \subseteq \classNC$,
-depending on whether or not it was allowed to watch the answer tape while writing queries.
-The our extension of the constant stack model is one of the weakest model
+Theorem~\ref{theorem:apply-is-L-computable} can be proved 
+similarly to the case of $\classFP$ 
+\cite{kawamura11:_funct_space_repres_and_polyn_time_comput}. 
+However, 
+had we defined $\classFLtwo$ with the obvious relativized machine with one query tape,
+$\classFLtwo$ would be either too weak 
+for $\OpApply$ to be $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
+too strong that $\classLtwo \nsubseteq \classNCtwo$,
+depending on whether or not it was allowed to look at the answer tape while writing queries.
+Our extension of the constant stack model is one of the weakest model
 to make both conditions true.
 
 
 \section{Applications}
-\label{chapter:applications}
+\label{section:applications}
 In this chapter, we investigate the complexity of several problems in numerical
 analysis and demonstrate that our new classes introduced in the previous
 chapter are useful.
@@ -1165,13 +1166,6 @@ $\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete.
 It remains so even if $\dom \OpCMFix$ is restricted to contractions 
 that are $1/2$-Lipschitz.
 \end{lemma}
-
-\section{Conclusion and future work}
-\label{chapter:conclusion}
-
-Many operators are not studied enough after it is shown to be polynomial-time
-computable.
-One can investigate the precise complexity of these operators.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
