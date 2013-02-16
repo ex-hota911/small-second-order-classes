@@ -1454,6 +1454,37 @@ Hence $2y_u - \frac{1}{2}$ is the fix point of $g_u$ and
 This completes the proof of $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classPtwo$-$\redLmF$-complete.
 \end{proof}
 
+\section{???}
+
+Let $M$ be the set of real functions 
+$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
+such that there is a real number $q < 1$
+satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
+for all $x, y, z \in [0,1]$. 
+The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
+for each such $g \in M$, 
+define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
+the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
+$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
+
+The representation $\deltaboxCM$ of $M$ is defined as follows:
+$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
+$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
+$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
+
+\begin{theorem}
+ \label{theorem:Fix-is-P-complete}
+ $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
+\end{theorem}
+
+This is proved below using Lemma~\ref{lemma:P-hard-g_u}. 
+
+Since the formulation of fix-point operation is different between 
+Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
+it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
+Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
+Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
+
 \begin{proof}
 [Proof of Theorem~\ref{theorem:Fix-is-P-complete}]
 Let $L \in \classPtwo$ and $\psi \in \dom L$.
@@ -1504,36 +1535,5 @@ Let $h = \OpCMFix^2(g)$ and $y = (h(t_u)-t_u)/\lambda_{|u|}$, then
 \end{equation}
 so $y = g_u(y)$ and $y$ is the fix point of $g_u$.
 \end{proof}
-
-\section{???}
-
-Let $M$ be the set of real functions 
-$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
-such that there is a real number $q < 1$
-satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
-for all $x, y, z \in [0,1]$. 
-The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
-for each such $g \in M$, 
-define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
-the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
-$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
-
-The representation $\deltaboxCM$ of $M$ is defined as follows:
-$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
-$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
-$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
-
-\begin{theorem}
- \label{theorem:Fix-is-P-complete}
- $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
-\end{theorem}
-
-This will be proved in the appendix using Lemma~\ref{lemma:P-hard-g_u}. 
-
-Since the formulation of fix-point operation is different between 
-Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
-it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
-Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
-Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
 
 \end{document}
