@@ -31,19 +31,19 @@
 \begin{abstract}
 Type-two Theory of Effectivity (TTE) gives a concrete and general framework for 
 Computable Analysis. 
-To discuss polynomial-time computability 
-in this field with as much generality as possible, 
+To refine it to polynomial-time computability 
+while keeping as much generality as possible, 
 Kawamura and Cook recently proposed a modification to TTE using 
 machines that have random access to an oracle and 
 run in time depending on the ``size'' of the oracle. 
 They defined type-two analogues of 
 $\classP$, $\classNP$, and $\classPSPACE$ 
 and showed some typical operators in analysis
-to be computable and complete for these classes. 
+to belong to and be complete for these classes. 
 We further refine their model and study computation below $\classP$: 
 type-two analogues of 
-the log-space class $\classL$, 
-the circuit class $\classNC$, 
+the $\classL$, 
+the $\classNC$, 
 and $\classP$-completeness under log-space reductions.
 The basic idea is 
 to use second-order polynomials as resource bounds, 
@@ -465,17 +465,10 @@ To discuss type-two circuit complexity classes,
 we consider circuit families with oracle gates.
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
-$n$ inputs and $m$ outputs consisting of 
-$\NOT$ $(\neg)$, $\OR$ $(\vee)$, $\AND$ $(\wedge)$, oracle $(\phi)$ gates,
-where each $\NOT$ gate has only one input and each $\phi$ gate with $k$ inputs
-has $L(k)$ outputs.
-The size of $C$, denoted by $|C|$, is the number of gates.
-The depth of $C$, denoted by $\depth(C)$, is the length of the longest path
-from inputs to outputs.
-Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
-$C$ be a $|x|$-input $|\phi|$-oracle $m$-output circuit,
-we write the output of $C$ as $C^\phi(x)$.
-More formally, we define as below.
+$n$ inputs and $m$ outputs consisting of the standard logical gates 
+plus oracle $(\phi)$ gates, 
+where each $\phi$ gate with $k$ inputs has $L(k)$ outputs.
+Formally, 
 
 \begin{definition}[Oracle circuits]
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
@@ -486,21 +479,21 @@ or $\phi _i$, where $i \in \N$.
 The in-degree of a vertex labelled $\NOT$ is $1$, and
 a vertex that is labelled $\phi _i$ and has in-degree $k$ 
 satisfies $i < L(k)$.
-
-The size of $C$, denoted by $|C|$, is the number of vertexes.
-The depth of $C$, denoted by $\depth(C)$, is the length of the longest path in $C$.
-Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
-$C$ be $|x|$-input $m$-output circuit with size-$|\phi|$ oracle gates.
-The output of $C$ is denoted by $C^\phi(x) \in \{0, 1\}^m$,
-where each logic gate performs the logical operation on its inputs
+Each logic gate performs the logical operation on its inputs
 and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is $1$.
+
+The size of $C$, denoted by $|C|$, is the number of vertices.
+The depth of $C$, denoted by $\depth(C)$, is the length of the longest path in $C$.
+For an input $x \in \{0, 1\}^*$, an oracle $\phi \in \LM$, 
+and a $|x|$-input $m$-output circuit $C$ with size-$|\phi|$ oracle gates, 
+we write $C^\phi(x)$ for the output of $C$.
 \end{definition}
 
 
 Now we define type-two classes analogous to 
 $\classAC^i$ and $\classNC$.
 To discuss circuit families computing multi-functions from $\LM$ to $\LM$,
-we index circuits not only by the size of the input but also by the size of the oracle gate.
+we index circuits not only by the input size but also by the size of oracle gates.
 A {\em circuit family $(C_{L,n})_{L,n}$} is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
 such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
@@ -715,7 +708,7 @@ This reduction is much stronger than others since
 it can use the input string $x$ while making the input of $B$.
 The reduction $\redLmF$ is a special case of $\redLB$ where
 $s$ does not depend on the string input $x$.
-See the comments after the next lemma and before Lemma~\ref{lemma:P-hard-g_u} for
+See the comments after the next lemma and before Theorem~\ref{theorem:P-hard-g_u} for
 the disadvantage and the advantage of this reduction.
 
 Let $\mathcal{C}$ be a class of multi-functions from $\LM$ to $\LM$
@@ -1116,7 +1109,7 @@ Part~\ref{enumi:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-co
 
 This will be proved in the appendix, 
 using 
-Lemma~\ref{lemma:P-hard-g_u} below. 
+Theorem~\ref{theorem:P-hard-g_u} below. 
 
 \subsubsection{Fixed points of contractions}
 
@@ -1161,12 +1154,12 @@ and a dyadic number $q \in \D$ such that $g$ is $q$-Lipschitz.
 Let $\OpCMFix \colon C \to \R$ be the operation 
 mapping each contraction on $[0, 1]$ to its fixed point.
 
-\begin{lemma}
-\label{lemma:P-hard-g_u}
+\begin{theorem}
+\label{theorem:P-hard-g_u}
 $\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete. 
 It remains so even if $\dom \OpCMFix$ is restricted to contractions 
 that are $1/2$-Lipschitz.
-\end{lemma}
+\end{theorem}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
@@ -1253,7 +1246,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 \paragraph{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
 
-\begin{proof}[Lemma~\ref{lemma:P-hard-g_u}]
+\begin{proof}[Theorem~\ref{theorem:P-hard-g_u}]
  We show that for each $\psi \in \dom \probDTIMEtwo$,
  there is a log-space computable family of contractions $(g_u)_u$ whose
  Lipschitz constant is less than $1/2$,
@@ -1352,7 +1345,7 @@ $t_u$ the fix point of $g_u$ is log-space computable from $h(t_u)$.
 [Proof of Theorem~\ref{theorem:INV-is-P-complete}]
 Let $L \in \classPtwo$ and $\psi \in \dom L$.
 Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
-as Lemma~\ref{lemma:P-hard-g_u}.
+as Theorem~\ref{theorem:P-hard-g_u}.
 Let
 \begin{align}
  \lambda_n &= 2^{-2n-1},
@@ -1446,7 +1439,7 @@ $|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
  $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
 \end{theorem}
 
-This is proved below using Lemma~\ref{lemma:P-hard-g_u}. 
+This is proved below using Theorem~\ref{theorem:P-hard-g_u}. 
 
 Since the formulation of fix-point operation is different between 
 Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
@@ -1458,7 +1451,7 @@ Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
 [Proof of Theorem~\ref{theorem:Fix-is-P-complete}]
 Let $L \in \classPtwo$ and $\psi \in \dom L$.
 Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
-as Lemma~\ref{lemma:P-hard-g_u}.
+as Theorem~\ref{theorem:P-hard-g_u}.
 Let $(g_u)_u$ be the family of real functions such that for each $u \in \Sigma^*$, 
 $s(\psi)(u, \cdot) \in \LM$ is $\deltaboxCM^1$ name of $g_u$.
 Let
@@ -1485,7 +1478,7 @@ We show that $g$ is $\deltaboxCM$-$\classFLtwo$-computable.
 For each $d_1, d_2 \in \D_n$, some $2^{-m}$-approximation of $g(d_1, d_2)$ 
 is log-space computable since $g_u$ is log-space computable.
 We show that $g$ has a polynomial modulus of continuity.
-From the Lemma~\ref{lemma:P-hard-g_u}
+By Theorem~\ref{theorem:P-hard-g_u}, 
 \begin{equation}
  |g(t_u, y) - g(t_u, y')| \le \frac 1 2 |y - y'|,
 \end{equation}
