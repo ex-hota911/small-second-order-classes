@@ -1215,25 +1215,25 @@ can be written in our terminology as follows:
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
  There is a $(\rhoR, \rhoR)$-$\classNC$-computable function $f \colon \R \to \R$
- such that $f|_{[2n, 2n+1]}$ is contractive for each $n \in \N$ and
- a function mapping a pair of strings $u \in \Sigma^*$ and $0^n$
- to a $2^{-n}$-approximation of the unique fixed point of $f$
- in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is $\classNC$-computable
- if and only if $\classNC = \classP$, 
- where $\overline{1u0}$
+ such that $f|_{[2k, 2k+1]}$ is contractive for each $k \in \N$ and
+ a function mapping 
+ a pair of a number $k \in \N$ (written in binary) and the string $0^n$
+ to a $2^{-n}$-approximation of the (unique by the Banach fixpoint theorem) 
+ fixed point of $f |_{[2k, 2k + 1]}$
+ is $\classNC$-computable 
+ if and only if $\classNC = \classP$. 
 \end{theorem}
 
-By the Banach fixed point theorem, 
-there is such a unique fixed point. 
+We now formulate another version of this theorem which 
 
-The fix-point operation $\OpCMFix^2$ is defined as follows:
-The domain $\dom \OpCMFix^2$ is a set of real functions 
+The operation $\OpCMFix^2$ is defined as follows:
+$\dom \OpCMFix^2$ is a set of real functions 
 $g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
 such that there is a real number $q < 1$
 satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
-for all $x, y, z \in [0,1]$.
-For each $g \in \dom \OpCMFix^2$, 
-the value $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ is defined to be 
+for all $x, y, z \in [0,1]$; 
+for each such $g$, 
+define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
 the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
 $h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
 
