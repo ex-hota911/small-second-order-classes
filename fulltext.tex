@@ -1207,66 +1207,49 @@ This will be proved in the appendix.
 
 \subsubsection{Fixed points of contraction mappings}
 
+A function $g \colon K \to \R$ on a set $K \subseteq \R$
+is called $q$-\emph{Lipschitz}, where $q > 0$, 
+if $
+\lvert g (x) - g (y) \rvert \leq q \cdot \lvert x - y \rvert
+$ for all $x$, $y \in K$. 
+A \emph{contraction} on $K$ is 
+a function $g \colon K \to \R$ which is $q$-Lipschitz for some $q < 1$
+and whose values are in $K$. 
+The Banach fixpoint theorem states that 
+a contraction has a fixed point and it is unique. 
+
 Hoover's theorem about the complexity of computing the fixed point
-of a contractive real function
-can be written in our terminology as follows:
+of a contraction can be written in our terminology as follows:
 
 \begin{theorem}
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
  There is a $(\rhoR, \rhoR)$-$\classNC$-computable function $f \colon \R \to \R$
- whose restriction $f|_{[2k, 2k+1]}$ is contractive for each $k \in \N$ and
+ whose restriction $f|_{[2k, 2k+1]}$ is a contraction for each $k \in \N$ and
  which has the following property: 
  $\classNC = \classP$ if and only if 
  there is a function (from strings to strings) in $\classFNC$ mapping 
  a pair of a number $k \in \N$ (written in binary) and the string $0^n$
- to a $2^{-n}$-approximation of the (unique by the Banach fixpoint theorem) 
+ to a $2^{-n}$-approximation of the 
  fixed point of $f |_{[2k, 2k + 1]}$. 
 \end{theorem}
 
 We now formulate another version of this theorem which 
 
-Let $M$ be the set of real functions 
-$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
-such that there is a real number $q < 1$
-satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
-for all $x, y, z \in [0,1]$. 
-The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
-for each such $g \in M$, 
-define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
-the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
-$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
+Let $C$ be the set of contractions on $[0, 1]$. 
+Let $\OpCMFix \colon C \to \R$ be the operation 
+mapping each contraction on $[0, 1]$ to its fixed point.
 
-The representation $\deltaboxCM$ of $M$ is defined as follows:
-$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
-$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
-$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
-
-\begin{theorem}
- \label{theorem:Fix-is-P-complete}
- $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
-\end{theorem}
-
-This will be proved in the appendix using Lemma~\ref{lemma:P-hard-g_u}. 
-
-Let $\OpCMFix$ be an operation mapping a contraction $g \in \classC[0,1]$ 
-to its unique fix point.
-The definition of $\OpCMFix$ seems more natural as a fix-point operator than
-$\OpCMFix^2$.
-However, we cannot show $\classPtwo$-completeness of $\OpCMFix$ 
-under the reduction $\redLmF$ since we cannot put enough information in
- a $\rhoR$ name of the output real number.
-The reduction $\redLB$ is so strong that $\OpCMFix$ can 
-be $\classPtwo$-complete under this reduction.
-
-We define a \emph{$\deltaboxCM^1$ name} of a contraction $g \in \classC[0,1]$
-as a pair of $\langle \phi, q \rangle$ such that $\phi \in \LM$ is a 
-$\deltabox$ name of $g$ and $q \in \D$ is a Lipschitz constant of $g$ less than $1$.
+We define the representation $\deltaboxCM^1$ of $C$ as follows: 
+a \emph{$\deltaboxCM^1$-name} of $g \in C$
+is a pair $\langle \phi, q \rangle$ such that 
+$\phi \in \LM$ is a $\deltabox$-name of $g$ 
+and $q$ is a dyadic number such that $g$ is $q$-Lipschitz. 
 \begin{lemma}
 \label{lemma:P-hard-g_u}
 $\OpCMFix$ is $(\deltaboxCM^1, \rhoR)$-$\classFPtwo$-$\redLB$-complete, 
- even if $\dom \OpCMFix$ is restricted to contraction mappings
-$g$ whose Lipschitz constant is less than $1/2$.
+even if $\dom \OpCMFix$ is restricted to contractions 
+that are $1/2$-Lipschitz.
 \end{lemma}
 
 Since the formulation of fix-point operation is different between 
@@ -1599,5 +1582,30 @@ Let $h = \OpCMFix^2(g)$ and $y = (h(t_u)-t_u)/\lambda_{|u|}$, then
 \end{equation}
 so $y = g_u(y)$ and $y$ is the fix point of $g_u$.
 \end{proof}
+
+\section{???}
+
+Let $M$ be the set of real functions 
+$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
+such that there is a real number $q < 1$
+satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
+for all $x, y, z \in [0,1]$. 
+The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
+for each such $g \in M$, 
+define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
+the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
+$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
+
+The representation $\deltaboxCM$ of $M$ is defined as follows:
+$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
+$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
+$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
+
+\begin{theorem}
+ \label{theorem:Fix-is-P-complete}
+ $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
+\end{theorem}
+
+This will be proved in the appendix using Lemma~\ref{lemma:P-hard-g_u}. 
 
 \end{document}
