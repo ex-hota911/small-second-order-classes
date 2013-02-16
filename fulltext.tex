@@ -922,7 +922,7 @@ are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
 
 
 
-\subsubsection{$\classL$ computable real functions}
+\subsubsection{$\classL$-computable real functions}
 
 \begin{example}
  The binary addition and the binary multiplication are
@@ -1276,9 +1276,8 @@ $|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
 
 \begin{theorem}
  \label{theorem:Fix-is-P-complete}
- $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete
+ $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
 \end{theorem}
-
 
 Since the formulation of fix-point operation is different between 
 Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
@@ -1321,11 +1320,7 @@ Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
  approximating $h$ at rational points is log-space computable from fix-points of $f$.
 \end{proof}
 
-
-
-
-\subsubsection{Proofs of hardness}
-
+\subsection{Proofs of hardness}
 
 \paragraph{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
 
@@ -1437,8 +1432,7 @@ $g$ whose Lipschitz constant is less than $1/2$.
 \end{proof}
 
 
-
-\paragraph{Proofs of theorems}
+\paragraph{Proofs of Theorems \ref{theorem:INV-is-P-complete} and \ref{theorem:Fix-is-P-complete}}
 \label{section:proofs-of-theorems}
 
 We show the $\classFP$-$\redLmF$-hardness of an operation $P$
@@ -1573,7 +1567,6 @@ Let $h = \OpCMFix^2(g)$ and $y = (h(t_u)-t_u)/\lambda_{|u|}$, then
 \end{equation}
 so $y = g_u(y)$ and $y$ is the fix point of $g_u$.
 \end{proof}
-
 
 \section{Conclusion and future work}
 \label{chapter:conclusion}
