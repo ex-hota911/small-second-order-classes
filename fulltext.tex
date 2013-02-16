@@ -92,7 +92,7 @@ $\classP$, $\classNP$, $\classPSPACE$ and
 applied them to real functions and operators. 
 
 One benefit of this was
-a greater variety of objects for which we define complexity. 
+a greater variety of objects for which we can define complexity. 
 For example, with the second-order formulation
 we can define a canonical representation of the space $\classC [0, 1]$
 of continuous real functions, 
@@ -647,15 +647,10 @@ that computes $A(\phi)$.
 \subsubsection{Reductions}
 We define the paring function, denoted by $\langle \phi, \psi \rangle$,
 of length-monotone functions as follows:%
-\footnote{
-The pairing function is defined as
-$\langle \phi, \psi \rangle(0u) = \phi(u) 0^{|\psi(u)|}$
-and 
-$\langle \phi, \psi \rangle(1u) = \psi(u) 1^{|\phi(u)|}$ 
-in \cite{kawamura2012complexity}.
-In this definition, however, we cannot distinguish $\phi(u)$ and the padding
-if $\phi$ is a length-monotone function from $\Sigma^*$ to $\{0\}^*$,
-so we put $1$ to separate the padding.
+\footnote{%
+The pairing function was
+defined erroneously in \cite{kawamura2012complexity} 
+without the delimiter $1$. 
 }
 $\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
 $\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
