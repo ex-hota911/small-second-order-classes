@@ -889,7 +889,7 @@ analysis and demonstrate that our new classes introduced in the previous
 chapter are useful.
 In Sect.~\ref{section:function}, 
 we show that some basic real functions are $\classL$-computable and
-roots of a polynomial with real coefficients are $\classNC$-computable.
+roots of a polynomial with complex coefficients are $\classNC$-computable.
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
 
@@ -964,7 +964,14 @@ Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
 
 \subsubsection{Finding polynomial roots is $\classFNCtwo$-computable}
 
-\paragraph{Representation of multisets of complex numbers}
+%\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
+
+We write $P_n$ for the set of degree $n$ monic 
+polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
+We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
+\begin{equation}
+ \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
+\end{equation}
 
 For two multisets of $n$ complex numbers $S = \{z_1, \dots, z_n\}$ and $S' = \{z'_1, \dots, z'_n\}$,
 we define the distance between $S$ and $S'$ by $
@@ -994,33 +1001,24 @@ $d(S, S_m) \le 2^{-m}$.
 
 
 
-\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
+%\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 
-We write $P_n$ for the set of degree $n$ monic 
-polynomials (i.e.\ the leading coefficient is $1$) with real coefficients.
-We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
-\begin{equation}
- \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
-\end{equation}
-
+We represent a complex number by a pair of $\rhoR$-names,
+that is, $\rho_\C(\phi) = z \iff \rho_\R^2(\phi) = (a, b) \wedge z = a+bi$.
 We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
 $\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
-if $\phi$ is a $\rho_{\R^n}$-name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
+if $\phi$ is a $\rho_{\C^n}$-name of $\langle a_{n-1}, \dots, a_0 \rangle$ 
 such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
 Define the representation $\rho_{P_*}$ of monic polynomials by
 $p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
-
 
 \begin{theorem}
  \label{theorem:finding-roots-is-in-NC}
  $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
-This will be proved later in this section
-after stating Theorem~\ref{theorem:neff1994}. 
-
 \begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable
+ $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
 \end{corollary}
 
 
