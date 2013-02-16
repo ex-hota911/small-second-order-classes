@@ -92,7 +92,7 @@ $\classP$, $\classNP$, $\classPSPACE$ and
 applied them to real functions and operators. 
 
 One benefit of this was
-a greater variety of objects to which we can apply complexity theory. 
+a greater variety of objects for which we define complexity. 
 For example, with the second-order formulation
 we can define a canonical representation of the space $\classC [0, 1]$
 of continuous real functions, 
@@ -210,11 +210,11 @@ We review the Type-two Theory of Effectivity (TTE),
 the framework for computable analysis, 
 as extended by 
 \cite{kawamura2012complexity}. 
-
-In usual complexity theory, we encode countable sets in strings, such as
+In usual discrete settings, we encode countable sets in strings, such as
 natural numbers, formulas, graphs and so on. 
 Likewise, 
-we use string functions encode objects, such as real numbers and real functions, 
+we use string functions to 
+encode uncountably many objects, such as real numbers and real functions, 
 and use \emph{oracle Turing machines} (henceforth just \emph{machines}) 
 to work on them.
 Sect.~\ref{section:TTF} defines polynomial-time computability on 
@@ -347,6 +347,7 @@ without using oracle machines.
  polynomial $p \colon \N \to \N$ such that
  for all $d \in \D \cap [0,1]$ and $n \in \N$,
  \begin{equation}
+   \label{eq:computation on rational points}
   |\phi(d, 0^n) - f(d)| \le 2^{-n},
  \end{equation}
  and for all $x, y \in [0, 1]$, $n \in \N$,
@@ -367,7 +368,8 @@ function mapping $u$ to $0^{\mu(|u|)}$ for each string $u$.
 For $\phi \in \LM$ and $\mu \colon \N \to \N$ non-decreasing,
 we say that $\langle \overline{\mu}, \phi \rangle$ is a $\deltabox$-name of $f \in \classC[0,1]$
 if $\mu$ is a modulus of continuity of $f$
-and $|\phi(0^n, d) - f(d)| \le 2^{-n}$ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
+and $\phi$ satisfies \eqref{eq:computation on rational points}
+for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$-computability is equivalent to 
@@ -402,7 +404,7 @@ The machine $M$ can write a symbol on the top query tape, or
 \emph{push} a new query tape on the top of the stack (and start writing on it).
 When the machine issues a query, the stack is \emph{popped} automatically; 
 that is, 
-if the string on the query tape at the top of the stack at the time of the query was $u$, 
+if the string on the query tape at the top of the stack was $u$, 
 the oracle $\phi$ writes the string $\phi (u)$ on the answer tape, 
 and at the same time the top query tape is removed from the stack. 
 We put the restriction that the height of the stack of a machine is less than 
@@ -871,9 +873,8 @@ to make both conditions true.
 
 \section{Applications}
 \label{section:applications}
-In this chapter, we investigate the complexity of several problems in numerical
-analysis and demonstrate that our new classes introduced in the previous
-chapter are useful.
+In this section, we investigate the complexity of several problems in numerical
+analysis using our new classes introduced in the previous section.
 In Sect.~\ref{section:function}, 
 we show that some basic real functions are $\classL$-computable and
 roots of a polynomial with complex coefficients are $\classNC$-computable.
