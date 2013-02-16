@@ -1226,20 +1226,20 @@ can be written in our terminology as follows:
 
 We now formulate another version of this theorem which 
 
-The operation $\OpCMFix^2$ is defined as follows:
-$\dom \OpCMFix^2$ is a set of real functions 
+Let $M$ be the set of real functions 
 $g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
 such that there is a real number $q < 1$
 satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
-for all $x, y, z \in [0,1]$; 
-for each such $g$, 
+for all $x, y, z \in [0,1]$. 
+The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
+for each such $g \in M$, 
 define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
 the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
 $h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
 
-The representation $\deltaboxCM$ is defined as follows:
+The representation $\deltaboxCM$ of $M$ is defined as follows:
 $\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
-$\phi$ is a $\deltabox$ name of $g$ and rational number $q$ satisfies 
+$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
 $|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
 
 \begin{theorem}
