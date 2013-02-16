@@ -1188,37 +1188,32 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 \begin{proof}
 [Theorem~\ref{theorem:hoover1991-4.5}]
- Lemma~\ref{lemma:p-comp-maps-l-to-p-comp} implies that
- there is $\deltaboxCM$-$\classFL$-computable function 
- $g \colon [0,1]^2 \to [0,1]$ such that $\OpCMFix^2(g)$ is
- $\deltabox$-$\classFP$-complete. Let $h = \OpCMFix^2(g)$.
- We define a real function $f \colon \R^+ \to \R^+$ as follows:
+ Let $\psi \in \LM$ be $\classFP$-complete and
+ $A$ be a constant function $A(\phi) = \psi$ for all $\phi \in \LM$.
+ Since $A$ is in $\classFP$, $A \redLB \OpCMFix$.
+ Let $r,s,t \in \classFLtwo$ be the reduction from $A$ to $\OpCMFix$,
+ and $\phi$ be some function in $\classFL$.
+ Then, $r(\phi)$, $s(\phi)$, and $t(\phi)$ are all in $\classFL$.
+ Since $s(\phi)(u, \cdot) \in \dom \OpCMFix$ for each $u$,
+ $s(\phi)(u, \cdot)$ is a $\deltaboxCM^1$-name of some contraction on $[0,1]$.
+ Let $(g_u)_u$ be a family of contractions on $[0,1]$
+ such that $s(\phi)(u, \cdot)$ is $\deltaboxCM^1$ name of $g_u$.
  For each $u \in \Sigma^*$ and $y \in [0, 1]$,
  \begin{equation}
   \label{eq:def-f}
- f(\overline{1u0} + y) = \overline{1u0} + g(0.u, y)
+ f(\overline{1u0} + y) = \overline{1u0} + g_u(y)
  \end{equation}
  and in other interval, $f$ is connected linearly.
 
  We show that $f$ meets the conditions in Theorem~\ref{theorem:hoover1991-4.5}.
  This $f$ is $\deltabox$-$\classNC$-computable since 
- $|f(x) - f(x')| \le 3|x-x'|$ and $g$ is $\deltabox$-$\classNC$-computable.
- From \eqref{eq:def-f},  $f|_{[2n, 2n+1]}$ is contractor.
- Since computing fix-points of $f$ is polynomial-time computable, 
+ $|f(x) - f(x')| \le 3|x-x'|$ and $s(\phi)$ is $\classNC$-computable.
+ Since $g_u$ is a contraction,  so is $f|_{[2n, 2n+1]}$.
+ Since computing fix-points of $f$ is polynomial-time computable,
  it is $\classNC$ computable if $\classNC = \classP$.
- We show that some $\deltabox$ name $\phi$ of $h$ is log-space computable 
- from fix-points of $f$.
- Once this is proved, it is clear that $f$ is $\classNC$ only if 
- $\classNC = \classP$ from the fact that $h$ is $\classPtwo$ complete.
- In the next proof, we will show that $h$ has a modulus of continuity that is
- log-space computable. 
- The fix-point of $f$ in $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$ is
- $\overline{1u0} + h(0.u)$.
- For each $d \in \D$, let $u$ be shortest string such that $0.u = d$,
- and $\hat y_d$ be $2^{-n}$-approximation of the fix point of $f$ in
- $\bigl[ \overline{1u0}, \overline{1u0}+1 \bigr]$.
- Since  $\left|h(d) - \left( \hat y_d - \overline{1u0} \right)\right| \le 2^{-n}$,
- approximating $h$ at rational points is log-space computable from fix-points of $f$.
+ From the definition of $\redLB$, $\psi$ is many-one log-space
+ reducible to the fix-points of $f$ in $[2k, 2k+1]$,
+ so $\classNC = \classP$ if it is in $\classNC$.
 \end{proof}
 
 \subsubsection{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
@@ -1310,7 +1305,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 \end{proof}
 
 
-\subsubsection{Proofs of Theorems \ref{theorem:INV-is-P-complete} and \ref{theorem:Fix-is-P-complete}}
+\subsubsection{Proofs of Theorems \ref{theorem:INV-is-P-complete}}
 \label{section:proofs-of-theorems}
 
 We show the $\classFP$-$\redLmF$-hardness of an operation $P$
@@ -1393,86 +1388,5 @@ Hence $2y_u - \frac{1}{2}$ is the fix point of $g_u$ and
 This completes the proof of $\OpINV$ is $(\deltaboxINV, \deltabox)$-$\classPtwo$-$\redLmF$-complete.
 \end{proof}
 
-\section{???}
-
-Let $M$ be the set of real functions 
-$g \colon [0, 1]^2 \to \R$ with values in $[0, 1]$ 
-such that there is a real number $q < 1$
-satisfying $|g(x, y) - g(x, z)| \le q \cdot |y - z|$
-for all $x, y, z \in [0,1]$. 
-The operation $\OpCMFix^2 \colon M \to \classC [0, 1]$ is defined as follows:
-for each such $g \in M$, 
-define $h = \OpCMFix^2(g) \colon [0, 1] \to \R$ to be 
-the (unique) function satisfying $h(x) = g(x, h(x))$, that is, 
-$h$ maps $x \in [0,1]$ to the fixed point of $g(x, \cdot) \colon [0,1] \to [0,1]$.
-
-The representation $\deltaboxCM$ of $M$ is defined as follows:
-$\deltaboxCM(\langle \phi, q \rangle) = g$ if and only if
-$\phi$ is a $\deltabox$-name of $g$ and a rational number $q$ satisfies 
-$|g(x, y) - g(x, z)| \le q \cdot |y - z|$ for  $x, y, z \in [0,1]$.
-
-\begin{theorem}
- \label{theorem:Fix-is-P-complete}
- $\OpCMFix^2$ is $(\deltaboxCM, \deltabox)$-$\classFPtwo$-$\redLmF$-complete. 
-\end{theorem}
-
-This is proved below using Theorem~\ref{theorem:P-hard-g_u}. 
-
-Since the formulation of fix-point operation is different between 
-Theorem~\ref{theorem:hoover1991-4.5} and Theorem~\ref{theorem:Fix-is-P-complete},
-it is not so easy to derive Theorem~\ref{theorem:hoover1991-4.5} from
-Theorem~\ref{theorem:Fix-is-P-complete} as the reduction from 
-Theorem~\ref{theorem:INV-is-P-complete} to Theorem~\ref{theorem:ko1991-4.18}.
-
-\begin{proof}
-[Proof of Theorem~\ref{theorem:Fix-is-P-complete}]
-Let $L \in \classPtwo$ and $\psi \in \dom L$.
-Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
-as Theorem~\ref{theorem:P-hard-g_u}.
-Let $(g_u)_u$ be the family of real functions such that for each $u \in \Sigma^*$, 
-$s(\psi)(u, \cdot) \in \LM$ is $\deltaboxCM^1$ name of $g_u$.
-Let
-\begin{align}
- \lambda_n &= 2^{-2n-1},
- &
- t_u & = 1 - 2^{-|u|} + \bar u \cdot \lambda_{|u|}.
-\end{align}
-We define $g \colon [0,1]^2 \to [0,1]$ as
-for each $y \in [0,1]$ and $u \in \Sigma^*$,
-\begin{equation}
- g(t_u, y) = t_u + \lambda_{|u|} \cdot g_u(\hat y)
-\end{equation}
-where $\hat y = \max\{0, \min\{(y-t_u)/\lambda_{|u|}, 1\}\}$.
-Let $u'$ be the next string of $u$.
-For each $x \in (t_u, t_{u'})$,
-\begin{equation}
- g(x, y) 
-  = \frac{(t_{u'} - x) \cdot g(t_u, y) + (x - t_u)g(t_{u'}, y)}{t_{u'} - t_u},
-\end{equation}
-and $g(1, y) = 1$.
-
-We show that $g$ is $\deltaboxCM$-$\classFLtwo$-computable.
-For each $d_1, d_2 \in \D_n$, some $2^{-m}$-approximation of $g(d_1, d_2)$ 
-is log-space computable since $g_u$ is log-space computable.
-We show that $g$ has a polynomial modulus of continuity.
-By Theorem~\ref{theorem:P-hard-g_u}, 
-\begin{equation}
- |g(t_u, y) - g(t_u, y')| \le \frac 1 2 |y - y'|,
-\end{equation}
-hence $|g(x, y) - g(x, y')| \le q|y - y'|$ for all $x, y, y' \in [0,1]$.
-For each $u, u' \in \Sigma^*$,
-\begin{equation}
- |g(t_u, y) - g(t_{u'}, y)| \le |t_u - t_{u'}| + \lambda_{|u|} + \lambda_{|u'|} \le 3|t_u - t_{u'}|
-\end{equation}
-so $|g(x, y) - g(x', y)| \le 3|x-x'|$ for all $x, x', y \in [0,1]$.
-Hence $g$ has a polynomial modulus of continuity.
-
-
-Let $h = \OpCMFix^2(g)$ and $y = (h(t_u)-t_u)/\lambda_{|u|}$, then
-\begin{equation}
- h(t_u) = g(t_u, h(t)) = t_u + \lambda_{|u|} \cdot g_u \left( \frac{y-t_u}{\lambda_{|u|}} \right)
-\end{equation}
-so $y = g_u(y)$ and $y$ is the fix point of $g_u$.
-\end{proof}
 
 \end{document}
