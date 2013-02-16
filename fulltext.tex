@@ -1,6 +1,5 @@
 \documentclass[envcountsame,orivec,oribibl]{llncs}
 \usepackage{mathtools}
-\usepackage{stmaryrd}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -390,29 +389,34 @@ based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
 
 \subsection{Logarithmic space}
-There are several definitions of relativized log-space computation
+There are several non-equivalent definitions of 
+relativized log-space computation
 \cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure}.
 Here, we define type-two log-space computation 
 by extending the {\em stack model with constant height} 
 by Aehlig, Cook and Nguyen \cite{aehlig2007relativizing} to the 
 function-oracle model.
-We choose this model since it is consistent with relativized circuit complexity classes 
+We choose this model because it is consistent with relativized circuit complexity classes 
 and it can ask nested queries, that is, queries depending on answers from the oracle.
 For details, see the comment on Theorem \ref{theorem:inclusion} and \ref{theorem:apply-is-L-computable}.
 
-
-We consider a Turing machine $M$ relative to a function oracle $\phi$
+We consider an oracle Turing machine $M$ 
 with a stack of query tapes and an answer tape.
-The machine $M$ can write a symbol on the top query tape, or the machine can
-put a new query tape on the top of the stack and start writing on it.
-We call the latter action as the {\em push} operation.
-The machine also can {\em pop} the query stack.
-We put the restriction that the stack height of a machine is less than 
+The machine $M$ can write a symbol on the top query tape, or 
+\emph{push} a new query tape on the top of the stack (and start writing on it).
+It can also \emph{pop} the stack. 
+We put the restriction that the height of the stack of a machine is less than 
 some constant for all inputs and oracles.
+
 Since we consider the function-oracle model, the main difference from
 the original model is in how to handle the answer.
-The answer to the query on the top of the stack is written on the answer tape after a pop operation.
-The answer tape is magically {\em erased} after a push operation.
+When the machine issues a query, the stack is \emph{popped} automatically; 
+that is, 
+if the string on the query tape at the top of the stack at the time of the query was $u$, 
+the oracle $\phi$ writes the string $\phi (u)$ on the answer tape, 
+and at the same time this top query tape is removed from the stack. 
+We also assume that 
+the answer tape is erased after each push operation.
 
 We put the restriction that the answer is erased after every push operation 
 in order to restrict the nested depth of queries to be constant.
