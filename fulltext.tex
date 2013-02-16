@@ -82,56 +82,46 @@ and processed by Turing machines.
 Such approximation can be 
 presented to the machine 
 as infinite strings on the tape 
-or as oracles that answer queries, 
-and they are equivalent as long as we only discuss computability, 
-but 
-Kawamura and Cook \cite{kawamura2012complexity} recently pointed out 
-that when we want to pay attention to 
-bounds on time and space, 
-it is more appropriate to use oracle machines 
-with random access and 
+or as query-answering oracles (i.e., functions taking strings to strings), 
+and this choice does not make much difference 
+as long as we only discuss computability. 
+But when we want to pay attention to bounds on time and space, 
+Kawamura and Cook \cite{kawamura2012complexity} recently pointed out that 
+it is more convenient to use oracles with random access, 
+and moreover, to allow the running time 
+to depend on the ``size'' of the oracle. 
+Employing \emph{type-two complexity theory} and 
+using \emph{second-order polynomials} to bound time and space, 
+they formulated analogues of complexity classes 
+$\classP$, $\classNP$, $\classPSPACE$ and 
+applied them to real functions and operators. 
 
-
-\emph{length-monotone} string functions. 
-This makes it possible to define the
-\emph{size} of function and to bound resources by size of input.
-
-One consequence of this is
+One benefit of this was
 a greater variety of objects to which we can apply complexity theory. 
-A restriction in applying the framework of TTE based on infinite strings
-to complexity theory was that 
-the complexity of an operation $F$ on real functions
-is stated indirectly in the non-uniform form like
+For example, with the second-order formulation
+we can define a canonical representation of the space $\classC [0, 1]$, 
+so that we can discuss the complexity of an
+operator $F \colon \classC [0, 1] \to \classC [0, 1]$ on real functions. 
+This extended the previously accepted notion of 
+complexity of $f \in \classC [0, 1]$
+(which had been possible to formulate also in the infinite string model)
+in a natural way, so that many known non-uniform results of the form
 \begin{quote}
  if $f$ is in the complexity class $X$,
- then $F(f)$ is in the complexity class $Y$, and \\
+ then $F(f)$ is in the class $Y$, and \\
  there is $f$ in $X$ such that $F(f)$ is hard for
- the complexity class $Z$.
+ the complexity class $Z$, 
 \end{quote}
-This was because 
-there was a widely-recognized definition of polynomial-time computable 
-real functions whose domain is compact, 
-but in the infinite string model we were not able to state
-directly that $F$ is polynomial-time computable or hard for $\classPSPACE$.
-In Kawamura and Cook's framework we can state directly the complexity of
- an operator $F$ in the effective or uniform form like
+can now be transformed into a stronger, uniform statement of the form
 \begin{quote}
  $F$ is in the complexity class $\mathcal Y$, and \\
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
-where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$.
+where $\mathcal{X, Y, Z}$ are type-two complexity classes analogous to ${X, Y, Z}$ (see \cite{kawamura2012complexity} for more details).
 
-\subsection{our}
-
-We introduce new small type-two classes.
-Type-two analogues of the classes $\classP$, $\classNP$, and $\classPSPACE$
-are defined by bounding resource of oracle machines by using 
-second-order polynomials on the size of the input string functions,
-\cite{kawamura2012complexity}.
-Using second-order logarithmic function,
-we define type-two classes analogous to the logarithmic-space 
-complexity class $\classL$ and the circuit complexity class $\classNC$, 
-which are both contained in $\classP$.
+We continue their research and proceed down into $\classP$. 
+We study analogues of the logarithmic-space 
+complexity class $\classL$ and the circuit complexity class $\classNC$. 
 While there are various models of relativized logarithmic space,
 we choose the \emph{constant stack machine} \cite{aehlig2007relativizing} 
 since it is consistent with relativized circuit complexity classes 
