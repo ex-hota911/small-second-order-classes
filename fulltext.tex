@@ -444,13 +444,12 @@ but we will not use such classes in this paper.
  to length-monotone functions in $\classFL$.
 \end{lemma}
 
-\begin{proof}
-For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
-hence second-order logarithm collapses to first-order logarithm.
-Since $\classFL$ is low for itself ($\classFL^\classFL = \classFL$), 
-functions computed by log-space constant-stack machines with $\classFL$ oracle are in $\classFL$.
-\end{proof}
-
+% \begin{proof}
+% For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
+% hence second-order logarithm collapses to first-order logarithm.
+% Since $\classFL$ is low for itself ($\classFL^\classFL = \classFL$), 
+% functions computed by log-space constant-stack machines with $\classFL$ oracle are in $\classFL$.
+% \end{proof}
 
 \subsection{Circuit complexity classes}
 
@@ -875,10 +874,7 @@ finding roots of a complex polynomial is $\classNC$ computable.
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 We write $P_n$ for the set of degree $n$ monic 
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
-We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is,
-\begin{equation}
- \OpPolyRoot(p) \coloneqq \{ z_1, \dots, z_n \} \text{ s.t. } p(x) = \prod_j (x - z_j).
-\end{equation}
+We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is, $p(x) = \prod_{z \in \OpPolyRoot(p)} (x - z)$. 
 
 Neff first showed that approximating the roots of polynomial
 with integer coefficients is in $\classFNC$.
