@@ -134,26 +134,17 @@ we use a modified version of
 the \emph{constant stack machine} \cite{aehlig2007relativizing}, 
 since it is consistent with relativized circuit complexity classes 
 and it makes some elemental operation log-space computable.
-Also, in the formulation of uniform circuit family, 
+Formulation of uniform circuit family
+also requires careful consideration to 
+accommodate function oracles. 
 
 In Section~\ref{section:applications}, 
 we apply this framework to several problems in analysis.
-% We investigate the computational complexity of several problems in 
-% numerical analysis.
-% The problems we study in this paper are of the following kind:
-% How much resource is needed to compute the roots of a polynomial?
-% Which operators on real function are feasibly computable but inherently sequential?
-% In this paper, we use the model of the real computation from the field of 
-% Computable Analysis.
-Our first application is the problem of finding roots of a polynomial 
-from its coefficients.
-% Neff's algorithm for finding the roots of a given polynomial 
-% in type-two $\classNC$; 
-% Ko's and Hoover's hardness results about 
-% inversion of real functions and the fix-point operation on contractive mappings
-% can be strengthened to type-two $\classP$-completeness in our formulation. 
-Second application is about $\classP$-complete operators.
-We take up
+We present several examples of real functions and operators 
+that are already essentially known (but non-trivially) to be, 
+in our terminology, 
+in $\classL$ and $\classNC$. 
+We then take up
 Hoover's theorem about fixed points of contractions \cite{hoover1991real}
 and Ko's theorem about inverting a function \cite{ko1991complexity}, 
 which both state hardness for $\classP$ in a sense, 
