@@ -258,9 +258,21 @@ polynomial, then $P(L)$ is a first-order polynomial.
  length-monotone functions in $\classFP$ to $\classFP$.
 \end{lemma}
 
-It follows immediately from this lemma that functions in $\classPtwo$ map 
- length-monotone functions in $\classFP$ to $\classP$.
-
+We define the paring function, denoted by $\langle \phi, \psi \rangle$,
+of length-monotone functions as follows: 
+% \footnote{%
+% The pairing function was
+% defined erroneously in \cite{kawamura2012complexity} 
+% without the delimiter $1$. 
+% }
+$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
+$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
+We pad $0$s to make the pairing function length-monotone.
+We write $\langle \phi, \psi, \theta \rangle$ 
+for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
+We also write $\langle \phi, u \rangle$, etc., for 
+$\phi \in \LM$ and a string $u \in \Sigma ^*$, 
+where we encode $u$ as a constant function in $\LM$ with value $u$. 
 
 \subsection{Representations}
 \label{subsection: representations}
@@ -300,7 +312,7 @@ For each $n \in \N$, let $\D_n$ denote the set of strings of the form
 where $s$ is the sign and $x \in \{0,1\}^*$.
 We write $\D$ for the union $\bigcup _n \D _n$.
 We regard $u \in \D$ as a fraction of binary numbers, 
-and write $u$ also for the number encoded by it.
+and write $u$ also for the number it encodes. 
 
 A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
 if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
@@ -346,8 +358,8 @@ without using oracle machines.
 
 We say $\mu \colon \N \to \N$ is a {\em modulus of continuity} of $f \in \classC[0,1]$
 if $|x - y| \le 2^{-\mu(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n}$ for all $x, y \in [0,1]$ and $n \in \N$.
-We represent a real function in $\classC[0,1]$ by a pair of
-an approximating function and a modulus of continuity of $f$.
+The following representation $\deltabox$ that we will use for real functions in $\classC[0,1]$ 
+is inspired by this. 
 
 For a non-decreasing function $\mu \colon \N \to \N$, 
 we write $\overline \mu \colon \Sigma^* \to \Sigma^*$ for the length-monotone
@@ -607,19 +619,6 @@ Corollary~\ref{corollary: type-one and type-two circuit classes}.
 
 \subsection{Reductions and completeness}
 
-We define the paring function, denoted by $\langle \phi, \psi \rangle$,
-of length-monotone functions as follows:%
-\footnote{%
-The pairing function was
-defined erroneously in \cite{kawamura2012complexity} 
-without the delimiter $1$. 
-}
-$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
-$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
-We pad $0$s to make the pairing function length-monotone.
-We write $\langle \phi, \psi, \theta \rangle$ 
-for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
-
 \begin{definition}
 Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
 \begin{itemize}
@@ -750,21 +749,16 @@ for all $\phi \in \LM \cap \dom \gamma$.
  $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
 \end{lemma}
 
-We say that $x \in X$ is \emph{$\gamma$-$C$-computable} if
-$x$ has a $\gamma$ name in $C$,
-where $C$ is a usual (type-one) complexity class.
 We say that $x \in X$ is $\gamma$-$C$-$\le$-complete if
 $\cup(\gamma^{-1}[x])$ is $C$-$\le$-complete,
 where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
-
-
 
 \begin{lemma}
  Let $\mathcal C$ be either $\classFLtwo$, $\classFNCtwo$, 
  or $\classFPtwo$, and $C$ be the type-one complexity class
  corresponding to $\mathcal C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
- A $(\gamma, \delta)$-$\mathbf C$-computable partial function $F$ from $X$
+ A $(\gamma, \delta)$-$\mathcal C$-computable partial function $F$ from $X$
  to $Y$ maps $\gamma$-$C$-computable elements of $X$
  in $\dom F$ to $\delta$-$C$-computable elements of $Y$.
 \end{lemma}
@@ -846,7 +840,7 @@ Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
 a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
 by polynomially many multiplications, additions, and division on rationals.
 Since iterated multiplications, iterated additions, division on integers
-are in $\classFL$ \cite{chiu2001division},
+are in $\classFL$ by Chiu, Davida and Litow~\cite{chiu2001division},
 $\exp$ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
 On the other hand, without restriction on the domain, $\exp$ is not 
 even $(\rhoR, \rhoR)$-$\classFPtwo$ computable, 
@@ -957,10 +951,9 @@ and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
  $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
 \end{theorem}
 
-\begin{corollary}
- $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
-\end{corollary}
-
+% \begin{corollary}
+%  $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
+% \end{corollary}
 
 Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 by the following algorithm:
@@ -1064,7 +1057,7 @@ of a contraction can be written in our terminology as follows:
 
 We now formulate another version of this theorem which 
 will imply Theorem~\ref{theorem:hoover1991-4.5}
-(see appendix fo the proof that Theorem~\ref{theorem:P-hard-g_u} 
+(see appendix for the proof that Theorem~\ref{theorem:P-hard-g_u} 
 implies Theorem~\ref{theorem:hoover1991-4.5}). 
 
 Let $C$ be the set of contractions on $[0, 1]$. 
