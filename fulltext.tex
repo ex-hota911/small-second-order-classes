@@ -59,14 +59,14 @@ computational equivalence between representations is now finer;
 uniformity of circuits must be defined 
 with varying sizes of oracle gates taken into account. 
 As prototypical applications, 
-we recast some facts about the complexity of numerical problems 
-into our framework: 
-we show that Neff's algorithm for finding the roots of a given polynomial 
-
-in type-two $\classNC$; 
-Ko's and Hoover's hardness results about 
-inversion of real functions and the fix-point operation on contractive mappings
-can be strengthened to type-two $\classP$-completeness in our formulation. 
+we recast several facts (some in a stronger form than was known) 
+about the complexity of numerical problems 
+into our framework. 
+% Neff's algorithm for finding the roots of a given polynomial 
+% in type-two $\classNC$; 
+% Ko's and Hoover's hardness results about 
+% inversion of real functions and the fix-point operation on contractive mappings
+% can be strengthened to type-two $\classP$-completeness in our formulation. 
 \end{abstract}
 
 \section{Introduction}
@@ -397,9 +397,9 @@ Here, we define type-two log-space computation
 by extending the {\em stack model with constant height} 
 by Aehlig, Cook and Nguyen \cite{aehlig2007relativizing} to the 
 function-oracle model.
-We choose this model because it is consistent with relativized circuit complexity classes 
-and it can ask nested queries, that is, queries depending on answers from the oracle.
-For details, see the comment on Theorem \ref{theorem:inclusion} and \ref{theorem:apply-is-L-computable}.
+We choose this model because it is consistent with relativized circuit complexity classes, 
+and it can ask nested queries, that is, queries depending on answers to previous queries.
+See also the comments on Theorems \ref{theorem:inclusion} and \ref{theorem:apply-is-L-computable}.
 
 We consider an oracle Turing machine $M$ 
 with a stack of query tapes and an answer tape.
@@ -409,7 +409,7 @@ When the machine issues a query, the stack is \emph{popped} automatically;
 that is, 
 if the string on the query tape at the top of the stack at the time of the query was $u$, 
 the oracle $\phi$ writes the string $\phi (u)$ on the answer tape, 
-and at the same time this top query tape is removed from the stack. 
+and at the same time the top query tape is removed from the stack. 
 We put the restriction that the height of the stack of a machine is less than 
 some constant for all inputs and oracles.
 We also assume that 
@@ -422,8 +422,8 @@ our model has some new features, namely
 the introduction of answer tape and 
 the restriction that it is erased automatically on every puch operation. 
 
-We put the restriction that the answer is erased after every push operation 
-in order to restrict the nested depth of queries to be constant.
+This erasure of the answer tape
+ensures that the nested depth of queries is restricted to a constant.
 Without this restriction, a log-space constant-stack machine relative to 
 a function oracle $\phi$ could compute polynomial-times composition
 of $\phi$ if $|\phi|(n) = n$.
@@ -467,7 +467,7 @@ functions computed by log-space constant-stack machines with $\classFL$ oracle a
 \subsection{Circuit complexity classes}
 
 To discuss type-two circuit complexity classes,
-we consider function-circuit families with oracle gates.
+we consider circuit families with oracle gates.
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
 $n$ inputs and $m$ outputs consisting of 
@@ -498,7 +498,7 @@ Let $x \in \{0, 1\}^*$ be an input, $\phi \in \LM$ be an oracle and
 $C$ be $|x|$-input $m$-output circuit with size-$|\phi|$ oracle gates.
 The output of $C$ is denoted by $C^\phi(x) \in \{0, 1\}^m$,
 where each logic gate performs the logical operation on its inputs
-and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is 1.
+and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is $1$.
 \end{definition}
 
 
@@ -556,8 +556,6 @@ the string $A (\overline L) (0^n)$ is (a description of) $C_{L,n}$.
 
 Hereafter, we assume log-space uniformity on all (type-one and type-two) 
 circuit complexity classes, so we write just ``uniform'' or omit ``$\Luniform$''.
-The equality $\classFP = \classFP\!\text{/poly}$ holds
-between the type-two classes.
 
 \begin{theorem}
 \label{theorem:P-equals-L-uniform-P-poly}
