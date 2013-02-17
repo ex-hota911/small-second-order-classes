@@ -728,12 +728,13 @@ those at the level of polynomial-time \cite{kawamura2012complexity}.
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
 there is a function $F \in \classFLtwo$ \emph{translating} $\gamma$-names
-into $\delta$-names, that is, $\gamma(\phi) = \delta(F(\phi))$ 
-for all $\phi \in \LM \cap \dom \gamma$.
+into $\delta$-names, that is, 
+$F (\phi) \in \dom \delta$ and $\delta(F(\phi)) = \gamma (\phi)$ 
+for all $\phi \in \dom \gamma$.
 \end{definition}
 
 \begin{lemma}
- Let $\mathcal{C}$ be either $\classFLtwo$, $\classFNCtwo$ or
+ Let $\mathcal{C}$ be $\classFLtwo$, $\classFNCtwo$ or
  $\classFPtwo$.
  Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
  $\delta$ and $\delta'$ be two representations of a set $Y$.
@@ -742,25 +743,24 @@ for all $\phi \in \LM \cap \dom \gamma$.
  $(\gamma', \delta')$-$\mathcal C$-computable.
 \end{lemma}
 
-Let $\delta$ and $\gamma$ be representations of sets of $X$ and $Y$, respectively.
+Let $\delta$ and $\gamma$ be representations of $X$ and $Y$, respectively.
 We say that $A \pcolon X \rightrightarrows Y$ is $(\delta, \gamma)$-$\classFPtwo$-$\le$-hard 
-if $\gamma^{-1} \circ A \circ \delta$ is $\classFPtwo$-$\le$-hard.
-See Section~\ref{subsection: representations} for the definition of $\gamma^{-1} \circ A \circ \delta$.
+if $\gamma^{-1} \circ A \circ \delta$ (see Section~\ref{subsection: representations}) is $\classFPtwo$-$\le$-hard.
 
 \begin{lemma}
- Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
- $\delta$ and $\delta'$ be two representations of a set $Y$.
+ Let $\gamma$ and $\gamma'$ be representations of a set $X$, 
+ and let $\delta$ and $\delta'$ be representations of a set $Y$.
  If $\gamma' \transL \gamma$ and $\delta \transL \delta'$,
  then a $(\gamma, \delta)$-$\classFPtwo$-$\redLW$-hard multi-function is
  $(\gamma', \delta')$-$\classFPtwo$-$\redLW$-hard.
 \end{lemma}
 
 We say that $x \in X$ is $\gamma$-$C$-$\le$-complete if
-$\cup(\gamma^{-1}[x])$ is $C$-$\le$-complete,
+$\bigcup(\gamma^{-1}[x])$ is $C$-$\le$-complete,
 where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 \begin{lemma}
- Let $\mathcal C$ be either $\classFLtwo$, $\classFNCtwo$, 
+ Let $\mathcal C$ be $\classFLtwo$, $\classFNCtwo$, 
  or $\classFPtwo$, and $C$ be the type-one complexity class
  corresponding to $\mathcal C$.
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
