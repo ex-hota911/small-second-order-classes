@@ -218,11 +218,10 @@ apply it to real functions (and other objects) through representations.
 
 A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length-monotone}
 if $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
-The set of length-monotone functions is denoted $\LM$.
-Let $M$ be a machine and $\phi \in \LM$. 
+We denote the set of length-monotone functions by $\LM$.
 We write $M ^\phi (u)$ for the output string 
-when $M$ is given
-$\phi$ as oracle and string $u$ as input.
+when a machine $M$ is given
+$\phi \in \LM$ as oracle and $u \in \Sigma ^*$ as input.
 Thus, we also regard $M^\phi$ as a function from strings to strings.
 
 \begin{definition}
