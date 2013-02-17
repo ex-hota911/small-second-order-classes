@@ -894,6 +894,7 @@ the modulus of continuity of finding roots \cite{neff1996efficient}.
 
 \begin{theorem}
 [{\cite[Theorem 2.1]{neff1996efficient}}]
+\label{neff1996modulus}
  Let $f$ and $g$ be monic polynomials of the same degree $n$,
  and let $|f| \le 2^m$.
  If $|f - g| \le 2^{\lceil n(k + m + \log n + 3)\rceil}$, then
@@ -963,10 +964,12 @@ Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
 by the following algorithm:
 Given $k \in \N$ and a $\rho_{P_n}$-name of $p \in P_n$, 
 compute a polynomial $q \in {P_n}$ with complex rational coefficients
-satisfying $|p - q| \le 2^{\lceil n((k+2) + m + \log n + 3)\rceil}$
-then find all the roots of $q$ using the algorithm by Neff and Reif, or Pan
-with precision $2^{-(k+2)}$.
-By rounding them, we get $2^{-k}$-approximations of all roots of $p$.
+satisfying $|p - q| \le 2^{\lceil n((k+1) + m + \log n + 3)\rceil}$.
+Theorem~\ref{neff1996modulus} guarantees that the difference between 
+the roots of $q$ and $p$ is $2^{-(k+1)}$ at most.
+Then, answer approximated roots of $q$ with precision $2^{-(k+1)}$ 
+computed by the algorithm by Neff and Reif, or Pan,
+which are $2^{-k}$-approximation of roots of $p$.
 
 \subsection{$\classPtwo$-complete operations}
 \label{section:P-complete}
