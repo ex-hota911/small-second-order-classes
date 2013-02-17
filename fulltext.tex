@@ -784,21 +784,19 @@ the inverse operation and the fix-point operation.
 \subsection{Within $\classFLtwo$ and $\classFNCtwo$}
 \label{section:function}
 
-In this section, we show that several functions to be 
-computable within $\classFLtwo$ and $\classFNCtwo$
+We show several functions to be 
+in $\classFLtwo$ and $\classFNCtwo$
 under suitable representations. 
 We start with real functions, 
 using the representation $\rhoR$
 (see Sect.~\ref{subsection: representations}). 
-This is 
-
 Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
 \emph{log-space real functions} in $\classC[0,1]$ 
 \cite{ko1991complexity} 
 coincides with our $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability, 
 despite our choice of constant-stack log-space machine 
 while Ko uses the obvious log-space oracle Turing machine 
-with no stacks at all.
+with no stack.
 This is because, 
 when computing approximation of $f(x)$ under $\rhoR$-names, 
 a machine can get enough information about $x \in [0,1]$ in one query.
@@ -817,16 +815,17 @@ are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
 \end{theorem}
 
 Theorem~\ref{theorem:apply-is-L-computable} can be proved 
-similarly to the case of $\classFP$ 
+similarly to the analogous theorem for $\classFPtwo$ 
 \cite{kawamura11:_funct_space_repres_and_polyn_time_comput}. 
-However, 
-had we defined $\classFLtwo$ with the obvious relativized machine with one query tape,
+Note that, 
+if we had defined $\classFLtwo$ with the obvious relativized machine with one query tape,
 $\classFLtwo$ would be either too weak 
 for $\OpApply$ to be $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
-too strong that $\classFLtwo \nsubseteq \classFNCtwo$,
-depending on whether or not it was allowed to look at the answer tape while writing queries.
-Our extension of the constant stack model is one of the weakest model
-to make both conditions true.
+too strong to be a subset of $\classFNCtwo$,
+depending on whether or not the machine is allowed to look at the answer tape while writing queries.
+Our extension of the constant stack model is the weakest
+such that both Theorem~\ref{theorem:apply-is-L-computable} and 
+$\classFLtwo \subseteq \classFNCtwo$ true.
 
 % \begin{example}
 %  The binary addition and the binary multiplication are
