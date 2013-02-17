@@ -260,21 +260,21 @@ polynomial, then $P(L)$ is a first-order polynomial.
  length-monotone functions in $\classFP$ to $\classFP$.
 \end{lemma}
 
-We define the paring function, denoted by $\langle \phi, \psi \rangle$,
-of length-monotone functions as follows: 
+For $\phi$, $\psi \in \LM$, 
+we define $\langle \phi, \psi \rangle \in \LM$ by 
 % \footnote{%
 % The pairing function was
 % defined erroneously in \cite{kawamura2012complexity} 
 % without the delimiter $1$. 
 % }
 $\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
-$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$.
-We pad $0$s to make the pairing function length-monotone.
+$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$
+(we pad $0$s to make $\langle \phi, \psi \rangle$ length-monotone).
 We write $\langle \phi, \psi, \theta \rangle$ 
 for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
 We also write $\langle \phi, u \rangle$, etc., for 
 $\phi \in \LM$ and a string $u \in \Sigma ^*$, 
-where we encode $u$ as a constant function in $\LM$ with value $u$. 
+by identifying $u$ with the constant function in $\LM$ with value $u$. 
 
 \subsection{Representations}
 \label{subsection: representations}
