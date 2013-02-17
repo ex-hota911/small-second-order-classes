@@ -1,4 +1,4 @@
-\documentclass[envcountsame,orivec,oribibl]{llncs}
+\documentclass[envcountsect,envcountsame,orivec,oribibl]{llncs}
 \usepackage{mathtools}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -280,7 +280,7 @@ by identifying $u$ with the constant function in $\LM$ with value $u$.
 \subsection{Representations}
 \label{subsection: representations}
 
-A {\em representation} of a set $X$ 
+A \emph{representation} of a set $X$ 
 is a partial function $\delta$ from $\LM$ to $X$
 such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
 We say $\phi$ is a {\em $\delta$-name} of $x$
@@ -289,8 +289,10 @@ if $x = \delta(\phi)$.
 Let $\mathcal C$ be a class of multi-functions from $\LM$ to $\LM$,
 and $\delta$ and $\gamma$ be representations of sets $X$ and $Y$, respectively.
 A multi-function $A \pcolon X \rightrightarrows Y$
-is $(\delta, \gamma)$-$\mathcal C$-\emph{computable} if 
-the following multi-function $\delta^{-1} \circ A \circ \gamma \pcolon \LM \rightrightarrows \LM$ is in $\mathcal C$: 
+is in $(\delta, \gamma)$-$\mathcal C$ if 
+the following multi-function $
+\delta^{-1} \circ A \circ \gamma \pcolon \LM \rightrightarrows \LM
+$ is in $\mathcal C$: 
 \begin{equation}
  (\delta^{-1} \circ A \circ \gamma)[\phi] = 
   \begin{cases}
@@ -324,7 +326,7 @@ We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to real numbers in $[0,
 
 The class of polynomial-time computable functions from $[0,1]$ to $\R$ 
 defined by Ko is equal to
-$(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$-computable functions.
+$(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$.
 Polynomial-time computability of a real function $f$ means that
 for any $x \in \dom f$ and $n,m \in \N$, 
 if $|x| \le 2^m$, then
@@ -374,10 +376,10 @@ and $\phi$ satisfies \eqref{eq:computation on rational points}
 for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
 Lemma~\ref{lem:type1representation} implies that
-$(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$-computability is equivalent to 
-$\deltabox$-$\classFP$-computability,
-where \emph{$\gamma$-$C$-computability} by definition means 
-having a $\gamma$-name in $C$.
+$(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ equals
+$\deltabox$-$\classFP$, 
+where \emph{$\delta$-$C$} by definition means the set of 
+elements having a $\delta$-name in $C$.
 
 
 \section{Small type-two classes}
@@ -741,8 +743,8 @@ for all $\phi \in \dom \gamma$.
  Let $\gamma$ and $\gamma'$ be two representations of a set $X$, 
  $\delta$ and $\delta'$ be two representations of a set $Y$.
  If $\gamma' \transL \gamma$ and $\delta \transL \delta'$,
- a $(\gamma, \delta)$-$\mathcal C$-computable multi-function is
- $(\gamma', \delta')$-$\mathcal C$-computable.
+ then $(\gamma, \delta)$-$\mathcal C$ is contained in 
+ $(\gamma', \delta')$-$\mathcal C$.
 \end{lemma}
 
 Let $\delta$ and $\gamma$ be representations of $X$ and $Y$, respectively.
@@ -765,18 +767,17 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
  Let $\mathcal C$ be $\classFLtwo$, $\classFNCtwo$, 
  or $\classFPtwo$, and $C$ be the type-one complexity class
  corresponding to $\mathcal C$.
- Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
- A $(\gamma, \delta)$-$\mathcal C$-computable partial function $F$ from $X$
- to $Y$ maps $\gamma$-$C$-computable elements of $X$
- in $\dom F$ to $\delta$-$C$-computable elements of $Y$.
+ Let $\gamma$ and $\delta$ be representations of set $X$ and $Y$, respectively.
+ Then every partial function in $(\gamma, \delta)$-$\mathcal C$
+ maps all elements of $\gamma$-$C$ in its domain into $\delta$-$C$. 
 \end{lemma}
 
 \begin{lemma}
  \label{lemma:p-comp-maps-l-to-p-comp}
  Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
- A $(\gamma, \delta)$-$\classFPtwo$-$\redLmF$-complete partial function 
- from $X$ to $Y$ maps some $\gamma$-$\classFL$-computable element of $X$
- to a $\delta$-$\classFP$-$\redmF^\classL$-complete of $Y$.
+ Then a $(\gamma, \delta)$-$\classFPtwo$-$\redLmF$-complete partial function 
+ maps some element of $\gamma$-$\classFL$ 
+ to a $\delta$-$\classFP$-$\redmF^\classL$-complete element of $Y$.
 \end{lemma}
 
 \section{Applications}
@@ -784,7 +785,7 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 In Sect.~\ref{section:function}, 
 we show that some examples of real functions and operators 
-that are $\classL$- and $\classNC$-computable.
+that are in $\classFLtwo$ and $\classFNCtwo$ (under suitable representations). 
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
 
@@ -800,7 +801,7 @@ using the representation $\rhoR$
 Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
 \emph{log-space real functions} in $\classC[0,1]$ 
 \cite{ko1991complexity} 
-coincides with our $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability, 
+coincides with our $(\rhoRunit, \rhoR)$-$\classFLtwo$, 
 despite our choice of constant-stack log-space machine 
 while Ko uses the obvious log-space oracle Turing machine 
 with no stack.
@@ -808,16 +809,16 @@ This is because,
 when computing approximation of $f(x)$ under $\rhoR$-names, 
 a machine can get enough information about $x \in [0,1]$ in one query.
 Ko also defines the class of $\classNC$ real functions in $\classC[0,1]$
-through $\deltabox$-$\classFNC$-computability in our terminology 
+as $\deltabox$-$\classFNC$ in our terminology 
 \cite{ko1991complexity},
-which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$-computability.
+which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$.
 The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
-are equal to $(\rhoR, \rhoR)$-$\classFNCtwo$-computable real functions.
+are exactly those in $(\rhoR, \rhoR)$-$\classFNCtwo$.
 
 \begin{theorem}
  \label{theorem:apply-is-L-computable}
  Let $\delta$ be a representation of $\classC[0, 1]$.
- $\OpApply$ is $([\delta, \rhoRunit], \rhoR)$-$\classFLtwo$-computable if
+ $\OpApply$ is in $([\delta, \rhoRunit], \rhoR)$-$\classFLtwo$ if
  and only if $\delta \transL \deltabox$.
 \end{theorem}
 
@@ -827,7 +828,7 @@ similarly to the analogous theorem for $\classFPtwo$
 Note that, 
 if we had defined $\classFLtwo$ with the obvious relativized machine with one query tape,
 $\classFLtwo$ would be either too weak 
-for $\OpApply$ to be $([\deltabox,\rhoR], \rhoR)$-$\classFL$-computable or
+for $\OpApply$ to be in $([\deltabox,\rhoR], \rhoR)$-$\classFL$ or
 too strong to be a subset of $\classFNCtwo$,
 depending on whether or not the machine is allowed to look at the answer tape while writing queries.
 Our extension of the constant stack model is the weakest
@@ -841,16 +842,16 @@ $\classFLtwo \subseteq \classFNCtwo$ true.
 
 \begin{lemma}
  The exponential function restricted to $[0,1]$
- is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
+ is in $(\rhoRunit, \rhoR)$-$\classFLtwo$.
 \end{lemma}
 Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
-a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
-by polynomially many multiplications, additions, and divisions on rationals.
-Since iterated multiplication, iterated addition, and division on integers
-are in $\classFL$ by Chiu, Davida and Litow~\cite{chiu2001division},
-$\exp$ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
+a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ can be computed
+by polynomially many multiplications, additions, and divisions on rationals, 
+and each of these operations can be performed in logarithmic space
+by Chiu, Davida and Litow~\cite{chiu2001division}.
+
 On the other hand, without the restriction on the domain, $\exp$ is not 
-even $(\rhoR, \rhoR)$-$\classFPtwo$-computable, 
+even in $(\rhoR, \rhoR)$-$\classFPtwo$, 
 because it grows too fast. 
 
 \begin{lemma}
@@ -859,18 +860,20 @@ because it grows too fast.
 \end{lemma}
 Like $\exp$, the Taylor series of $\sin$ converges fast enough,
 so it is obvious that $\sin$ is log-space computable if it is restricted to $[-4, 4]$.
-Computing some $x \in [-4, 4]$ satisfying $x = t + 2n\pi$ for 
-some $n \in \N$ is
-$(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$-computable because division is log-space computable and $\pi$ is $\rhoR$-$\classFL$-computable from the following series:
+The multi-function that computes from $t$
+any $x \in [-4, 4]$ with $x \equiv t \bmod 2 \pi$ is
+in $(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$, 
+because division is log-space computable 
+and $\pi$ is in $\rhoR$-$\classFL$ by the following series:
 \begin{equation}
  \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
   \left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6} \right).
 \end{equation}
-Hence, $\sin$ is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
+Hence, $\sin$ is in $(\rhoR, \rhoR)$-$\classFLtwo$.
 
 In the rest of Sect.~\ref{section:function}, 
 we reformulate in our terminology Neff's result that 
-finding roots of a complex polynomial is $\classNC$ computable. 
+the roots of a complex polynomial can be found in $\classNC$. 
 
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 We write $P_n$ for the set of degree-$n$ monic 
@@ -910,12 +913,12 @@ the modulus of continuity of finding roots \cite{neff1996efficient}.
  for all $k \in \N$.
 \end{theorem}
 
-They regard these two results ensure that $\classFNC$-computability
-of finding roots of a polynomial with complex coefficients.%%??????
-In our framework, we can combine these two results by stating 
-$\classFNCtwo$-computability under suitable representations.
+% They regard these two results ensure that $\classFNC$-computability
+% of finding roots of a polynomial with complex coefficients.%%??????
+% In our framework, we can combine these two results by stating 
+% $\classFNCtwo$-computability under suitable representations.
 
-To discuss the complexity of finding roots of a polynomial,
+To discuss the complexity of finding roots of a polynomial in our framework,
 we need representations for polynomials and multisets of complex numbers.
 We represent a complex number by a pair of $\rhoR$-names,
 that is, $
@@ -959,7 +962,7 @@ and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
 
 \begin{theorem}
  \label{theorem:finding-roots-is-in-NC}
- $\OpPolyRoot$ is $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$-computable.
+ $\OpPolyRoot$ is in $(\rho_{P_*}, \rhoCSet)$-$\classFNCtwo$.
 \end{theorem}
 
 % \begin{corollary}
@@ -994,7 +997,7 @@ by saying that $\OpINV (f) = f ^{-1}$ is the inverse function of $f$.
 
 Ko proved the following non-uniform theorem about the complexity of inversion.
 Recall that Ko's polynomial-time and log-space computability of a real function
-is equivalent to our $(\rhoRunit, \rhoR)$-$\classFPtwo$- and $(\rhoRunit, \rhoR)$-$\classFLtwo$-computability. 
+is equivalent to our $(\rhoRunit, \rhoR)$-$\classFPtwo$ and $(\rhoRunit, \rhoR)$-$\classFLtwo$. 
 
 \begin{theorem}
 [{\cite[Corollary 4.7 and Theorem 4.18]{ko1991complexity}}]
@@ -1056,7 +1059,7 @@ of a contraction can be written in our terminology as follows:
 \begin{theorem}
 [{\cite[Theorem 4.5]{hoover1991real}}]
 \label{theorem:hoover1991-4.5}
- There is a $(\rhoR, \rhoR)$-$\classFNCtwo$-computable function $f \colon \R \to \R$
+ There is a function $f \colon \R \to \R$ in $(\rhoR, \rhoR)$-$\classFNCtwo$
  whose restriction $f|_{[2k, 2k+1]}$ is a contraction for each $k \in \N$ and
  which has the following property: 
  $\classNC = \classP$ if and only if 
@@ -1210,12 +1213,12 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
  and $f$ is connected linearly in other interval.
 
  We show that $f$ meets the conditions in Theorem~\ref{theorem:hoover1991-4.5}.
- This $f$ is $(\rhoR, \rhoR)$-$\classFNCtwo$-computable since 
+ This $f$ is in $(\rhoR, \rhoR)$-$\classFNCtwo$ since 
  $|f(x) - f(x')| \le 3|x-x'|$ and $s(\phi)$ is in $\classFNC$.
  Since $g_u$ is a contraction, so is $f|_{[2n, 2n+1]}$.
  If $\classNC = \classP$,
- fix-points of $f$ on $[2n, 2n+1]$ 
- is $\classFNC$-computable since $\classFPtwo$-computable function 
+ the fix-point of $f$ on $[2n, 2n+1]$ 
+ is in $\classFNC$ since $\classFPtwo$-computable function 
  $\OpCMFix$ maps $\classFP$-computable functions into $\classFP = \classFNC$.
  The string function $r(\phi), t(\phi) \in \classFL$ many-one reduces
  $\probCVP$ to the fix-points of $(g_u)_u$.
@@ -1317,8 +1320,9 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 We show the $\classFP$-$\redLmF$-hardness of an operation $P$
 by putting all $(g_u)_u$ into one real function $g \in \dom F$
-such that for each $u \in \Sigma^*$ there is $\rhoR$-$\classFL$-computable
-$t_u$ the fix point of $g_u$ is log-space computable from $h(t_u)$.
+such that for each $u \in \Sigma^*$ there is 
+$t_u$ in $\rhoR$-$\classFL$ 
+and the fix point of $g_u$ is log-space computable from $h(t_u)$.
 
 \begin{proof}
 [Theorem~\ref{theorem:INV-is-P-complete}]
