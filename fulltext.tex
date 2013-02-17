@@ -238,12 +238,12 @@ we bound the running time by \emph{second-order polynomials}
 $P (\lvert \varphi \rvert) (\lvert x \rvert)$ 
 in the sizes of the oracle $\phi$ and string $x$
 given to the machine. 
-A second-order polynomial $P (l) (n)$ 
+A second-order polynomial $P (L) (n)$ 
 is an expression built from the number $n$ 
 using $\mathord+$, $\mathord\times$, 
-\emph{and application of the function $l \colon \N \to \N$}; 
+\emph{and application of the function $L \colon \N \to \N$}; 
 for example, 
-$5 l (l (n) ^3 + n^2) + 2 n + 4$. 
+$5 L (L (n) ^3 + n^2) + 2 n + 4$. 
 
 \begin{definition}
  We write $\classFPtwo$ for the class of
@@ -467,8 +467,8 @@ we consider circuit families with oracle gates.
 Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
 An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
 $n$ inputs and $m$ outputs consisting of the standard logical gates 
-plus oracle $(\phi)$ gates, 
-where each $\phi$ gate with $k$ inputs has $L(k)$ outputs.
+plus oracle gates, 
+where each oracle gate with $k$ inputs has $L(k)$ outputs.
 Formally, 
 
 \begin{definition}[Oracle circuits]
@@ -480,28 +480,23 @@ or $\phi _i$, where $i \in \N$.
 The in-degree of a vertex labelled $\NOT$ is $1$, and
 a vertex that is labelled $\phi _i$ and has in-degree $k$ 
 satisfies $i < L(k)$.
-Each logic gate performs the logical operation on its inputs
+Each logic gate performs the logical operation on its inputs, 
 and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is $1$.
-
-The size of $C$, denoted by $|C|$, is the number of vertices.
-The depth of $C$, denoted by $\depth(C)$, is the length of the longest path in $C$.
+The \emph{size} of $C$ is the number of gates.
+The \emph{depth} of $C$ is the length of the longest path in $C$.
 For an input $x \in \{0, 1\}^*$, an oracle $\phi \in \LM$, 
 and a $|x|$-input $m$-output circuit $C$ with size-$|\phi|$ oracle gates, 
-we write $C^\phi(x)$ for the output of $C$.
+we write $C^\phi(x)$ for the $m$-bit output of $C$.
 \end{definition}
 
-
-Now we define type-two classes analogous to 
-$\classAC^i$ and $\classNC$.
 To discuss circuit families computing multi-functions from $\LM$ to $\LM$,
 we index circuits not only by the input size but also by the size of oracle gates.
 A {\em circuit family $(C_{L,n})_{L,n}$} is a set of circuits, 
 indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
 such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
 
-
 \begin{definition}
- We say that a a circuit family $(C_{L,n})_{L,n}$ 
+ We say that a circuit family $(C_{L,n})_{L,n}$ 
 \emph{computes} a multi-function 
  $A \pcolon \LM \rightrightarrows \LM$ if for all $\phi \in \dom A$, 
  there is $\psi \in A[\phi]$ satisfying $\psi(x) = C_{|\phi|, |x|}^\phi(x)$
@@ -514,7 +509,8 @@ only for the sake of simplicity.
 
 A circuit family $(C_{L,n})_{L,n}$ is \emph{(second-order) polynomial size}
 if there is a second-order polynomial $P$ satisfying
-$|C_{L,n}| \le P(L)(n)$ for all $n \in \N$ and non-decreasing functions
+the size of $C_{L,n}$ is bounded by $P(L)(n)$ 
+for all $n \in \N$ and non-decreasing functions
 $L \colon \N \to \N$.
 
 \begin{definition}
@@ -522,8 +518,8 @@ $L \colon \N \to \N$.
  we write $\classFACtwo^k$ for the class of 
  multi-functions from $\LM$ to $\LM$ computed by
  a polynomial-size circuit family $(C_{L,n})_{L,n}$ such that
- there is a second-order polynomial $P$ satisfying
- $\depth(C_{L,n}) \le \log^k(P(L)(n))$ 
+ there is a second-order polynomial $P$ such that 
+ the depth of $C_{L,n}$ is bounded by $\log^k(P(L)(n))$ 
  for all $n \in \N$ and non-decreasing
  $L \colon \N \to \N$.
  We write $\classFNCtwo = \bigcup_{k \in \N} \classFACtwo^k$.
