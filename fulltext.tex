@@ -892,10 +892,10 @@ We write $|p|$ for the maximum absolute value
 %and the \emph{distance} of
 %two polynomials $p$, $q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
 
-Later Pan showed that approximating the roots of polynomial
+Later Pan showed that approximating the roots of a polynomial
 with complex rational coefficients is in $\classFNC$ \cite{pan1995optimal}.
-Neff and Reif showed a similar results and they also discuss
-about the modulus of continuity of finding roots \cite{neff1996efficient}.
+Neff and Reif showed a similar result and they also discuss
+the modulus of continuity of finding roots \cite{neff1996efficient}.
 
 \begin{theorem}
 [{\cite[Theorem 2.1]{neff1996efficient}}]
@@ -909,14 +909,15 @@ about the modulus of continuity of finding roots \cite{neff1996efficient}.
 \end{theorem}
 
 They regard these two results ensure that $\classFNC$-computability
-of finding roots of a polynomial with complex coefficients.
+of finding roots of a polynomial with complex coefficients.%%??????
 In our framework, we can combine these two results by stating 
 $\classFNCtwo$-computability under suitable representations.
 
-To discuss about the complexity to find roots of a polynomial,
+To discuss the complexity of finding roots of a polynomial,
 we need representations for polynomials and multisets of complex numbers.
 We represent a complex number by a pair of $\rhoR$-names,
 that is, $\rho_\C(\phi) = z \iff \rho_\R^2(\phi) = (a, b) \wedge z = a+bi$.
+%% \rho_\R^2未定義？
 We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
 $\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
 if $\phi$ is a $\rho_{\C^n}$-name of $(a_{n-1}, \dots, a_0)$ 
