@@ -331,13 +331,15 @@ We write $\D$ for the union $\bigcup _n \D _n$.
 We regard $u \in \D$ as a fraction of binary numbers, 
 and write $u$ also for the number it encodes. 
 
-A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
+We define the representation~$\rhoR$ of $\R$ as follows: 
+$\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
 if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
 for all $i \in \N$.
-We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to $[0,1]$.
+We write $\rhoR|^{[0,1]}$ for the representation of the interval $[0, 1]$ 
+obtained by restricting $\rhoR$.
 
 The class of polynomial-time computable functions from $[0,1]$ to $\R$ 
-defined by Ko is equal to
+defined by Ko equals
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$.
 Polynomial-time computability of a real function $f$ means that
 for any $x \in \dom f$ and $n,m \in \N$, 
@@ -345,31 +347,29 @@ if $|x| \le 2^m$, then
 an approximation of $f(x)$ with error bound $2^{-n}$
 is computable in time polynomial in $n$ and $m$.
 
+We call $\mu \colon \N \to \N$ a {\em modulus of continuity} 
+of $f \in \classC [0, 1]$ 
+if 
+for all $n \in \N$ and $x$, $y \in [0,1]$ with
+$|x - y| \le 2^{-\mu(n)}$, 
+we have $|f(x) - f(y)| \le 2^{-n}$ .
 It is not hard to verify the following. 
 
 \begin{lemma}
  \label{lem:type1representation}
- A real function is polynomial-time computable if and only if
- there exist a polynomial-time computable function 
- $\phi \colon (\D \cap [0, 1]) \times \{0\} ^* \to \D$ and 
- polynomial $p \colon \N \to \N$ such that
- for all $d \in \D \cap [0,1]$ and $n \in \N$,
+ A real function is in $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ if and only if
+ it has a polynomial modulus of continuity 
+ and there is a polynomial-time computable function 
+ $\phi \colon (\D \cap [0, 1]) \times \{0, 1\} ^* \to \D$ such that 
  \begin{equation}
    \label{eq:computation on rational points}
-  |\phi(d, 0^n) - f(d)| \le 2^{-n},
+  |\phi(d, 0^n) - f(d)| \le 2^{-n} 
  \end{equation}
- and for all $x, y \in [0, 1]$, $n \in \N$,
- \begin{equation} 
-  |x-y| \le 2^{-p(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n}.
-   \label{eq:modulus}
- \end{equation}
+ for all $d \in \D \cap [0,1]$ and $n \in \N$. 
 \end{lemma}
 
-We say $\mu \colon \N \to \N$ is a {\em modulus of continuity} of $f \in \classC[0,1]$
-if $|x - y| \le 2^{-\mu(n)} \Rightarrow |f(x) - f(y)| \le 2^{-n}$ for all $x, y \in [0,1]$ and $n \in \N$.
-The following representation $\deltabox$ that we will use for real functions in $\classC[0,1]$ 
+The following representation $\deltabox$ of $\classC[0,1]$ 
 is inspired by this. 
-
 For a non-decreasing function $\mu \colon \N \to \N$, 
 we write $\overline \mu \colon \Sigma^* \to \Sigma^*$ for the length-monotone
 function mapping $u$ to $0^{\mu(|u|)}$ for each string $u$.
