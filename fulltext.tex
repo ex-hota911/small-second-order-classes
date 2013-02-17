@@ -210,7 +210,7 @@ these string functions,
 and Sect.~\ref{subsection: representations} explains how to 
 apply it to real functions (and other objects) through representations. 
 
-\subsection{Second-order polynomials}
+\subsection{Type-two machines}
 \label{section:TTF}
 
 A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length-monotone}
@@ -256,6 +256,7 @@ We use bold letters (such as $\classFPtwo$)
 for classes of multi-functions from $\LM$ to $\LM$, 
 as opposed to the usual complexity classes, such as $\classFP$, 
 which we regard as consisting of multi-functions from $\Sigma ^*$ to $\Sigma ^*$.
+The following is immediate. 
 
 \begin{lemma}
 \label{label: classFPtwo maps classFP to classFP}
@@ -285,7 +286,7 @@ by identifying $u$ with the constant function in $\LM$ with value $u$.
 A \emph{representation} of a set $X$ 
 is a partial function $\gamma$ from $\LM$ to $X$
 such that for every $x \in X$ there is $\phi$ with $\gamma (\phi) = x$.
-We say $\phi$ is a {\em $\gamma$-name} of $x$
+We call $\phi$ a {\em $\gamma$-name} of $x$
 if $x = \gamma (\phi)$.
 
 \begin{definition}
@@ -373,7 +374,6 @@ of $\phi \in \LM$ and $\mu \colon \N \to \N$
 such that 
 $\mu$ is a modulus of continuity of $f$
 and $\phi$ satisfies \eqref{eq:computation on rational points}.
-
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ equals
 $\deltabox$-$\classFP$. 
@@ -416,7 +416,7 @@ The use of a stack of query tapes and its restriction to constant height
 is common to Aehlig, Cook and Nguyen \cite{aehlig2007relativizing}. 
 As we are dealing with function oracles, 
 our model has some new features, namely 
-the introduction of answer tape and 
+the introduction of the answer tape and 
 the restriction that it is erased automatically on every puch operation. 
 
 This erasure of the answer tape
@@ -426,18 +426,14 @@ a function oracle $\phi$ could compute polynomial-times composition
 of $\phi$ if $|\phi|(n) = n$.
 On the other hand, there is a function $\phi \in \LM$ such that $|\phi|(n) = n$
 and polynomial-times composition of $\phi$ is not in $\classNC$ relative to $\phi$ \cite{aehlig2007relativizing}.
-Hence, the inclusion between $\classL$ and $\classNC$ would not be relativized.
-
-
+Hence, the inclusion $\classL \subseteq \classNC$ would not relativize.
 
 \begin{definition}
- A (constant-stack) machine $M$ runs in (second-order) \emph{logarithmic space}
- if there is a second-order polynomial $P$ such that for all $\phi \in \LM$
- and $u \in \Sigma^*$, $M^\phi(u)$ visits at most $\log(P(|\phi|)(|u|))$ cells
+ A (constant-stack) machine runs in (second-order) \emph{logarithmic space}
+ if there is a second-order polynomial $P$ such that, 
+ given oracle $\phi \in \LM$ and string $u \in \Sigma^*$, 
+ it visits at most $\log(P(|\phi|)(|u|))$ cells
  in the work tape.
-\end{definition}
-
-\begin{definition}
  We write $\classFLtwo$ for the set of multi-functions%
 \footnote{%
 We could also define a class $\classLtwo$, 
@@ -447,7 +443,7 @@ that are $\{0, 1\}$-valued,
 but we will not use such classes in this paper. 
 }
  from $\LM$ to $\LM$ 
- computed by a constant-stack machine that runs in second-order logarithmic space.
+ computed by such a machine.
 \end{definition}
 
 \begin{lemma}
