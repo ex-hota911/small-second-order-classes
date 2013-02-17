@@ -916,9 +916,12 @@ $\classFNCtwo$-computability under suitable representations.
 To discuss the complexity of finding roots of a polynomial,
 we need representations for polynomials and multisets of complex numbers.
 We represent a complex number by a pair of $\rhoR$-names,
-that is, $\rho_\C(\phi) = z \iff \rho_\R^2(\phi) = (a, b) \wedge z = a+bi$.
-%% \rho_\R^2未定義？
-We define the representation $\rho_{P_n}$ of degree $n$ monic polynomials as follows: 
+that is, $
+ \rho_\C (\langle \phi, \psi \rangle) 
+= 
+ \rhoR (\phi) + \sqrt{-1} \cdot \rhoR (\psi)
+$.  We define the representation $\rho_{P_n}$ of 
+degree $n$ monic polynomials as follows: 
 $\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
 if $\phi$ is a $\rho_{\C^n}$-name of $(a_{n-1}, \dots, a_0)$ 
 such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
