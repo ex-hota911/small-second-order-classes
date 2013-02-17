@@ -1223,7 +1223,8 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 \subsubsection{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
 
 \begin{proof}[Theorem~\ref{theorem:P-hard-g_u}]
- We show that for each $\psi \in \dom \probDTIMEtwo$,
+ We show that for each $\psi \in \dom \probDTIMEtwo$
+ (see Lemma~\ref{lemma: probDTIMEtwo} for the problem $\probDTIMEtwo$),
  there is a log-space computable family of contractions $(g_u)_u$ whose
  Lipschitz constant is less than $1/2$,
  and for each $u \in \Sigma^*$, $\probDTIMEtwo(\psi)(u)$ is log-space 
@@ -1309,7 +1310,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 \end{proof}
 
 
-\subsubsection{Proofs of Theorems \ref{theorem:INV-is-P-complete}}
+\subsubsection{Proof of Theorems \ref{theorem:INV-is-P-complete}}
 \label{section:proofs-of-theorems}
 
 We show the $\classFP$-$\redLmF$-hardness of an operation $P$
@@ -1318,7 +1319,7 @@ such that for each $u \in \Sigma^*$ there is $\rhoR$-$\classFL$-computable
 $t_u$ the fix point of $g_u$ is log-space computable from $h(t_u)$.
 
 \begin{proof}
-[Proof of Theorem~\ref{theorem:INV-is-P-complete}]
+[Theorem~\ref{theorem:INV-is-P-complete}]
 Let $L \in \classPtwo$ and $\psi \in \dom L$.
 Let $r, s, t \in \classFLtwo$ be functions reducing $L$ to $\OpCMFix$
 as Theorem~\ref{theorem:P-hard-g_u}.
