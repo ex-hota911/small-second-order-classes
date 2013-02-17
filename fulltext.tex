@@ -838,19 +838,19 @@ $\classFLtwo \subseteq \classFNCtwo$ true.
 \end{lemma}
 Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
 a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ is computable 
-by polynomially many multiplications, additions, and division on rationals.
-Since iterated multiplications, iterated additions, division on integers
+by polynomially many multiplications, additions, and divisions on rationals.
+Since iterated multiplication, iterated addition, and division on integers
 are in $\classFL$ by Chiu, Davida and Litow~\cite{chiu2001division},
 $\exp$ is $(\rhoRunit, \rhoR)$-$\classFLtwo$-computable.
-On the other hand, without restriction on the domain, $\exp$ is not 
-even $(\rhoR, \rhoR)$-$\classFPtwo$ computable, 
+On the other hand, without the restriction on the domain, $\exp$ is not 
+even $(\rhoR, \rhoR)$-$\classFPtwo$-computable, 
 because it grows too fast. 
 
 \begin{lemma}
   The sine function $\sin \colon \R \to \R$ is
- is $(\rhoR, \rhoR)$-$\classFLtwo$-computable.
+ in $(\rhoR, \rhoR)$-$\classFLtwo$.
 \end{lemma}
-Like $\exp$, the Maclaurin series of $\sin$ converges fast enough,
+Like $\exp$, the Taylor series of $\sin$ converges fast enough,
 so it is obvious that $\sin$ is log-space computable if it is restricted to $[-4, 4]$.
 Computing some $x \in [-4, 4]$ satisfying $x = t + 2n\pi$ for 
 some $n \in \N$ is
@@ -866,7 +866,7 @@ we reformulate in our terminology Neff's result that
 finding roots of a complex polynomial is $\classNC$ computable. 
 
 %\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
-We write $P_n$ for the set of degree $n$ monic 
+We write $P_n$ for the set of degree-$n$ monic 
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is, $p(x) = \prod_{z \in \OpPolyRoot(p)} (x - z)$. 
 
