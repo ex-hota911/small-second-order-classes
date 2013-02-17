@@ -227,7 +227,7 @@ $\phi$ as oracle and string $u$ as input.
 Thus, we also regard $M^\phi$ as a function from strings to strings.
 
 \begin{definition}
- A machine $M$ computes a multi-function $A \pcolon \LM \rightrightarrows \LM$ if for any
+ A machine $M$ \emph{computes} a multi-function $A \pcolon \LM \rightrightarrows \LM$ if for any
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
@@ -281,15 +281,25 @@ by identifying $u$ with the constant function in $\LM$ with value $u$.
 \label{subsection: representations}
 
 A \emph{representation} of a set $X$ 
-is a partial function $\delta$ from $\LM$ to $X$
-such that for every $x \in X$ there is $\phi$ with $\delta (\phi) = x$.
-We say $\phi$ is a {\em $\delta$-name} of $x$
-if $x = \delta(\phi)$.
+is a partial function $\gamma$ from $\LM$ to $X$
+such that for every $x \in X$ there is $\phi$ with $\gamma (\phi) = x$.
+We say $\phi$ is a {\em $\gamma$-name} of $x$
+if $x = \gamma (\phi)$.
 
+\begin{definition}
+\label{definition: computation wrt representation}
+\begin{enumerate}
+\item 
+Let $C$ be a class of multi-functions from $\Sigma ^*$ to $\Sigma ^*$
+(such as the usual complexity classes $\classFP$ and $\classFL$), 
+and let $\gamma$ be a representation of a set $X$. 
+We write \emph{$\gamma$-$C$} for the set of $x \in X$
+that have a $\gamma$-name in $C$.
+\item 
 Let $\mathcal C$ be a class of multi-functions from $\LM$ to $\LM$,
-and $\delta$ and $\gamma$ be representations of sets $X$ and $Y$, respectively.
+and $\gamma$ and $\delta$ be representations of sets $X$ and $Y$, respectively.
 A multi-function $A \pcolon X \rightrightarrows Y$
-is in $(\delta, \gamma)$-$\mathcal C$ if 
+is in $(\gamma, \delta)$-$\mathcal C$ if 
 the following multi-function $
 \delta^{-1} \circ A \circ \gamma \pcolon \LM \rightrightarrows \LM
 $ is in $\mathcal C$: 
@@ -305,11 +315,13 @@ $ is in $\mathcal C$:
    \text{otherwise.}
   \end{cases}
 \end{equation}
+\end{enumerate}
+\end{definition}
 
-For the (basic) representations of real numbers and real functions,
-we use $\rhoR$ and $\deltabox$, 
-defined as follows \cite{kawamura2012complexity}.
-We first introduce an encoding system of dyadic numbers.
+For real numbers and real functions,
+we use representations $\rhoR$ and $\deltabox$, 
+defined as follows \cite{kawamura2012complexity}. 
+We first introduce an encoding of dyadic numbers.
 For each $n \in \N$, let $\D_n$ denote the set of strings of the form
 \begin{equation}
  sx/1\!\underbrace{00\dots0}_{n},
@@ -322,7 +334,7 @@ and write $u$ also for the number it encodes.
 A function $\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
 if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
 for all $i \in \N$.
-We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to real numbers in $[0,1]$.
+We write $\rhoR|^{[0,1]}$ for the restriction of $\rhoR$ to $[0,1]$.
 
 The class of polynomial-time computable functions from $[0,1]$ to $\R$ 
 defined by Ko is equal to
@@ -377,10 +389,7 @@ for all $n \in \N$ and $d \in \D|_{[0,1]}$.
 
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ equals
-$\deltabox$-$\classFP$, 
-where \emph{$\delta$-$C$} by definition means the set of 
-elements having a $\delta$-name in $C$.
-
+$\deltabox$-$\classFP$. 
 
 \section{Small type-two classes}
 \label{section:small-classes}
@@ -749,7 +758,9 @@ for all $\phi \in \dom \gamma$.
 
 Let $\delta$ and $\gamma$ be representations of $X$ and $Y$, respectively.
 We say that $A \pcolon X \rightrightarrows Y$ is $(\delta, \gamma)$-$\classFPtwo$-$\le$-hard 
-if $\gamma^{-1} \circ A \circ \delta$ (see Section~\ref{subsection: representations}) is $\classFPtwo$-$\le$-hard.
+if $\gamma^{-1} \circ A \circ \delta$ 
+(see Definition~\ref{definition: computation wrt representation}) 
+is $\classFPtwo$-$\le$-hard.
 
 \begin{lemma}
  Let $\gamma$ and $\gamma'$ be representations of a set $X$, 
