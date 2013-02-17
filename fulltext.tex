@@ -217,9 +217,9 @@ apply it to real functions (and other objects) through representations.
 \subsection{Second-order polynomials}
 \label{section:TTF}
 
-A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length monotone}
+A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length-monotone}
 if $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
-The set of length monotone functions is denoted $\LM$.
+The set of length-monotone functions is denoted $\LM$.
 Let $M$ be a machine and $\phi \in \LM$. 
 We write $M ^\phi (u)$ for the output string 
 when $M$ is given
@@ -231,10 +231,10 @@ Thus, we also regard $M^\phi$ as a function from strings to strings.
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
-The \emph{size} of a length monotone $\phi$, denoted $|\phi|$,
+The \emph{size} of a length-monotone $\phi$, denoted $|\phi|$,
 is a (non-decreasing) function from $\N$ to $\N$ defined by 
 $|\phi|(|u|) = |\phi(u)|$.
-This is well-defined since a length monotone function maps 
+This is well-defined since a length-monotone function maps 
 strings of the same length to strings of the same length.
 
 \emph{Second-order polynomials} in type-1 variable $L \colon \N \to \N$
@@ -252,6 +252,7 @@ polynomial, then $P(L)$ is a first-order polynomial.
  multi-functions from $\LM$ to $\LM$ 
  computed by a machine that runs
  in second-order polynomial time.
+%%!!! "runs in second-order polynomial time"未定義
 \end{definition}
 
 \begin{lemma}
