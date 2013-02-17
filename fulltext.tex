@@ -201,11 +201,8 @@ We review the Type-two Theory of Effectivity (TTE),
 the framework for computable analysis, 
 as extended by 
 \cite{kawamura2012complexity}. 
-In usual discrete settings, we encode countable sets in strings, such as
-natural numbers, formulas, graphs and so on. 
-Likewise, 
-we use string functions to 
-encode uncountably many objects, such as real numbers and real functions, 
+We use string functions to 
+encode objects, such as real numbers and real functions, 
 and use \emph{oracle Turing machines} (henceforth just \emph{machines}) 
 to work on them.
 Sect.~\ref{section:TTF} defines polynomial-time computability on 
@@ -234,24 +231,31 @@ is a (non-decreasing) function from $\N$ to $\N$ defined by
 $|\phi|(|u|) = |\phi(u)|$.
 This is well-defined since a length-monotone function maps 
 strings of the same length to strings of the same length.
-
-\emph{Second-order polynomials} in type-1 variable $L \colon \N \to \N$
-and type-0 variable $n \in \N$ 
-are defined inductively as follows:
-a positive integer is a second-order polynomial;
-the variable $n$ is a second-order polynomial;
-$P+Q$, $P \cdot Q$ and $L(P)$ are
-second-order polynomials if $P$ and $Q$ are second-order polynomials.
-Note that if $P$ is a second-order polynomial and $L$ is a (usual) first-order
-polynomial, then $P(L)$ is a first-order polynomial.
+To define the class $\classFPtwo$ of 
+multi-functions from $\LM$ to $\LM$ 
+computable in polynomial time, 
+we bound the running time by \emph{second-order polynomials} 
+$P (\lvert \varphi \rvert) (\lvert x \rvert)$ 
+in the sizes of the oracle $\phi$ and string $x$
+given to the machine. 
+A second-order polynomial $P (l) (n)$ 
+is an expression built from the number $n$ 
+using $\mathord+$, $\mathord\times$, 
+\emph{and application of the function $l \colon \N \to \N$}; 
+for example, 
+$5 l (l (n) ^3 + n^2) + 2 n + 4$. 
 
 \begin{definition}
  We write $\classFPtwo$ for the class of
  multi-functions from $\LM$ to $\LM$ 
  computed by a machine that runs
  in second-order polynomial time.
-%%!!! "runs in second-order polynomial time"未定義
 \end{definition}
+
+We use bold letters (such as $\classFPtwo$) 
+for classes of multi-functions from $\LM$ to $\LM$, 
+as opposed to the usual complexity classes, such as $\classFP$, 
+which we regard as consisting of multi-functions from $\Sigma ^*$ to $\Sigma ^*$.
 
 \begin{lemma}
 \label{label: classFPtwo maps classFP to classFP}
@@ -288,8 +292,7 @@ if $x = \gamma (\phi)$.
 \label{definition: computation wrt representation}
 \begin{enumerate}
 \item 
-Let $C$ be a class of multi-functions from $\Sigma ^*$ to $\Sigma ^*$
-(such as the usual complexity classes $\classFP$ and $\classFL$), 
+Let $C$ be a class of multi-functions from $\Sigma ^*$ to $\Sigma ^*$, 
 and let $\gamma$ be a representation of a set $X$. 
 We write \emph{$\gamma$-$C$} for the set of $x \in X$
 that have a $\gamma$-name in $C$.
