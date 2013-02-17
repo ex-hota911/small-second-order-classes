@@ -1190,32 +1190,34 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
 \begin{proof}
 [Theorem~\ref{theorem:hoover1991-4.5}]
- Let $\psi \in \LM$ be $\classFP$-complete and
- $A$ be a constant function $A(\phi) = \psi$ for all $\phi \in \LM$.
- Since $A$ is in $\classFP$, $A \redLB \OpCMFix$.
+ Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to $\probCVP$, which is $\classFP$-complete function.
+ Since  $A$ is in $\classFPtwo$ and $\OpCMFix$ is $(\deltaboxCM, \rhoR)$-$\classFPtwo$-$\redLB$-complete, $A \redLB (\rhoR^{-1} \circ \OpCMFix \circ \deltaboxCM)$.
  Let $r,s,t \in \classFLtwo$ be the reduction from $A$ to $\OpCMFix$,
  and $\phi$ be some function in $\classFL$.
- Then, $r(\phi)$, $s(\phi)$, and $t(\phi)$ are all in $\classFL$.
- Since $s(\phi)(u, \cdot) \in \dom \OpCMFix$ for each $u$,
- $s(\phi)(u, \cdot)$ is a $\deltaboxCM^1$-name of some contraction on $[0,1]$.
+ Then, $r(\phi)$, $s(\phi)$, and $t(\phi)$ are in $\classFL$ and
+ $s(\phi)(u, \cdot)$ is a $\deltaboxCM$-name of a contraction on $[0,1]$ 
+ for each $u \in \Sigma^*$.
  Let $(g_u)_u$ be a family of contractions on $[0,1]$
- such that $s(\phi)(u, \cdot)$ is $\deltaboxCM^1$ name of $g_u$.
- For each $u \in \Sigma^*$ and $y \in [0, 1]$,
+ such that $s(\phi)(u, \cdot)$ is $\deltaboxCM$ name of $g_u$.
+ Define $f$ as follows: for each $u \in \Sigma^*$ and $y \in [0, 1]$,
  \begin{equation}
   \label{eq:def-f}
- f(\overline{1u0} + y) = \overline{1u0} + g_u(y)
+ f(t_u + y) = t_u + g_u(y)
  \end{equation}
- and in other interval, $f$ is connected linearly.
+ where $t_u = \overline{1u0}-2$, 
+ and $f$ is connected linearly in other interval.
 
  We show that $f$ meets the conditions in Theorem~\ref{theorem:hoover1991-4.5}.
- This $f$ is $\deltabox$-$\classNC$-computable since 
- $|f(x) - f(x')| \le 3|x-x'|$ and $s(\phi)$ is $\classNC$-computable.
- Since $g_u$ is a contraction,  so is $f|_{[2n, 2n+1]}$.
- Since computing fix-points of $f$ is polynomial-time computable,
- it is $\classNC$ computable if $\classNC = \classP$.
- From the definition of $\redLB$, $\psi$ is many-one log-space
- reducible to the fix-points of $f$ in $[2k, 2k+1]$,
- so $\classNC = \classP$ if it is in $\classNC$.
+ This $f$ is $(\rhoR, \rhoR)$-$\classFNCtwo$-computable since 
+ $|f(x) - f(x')| \le 3|x-x'|$ and $s(\phi)$ is in $\classFNC$.
+ Since $g_u$ is a contraction, so is $f|_{[2n, 2n+1]}$.
+ If $\classNC = \classP$,
+ fix-points of $f$ on $[2n, 2n+1]$ 
+ is $\classFNC$-computable since $\classFPtwo$-computable function 
+ $\OpCMFix$ maps $\classFP$-computable functions into $\classFP = \classFNC$.
+ The string function $r(\phi), t(\phi) \in \classFL$ many-one reduces
+ $\probCVP$ to the fix-points of $(g_u)_u$.
+ Hence $\classNC = \classP$ if fix-points of $f$ on $[2k, 2k+1]$ is $\classFNC$-computable.
 \end{proof}
 
 \subsubsection{$\classFPtwo$-$\redLB$-hardness of the fix-point operation}
