@@ -114,8 +114,7 @@ can now be transformed into a stronger, uniform statement of the form
  $F$ is in the complexity class $\mathcal Y$, and \\
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
-where $\mathcal{X, Y, Z}$ are type-two classes analogous to ${X, Y, Z}$ 
-(see \cite{kawamura2012complexity} for more details).
+where $\mathcal{X, Y, Z}$ are type-two classes analogous to ${X, Y, Z}$.
 
 We continue their research and proceed down into $\classP$. 
 In Section~\ref{section:small-classes}, 
@@ -258,7 +257,7 @@ polynomial, then $P(L)$ is a first-order polynomial.
 \begin{lemma}
 \label{label: classFPtwo maps classFP to classFP}
  Functions in $\classFPtwo$ map 
- length-monotone functions in $\classFP$ to $\classFP$.
+ elements of $\classFP \cap \LM$ into $\classFP$.
 \end{lemma}
 
 For $\phi$, $\psi \in \LM$, 
@@ -337,15 +336,9 @@ if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
 for all $i \in \N$.
 We write $\rhoR|^{[0,1]}$ for the representation of the interval $[0, 1]$ 
 obtained by restricting $\rhoR$.
-
-The class of polynomial-time computable functions from $[0,1]$ to $\R$ 
-defined by Ko equals
-$(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$.
-Polynomial-time computability of a real function $f$ means that
-for any $x \in \dom f$ and $n,m \in \N$, 
-if $|x| \le 2^m$, then
-an approximation of $f(x)$ with error bound $2^{-n}$
-is computable in time polynomial in $n$ and $m$.
+The class $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ 
+coincides with 
+the polynomial-time computable functions by Ko~\cite{ko1991complexity}. 
 
 We call $\mu \colon \N \to \N$ a {\em modulus of continuity} 
 of $f \in \classC [0, 1]$ 
@@ -359,8 +352,7 @@ It is not hard to verify the following.
  \label{lem:type1representation}
  A real function is in $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ if and only if
  it has a polynomial modulus of continuity 
- and there is a polynomial-time computable function 
- $\phi \colon (\D \cap [0, 1]) \times \{0, 1\} ^* \to \D$ such that 
+ and there is a function $\phi \in \classFP$ such that 
  \begin{equation}
    \label{eq:computation on rational points}
   |\phi(d, 0^n) - f(d)| \le 2^{-n} 
@@ -371,13 +363,14 @@ It is not hard to verify the following.
 The following representation $\deltabox$ of $\classC[0,1]$ 
 is inspired by this. 
 For a non-decreasing function $\mu \colon \N \to \N$, 
-we write $\overline \mu \colon \Sigma^* \to \Sigma^*$ for the length-monotone
-function mapping $u$ to $0^{\mu(|u|)}$ for each string $u$.
-For $\phi \in \LM$ and $\mu \colon \N \to \N$ non-decreasing,
-we say that $\langle \overline{\mu}, \phi \rangle$ is a $\deltabox$-name of $f \in \classC[0,1]$
-if $\mu$ is a modulus of continuity of $f$
-and $\phi$ satisfies \eqref{eq:computation on rational points}
-for all $n \in \N$ and $d \in \D|_{[0,1]}$.
+we write $\overline \mu \in \LM$ for the 
+function that maps each string $u$ to $0^{\mu(|u|)}$.
+A $\deltabox$-name of $f \in \classC[0,1]$ is 
+a pair $\langle \overline{\mu}, \phi \rangle$
+of $\phi \in \LM$ and $\mu \colon \N \to \N$
+such that 
+$\mu$ is a modulus of continuity of $f$
+and $\phi$ satisfies \eqref{eq:computation on rational points}.
 
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ equals
