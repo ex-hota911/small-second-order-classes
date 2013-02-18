@@ -226,7 +226,7 @@ Thus, we also regard $M^\phi$ as a function from strings to strings.
  $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 \end{definition}
 
-The \emph{size} of a length-monotone $\phi$, denoted $|\phi|$,
+The \emph{size} of $\phi \in \LM$, denoted $|\phi|$,
 is a (non-decreasing) function from $\N$ to $\N$ defined by 
 $|\phi|(|u|) = |\phi(u)|$.
 This is well-defined since a length-monotone function maps 
@@ -449,8 +449,8 @@ but we will not use such classes in this paper.
 \begin{lemma}
 \label{lemma:Ltwo-maps-L-to-L}
  Functions in $\classFLtwo$ map 
- length-monotone functions in $\classFL$
- to length-monotone functions in $\classFL$.
+ elements of $\classFL \cap \LM$
+ into $\classFL$.
 \end{lemma}
 
 % \begin{proof}
@@ -598,11 +598,11 @@ $\classL$ uniformity.
 \label{corollary: type-one and type-two circuit classes}
 \begin{enumerate}
  \item Functions in $\classFACtwo^i$ 
-       map length-monotone functions in $\classFAC^j$ 
-       to $\classFAC^{i+j}$.
+       map elements of $\classFAC^j \cap \LM$ 
+       into $\classFAC^{i+j}$.
  \item Functions in $\classFNCtwo$
-       map length-monotone functions in $\classFNC$ 
-       to $\classFNC$.
+       map elements of $\classFNC \cap \LM$ 
+       into $\classFNC$.
 \end{enumerate}
 \end{corollary}
 
