@@ -655,15 +655,15 @@ and $B$ is \emph{$\mathcal{C}$-$\leq$-complete}
 if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 
 The reduction $\redLB$ is stronger than $\redLmF$ in that 
-$s$ can use the input string $x$ while answering queries from $B$.
+$s$ can read the input string $x$ when answering queries from $B$.
 In many applications to analysis, 
-the (thus easier) proof of a $\redLB$-hardness result
+the (thus easier) proof of $\redLB$-hardness 
 already seems to capture the essential complexity of the operator
 (e.g.~Theorem~\ref{theorem:P-hard-g_u} in our case), 
 but we need the stronger hardness (with $\redLmF$ or $\redLW$)
 if we want to derive a non-uniform version just from the statement
 (see the next lemma, which does not hold for
-the reduction $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}). 
+$\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}). 
 
 For $F \subseteq \LM$, 
 define the multi-function $\bigcup F \pcolon \Sigma ^* \rightrightarrows \Sigma ^*$ by
@@ -805,7 +805,7 @@ the inverse operation and the fix-point operation.
 We start with real numbers and real functions, 
 using the representation $\rhoR$
 (see Sect.~\ref{subsection: representations}). 
-Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
+Ko's class of
 \emph{log-space real functions} in $\classC[0,1]$ 
 \cite{ko1991complexity} 
 coincides with our $(\rhoRunit, \rhoR)$-$\classFLtwo$, 
@@ -828,7 +828,7 @@ are exactly those in $(\rhoR, \rhoR)$-$\classFNCtwo$.
 \end{example}
 
 \begin{example}
-The circle ratio $\pi$ is in $\rhoR$-$\classFL$ by the series
+The circle ratio $\pi$ is in $\rhoR$-$\classFL$ because the series
 \begin{equation}
  \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
   \left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6} \right)
@@ -868,6 +868,15 @@ and $\pi \in \rhoR$-$\classFL$.
 Combining these, $\sin \in (\rhoR, \rhoR)$-$\classFLtwo$.
 \end{example}
 
+The following states that $\deltabox$ 
+is the weakest representation that makes function evaluation 
+logspace computable, 
+and gives evidence that 
+$\deltabox$ is the natural choice (relative to $\rhoR$)
+as a basic representation of $\classC [0, 1]$. 
+It can be proved similarly to the analogous theorem for $\classFPtwo$ 
+\cite{kawamura11:_funct_space_repres_and_polyn_time_comput}. 
+
 \begin{theorem}
  \label{theorem:apply-is-L-computable}
  Let $\delta$ be a representation of $\classC[0, 1]$.
@@ -875,18 +884,15 @@ Combining these, $\sin \in (\rhoR, \rhoR)$-$\classFLtwo$.
  and only if $\delta \transL \deltabox$.
 \end{theorem}
 
-Theorem~\ref{theorem:apply-is-L-computable} can be proved 
-similarly to the analogous theorem for $\classFPtwo$ 
-\cite{kawamura11:_funct_space_repres_and_polyn_time_comput}. 
 Note that, 
 if we had defined $\classFLtwo$ with the obvious relativized machine with one query tape,
 $\classFLtwo$ would be either too weak 
-for $\OpApply$ to be in $([\deltabox,\rhoR], \rhoR)$-$\classFL$ or
+to have $\OpApply \in ([\deltabox,\rhoR], \rhoR)$-$\classFLtwo$ or
 too strong to be a subset of $\classFNCtwo$,
 depending on whether or not the machine is allowed to look at the answer tape while writing queries.
-Our extension of the constant stack model is the weakest
-such that both Theorem~\ref{theorem:apply-is-L-computable} and 
-$\classFLtwo \subseteq \classFNCtwo$ true.
+% Our extension of the constant stack model is the weakest
+% such that both Theorem~\ref{theorem:apply-is-L-computable} and 
+% $\classFLtwo \subseteq \classFNCtwo$ true.
 
 In the rest of Sect.~\ref{section:function}, 
 we reformulate in our terminology a known result that 
