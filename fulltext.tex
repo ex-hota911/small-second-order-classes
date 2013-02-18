@@ -38,9 +38,9 @@ Kawamura and Cook recently proposed a modification to TTE using
 machines that have random access to an oracle and 
 run in time depending on the ``size'' of the oracle. 
 They defined type-two analogues of 
-$\classP$, $\classNP$, and $\classPSPACE$ 
+$\classP$, $\classNP$, $\classPSPACE$ 
 and showed some typical operators in analysis
-to belong to and be complete for these classes. 
+to be in and complete for these classes. 
 We further refine their model and study computation below $\classP$: 
 type-two analogues of 
 the classes $\classL$, 
@@ -101,7 +101,7 @@ so that we can discuss the complexity of an
 operator $F \colon \classC [0, 1] \to \classC [0, 1]$. 
 This extends the previously accepted notion of 
 complexity of $f \in \classC [0, 1]$
-(which had been possible to formulate also in the infinite string model)
+(which could also be formulated in the infinite string model)
 in a natural way, so that many known non-uniform results of the form
 \begin{quote}
  if $f$ is in the complexity class $X$,
@@ -573,13 +573,13 @@ $ \classFACtwo^0
 \end{theorem}
 
 \begin{proof}
- The first inclusion can be proved in a similar way
+ The first inclusion can be proved similarly
  to $\classAC^0 \subseteq \classL$.
- The second inclusion can be proved in a similar argument to 
- the proof of $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
+ The second inclusion can be proved by an argument similar to
+ $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
  \cite{aehlig2007relativizing}.
- The third inclusion immediately follows from the definition.
- The forth inclusion follows from Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
+ The third inclusion is immediate.
+ The last inclusion follows from Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
 \end{proof}
 
 
@@ -662,6 +662,10 @@ if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 For $F \subseteq \LM$, 
 define the multi-function $\bigcup F \pcolon \Sigma ^* \rightrightarrows \Sigma ^*$ by
 $(\bigcup F) [x] = \{\, f(x) \mid f \in F \,\}$.
+The following lemma (see appendix for a proof)
+will help us in Sect.~\ref{section:P-complete} to show that the known 
+non-uniform results (the existence of an $\classFP$-hard output) follow from 
+our uniform statements ($\classFPtwo$-$\redLmF$-hardness of an operation). 
 
 \begin{lemma}
 \label{lemma:P-complete}
@@ -670,11 +674,8 @@ There is $\psi \in \dom B \cap \classFL$ such that
  $\bigcup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
 \end{lemma}
 
-We will use this lemma to derive
-non-uniform results (the existence of $\classFP$-hard solution) from 
-uniform results ($\classFPtwo$-$\redLmF$-hardness of an operation). 
 Note that this lemma does not hold for
-the reductions $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}.
+the reduction $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}.
 
 The following partial function $\probDTIMEtwo \pcolon \LM \to \LM$ 
 is a standard complete problem: 
@@ -708,9 +709,6 @@ the output of the computation $M^\phi(x)$.
 % Similar to Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
 % \end{proof}
 
-See appendix for 
-proofs of Lemma~\ref{lemma:P-complete} and Lemma~\ref{lemma: probDTIMEtwo}. 
-
 \subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
 
@@ -721,7 +719,7 @@ a point $x \in X$ is in $\gamma$-$\classFL$ or $\gamma$-$\classFNC$,
 and when a multi-function $A \pcolon X \rightrightarrows Y$ is in
 $(\gamma, \delta)$-$\classFLtwo$ or
 $(\gamma, \delta)$-$\classFNCtwo$. 
-We also give the definition of hardness: 
+We also define hardness under representations: 
 $x$ is $\gamma$-$C$-$\le$-\emph{hard} if
 $\bigcup(\gamma^{-1}[x])$ is $C$-$\le$-hard,
 where $\gamma^{-1}[x]$ is the set of $\gamma$-names of $x$; 
@@ -773,7 +771,7 @@ $(\gamma', \delta)$-$\classFPtwo$-$\redLW$-hard.
 \label{section:applications}
 
 In Sect.~\ref{section:function}, 
-we show that some examples of real functions and operators 
+we show some examples of real functions and operators 
 that are in $\classFLtwo$ and $\classFNCtwo$ (under suitable representations). 
 In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
 the inverse operation and the fix-point operation.
@@ -781,10 +779,7 @@ the inverse operation and the fix-point operation.
 \subsection{Within $\classFLtwo$ and $\classFNCtwo$}
 \label{section:function}
 
-We show several functions to be 
-in $\classFLtwo$ and $\classFNCtwo$
-under suitable representations. 
-We start with real functions, 
+We start with real numbers and real functions, 
 using the representation $\rhoR$
 (see Sect.~\ref{subsection: representations}). 
 Ko's class $\mathrm{LOGSPACE}_{\classC[0,1]}$ of
@@ -803,6 +798,52 @@ as $\deltabox$-$\classFNC$ in our terminology
 which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$.
 The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
 are exactly those in $(\rhoR, \rhoR)$-$\classFNCtwo$.
+
+\begin{example}
+ The binary addition and the binary multiplication are
+ $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
+\end{example}
+
+\begin{example}
+The circle ratio $\pi$ is in $\rhoR$-$\classFL$ by the series
+\begin{equation}
+ \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
+  \left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6} \right)
+\end{equation}
+converges fast enough, 
+so that a $2 ^{-n}$-approximation to $\pi$ can be obtained by adding up 
+an appropriate number $k = \mathrm O (n)$ of terms. 
+This computation of approximate partial sum involves 
+polynomially many multiplications, additions, and divisions on rationals, 
+and each of these operations can be performed in logarithmic space
+by Chiu, Davida and Litow~\cite{chiu2001division}.
+\end{example}
+
+% \begin{lemma}
+%  The exponential function restricted to $[0,1]$
+%  is in $(\rhoRunit, \rhoR)$-$\classFLtwo$.
+% \end{lemma}
+% Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
+% a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ can be computed
+% by polynomially many multiplications, additions, and divisions on rationals. 
+
+% On the other hand, without the restriction on the domain, $\exp$ is not 
+% even in $(\rhoR, \rhoR)$-$\classFPtwo$, 
+% because it grows too fast. 
+
+\begin{example}
+The sine function $\sin \colon \R \to \R$ is
+in $(\rhoR, \rhoR)$-$\classFLtwo$.
+To see this, note that 
+the Taylor series of $\sin$ also converge fast enough,
+so it is log-space computable if restricted to $[-4, 4]$.
+The multi-function that computes from $t$
+any $x \in [-4, 4]$ with $x \equiv t \bmod 2 \pi$ is
+in $(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$, 
+because division is log-space computable 
+and $\pi \in \rhoR$-$\classFL$. 
+Combining these, $\sin \in (\rhoR, \rhoR)$-$\classFLtwo$.
+\end{example}
 
 \begin{theorem}
  \label{theorem:apply-is-L-computable}
@@ -823,42 +864,6 @@ depending on whether or not the machine is allowed to look at the answer tape wh
 Our extension of the constant stack model is the weakest
 such that both Theorem~\ref{theorem:apply-is-L-computable} and 
 $\classFLtwo \subseteq \classFNCtwo$ true.
-
-% \begin{example}
-%  The binary addition and the binary multiplication are
-%  $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
-% \end{example}
-
-\begin{lemma}
- The exponential function restricted to $[0,1]$
- is in $(\rhoRunit, \rhoR)$-$\classFLtwo$.
-\end{lemma}
-Since the series $\exp(t) = \sum_n x^n / n!$ converges fast enough,
-a $2^{-m}$-approximation of $\exp(t)$ for $t \in [0,1]$ can be computed
-by polynomially many multiplications, additions, and divisions on rationals, 
-and each of these operations can be performed in logarithmic space
-by Chiu, Davida and Litow~\cite{chiu2001division}.
-
-On the other hand, without the restriction on the domain, $\exp$ is not 
-even in $(\rhoR, \rhoR)$-$\classFPtwo$, 
-because it grows too fast. 
-
-\begin{lemma}
-  The sine function $\sin \colon \R \to \R$ is
- in $(\rhoR, \rhoR)$-$\classFLtwo$.
-\end{lemma}
-Like $\exp$, the Taylor series of $\sin$ converges fast enough,
-so it is obvious that $\sin$ is log-space computable if it is restricted to $[-4, 4]$.
-The multi-function that computes from $t$
-any $x \in [-4, 4]$ with $x \equiv t \bmod 2 \pi$ is
-in $(\rhoR, \rhoR|^{[-4,4]})$-$\classFLtwo$, 
-because division is log-space computable 
-and $\pi$ is in $\rhoR$-$\classFL$ by the following series:
-\begin{equation}
- \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
-  \left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6} \right).
-\end{equation}
-Hence, $\sin$ is in $(\rhoR, \rhoR)$-$\classFLtwo$.
 
 In the rest of Sect.~\ref{section:function}, 
 we reformulate in our terminology Neff's result that 
