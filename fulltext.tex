@@ -630,17 +630,7 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
        we have $s(\phi) \in \dom B$ and 
        for each $\theta \in B[s(\phi)]$, 
        we have $r(\langle \phi, \theta \rangle) \in A[\phi]$.
-\end{itemize}
-\end{definition}
-
-These are analogous to the polynomial-time reductions 
-$\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}.
-Note that $A \redLmF B$ implies $A \redLW B$.
-
-There is another version of a many-one reduction defined by
-Beame et al. \cite{beame1995relative}.
-We define a log-space reduction analogous to it:
-we write $A \redLB B$ 
+ \item $A \redLB B$ 
 if there are functions $r, s, t \in \classFLtwo$ such that 
 for all $\phi \in \dom A$,
 the function~$\sigma$ that maps $y \in \Sigma ^*$ to $s (\phi) (x, y)$
@@ -648,7 +638,15 @@ belongs to $\dom B$
 and for each $\theta \in B [\sigma]$, 
 the function that maps $x \in \Sigma^*$ 
 to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
-This reduction is stronger than $\redLmF$ since
+\end{itemize}
+\end{definition}
+
+These are analogous to the polynomial-time reductions 
+$\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
+and the ``many-one reduction'' in Beame et al. \cite{beame1995relative}. 
+Note that $A \redLmF B$ implies $A \redLW B$.
+
+The reduction $\redLB$ is stronger than $\redLmF$ in that 
 $s$ can use the input string $x$ while answering queries from $B$.
 See the comments after the next lemma and before Theorem~\ref{theorem:P-hard-g_u} for
 the disadvantage and the advantage of this reduction.
@@ -668,13 +666,13 @@ $(\bigcup F) [x] = \{\, f(x) \mid f \in F \,\}$.
 \begin{lemma}
 \label{lemma:P-complete}
 Let $B$ be a $\classFPtwo$-$\redLmF$-complete multi-function.
-There is $\psi \in \dom B \cap \classFL$ satisfying that
+There is $\psi \in \dom B \cap \classFL$ such that
  $\bigcup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
 \end{lemma}
 
-We will use this lemma to reduce 
-non-constructive results (the existence of $\classFP$-hard solution) to
-constructive results ($\classFPtwo$-$\redLmF$-hardness of an operation).
+We will use this lemma to derive
+non-uniform results (the existence of $\classFP$-hard solution) from 
+uniform results ($\classFPtwo$-$\redLmF$-hardness of an operation). 
 Note that this lemma does not hold for
 the reductions $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}.
 
@@ -738,9 +736,9 @@ for all $\phi \in \dom \gamma$.
  $(\gamma', \delta')$-$\mathcal C$.
 \end{lemma}
 
-Let $\delta$ and $\gamma$ be representations of $X$ and $Y$, respectively.
-We say that $A \pcolon X \rightrightarrows Y$ is $(\delta, \gamma)$-$\classFPtwo$-$\le$-hard 
-if $\gamma^{-1} \circ A \circ \delta$ 
+Let $\gamma$ and $\delta$ be representations of $X$ and $Y$, respectively.
+We say that $A \pcolon X \rightrightarrows Y$ is $(\gamma, \delta)$-$\classFPtwo$-$\le$-hard 
+if $\delta^{-1} \circ A \circ \gamma$ 
 (see Definition~\ref{definition: computation wrt representation}) 
 is $\classFPtwo$-$\le$-hard.
 
@@ -767,7 +765,7 @@ where $\gamma^{-1}[x]$ is the set of $\delta$ names $\phi \in \LM$ of $x \in X$.
 
 \begin{lemma}
  \label{lemma:p-comp-maps-l-to-p-comp}
- Let $\gamma$ and $\delta$ be representations of a set $X$ and a set $Y$.
+ Let $\gamma$ and $\delta$ be representations of sets $X$ and $Y$.
  Then a $(\gamma, \delta)$-$\classFPtwo$-$\redLmF$-complete partial function 
  maps some element of $\gamma$-$\classFL$ 
  to a $\delta$-$\classFP$-$\redmF^\classL$-complete element of $Y$.
