@@ -869,8 +869,11 @@ We write $P_n$ for the set of degree-$n$ monic
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is, $p(x) = \prod_{z \in \OpPolyRoot(p)} (x - z)$. 
 
-Neff first showed that approximating the roots of polynomial
+Neff first showed the following theorem, which says that 
+approximating the roots of polynomial
 with integer coefficients is in $\classFNC$.
+We write $|p|$ for the maximum absolute value of coefficients in $p$.
+
 \begin{theorem}
 [NC polynomial root isolation \cite{neff1994specified}]\label{theorem:neff1994}
 There is an algorithm $A$ such that,
@@ -881,10 +884,6 @@ in at most $C \log^e(n + m + k)$ parallel steps,
 using at most $D(n + m + k)^f$ processors, where $C, D, e, f$ are positive
 constants which are independent of $n$, $m$, and $k$.
 \end{theorem}
-We write $|p|$ for the maximum absolute value
- of coefficients in $p$.
-%and the \emph{distance} of
-%two polynomials $p$, $q \in P_n$, denoted $d(p, q)$, is $|p-q|$.
 
 Later Pan showed that approximating the roots of a polynomial
 with complex rational coefficients is in $\classFNC$ \cite{pan1995optimal}.
@@ -896,11 +895,9 @@ the modulus of continuity of finding roots \cite{neff1996efficient}.
 \label{neff1996modulus}
  Let $f$ and $g$ be monic polynomials of the same degree $n$,
  and let $|f| \le 2^m$.
- If $|f - g| \le 2^{\lceil n(k + m + \log n + 3)\rceil}$, then
- \begin{equation}
-  d(\OpPolyRoot(f), \OpPolyRoot(g)) \le 2^{-k} 
- \end{equation}
- for all $k \in \N$.
+ For each $k \in \N$, 
+ if $|f - g| \le 2^{\lceil n(k + m + \log n + 3)\rceil}$, then
+ $d(\OpPolyRoot(f), \OpPolyRoot(g)) \le 2^{-k}$. 
 \end{theorem}
 
 % They regard these two results ensure that $\classFNC$-computability
