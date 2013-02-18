@@ -612,6 +612,12 @@ Lemmas \ref{lemma: respects uniformity} and
 
 \subsection{Reductions and completeness}
 
+The following logspace reductions $\redLmF$, $\redLW$, $\redLB$ are 
+analogues of the polynomial-time reductions 
+$\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
+and the ``many-one reduction'' in Beame et al. \cite{beame1995relative}. 
+Note that $A \redLmF B$ implies $A \redLW B$ and $A \redLB B$. 
+
 \begin{definition}
 Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
 \begin{itemize}
@@ -641,16 +647,6 @@ to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
 \end{itemize}
 \end{definition}
 
-These are analogous to the polynomial-time reductions 
-$\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
-and the ``many-one reduction'' in Beame et al. \cite{beame1995relative}. 
-Note that $A \redLmF B$ implies $A \redLW B$ and $A \redLB B$.
-
-The reduction $\redLB$ is stronger than $\redLmF$ in that 
-$s$ can use the input string $x$ while answering queries from $B$.
-See the comments after the next lemma and before Theorem~\ref{theorem:P-hard-g_u} for
-the disadvantage and the advantage of this reduction.
-
 For a class $\mathcal{C}$ of multi-functions from $\LM$ to $\LM$
 and a reduction $\leq$, 
 we say that $B \pcolon \LM \rightrightarrows \LM$ is 
@@ -658,6 +654,16 @@ we say that $B \pcolon \LM \rightrightarrows \LM$ is
 and $B$ is \emph{$\mathcal{C}$-$\leq$-complete} 
 if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 
+The reduction $\redLB$ is stronger than $\redLmF$ in that 
+$s$ can use the input string $x$ while answering queries from $B$.
+In many applications to analysis, 
+the (thus easier) proof of a $\redLB$-hardness result
+already seems to capture the essential complexity of the operator
+(e.g.~Theorem~\ref{theorem:P-hard-g_u} in our case), 
+but we need the stronger hardness (with $\redLmF$ or $\redLW$)
+if we want to derive a non-uniform version just from the statement
+(see the next lemma, which does not hold for
+the reduction $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}). 
 
 For $F \subseteq \LM$, 
 define the multi-function $\bigcup F \pcolon \Sigma ^* \rightrightarrows \Sigma ^*$ by
@@ -674,9 +680,6 @@ Let $B$ be a $\classFPtwo$-$\redLmF$-complete multi-function.
 There is $\psi \in \dom B \cap \classFL$ such that
  $\bigcup (B[\psi])$ is $\classFP$-$\le^\classL_{\mathrm{mF}}$-complete.
 \end{lemma}
-
-Note that this lemma does not hold for
-the reduction $\redLB$; cf.~\cite[Lemma~3.6]{kawamura2012complexity}.
 
 The following partial function $\probDTIMEtwo \pcolon \LM \to \LM$ 
 is a standard complete problem: 
@@ -886,13 +889,13 @@ such that both Theorem~\ref{theorem:apply-is-L-computable} and
 $\classFLtwo \subseteq \classFNCtwo$ true.
 
 In the rest of Sect.~\ref{section:function}, 
-we reformulate in our terminology Neff's result that 
-the roots of a complex polynomial can be found in $\classNC$. 
+we reformulate in our terminology a known result that 
+informally reads
+``the roots of a complex polynomial can be found in $\classNC$.'' 
 
 We write $P_n$ for the set of degree-$n$ monic 
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is, $p(x) = \prod_{z \in \OpPolyRoot(p)} (x - z)$. 
-
 Neff first showed the following theorem, which says that 
 approximating the roots of polynomial
 with integer (or rational, equivalently) coefficients is in $\classFNC$.
@@ -980,16 +983,18 @@ $, with $\sigma$ ranging over all permutations on $\{1, \ldots, n\}$.
 %  $\OpPolyRoot$ is $(\rho_{P_n}, \rhoCSet)$-$\classFNCtwo$-computable.
 % \end{corollary}
 
-Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
-the following algorithm:
+\begin{proof}
+This is immediate by the following algorithm
+using the above-cited facts:
 Given $k \in \N$ and a $\rho_{P_n}$-name of $p \in P_n$, 
 compute a polynomial $q \in {P_n}$ with complex rational coefficients
 satisfying $|p - q| \le 2^{\lceil n((k+1) + m + \log n + 3)\rceil}$.
-Theorem~\ref{neff1996modulus} guarantees that the difference between 
-the roots of $q$ and $p$ is $2^{-(k+1)}$ at most.
-Then, answer approximated roots of $q$ with precision $2^{-(k+1)}$ 
+By Theorem~\ref{neff1996modulus}, the difference between 
+the roots of $p$ and $q$ is at most $2^{-(k+1)}$.
+Output approximate roots of $q$ with precision $2^{-(k+1)}$ 
 computed by the algorithm by Neff and Reif, or Pan,
-which are $2^{-k}$-approximation of roots of $p$.
+which are $2^{-k}$-approximations of roots of $p$.
+\end{proof}
 
 \subsection{$\classPtwo$-complete operations}
 \label{section:P-complete}
