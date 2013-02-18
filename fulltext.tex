@@ -39,8 +39,7 @@ machines that have random access to an oracle and
 run in time depending on the ``size'' of the oracle. 
 They defined type-two analogues of 
 $\classP$, $\classNP$, $\classPSPACE$ 
-and showed some typical operators in analysis
-to be in and complete for these classes. 
+and applied them to real functions and operators. 
 We further refine their model and study computation below $\classP$: 
 type-two analogues of 
 the classes $\classL$, 
@@ -90,12 +89,13 @@ Employing \emph{type-two complexity theory} and
 using \emph{second-order polynomials} to bound time and space, 
 they formulated analogues of complexity classes 
 $\classP$, $\classNP$, $\classPSPACE$ and 
-applied them to real functions and operators. 
+showed some typical operators in analysis
+to be in and complete for these classes. 
 
 One benefit of this was
 a greater variety of objects for which we can define complexity. 
 For example, with the second-order formulation
-we can define a canonical representation of the space $\classC [0, 1]$
+we obtain a canonical representation of the space $\classC [0, 1]$
 of continuous real functions, 
 so that we can discuss the complexity of an
 operator $F \colon \classC [0, 1] \to \classC [0, 1]$. 
@@ -123,11 +123,11 @@ $\classL$ (logarithmic space),
 $\classNC$ (poly-logarithmic depth circuits; efficiently parallelizable), 
 and 
 $\classP$-completeness (inherently sequential). 
-While the most basic idea, 
+While the fundamental idea, 
 i.e.\ that of using of second-order polynomials as resource bounds, 
 is common to \cite{kawamura2012complexity}, 
 there are several choices that we need to make carefully
-in implementing this idea, 
+in implementing it, 
 due to the subtleties pertaining to small complexity classes. 
 In particular, 
 we use a modified version of 
@@ -259,7 +259,7 @@ which we regard as consisting of multi-functions from $\Sigma ^*$ to $\Sigma ^*$
 The following is immediate. 
 
 \begin{lemma}
-\label{label: classFPtwo maps classFP to classFP}
+\label{lemma: classFPtwo maps classFP to classFP}
  Functions in $\classFPtwo$ map 
  elements of $\classFP \cap \LM$ into $\classFP$.
 \end{lemma}
@@ -595,7 +595,7 @@ $\classL$ uniformity.
 \end{lemma}
 
 \begin{corollary}
-\label{corollary: type-one and type-two circuit classes}
+\label{lemma: type-one and type-two circuit classes}
 \begin{enumerate}
  \item Functions in $\classFACtwo^i$ 
        map elements of $\classFAC^j \cap \LM$ 
@@ -607,8 +607,8 @@ $\classL$ uniformity.
 \end{corollary}
 
 See appendix for proofs of 
-Lemma~\ref{lemma: respects uniformity} and 
-Corollary~\ref{corollary: type-one and type-two circuit classes}.
+Lemmas \ref{lemma: respects uniformity} and 
+\ref{lemma: type-one and type-two circuit classes}.
 
 \subsection{Reductions and completeness}
 
@@ -644,7 +644,7 @@ to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
 These are analogous to the polynomial-time reductions 
 $\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
 and the ``many-one reduction'' in Beame et al. \cite{beame1995relative}. 
-Note that $A \redLmF B$ implies $A \redLW B$.
+Note that $A \redLmF B$ implies $A \redLW B$ and $A \redLB B$.
 
 The reduction $\redLB$ is stronger than $\redLmF$ in that 
 $s$ can use the input string $x$ while answering queries from $B$.
@@ -663,9 +663,10 @@ For $F \subseteq \LM$,
 define the multi-function $\bigcup F \pcolon \Sigma ^* \rightrightarrows \Sigma ^*$ by
 $(\bigcup F) [x] = \{\, f(x) \mid f \in F \,\}$.
 The following lemma (see appendix for a proof)
-will help us in Sect.~\ref{section:P-complete} to show that the known 
-non-uniform results (the existence of an $\classFP$-hard output) follow from 
-our uniform statements ($\classFPtwo$-$\redLmF$-hardness of an operation). 
+will help us in Sect.~\ref{section:P-complete} to show that 
+our uniform statements ($\classFPtwo$-$\redLmF$-hardness of an operation)
+imply the known non-uniform results 
+(existence of an $\classFP$-hard output). 
 
 \begin{lemma}
 \label{lemma:P-complete}
@@ -727,6 +728,9 @@ and $A$ is $(\gamma, \delta)$-$\classFPtwo$-$\le$-\emph{hard}
 if $\delta^{-1} \circ A \circ \gamma$ 
 (see Definition~\ref{definition: computation wrt representation}) 
 is $\classFPtwo$-$\le$-hard.
+The following facts
+about translation between representations are
+analogous to \cite{kawamura2012complexity}. 
 
 \begin{definition}
 Let $\gamma$ and $\delta$ be two representations of a set $X$.
@@ -750,6 +754,22 @@ a $(\gamma, \delta')$-$\classFPtwo$-$\redLW$-hard multi-function is
 $(\gamma', \delta)$-$\classFPtwo$-$\redLW$-hard.
 \end{enumerate}
 \end{lemma}
+
+Although this shows that $\redLW$-hardness is 
+more stable and perhaps natural 
+than $\redLmF$-hardness, 
+we will state some of our hardness results in Sect.~\ref{section:applications}
+using $\redLmF$, 
+in the interest of proving stronger statements
+(and deriving the existing non-uniform counterparts as corollaries
+through the following lemma). 
+
+The following lemma is the version of 
+Lemmas~\ref{lemma: classFPtwo maps classFP to classFP}, 
+\ref{lemma:Ltwo-maps-L-to-L}, 
+\ref{lemma: type-one and type-two circuit classes} and 
+\ref{lemma:P-complete} for represented spaces, 
+and follows easily from them. 
 
 \begin{lemma}
 \label{lemma:p-comp-maps-l-to-p-comp}
@@ -1022,7 +1042,7 @@ such that $f$ is polynomial-time computable and $x = f^{-1}(0)$.
 
 The following theorem is the uniform version of Theorem~\ref{theorem: ko inversion}. 
 Part~\ref{enumi:ko1991-4.7} of Theorem~\ref{theorem: ko inversion} 
-follows from this and Lemma~\ref{label: classFPtwo maps classFP to classFP}.
+follows from this and Lemma~\ref{lemma: classFPtwo maps classFP to classFP}.
 Part~\ref{enumi:ko1991-4.18} follows from this theorem and Lemma~\ref{lemma:p-comp-maps-l-to-p-comp}.\ref{enumi:p-comp-maps-l-to-p-comp}.
 
 \begin{theorem}
@@ -1105,7 +1125,7 @@ that are $1/2$-Lipschitz.
  it is log-space computable.
 \end{proof}
 
-\begin{proof}[Corollary~\ref{corollary: type-one and type-two circuit classes}]
+\begin{proof}[Lemma~\ref{lemma: type-one and type-two circuit classes}]
 The second statement immediately follows from the first statement.
 Let $A$ be a function in $\classFACtwo^i$ and $(C_{L,n})_{L,n}$ be a circuit
 family computing $A$ with $\log^i$ depth.
