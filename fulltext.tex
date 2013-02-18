@@ -869,14 +869,13 @@ In the rest of Sect.~\ref{section:function},
 we reformulate in our terminology Neff's result that 
 the roots of a complex polynomial can be found in $\classNC$. 
 
-%\paragraph{Finding polynomial roots is $\classFNCtwo$-computable}
 We write $P_n$ for the set of degree-$n$ monic 
 polynomials (i.e.\ the leading coefficient is $1$) with complex coefficients.
 We write $\OpPolyRoot(p)$ for the multiset of all the roots of $p \in P_n$, that is, $p(x) = \prod_{z \in \OpPolyRoot(p)} (x - z)$. 
 
 Neff first showed the following theorem, which says that 
 approximating the roots of polynomial
-with integer coefficients is in $\classFNC$.
+with integer (or rational, equivalently) coefficients is in $\classFNC$.
 We write $|p|$ for the maximum absolute value of coefficients in $p$.
 
 \begin{theorem}
@@ -910,35 +909,35 @@ the modulus of continuity of finding roots \cite{neff1996efficient}.
 % In our framework, we can combine these two results by stating 
 % $\classFNCtwo$-computability under suitable representations.
 
-To discuss the complexity of finding roots of a polynomial in our framework,
-we need representations for polynomials and multisets of complex numbers.
+These can be recast into our framework by specifying 
+representations for polynomials and multisets of complex numbers as follows.
 We represent a complex number by a pair of $\rhoR$-names,
-that is, $
+i.e., $
  \rho_\C (\langle \phi, \psi \rangle) 
 = 
  \rhoR (\phi) + \sqrt{-1} \cdot \rhoR (\psi)
 $.  We define the representation $\rho_{P_n}$ of 
 $P _n$ as follows: 
-$\phi \in \LM$ is a $\rho_{P_n}$-name of $p \in P_n$ 
-if $\phi$ is a $\rho_{\C^n}$-name of $(a_{n-1}, \dots, a_0)$ 
-such that $p(x) = x^n + a_{n-1}x^{n-1} + \cdots a_0$.
-Define the representation $\rho_{P_*}$ of monic polynomials by
-$p(x) = \rho_{P_*}(\langle 0^n, \phi \rangle) \iff p(x) = \rho_{P_n}(\phi)$.
-
-We represent multisets of complex numbers as converging sequences of 
-multisets of rational complex numbers.
-The distance between two multisets $S = \{z_1, \dots, z_n\}$
-and $S' = \{z'_1, \dots, z'_n\}$ is defined as
-\begin{equation}
-d(S, S') = \min_{\sigma} \max_{j = 1, \ldots, n}|z_j - z'_{\sigma(j)}|,
-\end{equation}
-where $\sigma$ ranges over all permutations on $\{1, \ldots, n\}$. 
-Define the representation $\rhoCSet$ as follows:
-Let $S$ be a multiset of $n$ complex numbers. 
-We say that $\phi \in \LM$ is a $\rhoCSet$ name of $S$ if
-for all $m \in \N$, there are $a_1, b_1, a_2, b_2, \dots, a_n, b_n \in \D_m$
-such that $\phi(0^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n )$
-and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
+$\phi = \langle \phi _0, \ldots, \phi _{n - 1} \rangle \in \LM$ 
+is a $\rho_{P_n}$-name of $p \in P_n$ if 
+$\phi _0$, \ldots, $\phi _{n - 1}$ are 
+$\rho_{\C}$-names of $a _0$, \ldots, $a _{n - 1}$, respectively, 
+with $p(x) = x^n + a_{n-1}x^{n-1} + \dots + a_0$.
+Define the representation $\rho_{P_*}$ of all monic polynomials by
+$\rho_{P_*}(\langle 0^n, \phi \rangle) = \rho_{P_n}(\phi)$.
+Define the representation $\rhoCSet$ for finite multisets of complex numbers 
+as follows:
+$\phi \in \LM$ is a $\rhoCSet$-name of a multiset $S$ if 
+for each $m \in \N$, 
+we have $\phi(0 ^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n )$
+with $a_1, b_1, \dots, a_n, b_n \in \D_m$
+such that 
+$d(S, \{a_1 + b_1 \sqrt{-1}, \dots, a_n + b_n \sqrt{-1}\}) \le 2^{-m}$, 
+where the distance between two multisets is defined as $
+ d (\{z_1, \dots, z_n\}, \{z'_1, \dots, z'_n\}) 
+= 
+ \min_{\sigma} \max_{j = 1, \ldots, n}|z_j - z'_{\sigma(j)}|
+$, with $\sigma$ ranging over all permutations on $\{1, \ldots, n\}$. 
 
 %We can also represent multisets $S$ as vectors $z \in \C^n$
 %such that $S = \{z\}$.
@@ -962,7 +961,7 @@ and $d(S, \{a_1 + b_1 i, \dots, a_n + b_n i\}) \le 2^{-m}$.
 % \end{corollary}
 
 Theorem~\ref{theorem:finding-roots-is-in-NC} follows immediately from
-by the following algorithm:
+the following algorithm:
 Given $k \in \N$ and a $\rho_{P_n}$-name of $p \in P_n$, 
 compute a polynomial $q \in {P_n}$ with complex rational coefficients
 satisfying $|p - q| \le 2^{\lceil n((k+1) + m + \log n + 3)\rceil}$.
