@@ -619,15 +619,17 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
        denoted $A \redLmF B$,
        if there are functions $r, s, t \in \classFLtwo$ such that 
        for all $\phi \in \dom A$,
-       $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
-       the function maps $x \in \Sigma^*$ to $r(\phi)(x, \theta(t(\phi)(x)))$
+       we have $s(\phi) \in \dom B$ and 
+       for each $\theta \in B[s(\phi)]$, 
+       the function that maps $x \in \Sigma^*$ to $r(\phi)(x, \theta(t(\phi)(x)))$
        is in $A[\phi]$.
  \item $A$ is \emph{Weihrauch log-space reducible} to $B$,
        denoted $A \redLW B$,
        if there are functions $r, s \in \classFLtwo$ such that 
        for all $\phi \in \dom A$,
-       $s(\phi) \in \dom B$ and each $\theta \in B[s(\phi)]$ satisfies that
-       $r(\langle \phi, \theta \rangle)$ is in $A[\phi]$.
+       we have $s(\phi) \in \dom B$ and 
+       for each $\theta \in B[s(\phi)]$, 
+       we have $r(\langle \phi, \theta \rangle) \in A[\phi]$.
 \end{itemize}
 \end{definition}
 
@@ -637,23 +639,24 @@ Note that $A \redLmF B$ implies $A \redLW B$.
 
 There is another version of a many-one reduction defined by
 Beame et al. \cite{beame1995relative}.
-We define as follows a log-space reduction analogous to it:
-We write $A \redLB B$ 
+We define a log-space reduction analogous to it:
+we write $A \redLB B$ 
 if there are functions $r, s, t \in \classFLtwo$ such that 
 for all $\phi \in \dom A$,
-$s(\phi)(x, \cdot) \in \dom B$ and each $\theta \in B[s(\phi)(x, \cdot)]$ 
-satisfies that the function maps $x \in \Sigma^*$ 
+the function~$\sigma$ that maps $y \in \Sigma ^*$ to $s (\phi) (x, y)$
+belongs to $\dom B$ 
+and for each $\theta \in B [\sigma]$, 
+the function that maps $x \in \Sigma^*$ 
 to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
-This reduction is much stronger than others since
-it can use the input string $x$ while making the input of $B$.
-The reduction $\redLmF$ is a special case of $\redLB$ where
-$s$ does not depend on the string input $x$.
+This reduction is stronger than $\redLmF$ since
+$s$ can use the input string $x$ while answering queries from $B$.
 See the comments after the next lemma and before Theorem~\ref{theorem:P-hard-g_u} for
 the disadvantage and the advantage of this reduction.
 
-Let $\mathcal{C}$ be a class of multi-functions from $\LM$ to $\LM$
-and $\leq$ be a type-two reduction.
-A multi-function $B$ from $\LM$ to $\LM$ is \emph{$\mathcal{C}$-$\leq$-hard} if $A \leq B$ for all $A \in \mathcal{C}$,
+For a class $\mathcal{C}$ of multi-functions from $\LM$ to $\LM$
+and a reduction $\leq$, 
+we say that $B \pcolon \LM \rightrightarrows \LM$ is 
+\emph{$\mathcal{C}$-$\leq$-hard} if $A \leq B$ for all $A \in \mathcal{C}$,
 and $B$ is \emph{$\mathcal{C}$-$\leq$-complete} 
 if $B$ is $\mathcal{C}$-$\leq$-hard and in $\mathcal{C}$.
 
