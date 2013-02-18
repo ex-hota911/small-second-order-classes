@@ -55,9 +55,9 @@ of Aehlig, Cook and Nguyen for query tapes
 in order to achieve 
 sufficient oracle accesses without interfering with space bounds; 
 representations need to be chosen carefully, as 
-computational equivalence between representations is now finer; 
+computational equivalence between them is now finer; 
 uniformity of circuits must be defined 
-with varying sizes of oracle gates taken into account. 
+with varying sizes of oracles taken into account. 
 As prototypical applications, 
 we recast several facts (some in a stronger form than was known) 
 about the complexity of numerical problems 
@@ -91,6 +91,7 @@ they formulated analogues of complexity classes
 $\classP$, $\classNP$, $\classPSPACE$ and 
 showed some typical operators in analysis
 to be in and complete for these classes. 
+The basic definitions will be reviewed in Section~\ref{section: computable analysis}. 
 
 One benefit of this was
 a greater variety of objects for which we can define complexity. 
@@ -150,7 +151,12 @@ and Ko's theorem about inverting a function \cite{ko1991complexity},
 which both state hardness for $\classP$ in a sense, 
 and reformulate them into our framework
 as stronger uniform statements (as mentioned above).
-
+The proofs are either relatively easy using known versions of the theorems
+or obtained by minor modification of known argument; 
+the benefit of having the result stated in the TTE framework 
+is that it clarifies (through the choices of representations) 
+which information exactly is needed for the computation 
+(and how the needed amount of resource depends on it). 
 
 %Chap.~\ref{chapter:computable-analysis} introduces Type-two Theory of Effectivity, the framework of Computable Analysis.
 %We review basic concepts of TTE in Sect.~\ref{section:TTE} and
@@ -381,7 +387,7 @@ $\deltabox$-$\classFP$.
 \section{Small type-two classes}
 \label{section:small-classes}
 
-In this section, we introduce new type-two complexity classes
+In this section, we introduce type-two complexity classes
 corresponding to log-space $\classL$ and circuit complexity $\classNC$
 based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
@@ -417,7 +423,7 @@ is common to Aehlig, Cook and Nguyen \cite{aehlig2007relativizing}.
 As we are dealing with function oracles, 
 our model has some new features, namely 
 the introduction of the answer tape and 
-the restriction that it is erased automatically on every puch operation. 
+the restriction that it is erased automatically on every push operation. 
 
 This erasure of the answer tape
 ensures that the nested depth of queries is restricted to a constant.
@@ -615,7 +621,7 @@ Lemmas \ref{lemma: respects uniformity} and
 The following logspace reductions $\redLmF$, $\redLW$, $\redLB$ are 
 analogues of the polynomial-time reductions 
 $\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
-and the ``many-one reduction'' in Beame et al. \cite{beame1995relative}. 
+and the ``many-one reduction'' in Beame et al.~\cite{beame1995relative}. 
 Note that $A \redLmF B$ implies $A \redLW B$ and $A \redLB B$. 
 
 \begin{definition}
