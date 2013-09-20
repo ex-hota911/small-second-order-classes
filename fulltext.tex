@@ -1,11 +1,13 @@
-\documentclass[envcountsect,envcountsame,orivec,oribibl]{llncs}
-\usepackage{mathtools}
+% \documentclass[envcountsect,envcountsame,orivec,oribibl]{llncs}
+\documentclass[a4paper,UKenglish]{lipics}
+% \usepackage{mathtools}
 \usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{xspace}
+% \usepackage[dvipdfm]{graphicx}
+% \usepackage{xspace}
 \usepackage{mypackage}
-\usepackage{hyperref}
+% \usepackage{hyperref}
 %\usepackage{amsthm}
+\usepackage{microtype}
 
 % \newtheorem{theorem}{Theorem}[section]
 % \newtheorem{lemma}[theorem]{Lemma}
@@ -15,14 +17,12 @@
 % \newtheorem{example}[theorem]{Example}
 % \theoremstyle{remark}
 
-\let\doendproof\endproof
-\renewcommand\endproof{~\hfill\qed\doendproof}
-
 \newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
 \title{Small complexity classes for computable analysis}
-\author{Akitoshi Kawamura\qquad\qquad Hiroyuki Ota}
-\institute{University of Tokyo}
+\author{Akitoshi Kawamura}
+\author{Hiroyuki Ota}
+\affil{University of Tokyo}
 
 \pagestyle{plain}
 \begin{document}
@@ -336,7 +336,7 @@ For each $n \in \N$, let $\D_n$ denote the set of strings of the form
 \end{equation}
 where $s$ is the sign and $x \in \{0,1\}^*$.
 We write $\D$ for the union $\bigcup _n \D _n$.
-We regard $u \in \D$ as a fraction of binary numbers, 
+We regard $u \in \D$ as a fraction of binary integers, 
 and write $u$ also for the number it encodes. 
 
 We define the representation~$\rhoR$ of $\R$ as follows: 
@@ -393,6 +393,8 @@ based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
 
 \subsection{Logarithmic space}
+The formulation of logarithmic-space computation with oracle access 
+needs special attention. 
 There are several non-equivalent definitions of 
 relativized log-space computation
 \cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure}.
