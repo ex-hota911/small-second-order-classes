@@ -24,7 +24,6 @@
 \author{Hiroyuki Ota}
 \affil{University of Tokyo}
 
-\pagestyle{plain}
 \begin{document}
 
 \maketitle
@@ -49,11 +48,12 @@ The basic idea is
 to use second-order polynomials as resource bounds, 
 as Kawamura and Cook did, 
 but we need to make some nontrivial (yet natural, as we will discuss) choices
-when formulating small classes: 
+when formulating small classes
+in order to make them well-behaved. 
+Most notably: 
 we use a modification of the constant stack model 
 of Aehlig, Cook and Nguyen for query tapes 
-in order to achieve 
-sufficient oracle accesses without interfering with space bounds; 
+in order to allow sufficient oracle accesses without interfering with space bounds; 
 representations need to be chosen carefully, as 
 computational equivalence between them is now finer; 
 uniformity of circuits must be defined 
@@ -67,7 +67,7 @@ into our framework.
 \section{Introduction}
 
 Computable Analysis 
-\cite{ko1991complexity,weihrauch00:_comput_analy}
+\cite{bhw,ko1991complexity,weihrauch00:_comput_analy}
 studies problems 
 involving real numbers, real functions and other objects in analysis
 from the viewpoint of computability on digital machines. 
@@ -77,7 +77,7 @@ and processed by Turing machines.
 Such approximation can be 
 presented to the machine 
 as infinite strings on the tape 
-or as query-answering oracles (i.e., functions taking strings to strings), 
+or as oracles (i.e., functions taking strings to strings), 
 and this choice does not make much difference 
 as long as we only discuss computability. 
 But when we want to pay attention to bounds on time and space, 
@@ -116,6 +116,8 @@ can now be transformed into a stronger, uniform statement of the form
  $F$ is hard for $\mathcal Z$ under the $\mathcal X$ reduction,
 \end{quote}
 where $\mathcal{X, Y, Z}$ are type-two classes analogous to ${X, Y, Z}$.
+See \cite{feree,rettinger,roesnick} for further discussion (including some criticism), 
+applications and extensions of this approach. 
 
 We continue their research and proceed down into $\classP$. 
 In Section~\ref{section:small-classes}, 
@@ -129,7 +131,9 @@ i.e.\ that of using of second-order polynomials as resource bounds,
 is common to \cite{kawamura2012complexity}, 
 there are several choices that we need to make carefully
 in implementing it, 
-due to the subtleties pertaining to small complexity classes. 
+due to the subtleties pertaining to 
+the interaction of small complexity classes with oracles, 
+as we will explain. 
 In particular, 
 we use a modified version of 
 the \emph{constant stack machine} \cite{aehlig2007relativizing}, 
@@ -153,7 +157,7 @@ and reformulate them into our framework
 as stronger uniform statements (as mentioned above).
 The proofs are either relatively easy using known versions of the theorems
 or obtained by minor modification of known argument; 
-the benefit of having the result stated in the TTE framework 
+the benefit of having the results stated in the TTE framework 
 is that it clarifies (through the choices of representations) 
 which information exactly is needed for the computation 
 (and how the needed amount of resource depends on it). 
@@ -176,7 +180,7 @@ which information exactly is needed for the computation
 %We summarize this thesis and discuss about future works in Chap.~\ref{chapter:conclusion}.
 
 
-\paragraph{Notation}
+\paragraph*{Notation}
 Let $\N$ and $\R$ denote the set of nonnegative integers and 
 real numbers, respectively.
 
@@ -219,22 +223,21 @@ apply it to real functions (and other objects) through representations.
 \subsection{Type-two machines}
 \label{section:TTF}
 
-A (total) function $\phi \colon \Sigma^* \to \Sigma^*$ is \emph{length-monotone}
-if $|\phi(u)| \le |\phi(v)|$ whenever $|u| \le |v|$.
+A (total) function $\varphi \colon \Sigma^* \to \Sigma^*$ is \emph{length-monotone}
+if $|\varphi(u)| \le |\varphi(v)|$ whenever $|u| \le |v|$.
 We denote the set of length-monotone functions by $\LM$.
-We write $M ^\phi (u)$ for the output string 
+We write $M ^\varphi (u)$ for the output string 
 when a machine $M$ is given
-$\phi \in \LM$ as oracle and $u \in \Sigma ^*$ as input.
-Thus, we also regard $M^\phi$ as a function from strings to strings.
+$\varphi \in \LM$ as oracle and $u \in \Sigma ^*$ as input.
+% Thus, $M^\varphi$ is a function from strings to strings.
+We say that $M$ \emph{computes} 
+a multi-function $A \pcolon \LM \rightrightarrows \LM$ if 
+for any $\varphi \in \dom A$, there is $\psi \in A[\varphi]$ 
+such that $M^\varphi(u) = \psi(u)$ for all $u \in \Sigma^*$.
 
-\begin{definition}
- A machine $M$ \emph{computes} a multi-function $A \pcolon \LM \rightrightarrows \LM$ if for any
- $\phi \in \dom A$, there is $\psi \in A[\phi]$ such that $M^\phi(u) = \psi(u)$ for all $u \in \Sigma^*$.
-\end{definition}
-
-The \emph{size} of $\phi \in \LM$, denoted $|\phi|$,
+The \emph{size} of $\varphi \in \LM$, denoted $|\varphi|$,
 is a (non-decreasing) function from $\N$ to $\N$ defined by 
-$|\phi|(|u|) = |\phi(u)|$.
+$|\varphi|(|u|) = |\varphi(u)|$.
 This is well-defined since a length-monotone function maps 
 strings of the same length to strings of the same length.
 To define the class $\classFPtwo$ of 
@@ -242,7 +245,7 @@ multi-functions from $\LM$ to $\LM$
 computable in polynomial time, 
 we bound the running time by \emph{second-order polynomials} 
 $P (\lvert \varphi \rvert) (\lvert x \rvert)$ 
-in the sizes of the oracle $\phi$ and string $x$
+in the sizes of the oracle $\varphi$ and string $x$
 given to the machine. 
 A second-order polynomial $P (L) (n)$ 
 is an expression built from the number $n$ 
@@ -270,20 +273,20 @@ The following is immediate.
  elements of $\classFP \cap \LM$ into $\classFP$.
 \end{lemma}
 
-For $\phi$, $\psi \in \LM$, 
-we define $\langle \phi, \psi \rangle \in \LM$ by 
+For $\varphi$, $\psi \in \LM$, 
+we define $\langle \varphi, \psi \rangle \in \LM$ by 
 % \footnote{%
 % The pairing function was
 % defined erroneously in \cite{kawamura2012complexity} 
 % without the delimiter $1$. 
 % }
-$\langle \phi, \psi \rangle(0u) = \phi(u) 10^{|\psi(u)|}$ and 
-$\langle \phi, \psi \rangle(1u) = \psi(u) 10^{|\phi(u)|}$
-(we pad $0$s to make $\langle \phi, \psi \rangle$ length-monotone).
-We write $\langle \phi, \psi, \theta \rangle$ 
-for $\langle \phi, \langle \psi, \theta \rangle \rangle$, and so on.
-We also write $\langle \phi, u \rangle$, etc., for 
-$\phi \in \LM$ and a string $u \in \Sigma ^*$, 
+$\langle \varphi, \psi \rangle(0u) = \varphi(u) 10^{|\psi(u)|}$ and 
+$\langle \varphi, \psi \rangle(1u) = \psi(u) 10^{|\varphi(u)|}$
+(we pad $0$s to make $\langle \varphi, \psi \rangle$ length-monotone).
+We write $\langle \varphi, \psi, \theta \rangle$ 
+for $\langle \varphi, \langle \psi, \theta \rangle \rangle$, and so on.
+We also write $\langle \varphi, u \rangle$, etc., for 
+$\varphi \in \LM$ and a string $u \in \Sigma ^*$, 
 by identifying $u$ with the constant function in $\LM$ with value $u$. 
 
 \subsection{Representations}
@@ -291,9 +294,9 @@ by identifying $u$ with the constant function in $\LM$ with value $u$.
 
 A \emph{representation} of a set $X$ 
 is a partial function $\gamma$ from $\LM$ to $X$
-such that for every $x \in X$ there is $\phi$ with $\gamma (\phi) = x$.
-We call $\phi$ a {\em $\gamma$-name} of $x$
-if $x = \gamma (\phi)$.
+such that for every $x \in X$ there is $\varphi$ with $\gamma (\varphi) = x$.
+We call $\varphi$ a {\em $\gamma$-name} of $x$
+if $x = \gamma (\varphi)$.
 
 \begin{definition}
 \label{definition: computation wrt representation}
@@ -312,11 +315,11 @@ the following multi-function $
 \delta^{-1} \circ A \circ \gamma \pcolon \LM \rightrightarrows \LM
 $ is in $\mathcal C$: 
 \begin{equation}
- (\delta^{-1} \circ A \circ \gamma)[\phi] = 
+ (\delta^{-1} \circ A \circ \gamma)[\varphi] = 
   \begin{cases}
-   \{\psi \in \dom \delta \mid \delta(\psi) \in A[\gamma(\phi)] \}
+   \{\psi \in \dom \delta \mid \delta(\psi) \in A[\gamma(\varphi)] \}
    & 
-   \text{if } \phi \in \dom \gamma, 
+   \text{if } \varphi \in \dom \gamma, 
    \\ 
    \emptyset 
    &
@@ -340,8 +343,8 @@ We regard $u \in \D$ as a fraction of binary integers,
 and write $u$ also for the number it encodes. 
 
 We define the representation~$\rhoR$ of $\R$ as follows: 
-$\phi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
-if $\phi(0^i) \in \D$ and $\lvert \phi(0^i) - x \rvert \le 2^{-i}$
+$\varphi \in \LM$ is a $\rhoR$-name of $x \in \R$ 
+if $\varphi(0^i) \in \D$ and $\lvert \varphi(0^i) - x \rvert \le 2^{-i}$
 for all $i \in \N$.
 We write $\rhoR|^{[0,1]}$ for the representation of the interval $[0, 1]$ 
 obtained by restricting $\rhoR$.
@@ -361,10 +364,10 @@ It is not hard to verify the following.
  \label{lem:type1representation}
  A real function is in $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ if and only if
  it has a polynomial modulus of continuity 
- and there is a function $\phi \in \classFP$ such that 
+ and there is a function $\varphi \in \classFP$ such that 
  \begin{equation}
    \label{eq:computation on rational points}
-  |\phi(d, 0^n) - f(d)| \le 2^{-n} 
+  |\varphi(d, 0^n) - f(d)| \le 2^{-n} 
  \end{equation}
  for all $d \in \D \cap [0,1]$ and $n \in \N$. 
 \end{lemma}
@@ -375,11 +378,11 @@ For a non-decreasing function $\mu \colon \N \to \N$,
 we write $\overline \mu \in \LM$ for the 
 function that maps each string $u$ to $0^{\mu(|u|)}$.
 A $\deltabox$-name of $f \in \classC[0,1]$ is 
-a pair $\langle \overline{\mu}, \phi \rangle$
-of $\phi \in \LM$ and $\mu \colon \N \to \N$
+a pair $\langle \overline{\mu}, \varphi \rangle$
+of $\varphi \in \LM$ and $\mu \colon \N \to \N$
 such that 
 $\mu$ is a modulus of continuity of $f$
-and $\phi$ satisfies \eqref{eq:computation on rational points}.
+and $\varphi$ satisfies \eqref{eq:computation on rational points}.
 Lemma~\ref{lem:type1representation} implies that
 $(\rhoR|^{[0,1]},\rhoR)$-$\classFPtwo$ equals
 $\deltabox$-$\classFP$. 
@@ -393,60 +396,135 @@ based on the framework we reviewed in the previous section.
 We also define $\classP$-completeness under log-space reductions.
 
 \subsection{Logarithmic space}
-The formulation of logarithmic-space computation with oracle access 
-needs special attention. 
-There are several non-equivalent definitions of 
-relativized log-space computation
-\cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure}.
-Here, we define type-two log-space computation 
-by extending the {\em stack model with constant height} 
-by Aehlig, Cook and Nguyen \cite{aehlig2007relativizing} to the 
-function-oracle model.
-We choose this model because it is consistent with relativized circuit complexity classes, 
-and it can ask nested queries, that is, queries depending on answers to previous queries.
-See also the comments on Theorems \ref{theorem:inclusion} and \ref{theorem:apply-is-L-computable}.
+\label{subsection: logspace}
 
-We consider an oracle Turing machine $M$ 
+As reviewed in the previous section, 
+we use oracle Turing machines in the definition of type-two classes 
+such as $\classFPtwo$. 
+The machine has an input tape, output tape, work tape, query tape and answer tape. 
+When the machine enters the query state, 
+and the string on the query tape at that time is $u$, 
+then in the next transition, 
+the machine will be in the after-query state, and 
+the string on the answer tape will be $\varphi (u)$, 
+where $\varphi$ is the oracle
+(although this exact machanism for oracle access did not matter very much
+for $\classFPtwo$ and larger classes). 
+For the definition of 
+the logarithmic-space class $\classFLtwo$, 
+we will basically continue using this model, 
+with space bound $\log (P (\lvert \varphi \rvert) (\lvert u \rvert))$
+for the computation on oracle $\varphi$ and string input~$u$, 
+but there are some issues we should be careful about. 
+(See also the discussion in the slightly different context of relativized classes 
+\cite{aehlig2007relativizing,buss1988relativized,ladner1976relativization,wilson1988measure}.)
+
+Note that even in this logarithmic-space setting, 
+we want the machine to be able to ask queries of polynomial length. 
+For example, when computing a real function $f$ under the $\rhoR$ representation, 
+it is reasonable to give the machine access to 
+the input real number with polynomially many digits of precision 
+(in the number of digits we want of the output)---%
+with logarithically many digits, 
+we would only compute constant functions. 
+
+Thus, the right formulation of logarithmic-space computation with oracle access 
+requires careful resource control, by which 
+the mechanism for oracle access is exempted from the space limit, 
+while the ``other parts'' of computation is limited to logarithmic space. 
+For some special cases, 
+this is achieved by simply adopting the convention that 
+the query and answer tapes 
+are \emph{not} counted towards the space. 
+In fact, Ko's logarithmic-space computable real functions on $[0, 1]$~%
+\cite[Chapter~4]{ko1991complexity} is defined roughly in this way
+(see the discussion in \cite[pp.~121--122]{ko1991complexity}), 
+using a representation similar to our $\rhoR$. 
+We also obtain the equivalent definition 
+by the infinite string model, 
+because it does not count the input and output tapes, 
+and it forbids reading from the output tape. 
+
+The reason this definition successfully led to a reasonable class of real functions
+seems to be because, 
+when we were dealing only with $\rhoR$-names, 
+the queries were always of the simple form $0 ^m$. 
+But in general, 
+the queries are polynomially long binary string, 
+which the machine cannot even store by itself on the work tape. 
+This subtlety calls for the following modifications on the model
+(as we will explain below): 
+
+\begin{quote}
+Our model is an oracle Turing machine 
 with a stack of query tapes and an answer tape.
-The machine $M$ can write a symbol on the top query tape, or 
+The machine can write a symbol on the top query tape, or 
 \emph{push} a new query tape on the top of the stack (and start writing on it).
 When the machine issues a query, the stack is \emph{popped} automatically; 
 that is, 
 if the string on the query tape at the top of the stack was $u$, 
-the oracle $\phi$ writes the string $\phi (u)$ on the answer tape, 
+the oracle $\varphi$ writes the string $\varphi (u)$ on the answer tape, 
 and at the same time the top query tape is removed from the stack. 
 We put the restriction that the height of the stack of a machine is less than 
 some constant for all inputs and oracles.
 We also assume that 
 the answer tape is erased after each push operation.
+\end{quote}
 
-The use of a stack of query tapes and its restriction to constant height 
-is common to Aehlig, Cook and Nguyen \cite{aehlig2007relativizing}. 
-As we are dealing with function oracles, 
-our model has some new features, namely 
-the introduction of the answer tape and 
-the restriction that it is erased automatically on every push operation. 
+This model resolves two issues that arise 
+from the aforementioned tension between 
+allowing the machine to issue long queries
+while disallowing it to write them down. 
 
-This erasure of the answer tape
+The first issue is that 
+the machine may need to make nested queries 
+(queries depending on answers to previous queries), and 
+it may need to do so by writing a query halfway 
+and then issuing other queries in order to complete the remaining part of the query.  
+Observe that the stack model above makes such queries possible. 
+The ability to ask nested queries (with constant depth of nesting) is needed naturally 
+for our applications in real-number computation
+(see e.g.\ the comments on Theorem~\ref{theorem:apply-is-L-computable} below), 
+and is also essential if we want the class to contain
+$\classFACtwo ^0$ 
+(see Theorem~\ref{theorem:inclusion} below). 
+The idea of using a stack of query tapes 
+in order to obtain a reasonable relativization of logspace computation
+is due to Wilson \cite{wilson1988measure} and 
+Aehlig, Cook and Nguyen \cite{aehlig2007relativizing}
+(but note that these are about predicate oracles). 
+%% We choose this model because it is consistent with relativized circuit complexity classes.
+
+The second issue (which arises because we are dealing with function oracles) is that 
+we do not want the machine to cheat by 
+using the query and answer tapes as extra memory. 
+This is why we required that 
+the answer tape is erased after each push operation. 
+This makes our model equivalent to 
+accessing the oracle $\varphi$ by the question of the form $(u, 0 ^i)$ 
+asking for the $i$th bit of $\varphi (u)$ (or an explicit error message 
+when $i$ exceeds the length of $\varphi (u)$).
+The erasure of the answer tape also
 ensures that the nested depth of queries is restricted to a constant.
-Without this restriction, a log-space constant-stack machine relative to 
-a function oracle $\phi$ could compute polynomial-times composition
-of $\phi$ if $|\phi|(n) = n$.
-On the other hand, there is a function $\phi \in \LM$ such that $|\phi|(n) = n$
-and polynomial-times composition of $\phi$ is not in $\classNC$ relative to $\phi$ \cite{aehlig2007relativizing}.
-Hence, the inclusion $\classL \subseteq \classNC$ would not relativize.
+Without this restriction, a log-space constant-stack machine with 
+a function oracle $\varphi$ with $|\varphi|(n) = n$ 
+could compute the result of iterating the function $\varphi$ polynomially many times.
+On the other hand, there is a function $\varphi \in \LM$ such that $|\varphi|(n) = n$
+and iteration of $\varphi$ is not in $\classNC$ relative to $\varphi$ \cite{aehlig2007relativizing}, 
+and hence the inclusion $\classL \subseteq \classNC$ would not relativize.
 
 \begin{definition}
- A (constant-stack) machine runs in (second-order) \emph{logarithmic space}
+ A machine (with the oracle access convention described above) 
+ runs in (second-order) \emph{logarithmic space}
  if there is a second-order polynomial $P$ such that, 
- given oracle $\phi \in \LM$ and string $u \in \Sigma^*$, 
- it visits at most $\log(P(|\phi|)(|u|))$ cells
+ given oracle $\varphi \in \LM$ and string $u \in \Sigma^*$, 
+ it visits at most $\log(P(|\varphi|)(|u|))$ cells
  in the work tape.
  We write $\classFLtwo$ for the set of multi-functions%
 \footnote{%
-We could also define a class $\classLtwo$, 
+We can of course define a class $\classLtwo$, 
 analogous to $\classPtwo$ in \cite{kawamura2012complexity}, 
-of multi-functions whose values are functions in $\LM$ 
+of multi-functions in $\classFLtwo$ whose values are functions in $\LM$ 
 that are $\{0, 1\}$-valued, 
 but we will not use such classes in this paper. 
 }
@@ -462,107 +540,87 @@ but we will not use such classes in this paper.
 \end{lemma}
 
 % \begin{proof}
-% For all $\phi \in \classFL$, the size of $\phi$ is bounded by some polynomial,
+% For all $\varphi \in \classFL$, the size of $\varphi$ is bounded by some polynomial,
 % hence second-order logarithm collapses to first-order logarithm.
 % Since $\classFL$ is low for itself ($\classFL^\classFL = \classFL$), 
 % functions computed by log-space constant-stack machines with $\classFL$ oracle are in $\classFL$.
 % \end{proof}
 
-\subsection{Circuit complexity classes}
+\subsection{Circuits of bounded depth}
 
-To discuss type-two circuit complexity classes,
-we consider circuit families with oracle gates.
-Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
-An \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is a circuit with
-$n$ inputs and $m$ outputs consisting of the standard logical gates 
-plus oracle gates, 
-where each oracle gate with $k$ inputs has $L(k)$ outputs.
-Formally, 
+In this section, we will define the type-two analogue of $\classAC ^d$ and $\classNC$ 
+by considering circuits with oracle gates.
+Since the oracle in our setting has variable (second-order) sizes, 
+and the resource (circuit size and depth) 
+depends (second-order) polynomially their size, 
+the circuit family will be 
+indexed not only by the size of the input string
+but also by the size of the oracle. 
+We will also see that the circuit classes are 
+in the right containment with the 
+Turing machine-based classes $\classLtwo$ and $\classPtwo$
+from the previous sections. 
 
-\begin{definition}[Oracle circuits]
-Let $n, m \in \N$ and $L \colon \N \to \N$ be a non-decreasing function.
-A \emph{$n$-input $m$-output circuit with size-$L$ oracle gates} is 
-a labeled directed acyclic graph with $n$ sources and $m$ sinks.
-All vertices except the sources are labeled with $\NOT$, $\OR$, $\AND$ 
-or $\phi _i$, where $i \in \N$.
-The in-degree of a vertex labelled $\NOT$ is $1$, and
-a vertex that is labelled $\phi _i$ and has in-degree $k$ 
-satisfies $i < L(k)$.
-Each logic gate performs the logical operation on its inputs, 
-and $\phi_i(x) = 1$ if and only if the $i$th bit of $\phi(x)$ is $1$.
+Let $n, m \in \N$ and let $L \colon \N \to \N$ be a non-decreasing function.
+A \emph{circuit with size-$L$ oracle gates} is a circuit~$C$ 
+(with several inputs and several outputs)
+built from
+the standard logical gates $\NOT$, $\OR$, $\AND$ (the latter two with unbounded fan-in) 
+and oracle gates, 
+where each oracle gate with $k$ inputs has $L (k)$ outputs.
 The \emph{size} of $C$ is the number of gates.
 The \emph{depth} of $C$ is the length of the longest path in $C$.
-For an input $x \in \{0, 1\}^*$, an oracle $\phi \in \LM$, 
-and a $|x|$-input $m$-output circuit $C$ with size-$|\phi|$ oracle gates, 
-we write $C^\phi(x)$ for the $m$-bit output of $C$.
-\end{definition}
+For an input $x \in \{0, 1\} ^*$, an oracle $\varphi \in \LM$, 
+and a $|x|$-input $m$-output circuit $C$ with size-$|\varphi|$ oracle gates, 
+we write $C^\varphi(x)$ for the $m$-bit output of $C$.
 
-To discuss circuit families computing multi-functions from $\LM$ to $\LM$,
-we index circuits not only by the input size but also by the size of oracle gates.
-A {\em circuit family $(C_{L,n})_{L,n}$} is a set of circuits, 
-indexed by numbers $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
-such that $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
+As mentioned above,
+we consider \emph{circuit families $(C_{L,n})_{L,n}$}, 
+indexed by $n \in \N$ and non-decreasing functions $L \colon \N \to \N$,
+such that each $C_{L, n}$ is an $n$-input circuit with size-$L$ oracle gates.
+Such a family $(C_{L,n})_{L,n}$ is said to
+\emph{compute} a multi-function $A \pcolon \LM \rightrightarrows \LM$ if 
+for all $\varphi \in \dom A$, there is $\psi \in A[\varphi]$ 
+satisfying $\psi(x) = C_{|\varphi|, |x|}^\varphi(x)$ for all $x \in \Sigma^*$.
 
-\begin{definition}
- We say that a circuit family $(C_{L,n})_{L,n}$ 
-\emph{computes} a multi-function 
- $A \pcolon \LM \rightrightarrows \LM$ if for all $\phi \in \dom A$, 
- there is $\psi \in A[\phi]$ satisfying $\psi(x) = C_{|\phi|, |x|}^\phi(x)$
- for all $x \in \Sigma^*$.
-\end{definition}
+This family $(C_{L,n})_{L,n}$ is said to have
+\emph{polynomial size} and \emph{logarithmic depth}
+if there is a second-order polynomial $P$ such that 
+the size and depth of $C _{L,n}$ are 
+bounded by $P (L) (n)$ and $\log^k (P(L)(n))$, respectively, 
+for all $n \in \N$ and non-decreasing $L \colon \N \to \N$.
 
-Now we want to define the type-two complexity class analogous to $\classNC$.
-To define it, we choose not $\classNC^i$ but $\classAC^i$ 
-only for the sake of simplicity.
-
-A circuit family $(C_{L,n})_{L,n}$ is \emph{(second-order) polynomial size}
-if there is a second-order polynomial $P$ satisfying
-the size of $C_{L,n}$ is bounded by $P(L)(n)$ 
-for all $n \in \N$ and non-decreasing functions
-$L \colon \N \to \N$.
+The definition of uniformity 
+also takes into account the oracle size: 
+we say that the family $(C_{L,n})_{L,n}$ is 
+\emph{$\classLtwo$-uniform} if 
+there is a function $A \in \classFLtwo$ such that 
+for all $n \in \N$ and non-decreasing $L \colon \N \to \N$, 
+the string $A (\overline L) (0^n)$ is (a description of) the circuit $C_{L,n}$ 
+(recall from the end of Section~\ref{subsection: representations} 
+that $\overline L$ is the function taking strings $u$ to $0 ^{L (\lvert u \rvert)}$). 
+%% 「description」とは？
+Hereafter, we assume log-space uniformity on all (type-one and type-two) 
+circuit complexity classes, so we write just ``uniform'' or omit ``$\Luniform$''.
 
 \begin{definition}
  For each $k \in \N$, 
  we write $\classFACtwo^k$ for the class of 
  multi-functions from $\LM$ to $\LM$ computed by
- a polynomial-size circuit family $(C_{L,n})_{L,n}$ such that
- there is a second-order polynomial $P$ such that 
- the depth of $C_{L,n}$ is bounded by $\log^k(P(L)(n))$ 
- for all $n \in \N$ and non-decreasing
- $L \colon \N \to \N$.
+ a (uniform) circuit family $(C_{L,n})_{L,n}$ of polynomial size and logarithmic depth%
+\footnote{We are thus defining the analogue of $\classNC$ as the union of 
+$\classAC^i$ rather than of $\classNC^i$.  This is just for simplicity of presentation.}. 
  We write $\classFNCtwo = \bigcup_{k \in \N} \classFACtwo^k$.
 \end{definition}
 
-Next, we want to define log-space uniformity in oracle circuit families.
-Since an oracle circuit family is indexed by the size of the input and the oracle gate,
-a function computing (descriptions of) circuits needs both sizes.
-
-\begin{definition}[uniformity]
-A circuit family $(C_{L,n})_{L,n}$ is \emph{$\classLtwo$-uniform} if there is a function $A \in \classFLtwo$ 
-such that for all $n \in \N$ and non-decreasing $L \colon \N \to \N$, 
-the string $A (\overline L) (0^n)$ is (a description of) $C_{L,n}$. 
-%% 「description」とは？？？
-\end{definition}
-
-Hereafter, we assume log-space uniformity on all (type-one and type-two) 
-circuit complexity classes, so we write just ``uniform'' or omit ``$\Luniform$''.
-
-\begin{theorem}
-\label{theorem:P-equals-L-uniform-P-poly}
-A multi-function $A$ from $\LM$ to $\LM$ is computed by a polynomial-size
-uniform circuit family if and only if $A \in \classFPtwo$.
-\end{theorem}
-
-\begin{proof}
- It is obvious that machines can compute the output of
- polynomial-size uniform circuits in polynomial time.
- The if part is proved in the similar argument to the proof of
- $\classP \subseteq \classP\!\text{/poly}$.
- For each multi-function $A \in \classFPtwo$, there is an oracle machine $M$
- computing $A$ whose head movements do not depend on the input $x$ or oracle
- $\phi$ but only depend on the input length $|x|$ and oracle size $|\phi|$.
- This property enable a polynomial-size uniform circuit family to simulate $M$.
-\end{proof}
+Similarly to the type-one $\classFP$, it is easy to see that
+a multi-function $A \pcolon \LM \rightrightarrows \LM$ is computed by a polynomial-size
+uniform circuit family if and only if $A \in \classFPtwo$
+(for the ``if'' part, we modify the standard argument for the type-one class, 
+noting that any $A \in \classFPtwo$ can be computed by 
+an ``oblivious'' polynomial-time machine 
+whose head motions depend only on the sizes of 
+the input string and the oracle).
 
 The relativization using the stack model by Aehlig, Cook and Nguyen preserves
 the inclusion of non-relativized classes
@@ -582,12 +640,14 @@ $ \classFACtwo^0
 
 \begin{proof}
  The first inclusion can be proved similarly
- to $\classAC^0 \subseteq \classL$.
+ to $\classAC^0 \subseteq \classL$ (thanks to the stack model, as we mentioned 
+ in Section~\ref{subsection: logspace}).
  The second inclusion can be proved by an argument similar to
  $\text{cs}\classL(\alpha) \subseteq \classAC^1(\alpha)$
  \cite{aehlig2007relativizing}.
  The third inclusion is immediate.
- The last inclusion follows from Theorem~\ref{theorem:P-equals-L-uniform-P-poly}.
+ The last inclusion follows from the above characterization of $\classFPtwo$
+ by $\classLtwo$-uniform families of polynomial-size circuits.
 \end{proof}
 
 
@@ -602,7 +662,7 @@ $\classL$ uniformity.
  $(D_n)_n$ is $\classL$-uniform.
 \end{lemma}
 
-\begin{corollary}
+\begin{lemma}
 \label{lemma: type-one and type-two circuit classes}
 \begin{enumerate}
  \item Functions in $\classFACtwo^i$ 
@@ -612,7 +672,7 @@ $\classL$ uniformity.
        map elements of $\classFNC \cap \LM$ 
        into $\classFNC$.
 \end{enumerate}
-\end{corollary}
+\end{lemma}
 
 See appendix for proofs of 
 Lemmas \ref{lemma: respects uniformity} and 
@@ -620,7 +680,12 @@ Lemmas \ref{lemma: respects uniformity} and
 
 \subsection{Reductions and completeness}
 
-The following logspace reductions $\redLmF$, $\redLW$, $\redLB$ are 
+The formulation of reduction and hardness 
+is mostly analogous to what was done for larger classes already in \cite{kawamura2012complexity}, 
+simply using weaker (logspace) reduction this time. 
+We will present the definitions for the sake of completeness. 
+
+The following logspace reductions $\redLmF$, $\redLW$, $\redLB$ are
 analogues of the polynomial-time reductions 
 $\redmF^2$, $\redW^2$ in Kawamura and Cook~\cite{kawamura2012complexity}
 and the ``many-one reduction'' in Beame et al.~\cite{beame1995relative}. 
@@ -632,26 +697,26 @@ Let $A$ and $B$ be multi-functions from $\LM$ to $\LM$.
  \item $A$ is \emph{many-one log-space reducible} to $B$, 
        denoted $A \redLmF B$,
        if there are functions $r, s, t \in \classFLtwo$ such that 
-       for all $\phi \in \dom A$,
-       we have $s(\phi) \in \dom B$ and 
-       for each $\theta \in B[s(\phi)]$, 
-       the function that maps $x \in \Sigma^*$ to $r(\phi)(x, \theta(t(\phi)(x)))$
-       is in $A[\phi]$.
+       for all $\varphi \in \dom A$,
+       we have $s(\varphi) \in \dom B$ and 
+       for each $\theta \in B[s(\varphi)]$, 
+       the function that maps $x \in \Sigma^*$ to $r(\varphi)(x, \theta(t(\varphi)(x)))$
+       is in $A[\varphi]$.
  \item $A$ is \emph{Weihrauch log-space reducible} to $B$,
        denoted $A \redLW B$,
        if there are functions $r, s \in \classFLtwo$ such that 
-       for all $\phi \in \dom A$,
-       we have $s(\phi) \in \dom B$ and 
-       for each $\theta \in B[s(\phi)]$, 
-       we have $r(\langle \phi, \theta \rangle) \in A[\phi]$.
+       for all $\varphi \in \dom A$,
+       we have $s(\varphi) \in \dom B$ and 
+       for each $\theta \in B[s(\varphi)]$, 
+       we have $r(\langle \varphi, \theta \rangle) \in A[\varphi]$.
  \item $A \redLB B$ 
 if there are functions $r, s, t \in \classFLtwo$ such that 
-for all $\phi \in \dom A$,
-the function~$\sigma$ that maps $y \in \Sigma ^*$ to $s (\phi) (x, y)$
+for all $\varphi \in \dom A$,
+the function~$\sigma$ that maps $y \in \Sigma ^*$ to $s (\varphi) (x, y)$
 belongs to $\dom B$ 
 and for each $\theta \in B [\sigma]$, 
 the function that maps $x \in \Sigma^*$ 
-to $r(\phi)(x, \theta(t(\phi)(x)))$ is in $A[\phi]$.
+to $r(\varphi)(x, \theta(t(\varphi)(x)))$ is in $A[\varphi]$.
 \end{itemize}
 \end{definition}
 
@@ -691,14 +756,14 @@ There is $\psi \in \dom B \cap \classFL$ such that
 
 The following partial function $\probDTIMEtwo \pcolon \LM \to \LM$ 
 is a standard complete problem: 
-$\dom \probDTIMEtwo$ consists of $\langle M, \overline \mu, \phi \rangle$
+$\dom \probDTIMEtwo$ consists of $\langle M, \overline \mu, \varphi \rangle$
 such that $M$ is (the program of) a machine, 
 $\mu \colon \N \to \N$ is non-decreasing, 
-$\phi \in \LM$, 
-and $M^\phi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$; 
-for such $\langle M, \overline \mu, \phi \rangle$, 
-we define $\probDTIMEtwo(\langle M, \overline \mu, \phi \rangle)(x)$ to be 
-the output of the computation $M^\phi(x)$.
+$\varphi \in \LM$, 
+and $M^\varphi(x)$ stops in $\mu(|x|)$ steps for all $x \in \Sigma^*$; 
+for such $\langle M, \overline \mu, \varphi \rangle$, 
+we define $\probDTIMEtwo(\langle M, \overline \mu, \varphi \rangle)(x)$ to be 
+the output of the computation $M^\varphi(x)$.
 
 \begin{lemma}
 \label{lemma: probDTIMEtwo}
@@ -706,12 +771,12 @@ the output of the computation $M^\phi(x)$.
 \end{lemma}
 
 % We define a partial function  $\probCVPtwo \pcolon \LM \to \LM$ as follows:
-% $\dom \probCVPtwo$ is the set of $\langle (C_n)_n, \phi \rangle$
+% $\dom \probCVPtwo$ is the set of $\langle (C_n)_n, \varphi \rangle$
 % such that $C_n$ is (the description of) a circuit with $n$ inputs 
 % (and multiple outputs)
 % consisting of $\AND$, $\OR$, $\NOT$ and oracle gates, 
-% for which $\phi \in \LM$ has the right size.
-% For $\probCVPtwo(\langle (C_n)_n, \phi \rangle)(x) = C^\phi_{|x|}(x)$.
+% for which $\varphi \in \LM$ has the right size.
+% For $\probCVPtwo(\langle (C_n)_n, \varphi \rangle)(x) = C^\varphi_{|x|}(x)$.
 
 % \begin{lemma}
 %  $\probCVPtwo$ is $\classFPtwo$-$\redLmF$-complete.
@@ -724,6 +789,8 @@ the output of the computation $M^\phi(x)$.
 \subsection{Representations}
 \newcommand{\transL}{\preceq_\classLtwo}
 
+Carrying over the above arguments to represented space 
+is also analogous to what has been done \cite{kawamura2012complexity} for larger classes. 
 Let $\gamma$ and $\delta$ be representations of $X$ and $Y$, respectively.
 Definition~\ref{definition: computation wrt representation} 
 tells us when 
@@ -748,8 +815,8 @@ Let $\gamma$ and $\delta$ be two representations of a set $X$.
 We write $\gamma \transL \delta$ if
 there is a function $F \in \classFLtwo$ \emph{translating} $\gamma$-names
 into $\delta$-names, that is, 
-$F (\phi) \in \dom \delta$ and $\delta(F(\phi)) = \gamma (\phi)$ 
-for all $\phi \in \dom \gamma$.
+$F (\varphi) \in \dom \delta$ and $\delta(F(\varphi)) = \gamma (\varphi)$ 
+for all $\varphi \in \dom \gamma$.
 \end{definition}
 
 \begin{lemma}
@@ -771,7 +838,7 @@ more stable and perhaps natural
 than $\redLmF$-hardness, 
 we will state some of our hardness results in Sect.~\ref{section:applications}
 using $\redLmF$, 
-in the interest of proving stronger statements
+simply in the interest of proving stronger statements
 (and deriving the existing non-uniform counterparts as corollaries
 through the following lemma). 
 
@@ -804,7 +871,7 @@ and follows easily from them.
 In Sect.~\ref{section:function}, 
 we show some examples of real functions and operators 
 that are in $\classFLtwo$ and $\classFNCtwo$ (under suitable representations). 
-In Sect.~\ref{section:P-complete}, we show the $\classP$-completeness of 
+In Sect.~\ref{section:P-complete}, we show the $\classPtwo$-completeness of 
 the inverse operation and the fix-point operation.
 
 \subsection{Within $\classFLtwo$ and $\classFNCtwo$}
@@ -822,7 +889,11 @@ while Ko uses the obvious log-space oracle Turing machine
 with no stack.
 This is because, 
 when computing approximation of $f(x)$ under $\rhoR$-names, 
-a machine can get enough information about $x \in [0,1]$ in one query.
+a machine can get enough information about $x \in [0,1]$ in one query
+(recall from Section~\ref{subsection: logspace} that 
+the reason we needed the stack model 
+was to set the right convention for nested queries).
+
 Ko also defines the class of $\classNC$ real functions in $\classC[0,1]$
 as $\deltabox$-$\classFNC$ in our terminology 
 \cite{ko1991complexity},
@@ -830,12 +901,24 @@ which easily equals $(\rhoRunit, \rhoR)$-$\classFNCtwo$.
 The $\classNC$-real functions from $\R$ to $\R$ defined by Hoover \cite{hoover1991real}
 are exactly those in $(\rhoR, \rhoR)$-$\classFNCtwo$.
 
+An important update after the publicatoin of Ko's book~\cite{ko1991complexity} was the 
+breakthrough discovery by Chiu, Davida and Litow~\cite{chiu2001division}
+of a logarithmic space algorithm 
+for division and iterated multiplication. 
+This is especially important in our context of computable analysis, 
+because it enables us to evaluate a fast-converging Taylor series, 
+by which many real numbers and functions are defined. 
+Thanks to this, we can see easily
+in Examples \ref{example: pi} and \ref{example: sine}
+that the considered functions are not just in $\classFNCtwo$ but also in $\classFLtwo$. 
+
 \begin{example}
  The binary addition and the binary multiplication are
  $([\rhoR, \rhoR], \rhoR)$-$\classFLtwo$-computable.
 \end{example}
 
 \begin{example}
+\label{example: pi}
 The circle ratio $\pi$ is in $\rhoR$-$\classFL$ because the series
 \begin{equation}
  \pi = \sum_{k=0}^\infty \frac{1}{16^k} 
@@ -863,6 +946,7 @@ by Chiu, Davida and Litow~\cite{chiu2001division}.
 % because it grows too fast. 
 
 \begin{example}
+\label{example: sine}
 The sine function $\sin \colon \R \to \R$ is
 in $(\rhoR, \rhoR)$-$\classFLtwo$.
 To see this, note that 
@@ -950,23 +1034,23 @@ These can be recast into our framework by specifying
 representations for polynomials and multisets of complex numbers as follows.
 We represent a complex number by a pair of $\rhoR$-names,
 i.e., $
- \rho_\C (\langle \phi, \psi \rangle) 
+ \rho_\C (\langle \varphi, \psi \rangle) 
 = 
- \rhoR (\phi) + \sqrt{-1} \cdot \rhoR (\psi)
+ \rhoR (\varphi) + \sqrt{-1} \cdot \rhoR (\psi)
 $.  We define the representation $\rho_{P_n}$ of 
 $P _n$ as follows: 
-$\phi = \langle \phi _0, \ldots, \phi _{n - 1} \rangle \in \LM$ 
+$\varphi = \langle \varphi _0, \ldots, \varphi _{n - 1} \rangle \in \LM$ 
 is a $\rho_{P_n}$-name of $p \in P_n$ if 
-$\phi _0$, \ldots, $\phi _{n - 1}$ are 
+$\varphi _0$, \ldots, $\varphi _{n - 1}$ are 
 $\rho_{\C}$-names of $a _0$, \ldots, $a _{n - 1}$, respectively, 
 with $p(x) = x^n + a_{n-1}x^{n-1} + \dots + a_0$.
 Define the representation $\rho_{P_*}$ of all monic polynomials by
-$\rho_{P_*}(\langle 0^n, \phi \rangle) = \rho_{P_n}(\phi)$.
+$\rho_{P_*}(\langle 0^n, \varphi \rangle) = \rho_{P_n}(\varphi)$.
 Define the representation $\rhoCSet$ for finite multisets of complex numbers 
 as follows:
-$\phi \in \LM$ is a $\rhoCSet$-name of a multiset $S$ if 
+$\varphi \in \LM$ is a $\rhoCSet$-name of a multiset $S$ if 
 for each $m \in \N$, 
-we have $\phi(0 ^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n )$
+we have $\varphi(0 ^m) = ( a_1, b_1, a_2, b_2, \dots, a_n, b_n )$
 with $a_1, b_1, \dots, a_n, b_n \in \D_m$
 such that 
 $d(S, \{a_1 + b_1 \sqrt{-1}, \dots, a_n + b_n \sqrt{-1}\}) \le 2^{-m}$, 
@@ -979,7 +1063,7 @@ $, with $\sigma$ ranging over all permutations on $\{1, \ldots, n\}$.
 %We can also represent multisets $S$ as vectors $z \in \C^n$
 %such that $S = \{z\}$.
 %More formally we define representation $\rhoCSet'$ as
-%$\rhoCSet'(\phi) = \{z\}$ if $\rho_{\C^*}(\phi) = (z_1, \dots, z_n)$.
+%$\rhoCSet'(\varphi) = \{z\}$ if $\rho_{\C^*}(\varphi) = (z_1, \dots, z_n)$.
 %It is easy to see that $\rhoCSet' \le_\classFLtwo \rhoCSet$,
 %but the following lemma says they are not equivalent even under computability.
 %\begin{lemma}
@@ -1050,8 +1134,8 @@ unless $\classP = \classL$.
 \end{theorem}
 
 We define a representation $\deltaboxINV$ of $M$ as follows:
-$\deltaboxINV(\langle \phi, \overline{\mu} \rangle) = f$ 
-if and only if $\phi$ is a $\deltabox$-name of $f$ 
+$\deltaboxINV(\langle \varphi, \overline{\mu} \rangle) = f$ 
+if and only if $\varphi$ is a $\deltabox$-name of $f$ 
 and $\mu$ is a modulus of continuity of $f^{-1}$.
 We add a modulus of continuity of $f^{-1}$ to $\deltabox$
 since without this information, there is no upper bound on 
@@ -1107,8 +1191,8 @@ For our formulation in TTE,
 let $C$ be the set of contractions on $[0, 1]$. 
 We define its representation $\deltaboxCM$ by saying that 
 a \emph{$\deltaboxCM$-name} of $g \in C$
-is a pair $\langle \phi, q \rangle$ of 
-a $\deltabox$-name $\phi \in \LM$ of $g$ 
+is a pair $\langle \varphi, q \rangle$ of 
+a $\deltabox$-name $\varphi \in \LM$ of $g$ 
 and a dyadic number $q \in \D$ such that $g$ is $q$-Lipschitz. 
 Let $\OpCMFix \colon C \to \R$ be the function
 taking each contraction on $[0, 1]$ to its fixed point.
@@ -1123,8 +1207,113 @@ that are $1/2$-Lipschitz.
 See appendix for the proof that Theorem~\ref{theorem:P-hard-g_u} 
 implies Theorem~\ref{theorem:hoover1991-4.5}. 
 
-\bibliographystyle{plain}
-\bibliography{bibliography}
+%% \subparagraph*{Acknowledgements}
+%% Some of the work presented here was done as a part of the master thesis 
+%% of the second author at the University of Tokyo.
+%% He thanks his advisor Hiroshi Imai for the guidance.
+
+\begin{thebibliography}{10}
+
+\bibitem{aehlig2007relativizing}
+K.~Aehlig, S.~Cook, and P.~Nguyen.
+\newblock Relativizing small complexity classes and their theories.
+\newblock In {\em Computer Science Logic}, pages 374--388. Springer, 2007.
+
+\bibitem{beame1995relative}
+P.~Beame, S.~Cook, J.~Edmonds, R.~Impagliazzo, and T.~Pitassi.
+\newblock The relative complexity of np search problems.
+\newblock In {\em Proceedings of the Twenty-Seventh Annual ACM Symposium on
+  Theory of Computing}, pages 303--314. ACM, 1995.
+
+\bibitem{bhw}
+V. Brattka, P. Hertling, and K. Weihrauch. 
+\newblock A tutorial on computable analysis. 
+\newblock In \emph{New computational paradigms}, Springer, 2008. 
+
+
+\bibitem{buss1988relativized}
+J.F. Buss.
+\newblock Relativized alternation and space-bounded computation.
+\newblock {\em Journal of Computer and System Sciences}, 36(3):351--378, 1988.
+
+\bibitem{chiu2001division}
+A.~Chiu, G.~Davida, and B.~Litow.
+\newblock Division in logspace-uniform $\mathrm{NC}^1$.
+\newblock {\em RAIRO-Theoretical Informatics and Applications},
+  35(03):259--275, 2001.
+
+\bibitem{feree}
+H. Férée and M. Hoyrup. 
+\newblock Higher-order complexity in analysis. 
+\newblock In \emph{Proceedings of the Tenth International Conference on Computability and Complexity in Analysis} (CCA), pages 22--35, 2013.
+
+\bibitem{hoover1991real}
+H.J. Hoover.
+\newblock Real functions, contraction mappings, and $\mathrm{P}$-completeness.
+\newblock {\em Information and Computation}, 93(2):333--349, 1991.
+
+\bibitem{kawamura11:_funct_space_repres_and_polyn_time_comput}
+A.~Kawamura.
+\newblock On function space representations and polynomial-time computability.
+\newblock Dagstuhl Seminar 11411: Computing with Infinite Data, 2011.
+\newblock http://www-imai.is.s.u-tokyo.ac.jp/{\~{}}kawamura/dagstuhl.pdf.
+
+\bibitem{kawamura2012complexity}
+A.~Kawamura and S.~Cook.
+\newblock Complexity theory for operators in analysis.
+\newblock {\em ACM Transactions on Computation Theory (TOCT)}, 4(2), Article~5, 2012.
+\newblock Also in \emph{Proceedings of the 42nd ACM Symposium on Theory of
+  Computing}, pages 495--502, 2010.
+
+\bibitem{ko1991complexity}
+K.I. Ko.
+\newblock {\em Complexity theory of real functions}.
+\newblock Birkhauser Boston Inc., 1991.
+
+\bibitem{ladner1976relativization}
+R.E. Ladner and N.A. Lynch.
+\newblock Relativization of questions about log space computability.
+\newblock {\em Theory of Computing Systems}, 10(1):19--32, 1976.
+
+\bibitem{neff1994specified}
+C.A. Neff.
+\newblock Specified precision polynomial root isolation is in $\mathrm{NC}$.
+\newblock {\em Journal of Computer and System Sciences}, 48(3):429--463, 1994.
+
+\bibitem{neff1996efficient}
+C.A. Neff and John~H Reif.
+\newblock An efficient algorithm for the complex roots problem.
+\newblock {\em Journal of Complexity}, 12(2):81--115, 1996.
+
+\bibitem{pan1995optimal}
+V.Y. Pan.
+\newblock Optimal (up to polylog factors) sequential and parallel algorithms
+  for approximating complex polynomial zeros.
+\newblock In {\em Proceedings of the Twenty-Seventh Annual ACM Symposium on
+  Theory of Computing}, pages 741--750. ACM, 1995.
+
+\bibitem{rettinger}
+R. Rettinger. 
+\newblock Computational complexity in analysis (extended abstract). 
+\newblock In \emph{Proceedings of the Tenth International Conference on Computability and Complexity in Analysis} (CCA), pages 100--109, 2013.
+
+\bibitem{roesnick}
+C. R\"osnick. 
+\newblock Closed sets and operators thereon: representations, computability and complexity. 
+\newblock In \emph{Proceedings of the Tenth International Conference on Computability and Complexity in Analysis} (CCA), pages 110--121, 2013.
+
+\bibitem{weihrauch00:_comput_analy}
+K. Weihrauch.
+\newblock {\em Computable Analysis: An Introduction}.
+\newblock Texts in Theoretical Computer Science. Springer, 2000.
+
+\bibitem{wilson1988measure}
+C.B. Wilson.
+\newblock A measure of relativized space which is faithful with respect to
+  depth.
+\newblock {\em Journal of Computer and System Sciences}, 36(3):303--312, 1988.
+
+\end{thebibliography}
 
 \clearpage
 \appendix
@@ -1132,7 +1321,7 @@ implies Theorem~\ref{theorem:hoover1991-4.5}.
 
 \subsection{Properties of circuits with oracles}
 
-\begin{proof}[Lemma~\ref{lemma: respects uniformity}]
+\begin{proof}[Proof of Lemma~\ref{lemma: respects uniformity}]
  Let $A \colon \LM \to \LM$ be a function computing the description of $(C_{L,n})_{L,n}$,
  $B \colon \Sigma^* \to \Sigma^*$ be a function computing the description of $(D_n)_n$, and
  $L \colon \N \to \N$ be the size of oracle $(D_n)_n$, i.e.
@@ -1145,49 +1334,49 @@ implies Theorem~\ref{theorem:hoover1991-4.5}.
  it is log-space computable.
 \end{proof}
 
-\begin{proof}[Lemma~\ref{lemma: type-one and type-two circuit classes}]
+\begin{proof}[Proof of Lemma~\ref{lemma: type-one and type-two circuit classes}]
 The second statement immediately follows from the first statement.
 Let $A$ be a function in $\classFACtwo^i$ and $(C_{L,n})_{L,n}$ be a circuit
 family computing $A$ with $\log^i$ depth.
-For all $\phi \in \classFAC^j \cap \LM$, 
-the circuit family $(C^\phi_{|\phi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$,
-since there is a polynomial $p$ satisfying $|\phi|(n) \le p(n)$.
-Let $(D_n)_n$ is a circuit family computing $\phi$ whose depth is $O(\log^j(n))$.
-Replacing oracle gates in $(C^\phi_n)_n$ by $(D_n)_n$, 
+For all $\varphi \in \classFAC^j \cap \LM$, 
+the circuit family $(C^\varphi_{|\varphi|,n})_n$ is (first-order) polynomial size and its depth is $O(\log^i(n))$,
+since there is a polynomial $p$ satisfying $|\varphi|(n) \le p(n)$.
+Let $(D_n)_n$ is a circuit family computing $\varphi$ whose depth is $O(\log^j(n))$.
+Replacing oracle gates in $(C^\varphi_n)_n$ by $(D_n)_n$, 
 we get a circuit family with polynomial size and $\log^{i+j}(n)$ depth
-that computes $A(\phi)$.
+that computes $A(\varphi)$.
 \end{proof}
 
 \subsection{$\classFPtwo$-complete problems}
 
-\begin{proof}[Lemma~\ref{lemma:P-complete}]
-Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to \emph{Circuit Value Problem} ($\probCVP$), which is $\classFP$-complete function (in the usual sense).
+\begin{proof}[Proof of Lemma~\ref{lemma:P-complete}]
+Let $A \colon \LM \to \LM$ be the constant function mapping each $\varphi \in \LM$ to \emph{Circuit Value Problem} ($\probCVP$), which is $\classFP$-complete function (in the usual sense).
 Since $\probCVP \in \classFP$, $A \in \classFPtwo$.
 Let $r, s, t \in \classFLtwo$ be functions which reduces $A$ to $B$
 as the definition of $\redLmF$.
-Choose any $\phi \in \classFL$, and it follows from Lemma~\ref{lemma:Ltwo-maps-L-to-L}
-that $r(\phi), s(\phi), t(\phi) \in \classFL$.
-Let $\psi = s(\phi)$, then $r(\phi)$ and $s(\phi)$ give the reduction that
-$A(\phi) \redmF^\classL \cup (B[\psi])$.
-Since $\probCVP$, equal to $A(\phi)$, is $\classFP$-$\redmF^\classL$-complete,
+Choose any $\varphi \in \classFL$, and it follows from Lemma~\ref{lemma:Ltwo-maps-L-to-L}
+that $r(\varphi), s(\varphi), t(\varphi) \in \classFL$.
+Let $\psi = s(\varphi)$, then $r(\varphi)$ and $s(\varphi)$ give the reduction that
+$A(\varphi) \redmF^\classL \cup (B[\psi])$.
+Since $\probCVP$, equal to $A(\varphi)$, is $\classFP$-$\redmF^\classL$-complete,
 so is $\cup (B[\psi])$.
 \end{proof}
 
-\begin{proof}[Lemma~\ref{lemma: probDTIMEtwo}]
+\begin{proof}[Proof of Lemma~\ref{lemma: probDTIMEtwo}]
  For each $A \in \classFPtwo$, 
  there is a polynomial-time machine $M$ 
  and a second-order polynomial $P$ 
  such that $M$ computes $L$ and $P$ is its time bound. 
- Then $\probDTIMEtwo(s(\phi))(t(\phi)(u)) = M^\phi (u)$, 
+ Then $\probDTIMEtwo(s(\varphi))(t(\varphi)(u)) = M^\varphi (u)$, 
  where 
  $s, t \in \classFLtwo$ are given by 
- $s(\phi) = \langle M, \overline{P(\mu)}, \phi \rangle$ and 
- $t(\phi)(u) = u$.
+ $s(\varphi) = \langle M, \overline{P(\mu)}, \varphi \rangle$ and 
+ $t(\varphi)(u) = u$.
 \end{proof}
 
 \subsection{Function inversion and Banach fixed points}
 
-\begin{proof}[Computability part of Theorem~\ref{theorem:INV-is-P-complete}]
+\begin{proof}[Proof of the computability part of Theorem~\ref{theorem:INV-is-P-complete}]
 We will prove hardness in Section~\ref{section:proofs-of-theorems}.
 In the following, we will show that, 
 given $f$ and $x$, 
@@ -1195,8 +1384,8 @@ it is easy to compute $f^{-1}(x)$ by using the binary search algorithm.
 
 Suppose that a $\deltaboxINV$-name of a one-to-one function $f$ in $\classC [0, 1]$ is given. 
 Since a modulus~$p$ of continuity of $f ^{-1}$ is given by this $\deltaboxINV$-name of $f$,
-we only show how to compute a function $\phi$ such that 
-$|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$ for all $d \in \D \cap [a, b]$ and $n \in \N$.
+we only show how to compute a function $\varphi$ such that 
+$|f^{-1}(d) - \varphi(0^n, d)| \le 2^{-n}$ for all $d \in \D \cap [a, b]$ and $n \in \N$.
 
 Since $f$ is one to one, $f$ is either increasing or decreasing. 
 We assume that $f$ is increasing (the other case is similar).
@@ -1204,7 +1393,7 @@ Given $d \in \D \cap [a, b]$,
 we compute a sequence  $a_0, b_0, a_1,b_1, \dots, a_{3n}, b_{3n}$ of rational numbers as follows.
 Let $a_0 = 0$, $b_0 = 1$.
 For each integer $i \le 3n-1$,
-let $c_i = (a_i+b_i)/2$ and $d_i = \phi_f(c_i, 0^{p(i+2)})$.
+let $c_i = (a_i+b_i)/2$ and $d_i = \varphi_f(c_i, 0^{p(i+2)})$.
 If $d \ge d_i$, then $a_{i+1} = (3a_i+b_i)/4$ and $b_{i+1} = b_i$. 
 Otherwise, let $a_{i+1} = a_i$ and $b_{i+1} = (a_i+3b_i)/4$.
 
@@ -1220,23 +1409,23 @@ If $d \le d_j$ then $f(a_{j+1}) = f(a_j) \le d$ and
  d \le d_j \le f(c_n) + 2^{-p(j+2)} < f(b_{j+1}).
 \end{equation}
 
-Let $\phi(0^n, d) = a_{3n}$.
+Let $\varphi(0^n, d) = a_{3n}$.
 Since $|b_{3n} - a_{3n}| = (3/4)^{3n} \le 2^{-n}$ and
 $a_{3n} \le f^{-1}(d) \le b_{3n}$,
-$|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
+$|f^{-1}(d) - \varphi(0^n, d)| \le 2^{-n}$
 \end{proof}
 
 \begin{proof}
 [Theorem~\ref{theorem:hoover1991-4.5}]
- Let $A \colon \LM \to \LM$ be the constant function mapping each $\phi \in \LM$ to $\probCVP$, which is $\classFP$-complete function.
+ Let $A \colon \LM \to \LM$ be the constant function mapping each $\varphi \in \LM$ to $\probCVP$, which is $\classFP$-complete function.
  Since  $A$ is in $\classFPtwo$ and $\OpCMFix$ is $(\deltaboxCM, \rhoR)$-$\classFPtwo$-$\redLB$-complete, $A \redLB (\rhoR^{-1} \circ \OpCMFix \circ \deltaboxCM)$.
  Let $r,s,t \in \classFLtwo$ be the reduction from $A$ to $\OpCMFix$,
- and $\phi$ be some function in $\classFL$.
- Then, $r(\phi)$, $s(\phi)$, and $t(\phi)$ are in $\classFL$ and
- $s(\phi)(u, \cdot)$ is a $\deltaboxCM$-name of a contraction on $[0,1]$ 
+ and $\varphi$ be some function in $\classFL$.
+ Then, $r(\varphi)$, $s(\varphi)$, and $t(\varphi)$ are in $\classFL$ and
+ $s(\varphi)(u, \cdot)$ is a $\deltaboxCM$-name of a contraction on $[0,1]$ 
  for each $u \in \Sigma^*$.
  Let $(g_u)_u$ be a family of contractions on $[0,1]$
- such that $s(\phi)(u, \cdot)$ is $\deltaboxCM$ name of $g_u$.
+ such that $s(\varphi)(u, \cdot)$ is $\deltaboxCM$ name of $g_u$.
  Define $f$ as follows: for each $u \in \Sigma^*$ and $y \in [0, 1]$,
  \begin{equation}
   \label{eq:def-f}
@@ -1247,13 +1436,13 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
 
  We show that $f$ meets the conditions in Theorem~\ref{theorem:hoover1991-4.5}.
  This $f$ is in $(\rhoR, \rhoR)$-$\classFNCtwo$ since 
- $|f(x) - f(x')| \le 3|x-x'|$ and $s(\phi)$ is in $\classFNC$.
+ $|f(x) - f(x')| \le 3|x-x'|$ and $s(\varphi)$ is in $\classFNC$.
  Since $g_u$ is a contraction, so is $f|_{[2n, 2n+1]}$.
  If $\classNC = \classP$,
  the fix-point of $f$ on $[2n, 2n+1]$ 
  is in $\classFNC$ since $\classFPtwo$-computable function 
  $\OpCMFix$ maps $\classFP$-computable functions into $\classFP = \classFNC$.
- The string function $r(\phi), t(\phi) \in \classFL$ many-one reduces
+ The string function $r(\varphi), t(\varphi) \in \classFL$ many-one reduces
  $\probCVP$ to the fix-points of $(g_u)_u$.
  Hence $\classNC = \classP$ if fix-points of $f$ on $[2k, 2k+1]$ is $\classFNC$-computable.
 \end{proof}
@@ -1271,16 +1460,16 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
  is $\classFPtwo$-$\redLmF$-hard, $\OpCMFix$ is 
  $(\deltaboxCM, \rhoR)$-$\classFPtwo$-$\redLB$-complete.
 
- Let $\psi \in \probDTIMEtwo$ and $\langle M, \phi, \bar \mu \rangle = \psi$.
- Let $S_i$ be the snapshot of $M^\phi(u)$ at $i$th step, then the sequence
+ Let $\psi \in \probDTIMEtwo$ and $\langle M, \varphi, \bar \mu \rangle = \psi$.
+ Let $S_i$ be the snapshot of $M^\varphi(u)$ at $i$th step, then the sequence
  \begin{equation}
   S_1, S_2, \dots, S_{\mu(|u|)}.
  \end{equation}
- is the computation path of $M^\phi(u)$.
+ is the computation path of $M^\varphi(u)$.
  We assume that the encoding of snapshots satisfies that 
  for some second-polynomial $P$, for all machines $M$, time functions $\mu$ 
  and inputs $u$, $|S_0| = \cdots = |S_{\mu(|u|)}| = L(\mu)(|u|)$
- regardless of the oracle $\phi$.
+ regardless of the oracle $\varphi$.
  Let $m = L(\mu)(|u|)$.
 
 
@@ -1342,7 +1531,7 @@ $|f^{-1}(d) - \phi(0^n, d)| \le 2^{-n}$
   =
   \overline{S_{\mu(|u|)}}.
 \end{equation}
- Hence, the output of $M^\phi(u)$ is log-space computable from 
+ Hence, the output of $M^\varphi(u)$ is log-space computable from 
  $u \in \Sigma^*$ and a $2^{-(m+2)\mu(|u|)}$-approximation $y^*_u$, and so is
  $\probDTIMEtwo(\psi)(u)$.
 \end{proof}
