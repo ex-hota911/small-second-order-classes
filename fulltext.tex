@@ -1,16 +1,18 @@
-% \documentclass[envcountsect,envcountsame,orivec,oribibl]{llncs}
+\documentclass[envcountsect,envcountsame,orivec,oribibl]{llncs}
 % \documentclass[a4paper,UKenglish]{lipics}
-\documentclass[conference]{IEEEtran}
+% \documentclass[conference]{IEEEtran}
 % \usepackage{mathtools}
 \usepackage{amsmath,amssymb}
 \usepackage[dvipdfm]{graphicx}
 % \usepackage{xspace}
 % \usepackage{hyperref}
+\let\proof\relax
+\let\endproof\relax
 \usepackage{amsthm}
 \usepackage{microtype}
 \usepackage[all]{xy}
 
-\usepackage{mtpro}
+% \usepackage{mtpro}
 
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
@@ -107,32 +109,33 @@
 \newcommand{\AND}{\mathrm{AND}}
 \newcommand{\FANOUT}{\mathrm{FAN-OUT}}
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\theoremstyle{remark}
+%% \newtheorem{theorem}{Theorem}[section]
+%% \newtheorem{lemma}[theorem]{Lemma}
+%% \newtheorem{corollary}[theorem]{Corollary}
+%% \theoremstyle{definition}
+%% \newtheorem{definition}[theorem]{Definition}
+%% \newtheorem{example}[theorem]{Example}
+%% \theoremstyle{remark}
 
 \newcommand{\pcolon}{\mathpunct{\,:\subseteq}}
 
 \title{Small complexity classes for computable analysis}
-\author{\IEEEauthorblockN{Akitoshi Kawamura}
-\IEEEauthorblockA{Department of Computer Science\\
-University of Tokyo}
-\and
-\IEEEauthorblockN{Hiroyuki Ota}
-\IEEEauthorblockA{Department of Computer Science\\
-University of Tokyo}
-}
+%% \author{\IEEEauthorblockN{Akitoshi Kawamura}
+%% \IEEEauthorblockA{Department of Computer Science\\
+%% University of Tokyo}
+%% \and
+%% \IEEEauthorblockN{Hiroyuki Ota}
+%% \IEEEauthorblockA{Department of Computer Science\\
+%% University of Tokyo}
+%% }
+\author{Akitoshi Kawamura\and Hiroyuki Ota}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Type-two Theory of Effectivity (TTE) gives a concrete and general framework for 
+Type-two Theory of Effectivity (TTE) provides a concrete and general framework for 
 Computable Analysis. 
 To refine it to polynomial-time computability 
 while keeping as much generality as possible, 
@@ -1623,6 +1626,8 @@ M. Ziegler.
 \clearpage
 
 \appendix
+
+\section{Postponed proofs}
 
 We put the postponed proofs here. 
 For a binary string $u \in \{0, 1\} ^n$, 
